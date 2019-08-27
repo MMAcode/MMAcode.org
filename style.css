@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1, p {
+  padding: 0.2rem 1rem;
+}
+
+p {
+  padding-left: 2rem;
+}
+.container {
+  margin: 1rem;
+}
+
+p em {
+  color: rgb(160, 160, 160);
+}
+
+.title {
+  text-align: center;
+  font-size: 4rem;
+}
+
+a {
+  
+}
