@@ -4,15 +4,29 @@
   padding: 0;
 }
 
-h1, p {
-  padding: 0.2rem 1rem;
+h1,
+p {
+  padding: auto 1rem;
 }
 
-p {
-  padding-left: 2rem;
+h1 {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
+
+
+
+ul {
+  padding-left: 2.5rem;
+}
+
 .container {
   margin: 1rem;
+}
+
+.container p {
+  padding: 0.2rem 2rem;
+
 }
 
 p em {
@@ -24,6 +38,35 @@ p em {
   font-size: 4rem;
 }
 
-a {
+.section {
+  margin: 2rem;
+}
+
+#translate a {
+  position: absolute;
+  right: 5px;
+  top: 2px;
+  background-color: rgb(235, 193, 5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+
+  padding-right: 5px;
+}
+
+#translate a img {
+  padding: 5px;
+  margin: 0;
+}
+
+.flag {
+  height: 40px;
+  padding-right: 5px;
   
 }
