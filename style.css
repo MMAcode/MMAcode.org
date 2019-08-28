@@ -7,14 +7,14 @@
 body {
   background-color: #F7F099;
   /* :rgba(244, 241, 187, 1); */
-   /* rgb(247, 224, 122); */
-   line-height: 1.6rem;
+  /* rgb(247, 224, 122); */
+  line-height: 1.6rem;
 }
 
 
 h1 {
   padding-bottom: 1rem;
-  padding-top: 50px;
+  padding-top: 1rem;
 }
 
 
@@ -46,6 +46,7 @@ a {
 .title {
   text-align: center;
   font-size: 4rem;
+  padding-top: 50px;
 }
 
 .section {
@@ -78,5 +79,5 @@ a {
 .flag {
   height: 40px;
   padding-right: 5px;
-  
+
 }
