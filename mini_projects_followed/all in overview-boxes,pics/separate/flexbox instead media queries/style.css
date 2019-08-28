@@ -1,0 +1,24 @@
+.container {
+  padding: 3rem;
+  margin: 1rem;
+  border: 1px dotted;
+}
+
+.flexbox {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  
+}
+
+.item {
+  background: greenyellow;
+  margin: 1rem;padding: 1rem;
+  min-width: 120px;
+  max-width: 300px;
+  width: 1fr;
+  flex: 1;
+
+  /* flex-grow: 1; */
+    /* flex-basis: fill; */
+}

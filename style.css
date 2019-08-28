@@ -4,10 +4,13 @@
   padding: 0;
 }
 
-h1,
-p {
-  padding: auto 1rem;
+body {
+  background-color: #F7F099;
+  /* :rgba(244, 241, 187, 1); */
+   /* rgb(247, 224, 122); */
+   line-height: 1.6rem;
 }
+
 
 h1 {
   padding-bottom: 1rem;
@@ -15,11 +18,20 @@ h1 {
 }
 
 
-
 ul {
   padding-left: 2.5rem;
 }
 
+p em {
+  color: rgb(160, 160, 160);
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+/* UTILITIES */
 .container {
   margin: 1rem;
 }
@@ -29,10 +41,8 @@ ul {
 
 }
 
-p em {
-  color: rgb(160, 160, 160);
-}
 
+/* SECTIONS */
 .title {
   text-align: center;
   font-size: 4rem;
@@ -46,7 +56,7 @@ p em {
   position: absolute;
   right: 5px;
   top: 2px;
-  background-color: rgb(235, 193, 5);
+  background-color: rgb(228, 194, 85);
   display: flex;
   justify-content: center;
   align-items: center;

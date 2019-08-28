@@ -1,0 +1,57 @@
+#navbar {
+  flex-direction: column;
+  align-items: center;
+}
+
+#navbar ul {
+  margin-top: 1rem;
+}
+
+#who .who {
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  
+}
+
+#who .who-item {
+min-width: 350px;
+}
+
+#who .who .who-image {
+min-height: 200px;
+}
+
+#who .who-image {
+  background: url(../img/people.jpg) center center/cover no-repeat;
+}
+
+
+#clients-icons {
+  flex-wrap: wrap;
+}
+.clients .m-heading {
+  margin: 0;
+}
+
+
+
+#what .container .items {
+  flex-direction: column;
+}
+
+#what .container .items .item {
+  display:flex;
+  text-align: left;
+  align-items: center;
+  padding: 20px 0;
+  /* max-width: 200px; */
+}
+
+
+#contact {
+  flex-direction: column;
+}
+
+#contact .imported-map {
+  height: 100vh;
+}

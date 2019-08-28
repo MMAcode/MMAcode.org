@@ -1,0 +1,11 @@
+/** What We Do  */
+
+#what .container .items .item {
+  display:flex;
+  text-align: left;
+  align-items: center;
+  /* max-width: 200px; */
+}
+
+
+

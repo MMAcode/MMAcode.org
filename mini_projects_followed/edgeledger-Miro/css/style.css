@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "roboto", sans-serif;
+    --green-theme: hsl(98, 55%, 53%);
+    line-height: 1.6rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    margin: 0.75rem 0;
+
+}
+
+
+/** UTILITY CLASSES */
+
+.text-primary {
+    color: var(--green-theme, green);
+}
+
+.l-heading {
+    font-size: 4rem;
+    margin-bottom: 0.75rem;
+    line-height: 5rem;
+}
+
+.m-heading {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    line-height: 2rem;
+}
+
+.py-1 {
+    padding: 1.5rem 0;
+}
+
+.py-2 {
+    padding: 2rem 0;
+}
+
+.py-3 {
+    padding: 3rem 0;
+}
+
+.p-1 {
+    padding: 1.5rem;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.p-3 {
+    padding: 3rem;
+}
+
+.lead {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: block;
+    color: white;
+    background: var(--green-theme, green);
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn:hover,
+#navbar ul li a:hover {
+    background: hsl(98, 55%, 23%);
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.btn-dark {
+    background: hsl(98, 15%, 23%)
+}
+
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 2rem;
+    overflow: hidden;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bg-dark {
+    background-color: #333;
+    color: #fff;
+}
+
+
+
+/** Navbar  */
+
+#navbar {
+    display: flex;
+    background: #333;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    justify-content: space-between;
+    z-index: 10;
+    padding: 1rem;
+}
+
+#navbar ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+}
+
+#navbar ul li a {
+    color: white;
+    padding: 0.75rem;
+    margin: 0 0.25;
+    border-radius: 5px;
+}
+
+#what,
+#who,
+#contact {
+    padding-top: 60px;
+}
+
+
+
+/* 
+#navbar ul li a:active {
+    color: red;
+    animation: animate1 2s forwards ease-in-out;
+    -webkit-animation: animate1 2s forwards ease-in-out;
+}
+
+@keyframes animate1 {
+    0% {
+        color: red;
+    }
+    100% {
+        background: pink !important;
+       color: purple;
+        z-index: 5;
+    }
+} */
+
+/** Header - showcase  */
+
+#showcase {
+    background: #333 url(../img/showcase.jpg) no-repeat center center/cover;
+    height: 100vh;
+    /* shoul be 100vh */
+    color: white;
+}
+
+.showcase-overlay {
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.5)
+}
+
+#showcase .showcase-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100%;
+    justify-content: center;
+
+    padding: 0 2rem;
+    text-align: center;
+
+    /* darkening overlay */
+}
+
+/** What We Do  */
+
+
+
+.items {
+    display: flex;
+    /* max-width: 100%; */
+    justify-content: center;
+}
+
+.item {
+    /* flex:1; */
+    text-align: center;
+    /* max-width: 200px; */
+}
+
+.items i {
+    background: var(--green-theme, green);
+    padding: 15px;
+    margin: 20px;
+    border-radius: 50%;
+}
+
+
+/** Who we are  */
+
+.who {
+    display: flex;
+}
+
+.who-item {
+    flex: 1;
+}
+
+.who-image {
+    background: url("../img/people.jpg") center center/contain no-repeat;
+    width: 100%;
+}
+
+.who-text {
+    padding: 20px;
+}
+
+.who-text h2 {
+    text-align: left;
+}
+
+.who-text h3 {
+    margin-top: 20px;
+}
+
+
+.who-text li {
+    /* margin-left: 30px; */
+    list-style: none;
+    line-height: 2.4;
+    border-bottom: 1px dotted #000;
+}
+
+/** clients */
+#clients-icons {
+    display: flex;
+    justify-content: center;
+}
+
+#clients-icons div {
+    text-align: center;
+}
+
+.clients #clients-icons img {
+    width: 60%;
+    max-width: 100px;
+    margin: 20px;
+}
+
+.clients h2 {
+    padding-top: 60px;
+}
+
+/** Contact  */
+
+.contact {
+    display: flex;
+    min-height: 100vh;
+}
+
+.contact .contact-form {
+    flex: 3;
+    background: var(--green-theme, green);
+    color: white;
+    min-height: 550px;
+
+}
+
+.contact .imported-map {
+    flex: 5;
+    background: #440;
+    width: 100%;
+}
+
+.contact h1 {
+    padding-top: 10px;
+}
+
+form {
+    margin: auto;
+}
+
+form label,
+form input,
+form textarea {
+    display: block;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    line-height: 2.5;
+}
+
+form label {
+    padding-top: 10px;
+}
+
+.contact .btn {
+    margin-top: 10px;
+}

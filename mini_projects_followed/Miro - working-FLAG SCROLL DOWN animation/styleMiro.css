@@ -1,0 +1,164 @@
+:root {
+  /* c colour, b backgrount   t text  l link   s selected 
+  n navbar
+  */
+  --cbb: rgb(168, 90, 90);
+  --cbn: rgb(131, 66, 66);
+  /* --cb: rgb(231, 66, 66); */
+  --cb: linear-gradient(to right, red, rgba(0, 0, 0, 0));
+  --cbs: orange;
+
+  --ct: black;
+  --cn: white;
+  --cls: white;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4rem;
+  background: var(--cbb);
+}
+
+
+/* bulletpoints, underlined links*/
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+
+/* navbar background */
+body .navbar {
+  background: var(--cbn);
+
+}
+
+/* navbar groups */
+
+body .navbar>ul>li {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-item {
+  display: inline-block;
+  /* for links to  to fill the space*/
+  color: var(--cn);
+  padding: 1rem 1.4rem;
+}
+
+
+/* hide groups */
+body .navbar>ul>li>ul {
+  display: none;
+  /* transition: all 1s ease-in-out; */
+}
+
+
+
+/* hover actions */
+body .navbar>ul>li:hover {
+  background: var(--cbs);
+  cursor: pointer;
+}
+
+/* and set sub-groups appearance */
+body .navbar>ul>li:hover ul {
+  display: block;
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: 54px;
+  width: 200px;
+  max-height: 0;
+    z-index: 1;
+  animation: animate1 1.3s forwards ease-in-out;
+  -webkit-animation: animate1 .3s forwards ease-in-out;
+}
+
+
+@keyframes animate1 {
+  0% {
+    
+  }
+
+  100% {
+    max-height: 100vh;
+    /* height: 300px; */
+  }
+}
+
+/* hiddent lists properties */
+.navbar li>ul {
+  background: var(--cb);
+}
+
+.navbar li>ul li {
+  padding: 1rem 1.4rem;
+}
+
+.navbar li>ul li a {
+  color: var(--cn);
+}
+
+/* hiden lists hover */
+.navbar li>ul li:hover {
+  background: var(--cbs);
+}
+
+
+
+
+
+/** Main  */
+
+.title-container {
+  height: calc(100vh - 54px);
+  background: green;
+  position: relative;
+
+
+}
+
+h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  background: var(--cbs);
+  text-align: center;
+  line-height: 20vw;
+  font-size: 10vw;
+
+}
+
+
+/* 
+.title-container {
+  height: calc(100vh - 54px);
+  background: green;
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+    background: var(--cbs);
+    width: 100%;
+  line-height: 20vw;
+  font-size: 10vw;
+} */

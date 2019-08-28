@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./images.css" />
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="navbar">
+        <a href="./html.html">Home</a>
+    </div>
+
+
+
+    <div class="responsive_image_div">
+        <img src="./images/jaguar_small.jpeg">
+        <span>text u obrazku</span>
+        <h2>FLEXIBLE width according to it's container</h2>
+        <p>image is inside classed div element</p>
+        <p>class has defined width</p>
+        <p>image within has width=100%; meaning this image adjusts it's width to it's container.</p>
+    </div>
+</body>
+<br><br><br>
+<h2>strictly defined width by class</h2>
+<p>next image will have class in itself</p>
+<p>this image can't have a description attached to it as it is not part of div divider.</p>
+<p>it has strictly defined width by class to xy pixels.</p>
+<img class="responsive_image_div" src="./images/jaguar_small.jpeg" alt="">
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>image <strong>without</strong> class at all</p>
+<p>= in it's original size.</p>
+<img src="./images/jaguar_small.jpeg" alt="">
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>this image has class within it's tag</p>
+<p>this class will ask for width = 100%.</p>
+<img class="full_width" src="./images/jaguar_small.jpeg" alt="">
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="description_image">
+    <p>this image has class within it's tag</p>
+    <p>this class will ask for width = 50% and centered.</p>
+    <p>div/class has to have following parameters:</p>
+    <ul>
+        <li>display: block (also this text box div has to be block; inline-bloc is not enough</li>
+        <li>width:80%</li>
+        <li>margin: 0 auto </li>
+    </ul>
+    <p><strong>width</strong> has to be defined strictly or by %; otherwise it will take over full width of parent</p>
+</div>
+<img class="half_width" src="./images/jaguar_small.jpeg" alt="">
+
+
+</html>

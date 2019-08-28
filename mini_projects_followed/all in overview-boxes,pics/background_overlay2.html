@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+  html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.bg-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?cs=srgb&dl=adorable-animal-breed-1851471.jpg&fm=jpg') center center no-repeat;
+  background-size: cover;
+}
+  .bg-img::before {
+    content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
+	opacity: .6; 
+  }
+
+  </style>
+</head>
+<body>
+  <div class="bg-img"></div>
+</body>
+</html>

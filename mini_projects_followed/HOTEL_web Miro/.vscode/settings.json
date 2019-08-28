@@ -1,0 +1,10 @@
+{
+    "indenticator.inner.width": 2,
+    "indenticator.width": 2,
+    "indenticator.hover.peekForward": 2,
+    "indenticator.showCurrentDepthInStatusBar": false,
+    "indenticator.inner.hover.peekBack": 5,
+    "indenticator.inner.hover.peekForward": 3,
+    "indenticator.hover.peekBack": 4,
+    "editor.tabSize": 2
+}

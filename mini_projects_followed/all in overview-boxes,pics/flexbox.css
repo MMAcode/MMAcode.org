@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.container-1 {
+    background: gray;
+    display: flex;
+    justify-content: space-around;
+}
+
+.item {
+    padding: 1rem;
+    margin: 0.5rem;
+    border: black solid 1px;
+    ;
+    text-align: center;
+}
+.item:first-child {
+    background: rgb(130, 130, 231);
+}
+
+
+/* 2.fex-box */
+.container-2 .item,
+.container-3 .item {
+    flex: 1;
+}
+
+/* 3.fex-box */
+ 
+.container-3 .item:first-child {
+    flex: 2;
+}

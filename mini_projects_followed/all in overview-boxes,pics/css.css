@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 60%;
+}
+
+body {
+    background-color: hsl(300, 100%, 50%);
+}
+
+p {
+    border: 1px solid black;
+    font-size: 2rem;
+}
+
+/* menu - header section */
+
+.menu {
+    background-color: brown;
+    display:flex;
+    height: 50px;
+    align-items: center;
+}
+
+.menu h1, .menu a {
+font-size: 20px;
+margin: 10px;
+background-color: white; 
+text-decoration: none;
+
+}
+
+.menu a:hover {
+font-weight: bold;
+background-color: gray;
+font-size: 30px;
+}
+
+
+
+/* MAin - the rest */
+
+.box1 {
+    width: 85%;
+    height: 500px;
+    margin: 20px auto;
+    background-color: hsl(100, 100%, 50%);
+}
+
+.gridInBox1 {
+    width: 85%;
+    height: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: hsl(200, 100%, 50%);
+
+
+
+    display: grid;
+    grid-gap: 5px 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    border: 1px solid black;
+
+    
+    
+}
+
+.gridInBox1 p {
+    background-color: azure;
+    overflow: hidden;
+}
+
+.photo {
+    grid-area: 2 / 2 / span 2 / span 2;
+    width: 100%;
+    height: 100%;
+}
+
+.columns {
+    grid-area: 1 / 2 / span 1 / span 2;
+}
+
+.rows {
+    grid-area: 1 / 1 / span 2 / span 1;
+}
