@@ -14,13 +14,18 @@ body {
 
 h1 {
   padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding-top: 0.6 rem;
+}
+
+h3 {
+  padding-top: 0.3rem;
 }
 
 
 ul {
   padding-left: 2.5rem;
 }
+
 li {
   line-height: 2rem;
 }
@@ -35,21 +40,15 @@ a {
 }
 
 /* UTILITIES */
-.container {
-  margin: 1rem;
-}
-
-.container p {
-  padding: 0.2rem 2rem;
-
-}
+/* .container {margin: 1rem;} */
+/* .container p {padding: 0.2rem 2rem;} */
 
 
 /* SECTIONS */
 .title {
   text-align: center;
   font-size: 4rem;
-  padding-top: 50px;
+  padding-top: 55px;
 }
 
 .section {
