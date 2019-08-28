@@ -36,8 +36,21 @@ image {
       #navbar nav ul li {
         display: inline-block;
         text-align: center;
-        width: 100px;
-        padding: 0.7rem; }
+        width: 100px; }
         #navbar nav ul li:hover {
           font-weight: bold;
           background-color: white; }
+
+@media (max-width: 900px) {
+  body {
+    background-color: rgba(141, 247, 141, 0.295); }
+  #navbar {
+    flex-direction: column; }
+    #navbar nav ul li {
+      display: inline-block;
+      text-align: center;
+      width: 80px;
+      padding: 0.1rem; }
+      #navbar nav ul li:hover {
+        font-weight: bold;
+        background-color: white; } }
