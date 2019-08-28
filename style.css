@@ -8,7 +8,7 @@ body {
   background-color: #F7F099;
   /* :rgba(244, 241, 187, 1); */
   /* rgb(247, 224, 122); */
-  line-height: 1.6rem;
+  /* line-height: 1.6rem; */
 }
 
 
@@ -41,14 +41,14 @@ a {
 
 /* UTILITIES */
 /* .container {margin: 1rem;} */
-/* .container p {padding: 0.2rem 2rem;} */
+.container p {padding: 0.2rem 2rem;}
 
 
 /* SECTIONS */
 .title {
   text-align: center;
   font-size: 4rem;
-  padding-top: 55px;
+  padding-top: 2rem;
 }
 
 .section {
