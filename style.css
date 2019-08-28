@@ -44,13 +44,38 @@ a {
   color: blue;
 }
 
-/* UTILITIES */
+/* UTILITIES-classes */
 .container {
   margin: 1rem;
 }
 
 .container p {
   padding: 0.2rem 2rem;
+}
+
+
+.preview {
+  width: 100%;
+  display: none;
+  width: 500px;
+  height: 100px;
+}
+
+a:hover+.preview,
+.preview:hover {
+  display: block;
+  position: relative;
+  top: -10px;
+  left: 40px;
+}
+
+
+.comment {
+  padding: 0;
+  margin: 0;
+  /* font-size: 1rem; */
+  color: gray;
+  font-style: italic;
 }
 
 
@@ -61,9 +86,7 @@ a {
   padding-top: 2rem;
 }
 
-.section {
-  /* margin: 2rem; */
-}
+
 
 #translate a {
   position: absolute;
