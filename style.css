@@ -12,9 +12,11 @@ body {
 }
 
 
-h1 {
-  padding-bottom: 1rem;
-  padding-top: 0.6 rem;
+h1,
+h2,
+h3 {
+  /* padding-bottom: 1rem; */
+  padding-top: 1rem;
 }
 
 h3 {
@@ -40,8 +42,13 @@ a {
 }
 
 /* UTILITIES */
-/* .container {margin: 1rem;} */
-.container p {padding: 0.2rem 2rem;}
+.container {
+  margin: 1rem;
+}
+
+.container p {
+  padding: 0.2rem 2rem;
+}
 
 
 /* SECTIONS */
@@ -52,7 +59,7 @@ a {
 }
 
 .section {
-  margin: 2rem;
+  /* margin: 2rem; */
 }
 
 #translate a {
