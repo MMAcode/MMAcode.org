@@ -20,7 +20,17 @@ image {
 .title {
   text-align: center;
   color: #970071;
-  font-size: 2rem; }
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  z-index: -2; }
+
+.separator {
+  display: block;
+  height: 5px;
+  width: 80%;
+  margin: 2rem auto;
+  background: linear-gradient(to right, rgba(255, 0, 0, 0), #970071, rgba(0, 128, 0, 0)); }
 
 #navbar {
   display: flex;
@@ -39,14 +49,23 @@ image {
   #navbar nav {
     font-size: 1.3rem; }
     #navbar nav ul {
-      list-style: none; }
+      list-style: none;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-around; }
       #navbar nav ul li {
         display: inline-block;
         text-align: center;
-        width: 100px; }
+        padding: 0.7rem;
+        border-bottom: 3px solid rgba(0, 0, 0, 0);
+        transition: border-bottom 0.5s ease-in-out;
+        -webkit-transition: border-bottom 0.5s ease-in-out;
+        -moz-transition: border-bottom 0.5s ease-in-out;
+        -ms-transition: border-bottom 0.5s ease-in-out;
+        -o-transition: border-bottom 0.5s ease-in-out; }
         #navbar nav ul li:hover {
-          font-weight: bold;
-          background-color: white; }
+          background-color: white;
+          border-bottom: 3px solid #970071; }
 
 #Intro {
   background: url(./images/./cover_photo/./ssss2.png) no-repeat right bottom/contain;
@@ -55,6 +74,64 @@ image {
     width: 600px;
     height: 500px;
     margin: 3rem; }
+
+#cars-container {
+  display: grid;
+  grid-gap: 2rem;
+  padding: 2rem;
+  grid-template-areas: "car1 car2" "car3 car4";
+  justify-items: center;
+  align-items: center; }
+
+.car {
+  background-color: #ce6ab5;
+  border: 4px solid #970071;
+  padding: 0.3rem;
+  box-shadow: 5px 6px 7px 1px rgba(0, 0, 0, 0.54);
+  transition: all 2000ms ease-in-out;
+  -webkit-transition: width 1s ease-in-out;
+  -moz-transition: width 1s ease-in-out;
+  -ms-transition: width 1s ease-in-out;
+  -o-transition: width 1s ease-in-out; }
+  .car-1 {
+    grid-area: car1;
+    transform: rotate(-0.01turn);
+    -webkit-transform: rotate(-0.01turn);
+    -moz-transform: rotate(-0.01turn);
+    -ms-transform: rotate(-0.01turn);
+    -o-transform: rotate(-0.01turn); }
+  .car-2 {
+    grid-area: car2;
+    transform: rotate(0.005turn);
+    -webkit-transform: rotate(0.005turn);
+    -moz-transform: rotate(0.005turn);
+    -ms-transform: rotate(0.005turn);
+    -o-transform: rotate(0.005turn); }
+  .car-3 {
+    grid-area: car3;
+    transform: rotate(-0.007turn);
+    -webkit-transform: rotate(-0.007turn);
+    -moz-transform: rotate(-0.007turn);
+    -ms-transform: rotate(-0.007turn);
+    -o-transform: rotate(-0.007turn); }
+  .car-4 {
+    grid-area: car4;
+    transform: rotate(0.008turn);
+    -webkit-transform: rotate(0.008turn);
+    -moz-transform: rotate(0.008turn);
+    -ms-transform: rotate(0.008turn);
+    -o-transform: rotate(0.008turn); }
+  .car-photo img {
+    width: 97%;
+    display: block;
+    margin: auto;
+    border: 1px solid #970071;
+    overflow: hidden; }
+  .car-name {
+    text-align: center;
+    padding: 1rem; }
+  .car:hover {
+    background: #fdfcf5; }
 
 @media (max-width: 900px) {
   body {
