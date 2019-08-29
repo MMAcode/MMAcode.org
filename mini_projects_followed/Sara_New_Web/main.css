@@ -3,7 +3,7 @@
   padding: 0; }
 
 body {
-  background: url("../../images/Background_photos/blured2.jpg ") no-repeat center center/cover; }
+  background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover; }
 
 a {
   text-decoration: none;
@@ -229,7 +229,7 @@ footer {
 
 @media (max-width: 925px) {
   body {
-    background-image: url("../../images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover; }
+    background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover; }
   #navbar {
     flex-direction: column; }
     #navbar nav {
