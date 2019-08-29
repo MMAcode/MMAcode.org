@@ -14,8 +14,7 @@ image {
 
 .container {
   max-width: 1200px;
-  margin: auto;
-  overflow: hidden; }
+  margin: auto; }
 
 .title {
   text-align: center;
@@ -35,6 +34,7 @@ image {
 #navbar {
   position: sticky;
   top: 0;
+  z-index: 101;
   z-index: 100;
   background-color: #fdfcf5;
   opacity: 0.9;
@@ -227,22 +227,20 @@ footer {
   footer img {
     height: 40px; }
 
-@media (max-width: 900px) {
+@media (max-width: 925px) {
   body {
     background-image: url("../../images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover; }
   #navbar {
-    position: relative;
     flex-direction: column; }
     #navbar nav {
-      position: sticky; }
+      padding-top: 20px; }
     #navbar nav ul li {
       display: inline-block;
       text-align: center;
       width: 80px;
-      padding: 0.1rem; }
-      #navbar nav ul li:hover {
-        font-weight: bold;
-        background-color: white; }
+      padding: 0.1rem; } }
+
+@media (max-width: 500px) {
   #cars-container {
     display: grid;
     grid-gap: 2rem;
