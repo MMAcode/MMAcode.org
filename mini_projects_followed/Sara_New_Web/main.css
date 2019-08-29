@@ -228,10 +228,11 @@ footer {
     height: 40px; }
 
 @media (max-width: 900px) {
-  body {
-    background-color: rgba(141, 247, 141, 0.295); }
   #navbar {
+    position: relative;
     flex-direction: column; }
+    #navbar nav {
+      position: sticky; }
     #navbar nav ul li {
       display: inline-block;
       text-align: center;
@@ -239,4 +240,11 @@ footer {
       padding: 0.1rem; }
       #navbar nav ul li:hover {
         font-weight: bold;
-        background-color: white; } }
+        background-color: white; }
+  #cars-container {
+    display: grid;
+    grid-gap: 2rem;
+    padding: 2rem;
+    grid-template-areas: "car1" "car2" "car3" "car4";
+    justify-items: center;
+    align-items: center; } }

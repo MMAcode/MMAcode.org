@@ -195,8 +195,6 @@ image {
     "car3 car4";
   justify-items: center;
   align-items: center;
-
-
 }
 
 
@@ -393,12 +391,17 @@ footer {
 
 @media(max-width: 900px) {
   body {
-    background-color: rgba(141, 247, 141, 0.295);
+    // background-color: rgba(141, 247, 141, 0.295);
   }
 
   #navbar {
+    position: relative;
     flex-direction: column;
 
+    nav {
+      position: sticky;
+    }
+    
     nav ul li {
       display: inline-block;
       text-align: center;
@@ -410,8 +413,16 @@ footer {
         background-color: $background-color-lighter;
       }
     }
-
-
-
   }
+
+  #cars-container {
+    display: grid;
+    grid-gap: 2rem;
+    padding: 2rem;
+    grid-template-areas:
+      "car1" "car2" "car3" "car4";
+    justify-items: center;
+    align-items: center;
+  }
+  
 }
