@@ -153,11 +153,15 @@ image {
   border: 4px solid $primary-color;
   padding: 0.3rem;
   box-shadow: 5px 6px 7px 1px rgba(0, 0, 0, 0.54);
+  transition: background-color 1s ease-in-out;
+  -webkit-transition: background-color 1s ease-in-out;
+  -moz-transition: background-color 1s ease-in-out;
+  -ms-transition: background-color 1s ease-in-out;
+  -o-transition: background-color 1s ease-in-out;
 
-
-
-
-
+  &:hover {
+    background-color: #fdfcf5;
+  }
 
 
   &-1 {
@@ -215,18 +219,10 @@ image {
   }
 
 
-
-  transition: all 2000ms ease-in-out;
-  -webkit-transition: width 1s ease-in-out;
-  -moz-transition: width 1s ease-in-out;
-  -ms-transition: width 1s ease-in-out;
-  -o-transition: width 1s ease-in-out;
-
-  &:hover {
-    // width: 103%;
-    background: #fdfcf5;
-  }
 }
+
+
+
 
 
 

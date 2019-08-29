@@ -88,11 +88,13 @@ image {
   border: 4px solid #970071;
   padding: 0.3rem;
   box-shadow: 5px 6px 7px 1px rgba(0, 0, 0, 0.54);
-  transition: all 2000ms ease-in-out;
-  -webkit-transition: width 1s ease-in-out;
-  -moz-transition: width 1s ease-in-out;
-  -ms-transition: width 1s ease-in-out;
-  -o-transition: width 1s ease-in-out; }
+  transition: background-color 1s ease-in-out;
+  -webkit-transition: background-color 1s ease-in-out;
+  -moz-transition: background-color 1s ease-in-out;
+  -ms-transition: background-color 1s ease-in-out;
+  -o-transition: background-color 1s ease-in-out; }
+  .car:hover {
+    background-color: #fdfcf5; }
   .car-1 {
     grid-area: car1;
     transform: rotate(-0.01turn);
@@ -130,8 +132,6 @@ image {
   .car-name {
     text-align: center;
     padding: 1rem; }
-  .car:hover {
-    background: #fdfcf5; }
 
 @media (max-width: 900px) {
   body {
