@@ -64,10 +64,10 @@ image {
   background-color: $background-color;
 
   display: flex;
-  padding: 0.5rem 1rem;
   align-items: center;
   justify-content: space-between;
 
+  padding: 0.5rem 1rem;
   header {
     color: $primary-color;
 
@@ -95,6 +95,8 @@ image {
       display: flex;
       align-items: baseline;
       justify-content: space-around;
+      flex-wrap: no-wrap;
+      overflow: scroll;
 
       li {
         display: inline-block;

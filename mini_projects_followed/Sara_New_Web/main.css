@@ -38,9 +38,9 @@ image {
   z-index: 100;
   background-color: #fdfcf5;
   display: flex;
-  padding: 0.5rem 1rem;
   align-items: center;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding: 0.5rem 1rem; }
   #navbar header {
     color: #970071; }
     #navbar header #logo-line1, #navbar header #logo-line2 {
@@ -56,7 +56,9 @@ image {
       list-style: none;
       display: flex;
       align-items: baseline;
-      justify-content: space-around; }
+      justify-content: space-around;
+      flex-wrap: no-wrap;
+      overflow: scroll; }
       #navbar nav ul li {
         display: inline-block;
         text-align: center;
