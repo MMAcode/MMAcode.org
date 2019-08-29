@@ -33,6 +33,10 @@ image {
   background: linear-gradient(to right, rgba(255, 0, 0, 0), #970071, rgba(0, 128, 0, 0)); }
 
 #navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #fdfcf5;
   display: flex;
   padding: 0.5rem 1rem;
   align-items: center;

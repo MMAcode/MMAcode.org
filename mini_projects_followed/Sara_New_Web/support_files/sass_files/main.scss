@@ -58,6 +58,11 @@ image {
 
 // SECTIONS
 #navbar {
+  position: sticky;
+  top:0;
+  z-index: 100;
+  background-color: $background-color;
+
   display: flex;
   padding: 0.5rem 1rem;
   align-items: center;
