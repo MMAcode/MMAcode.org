@@ -59,14 +59,19 @@ image {
   background: linear-gradient(to right, rgba(255, 0, 0, 0), $primary-color, rgba(0, 128, 0, 0));
 }
 
-
+#start-offset {
+  display: block;
+  height: 90px;
+}
 
 // SECTIONS
 #navbar {
-  position: sticky;
-    top:0;
-    z-index: 101;
-  
+  // position: sticky;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 101;
+
 
   z-index: 100;
   background-color: $background-color;
@@ -98,7 +103,7 @@ image {
   }
 
   nav {
-     font-size: 1.3rem;
+    font-size: 1.3rem;
     //  padding-top: 20px;
     //  padding-bottom: 20px;
 
@@ -256,6 +261,10 @@ image {
 
     border: 10px solid transparent;
     border-image: repeating-linear-gradient(45deg, pink, pink 1%, purple 1%, purple 8%) 10;
+
+    position: sticky;
+    top: 0;
+    z-index: 99;
   }
 
   &-4 {
@@ -285,8 +294,7 @@ image {
     margin: auto;
 
     border: 1px solid $primary-color;
-    // margin: 1rem;
-    overflow: hidden;
+
   }
 
   &-name {
@@ -346,7 +354,7 @@ image {
     position: relative;
     padding-bottom: 75%; // This is the aspect ratio
     height: 0;
-    overflow: hidden;
+
 
     #map {
       position: absolute;
@@ -393,6 +401,11 @@ footer {
 // MEDIA QUERIES
 
 @media(max-width: 925px) {
+
+  #start-offset {
+    height: 150px;
+  }
+
   body {
     // background-color: rgba(141, 247, 141, 0.295);
     background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover;
@@ -412,16 +425,20 @@ footer {
       width: 80px;
       padding: 0.1rem;
 
-      
+
     }
   }
 
-  
+
 
 }
 
 @media(max-width: 500px) {
-  
+
+  #start-offset {
+    height: 150px;
+  }
+
   #cars-container {
     display: grid;
     grid-gap: 2rem;
