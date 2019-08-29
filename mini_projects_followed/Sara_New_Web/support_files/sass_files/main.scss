@@ -392,6 +392,7 @@ footer {
 @media(max-width: 900px) {
   body {
     // background-color: rgba(141, 247, 141, 0.295);
+    background: url("../../images/Background_photos/blured2.jpg ") no-repeat center center/cover;
   }
 
   #navbar {
@@ -401,7 +402,7 @@ footer {
     nav {
       position: sticky;
     }
-    
+
     nav ul li {
       display: inline-block;
       text-align: center;

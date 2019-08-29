@@ -228,6 +228,8 @@ footer {
     height: 40px; }
 
 @media (max-width: 900px) {
+  body {
+    background: url("../../images/Background_photos/blured2.jpg ") no-repeat center center/cover; }
   #navbar {
     position: relative;
     flex-direction: column; }
