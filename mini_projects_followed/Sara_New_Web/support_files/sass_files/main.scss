@@ -22,7 +22,7 @@ body {
   // background-color: $background-color;
   // background: url("./images/./Background_photos/./black-and-white-bouquet-love-71298.jpg") no-repeat center center/cover;
   background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover;
-
+  width: 100%;
 }
 
 
@@ -113,7 +113,7 @@ image {
   nav {
     // position: fixed;
     font-size: 1.3rem;
-     
+
     //  padding-bottom: 20px;
 
     ul {
@@ -121,9 +121,9 @@ image {
       display: flex;
       align-items: baseline;
       justify-content: center;
-      flex-wrap: nowrap;
+      // flex-wrap: wrap;
       padding-left: 10px;
-      padding-right: 10px;  
+      padding-right: 10px;
 
 
 
@@ -156,10 +156,11 @@ image {
 
 
   &-text {
-    width: 400px;
+    max-width: 400px;
     float: left;
     // height: 500px;
     margin: 3rem;
+   
 
     #price {
       color: orangered;
@@ -352,12 +353,12 @@ image {
   }
 
   form {
-    width: 200px;
+    // width: 200px;
     height: 200px;
-
+overflow: hidden;
     h1 {
       text-align: center;
-      width: 100%;
+      // width: 100%;
     }
   }
 
@@ -428,7 +429,8 @@ footer {
     nav {
       // padding-top: 20px;
       position: fixed;
-      top:0;
+      overflow: hidden;
+      top: 0;
       padding-top: 10px;
 
       width: 100%;
@@ -447,14 +449,16 @@ footer {
     }
 
     // nav ul li {
-      // display: inline-block;
-      // text-align: center;
-      // width: 80px;
-      // padding: 0.1rem;
+    // display: inline-block;
+    // text-align: center;
+    // width: 80px;
+    // padding: 0.1rem;
     // }
     #start-offset {
       height: 0px;
     }
+
+    display: none; // change!!!!!
   }
 
 
@@ -475,5 +479,9 @@ footer {
       "car1""car2""car3""car4";
     justify-items: center;
     align-items: center;
+  }
+
+  #contacts-wrapper {
+    flex-flow: column;
   }
 }
