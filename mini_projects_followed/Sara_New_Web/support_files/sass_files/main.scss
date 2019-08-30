@@ -25,6 +25,8 @@ body {
 
 }
 
+
+
 a {
   text-decoration: none;
   color: $primary-color;
@@ -33,6 +35,9 @@ a {
 image {
   width: 100%;
 }
+
+
+
 
 // CLASSES
 .container {
@@ -64,6 +69,8 @@ image {
   height: 90px;
 }
 
+
+
 // SECTIONS
 #navbar {
   // position: sticky;
@@ -85,6 +92,7 @@ image {
 
   header {
     color: $primary-color;
+    padding: 10px;
 
     %logo {
       font-weight: bold;
@@ -103,15 +111,16 @@ image {
   }
 
   nav {
+    // position: fixed;
     font-size: 1.3rem;
-    //  padding-top: 20px;
+     
     //  padding-bottom: 20px;
 
     ul {
       list-style: none;
       display: flex;
       align-items: baseline;
-      justify-content: space-around;
+      justify-content: center;
       flex-wrap: nowrap;
 
 
@@ -402,9 +411,7 @@ footer {
 
 @media(max-width: 925px) {
 
-  #start-offset {
-    height: 150px;
-  }
+
 
   body {
     // background-color: rgba(141, 247, 141, 0.295);
@@ -412,20 +419,39 @@ footer {
   }
 
   #navbar {
-
+    position: relative;
     flex-direction: column;
 
+    // display: block;
     nav {
-      padding-top: 20px;
+      // padding-top: 20px;
+      position: fixed;
+      top:0;
+      padding-top: 10px;
+
+      width: 100%;
+      z-index: 100;
+      background-color: $background-color;
+      opacity: 0.9;
+
     }
 
-    nav ul li {
-      display: inline-block;
-      text-align: center;
-      width: 80px;
-      padding: 0.1rem;
+    #start-offset2 {
+      display: block;
+      height: 50px;
+      width: 100%;
+      // position: relative;
+      // top: 150px;
+    }
 
-
+    // nav ul li {
+      // display: inline-block;
+      // text-align: center;
+      // width: 80px;
+      // padding: 0.1rem;
+    // }
+    #start-offset {
+      height: 0px;
     }
   }
 

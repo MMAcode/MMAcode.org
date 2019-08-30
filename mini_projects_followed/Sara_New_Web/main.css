@@ -48,7 +48,8 @@ image {
   justify-content: space-around;
   padding: 0.5rem 1rem; }
   #navbar header {
-    color: #970071; }
+    color: #970071;
+    padding: 10px; }
     #navbar header #logo-line1, #navbar header #logo-line2 {
       font-weight: bold; }
     #navbar header #logo-line1 {
@@ -62,7 +63,7 @@ image {
       list-style: none;
       display: flex;
       align-items: baseline;
-      justify-content: space-around;
+      justify-content: center;
       flex-wrap: nowrap; }
       #navbar nav ul li {
         display: inline-block;
@@ -234,19 +235,25 @@ footer {
     height: 40px; }
 
 @media (max-width: 925px) {
-  #start-offset {
-    height: 150px; }
   body {
     background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover; }
   #navbar {
+    position: relative;
     flex-direction: column; }
     #navbar nav {
-      padding-top: 20px; }
-    #navbar nav ul li {
-      display: inline-block;
-      text-align: center;
-      width: 80px;
-      padding: 0.1rem; } }
+      position: fixed;
+      top: 0;
+      padding-top: 10px;
+      width: 100%;
+      z-index: 100;
+      background-color: #fdfcf5;
+      opacity: 0.9; }
+    #navbar #start-offset2 {
+      display: block;
+      height: 50px;
+      width: 100%; }
+    #navbar #start-offset {
+      height: 0px; } }
 
 @media (max-width: 500px) {
   #start-offset {
