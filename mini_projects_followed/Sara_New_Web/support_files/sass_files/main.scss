@@ -85,7 +85,7 @@ image {
   align-items: center;
   justify-content: space-around;
 
-  padding: 0.5rem 1rem;
+  // padding: 0.5rem 1rem;
 
   header {
     color: $primary-color;
@@ -431,8 +431,9 @@ footer {
     nav {
       // padding-top: 20px;
       position: fixed;
-      overflow: hidden;
       top: 0;
+      overflow: hidden;
+      
       padding-top: 10px;
 
       width: 100%;
@@ -444,7 +445,7 @@ footer {
 
     #start-offset2 {
       display: block;
-      height: 60px;
+      height: 70px;
       width: 100%;
       // position: relative;
       // top: 150px;

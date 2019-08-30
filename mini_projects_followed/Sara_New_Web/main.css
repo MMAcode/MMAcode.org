@@ -42,8 +42,7 @@ image {
   opacity: 0.9;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding: 0.5rem 1rem; }
+  justify-content: space-around; }
   #navbar header {
     color: #970071;
     padding: 10px; }
@@ -243,8 +242,8 @@ footer {
     flex-direction: column; }
     #navbar nav {
       position: fixed;
-      overflow: hidden;
       top: 0;
+      overflow: hidden;
       padding-top: 10px;
       width: 100%;
       z-index: 100;
@@ -252,7 +251,7 @@ footer {
       opacity: 0.9; }
     #navbar #start-offset2 {
       display: block;
-      height: 60px;
+      height: 70px;
       width: 100%; }
   #start-offset {
     height: 0px; } }
