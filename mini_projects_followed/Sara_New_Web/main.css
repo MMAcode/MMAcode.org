@@ -32,10 +32,6 @@ image {
   margin: 2rem auto;
   background: linear-gradient(to right, rgba(255, 0, 0, 0), #970071, rgba(0, 128, 0, 0)); }
 
-#start-offset {
-  display: block;
-  height: 90px; }
-
 #navbar {
   position: fixed;
   width: 100%;
@@ -79,6 +75,10 @@ image {
         -o-transition: border-bottom 0.5s ease-in-out; }
         #navbar nav ul li:hover {
           border-bottom: 3px solid #970071; }
+
+#start-offset {
+  display: block;
+  height: 110px; }
 
 #Intro {
   height: 500px;
@@ -240,8 +240,7 @@ footer {
     background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover; }
   #navbar {
     position: relative;
-    flex-direction: column;
-    display: none; }
+    flex-direction: column; }
     #navbar nav {
       position: fixed;
       overflow: hidden;
@@ -255,12 +254,10 @@ footer {
       display: block;
       height: 60px;
       width: 100%; }
-    #navbar #start-offset {
-      height: 0px; } }
+  #start-offset {
+    height: 0px; } }
 
 @media (max-width: 500px) {
-  #start-offset {
-    height: 150px; }
   #cars-container {
     display: grid;
     grid-gap: 2rem;
