@@ -64,7 +64,9 @@ image {
       display: flex;
       align-items: baseline;
       justify-content: center;
-      flex-wrap: nowrap; }
+      flex-wrap: nowrap;
+      padding-left: 10px;
+      padding-right: 10px; }
       #navbar nav ul li {
         display: inline-block;
         text-align: center;
@@ -250,7 +252,7 @@ footer {
       opacity: 0.9; }
     #navbar #start-offset2 {
       display: block;
-      height: 50px;
+      height: 60px;
       width: 100%; }
     #navbar #start-offset {
       height: 0px; } }
