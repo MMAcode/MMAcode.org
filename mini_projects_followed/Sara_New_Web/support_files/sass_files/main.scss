@@ -75,9 +75,10 @@ image {
   width: 100%;
   top: 0;
   z-index: 101;
-  transition: top 0.3s; /* Transition effect when sliding down (and up) */
+  transition: top 0.3s;
+  /* Transition effect when sliding down (and up) */
 
-  
+
   background-color: $background-color;
   opacity: 0.9;
 
@@ -163,7 +164,7 @@ image {
     float: left;
     // height: 500px;
     margin: 3rem;
-   
+
 
     #price {
       color: orangered;
@@ -358,7 +359,8 @@ image {
   form {
     // width: 200px;
     height: 200px;
-overflow: hidden;
+    overflow: hidden;
+
     h1 {
       text-align: center;
       // width: 100%;
@@ -435,14 +437,14 @@ footer {
       // position: fixed;
       // top: 0;
       // overflow: hidden;
-      
+
       padding-top: 10px;
 
       // width: 100%;
       // z-index: 100;
       // background-color: $background-color;
       // opacity: 0.9;
-      
+
 
     }
 
@@ -455,6 +457,7 @@ footer {
     // }
 
   }
+
   #start-offset {
     height: 150px;
   }
@@ -464,7 +467,25 @@ footer {
 
 @media(max-width: 500px) {
 
-  
+  #navbar {
+
+    header {
+      #logo-line1 {
+        font-size: 1.5rem;
+      }
+
+      #logo-line2 {
+        font-size: 1.2rem;
+      }
+    }
+
+    nav {
+      font-size: 1.1rem;
+      // font-weight: bold;
+      padding-top: 0;
+    }
+  }
+
   #cars-container {
     display: grid;
     grid-gap: 2rem;

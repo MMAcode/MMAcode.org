@@ -246,6 +246,13 @@ footer {
     height: 150px; } }
 
 @media (max-width: 500px) {
+  #navbar header #logo-line1 {
+    font-size: 1.5rem; }
+  #navbar header #logo-line2 {
+    font-size: 1.2rem; }
+  #navbar nav {
+    font-size: 1.1rem;
+    padding-top: 0; }
   #cars-container {
     display: grid;
     grid-gap: 2rem;
