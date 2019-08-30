@@ -37,7 +37,8 @@ image {
   width: 100%;
   top: 0;
   z-index: 101;
-  z-index: 100;
+  transition: top 0.3s;
+  /* Transition effect when sliding down (and up) */
   background-color: #fdfcf5;
   opacity: 0.9;
   display: flex;
@@ -238,23 +239,11 @@ footer {
   body {
     background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover; }
   #navbar {
-    position: relative;
     flex-direction: column; }
     #navbar nav {
-      position: fixed;
-      top: 0;
-      overflow: hidden;
-      padding-top: 10px;
-      width: 100%;
-      z-index: 100;
-      background-color: #fdfcf5;
-      opacity: 0.9; }
-    #navbar #start-offset2 {
-      display: block;
-      height: 70px;
-      width: 100%; }
+      padding-top: 10px; }
   #start-offset {
-    height: 0px; } }
+    height: 150px; } }
 
 @media (max-width: 500px) {
   #cars-container {

@@ -75,9 +75,9 @@ image {
   width: 100%;
   top: 0;
   z-index: 101;
+  transition: top 0.3s; /* Transition effect when sliding down (and up) */
 
-
-  z-index: 100;
+  
   background-color: $background-color;
   opacity: 0.9;
 
@@ -121,6 +121,7 @@ image {
       // flex-wrap: wrap;
       padding-left: 10px;
       padding-right: 10px;
+      // overflow: hidden;
 
 
 
@@ -424,45 +425,38 @@ footer {
   }
 
   #navbar {
-    position: relative;
+    // position: relative;
     flex-direction: column;
 
     // display: block;
     nav {
       // padding-top: 20px;
-      position: fixed;
-      top: 0;
-      overflow: hidden;
+
+      // position: fixed;
+      // top: 0;
+      // overflow: hidden;
       
       padding-top: 10px;
 
-      width: 100%;
-      z-index: 100;
-      background-color: $background-color;
-      opacity: 0.9;
+      // width: 100%;
+      // z-index: 100;
+      // background-color: $background-color;
+      // opacity: 0.9;
+      
 
     }
 
-    #start-offset2 {
-      display: block;
-      height: 70px;
-      width: 100%;
-      // position: relative;
-      // top: 150px;
-    }
-
-    // nav ul li {
-    // display: inline-block;
-    // text-align: center;
-    // width: 80px;
-    // padding: 0.1rem;
+    // #start-offset2 {
+    //   display: block;
+    //   height: 70px;
+    //   width: 100%;
+    //   // position: relative;
+    //   // top: 150px;
     // }
-  
 
-    // display: none; // change!!!!!
   }
   #start-offset {
-    height: 0px;
+    height: 150px;
   }
 
 

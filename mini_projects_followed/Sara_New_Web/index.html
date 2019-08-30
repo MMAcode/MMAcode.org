@@ -13,7 +13,7 @@
 
   <div id="navbar">
     <!-- MENU -->
-    <nav>
+    <nav id="nav-menuu">
       <ul>
         <li><a href="">Home</a></li>
         <li><a href="#Our_Cars">Our Cars</a></li>
@@ -22,10 +22,10 @@
         <li><a href="">References</a></li>
       </ul>
     </nav>
-    <div id="start-offset2"></div> 
+    <div id="start-offset2"></div>
     <!-- LOGO -->
     <header>
-      
+
       <p id="logo-line1">Armstrong Wedding Cars</p>
       <p id="logo-line2">of Hampshire</p>
     </header>
@@ -154,5 +154,31 @@
   </footer>
 
 </body>
+
+
+
+<script>
+  var x = window.matchMedia("(max-width: 1000px)")
+  myFunction(x) // Call listener function at run time
+  x.addListener(myFunction) // Attach listener function on state changes
+
+  function myFunction(x) {
+    if (x.matches) { // If media query matches
+      var prevScrollpos = window.pageYOffset;
+      window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+          document.getElementById("navbar").style.top = "0";
+        } else {
+          document.getElementById("navbar").style.top = "-150px";
+          // document.getElementById("navbar").style.display = none;
+        }
+        prevScrollpos = currentScrollPos;
+      }
+    }
+  }
+
+  
+</script>
 
 </html>
