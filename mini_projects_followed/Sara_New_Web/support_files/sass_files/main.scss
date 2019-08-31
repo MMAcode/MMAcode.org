@@ -446,7 +446,7 @@ footer {
   }
 
   .photo-container {
-    height: 80vh;
+    max-height: 70vh;
     display: flex;
     overflow: scroll;
 
