@@ -270,9 +270,10 @@ image {
     -moz-transform: rotate(0.005turn);
     -ms-transform: rotate(0.005turn);
     -o-transform: rotate(0.005turn);
+
+    border-width: 8px;
     border-image: linear-gradient($primary-color, $background-color-lighter) 10;
 
-    // border-width:8px;
 
     &:hover {
       border-image: linear-gradient(white, $primary-color) 10;
@@ -432,7 +433,7 @@ footer {
 
 #galery {
 
-  .galery-title {
+  .car-title {
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -454,16 +455,19 @@ footer {
     align-items: center;
     overflow: scroll;
 
-// background: linear-gradient(rgba(255, 255, 255, 0) 5%, rgba(153, 9, 224, 1) 30%, rgba(153, 9, 224, 1) 70%, rgba(255, 255, 255, 0) 95%);
+    // background: linear-gradient(rgba(255, 255, 255, 0) 5%, rgba(153, 9, 224, 1) 30%, rgba(153, 9, 224, 1) 70%, rgba(255, 255, 255, 0) 95%);
     background: #970071;
 
     img {
-      height: 40vw;
-      padding: 10px 2vw;
-      margin: auto;
-
+      max-height: 40vw;
+      // padding: 10px 2vw;
+      margin: 10px 1.3vw;
     }
+  }
 
+  .decorated-borders img{
+    border: 0.5vw solid black;
+    border-image: linear-gradient(45deg, $primary-color-light, $background-color-lighter) 1;
   }
 }
 

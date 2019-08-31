@@ -152,6 +152,7 @@ image {
     -moz-transform: rotate(0.005turn);
     -ms-transform: rotate(0.005turn);
     -o-transform: rotate(0.005turn);
+    border-width: 8px;
     border-image: linear-gradient(#970071, white) 10; }
     .car-2:hover {
       border-image: linear-gradient(white, #970071) 10; }
@@ -237,16 +238,16 @@ footer {
   footer img {
     height: 40px; }
 
-#galery .galery-title {
+#galery .car-title {
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding-top: 20px; }
-  #galery .galery-title h1 {
+  #galery .car-title h1 {
     color: #970071;
     padding: 20px;
     margin: 0; }
-  #galery .galery-title img {
+  #galery .car-title img {
     height: 40px; }
 
 #galery .photo-container {
@@ -255,9 +256,12 @@ footer {
   overflow: scroll;
   background: #970071; }
   #galery .photo-container img {
-    height: 40vw;
-    padding: 10px 2vw;
-    margin: auto; }
+    max-height: 40vw;
+    margin: 10px 1.3vw; }
+
+#galery .decorated-borders img {
+  border: 0.5vw solid black;
+  border-image: linear-gradient(45deg, #ce6ab5, white) 1; }
 
 @media (max-width: 925px) {
   body {
