@@ -250,8 +250,7 @@ footer {
 #galery .photo-container {
   max-height: 70vh;
   display: flex;
-  overflow: scroll;
-  background: #970071; }
+  overflow: scroll; }
   #galery .photo-container img {
     max-height: 90%;
     max-width: 80vw;
