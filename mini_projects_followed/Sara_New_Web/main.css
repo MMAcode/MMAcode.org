@@ -252,11 +252,12 @@ footer {
   display: flex;
   align-items: center;
   overflow: scroll;
-  background: img;
-    background-max-height: 50vh;
-    background-max-width: 80vw;
-    background-padding: 10px 20px;
-    background-margin: auto; }
+  background: linear-gradient(rgba(255, 255, 255, 0) 5%, #9909e0 30%, #9909e0 70%, rgba(255, 255, 255, 0) 95%); }
+  #galery .photo-container img {
+    max-height: 50vh;
+    max-width: 80vw;
+    padding: 10px 20px;
+    margin: auto; }
 
 @media (max-width: 925px) {
   body {
