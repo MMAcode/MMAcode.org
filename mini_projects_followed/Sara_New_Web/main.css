@@ -1,6 +1,7 @@
 * {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  box-sizing: border-box; }
 
 body {
   background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover;
@@ -239,7 +240,8 @@ footer {
 #galery .galery-title {
   display: flex;
   align-items: flex-end;
-  justify-content: center; }
+  justify-content: center;
+  padding-top: 20px; }
   #galery .galery-title h1 {
     color: #970071;
     padding: 20px;
@@ -252,10 +254,9 @@ footer {
   display: flex;
   align-items: center;
   overflow: scroll;
-  background: linear-gradient(rgba(255, 255, 255, 0) 5%, #9909e0 30%, #9909e0 70%, rgba(255, 255, 255, 0) 95%); }
+  background: #970071; }
   #galery .photo-container img {
     max-height: 50vh;
-    max-width: 80vw;
     padding: 10px 20px;
     margin: auto; }
 
