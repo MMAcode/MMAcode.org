@@ -250,14 +250,13 @@ footer {
     height: 40px; }
 
 #galery .photo-container {
-  max-height: 70vh;
   display: flex;
   align-items: center;
   overflow: scroll;
   background: #970071; }
   #galery .photo-container img {
-    max-height: 50vh;
-    padding: 10px 20px;
+    height: 40vw;
+    padding: 10px 2vw;
     margin: auto; }
 
 @media (max-width: 925px) {
