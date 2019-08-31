@@ -136,6 +136,10 @@ image {
   -o-transition: background-color 0.4s ease-in-out; }
   .car:hover {
     background-color: #fcade8; }
+  .car a {
+    position: absolute;
+    width: 100%;
+    height: 100%; }
   .car-1 {
     grid-area: car1;
     transform: rotate(-0.01turn);
@@ -245,7 +249,7 @@ footer {
   padding-top: 20px; }
   #galery .car-title h1 {
     color: #970071;
-    padding: 20px;
+    padding-top: 20px;
     margin: 0; }
   #galery .car-title img {
     height: 40px; }
@@ -262,6 +266,14 @@ footer {
 #galery .decorated-borders img {
   border: 0.5vw solid black;
   border-image: linear-gradient(45deg, #ce6ab5, white) 1; }
+
+#galery #galery-mixed h1 {
+  color: #fcade8; }
+
+#galery #galery-mixed .photo-container {
+  background: #fcade8; }
+  #galery #galery-mixed .photo-container img {
+    max-height: 30vw; }
 
 @media (max-width: 925px) {
   body {

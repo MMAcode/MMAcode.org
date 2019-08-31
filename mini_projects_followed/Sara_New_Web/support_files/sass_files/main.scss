@@ -234,6 +234,8 @@ image {
 
 
 .car {
+  
+  
   background-color: $primary-color-light;
   border: 4px solid $primary-color;
   padding: 0.3rem;
@@ -247,6 +249,12 @@ image {
   &:hover {
     background-color: $background-color-pinky;
   }
+
+a{
+position: absolute;
+width: 100%;
+height: 100%;
+}
 
 
   &-1 {
@@ -441,7 +449,7 @@ footer {
 
     h1 {
       color: $primary-color;
-      padding: 20px;
+      padding-top: 20px;
       margin: 0;
     }
 
@@ -465,9 +473,23 @@ footer {
     }
   }
 
-  .decorated-borders img{
+  .decorated-borders img {
     border: 0.5vw solid black;
     border-image: linear-gradient(45deg, $primary-color-light, $background-color-lighter) 1;
+  }
+
+  #galery-mixed {
+    h1 {
+      color: $background-color-pinky;
+    }
+
+    .photo-container {
+      background: $background-color-pinky;
+
+      img {
+        max-height: 30vw;
+      }
+    }
   }
 }
 
