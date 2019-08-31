@@ -236,6 +236,27 @@ footer {
   footer img {
     height: 40px; }
 
+#galery .galery-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center; }
+  #galery .galery-title h1 {
+    color: #970071;
+    padding: 20px;
+    margin: 0; }
+  #galery .galery-title img {
+    height: 40px; }
+
+#galery .photo-container {
+  height: 80vh;
+  display: flex;
+  overflow: scroll;
+  background: #970071; }
+  #galery .photo-container img {
+    max-height: 90%;
+    padding: 0 20px;
+    margin: auto; }
+
 @media (max-width: 925px) {
   body {
     background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover; }
