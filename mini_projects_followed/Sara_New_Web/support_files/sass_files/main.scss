@@ -124,7 +124,8 @@ image {
     ul {
       list-style: none;
       display: flex;
-      overflow: auto;
+      flex-wrap: wrap;
+      // overflow: scroll;
       align-items: baseline;
       justify-content: center;
       // flex-wrap: wrap;

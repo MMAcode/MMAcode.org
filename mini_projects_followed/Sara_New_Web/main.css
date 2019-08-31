@@ -59,7 +59,7 @@ image {
     #navbar nav ul {
       list-style: none;
       display: flex;
-      overflow: auto;
+      flex-wrap: wrap;
       align-items: baseline;
       justify-content: center;
       padding-left: 10px;
