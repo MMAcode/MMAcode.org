@@ -448,16 +448,22 @@ footer {
   .photo-container {
     max-height: 70vh;
     display: flex;
+    align-items: center;
     overflow: scroll;
 
 
-    // background: $primary-color;
+    background: 
 
     img {
-      max-height: 90%;
+      max-height: 50vh;
       max-width: 80vw;
-      padding: 0 20px;
+      padding: 10px 20px;
       margin: auto;
+
+      // &:hover, &:active {
+      //   width: 100vw;
+      //   height: 100vh;
+      // }
     }
 
   }

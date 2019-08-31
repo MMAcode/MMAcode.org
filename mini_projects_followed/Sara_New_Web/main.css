@@ -250,12 +250,13 @@ footer {
 #galery .photo-container {
   max-height: 70vh;
   display: flex;
-  overflow: scroll; }
-  #galery .photo-container img {
-    max-height: 90%;
-    max-width: 80vw;
-    padding: 0 20px;
-    margin: auto; }
+  align-items: center;
+  overflow: scroll;
+  background: img;
+    background-max-height: 50vh;
+    background-max-width: 80vw;
+    background-padding: 10px 20px;
+    background-margin: auto; }
 
 @media (max-width: 925px) {
   body {
