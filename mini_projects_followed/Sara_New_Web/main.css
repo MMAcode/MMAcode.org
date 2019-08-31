@@ -254,6 +254,7 @@ footer {
   background: #970071; }
   #galery .photo-container img {
     max-height: 90%;
+    max-width: 80vw;
     padding: 0 20px;
     margin: auto; }
 
