@@ -68,6 +68,13 @@ image {
 
 
 
+// hiding navbar on scrolling in js
+// .nav-up {
+//   top: -240px;
+// }
+
+
+
 // SECTIONS
 #navbar {
   // position: sticky;
@@ -88,7 +95,7 @@ image {
 
   // padding: 0.5rem 1rem;
 
-  header {
+  #header2 {
     color: $primary-color;
     padding: 10px;
 
@@ -117,6 +124,7 @@ image {
     ul {
       list-style: none;
       display: flex;
+      overflow: auto;
       align-items: baseline;
       justify-content: center;
       // flex-wrap: wrap;
@@ -469,7 +477,7 @@ footer {
 
   #navbar {
 
-    header {
+    #header2 {
       #logo-line1 {
         font-size: 1.5rem;
       }

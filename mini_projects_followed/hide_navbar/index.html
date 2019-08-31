@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      display: flex;
+      background: red;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    header ul {
+      display: flex;
+      list-style: none;
+    }
+
+    li {
+      padding: 30px;
+    }
+
+
+    /* hiding havbar */
+    .nav-up {
+      top: -40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // Hide Header on on scroll down
+    var didScroll;
+    var lastScrollTop = 0;
+    var delta = 5;
+    var navbarHeight = $('header').outerHeight();
+
+    $(window).scroll(function (event) {
+      didScroll = true;
+    });
+
+    setInterval(function () {
+      if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+      }
+    }, 250);
+
+    function hasScrolled() {
+      var st = $(this).scrollTop();
+
+      // Make sure they scroll more than delta
+      if (Math.abs(lastScrollTop - st) <= delta)
+        return;
+
+      // If they scrolled down and are past the navbar, add class .nav-up.
+      // This is necessary so you never see what is "behind" the navbar.
+      if (st > lastScrollTop && st > navbarHeight) {
+        // Scroll Down
+        $('header').removeClass('nav-down').addClass('nav-up');
+      } else {
+        // Scroll Up
+        if (st + $(window).height() < $(document).height()) {
+          $('header').removeClass('nav-up').addClass('nav-down');
+        }
+      }
+
+      lastScrollTop = st;
+    }
+  </script>
+
+
+
+
+
+  <header class="nav-down"> 
+    <h1>Title</h1>
+    <ul>
+      <li><a href="#">link1aa</a></li>
+      <li><a href="#">link2</a></li>
+      <li><a href="#">link3</a></li>
+      <li><a href="#">link4</a></li>
+    </ul>
+  </header>
+
+  <main>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsam facilis perferendis reiciendis commodi non
+      laudantium maxime praesentium illum aliquid consectetur minus saepe fuga vero officiis sapiente quo quisquam
+      excepturi minima cupiditate, asperiores molestias, tempora nisi. Vero id, incidunt explicabo laudantium earum
+      aspernatur velit? Dicta quibusdam reprehenderit quod odit et.
+    </p>
+    <ul>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+      <li>just to make page long</li>
+
+    </ul>
+  </main>
+
+
+</body>
+
+
+
+</html>

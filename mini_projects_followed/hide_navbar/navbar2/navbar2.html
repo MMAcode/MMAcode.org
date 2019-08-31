@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"
+    integrity="sha256-ivk71nXhz9nsyFDoYoGf2sbjrR9ddh+XDkCcfZxjvcM=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"
+    integrity="sha256-erF9fIMASEVmAWGdOmQi615Bmx0L/vWNixxTNDXS4FQ=" crossorigin="anonymous"></script>
+
+  <title>Document</title>
+  <style>
+    body {
+      padding-top: 40px;
+    }
+
+    header {
+      background: #f5b335;
+      height: 80px;
+      position: fixed;
+      top: 0;
+      transition: top 0.2s ease-in-out;
+      width: 100%;
+    }
+
+    .nav-up {
+      top: -40px;
+    }
+
+    main {
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAPklEQVQYV2O8dOnSfwYg0NPTYwTRuAAj0QqxmYBNM1briFaIzRbi3UiRZ75uNgUHGbfvabgfsHqGaIXYPAMAD8wgC/DOrZ4AAAAASUVORK5CYII=
+) repeat;
+      height: 2000px;
+    }
+
+    footer {
+      background: #ddd;
+    }
+
+    * {
+      color: transparent
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+  <header class="nav-down">
+    This is your menu.sdsds
+  </header>
+  <main>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut saepe est necessitatibus eligendi nostrum, natus
+      repellat sit quo praesentium cupiditate id voluptatum odio ratione quia rem ipsam voluptates cum nulla voluptatem
+      asperiores accusamus fugiat esse nihil! Deserunt, natus animi praesentium at nemo quo magni perspiciatis iste
+      deleniti dolores itaque fuga nihil odit repellat dolorum? Dolorum, autem consequuntur amet nisi eaque ratione
+      expedita recusandae perferendis error, aliquam quaerat fuga. Consequatur omnis animi alias sed maxime dolore
+      quisquam reiciendis temporibus sunt voluptas rerum, facilis exercitationem odit iste voluptate modi explicabo
+      vitae provident laboriosam! Aut quos minima porro ipsum ex et quo adipisci, neque atque nam iusto eveniet nobis
+      corporis provident id sit harum expedita. Dolore facilis mollitia iste ut quas explicabo culpa veritatis
+      voluptatum. Beatae nam corporis nihil vel asperiores dicta est, ratione ducimus fugit at vitae ea aperiam, eaque
+      eveniet dolores obcaecati autem eum voluptatem sint exercitationem deleniti perferendis quisquam blanditiis
+      voluptatum! Animi similique cupiditate quas ratione nobis perspiciatis ad mollitia libero pariatur aut, harum qui
+      vel possimus repellat doloribus fuga vero facere minima! Impedit fugit eum sequi nemo, laboriosam hic inventore
+      libero. Unde deserunt sunt, vero delectus soluta explicabo ut adipisci alias consequatur maxime! Eaque, optio.
+      Quisquam laudantium obcaecati illo porro modi hic, sit eveniet et officiis dolores natus nesciunt fugit,
+      consectetur optio voluptas ut maiores ducimus explicabo molestias dolore quasi? Esse suscipit, quos ipsa id
+      cupiditate quidem illo dolore quibusdam expedita itaque explicabo quaerat, amet molestias ab consequatur
+      voluptates alias, autem doloribus vero magnam aliquam quod nisi. Quos nihil pariatur illo debitis quis dolor
+      architecto amet, libero voluptates earum neque iusto eos ducimus mollitia quod ipsam dolorum incidunt dolores est
+      laboriosam? Nisi deleniti, illum molestiae repudiandae tenetur quod exercitationem esse voluptate doloribus
+      officia quibusdam, ipsum nulla voluptates laboriosam distinctio qui pariatur. Illo ea tempore quidem aliquam id
+      molestias delectus?
+    </p>
+
+  </main>
+  <footer>
+    This is your footer.
+  </footer>
+
+  <script>
+    // Hide Header on on scroll down
+    var didScroll;
+    var lastScrollTop = 0;
+    var delta = 5;
+    var navbarHeight = $('header').outerHeight();
+
+    $(window).scroll(function (event) {
+      didScroll = true;
+    });
+
+    setInterval(function () {
+      if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+      }
+    }, 250);
+
+    function hasScrolled() {
+      var st = $(this).scrollTop();
+
+      // Make sure they scroll more than delta
+      if (Math.abs(lastScrollTop - st) <= delta)
+        return;
+
+      // If they scrolled down and are past the navbar, add class .nav-up.
+      // This is necessary so you never see what is "behind" the navbar.
+      if (st > lastScrollTop && st > navbarHeight) {
+        // Scroll Down
+        $('header').removeClass('nav-down').addClass('nav-up');
+      } else {
+        // Scroll Up
+        if (st + $(window).height() < $(document).height()) {
+          $('header').removeClass('nav-up').addClass('nav-down');
+        }
+      }
+
+      lastScrollTop = st;
+    }
+  </script>
+</body>
+
+
+
+</html>
