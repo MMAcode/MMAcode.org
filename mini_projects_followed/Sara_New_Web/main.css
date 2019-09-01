@@ -266,12 +266,13 @@ image {
   #contacts-wrapper #contacts {
     margin: 2rem; }
     #contacts-wrapper #contacts .single-contact {
+      display: flex;
       border-bottom: 2px solid transparent;
       border-image: linear-gradient(90deg, white, #970071) 10; }
       #contacts-wrapper #contacts .single-contact .contact-title,
       #contacts-wrapper #contacts .single-contact .contact-text {
         display: inline-block;
-        padding: 1rem;
+        padding: 1rem 0 1rem 1rem;
         font-size: 1.4rem; }
       #contacts-wrapper #contacts .single-contact .contact-title {
         width: 110px;
@@ -378,4 +379,13 @@ footer {
     justify-items: center;
     align-items: center; }
   #contacts-wrapper {
-    flex-flow: column; } }
+    flex-flow: column; }
+    #contacts-wrapper .single-contact {
+      flex-flow: column; }
+      #contacts-wrapper .single-contact .contact-title {
+        padding-bottom: 0 !important;
+        font-size: 18px !important; }
+        #contacts-wrapper .single-contact .contact-title br {
+          display: none; }
+      #contacts-wrapper .single-contact .contact-text {
+        font-size: 18px !important; } }

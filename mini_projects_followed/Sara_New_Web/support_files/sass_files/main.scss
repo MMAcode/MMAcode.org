@@ -459,6 +459,8 @@ image {
     margin: 2rem;
 
     .single-contact {
+      display: flex;
+
       border-bottom: 2px solid transparent;
       border-image: linear-gradient(
           90deg,
@@ -470,7 +472,8 @@ image {
       .contact-title,
       .contact-text {
         display: inline-block;
-        padding: 1rem;
+        padding: 1rem 0 1rem 1rem;
+
         font-size: 1.4rem;
       }
 
@@ -490,7 +493,7 @@ image {
 
             // transform: scale(3);
             transition: transform 0.5s ease-in-out;
-         
+
             &:hover {
               // border-bottom: 3px solid $primary-color;
               transform: scale(1.2);
@@ -686,5 +689,25 @@ footer {
 
   #contacts-wrapper {
     flex-flow: column;
+
+    .single-contact {
+      flex-flow: column;
+
+      
+      // font-size: 14px !important;
+      .contact-title {
+        padding-bottom: 0 !important;
+        // color: green !important;
+        font-size: 18px !important;
+        br {
+          display: none;
+        }
+      }
+
+      .contact-text {
+        // padding-left: 3rem !important;
+        font-size: 18px !important;
+      }
+    }
   }
 }
