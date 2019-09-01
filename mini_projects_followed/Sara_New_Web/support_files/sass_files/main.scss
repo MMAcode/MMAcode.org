@@ -94,7 +94,17 @@ image {
 
 
   // hamburger menu
-  input:first-child {
+  #check-box {
+    position: absolute;
+    display: none;
+    // float: left;
+    width: 45px;
+    height: 35px;
+    left: 0;
+    z-index: 200;
+    opacity: 0;
+    
+    
     &:checked {
       // change hamburger into the cross
       & + #hamburger #ham-wrapper span {
@@ -116,29 +126,33 @@ image {
 
       // show navbar
       & ~ nav {
+        display: inline-block;
+        background: #fcd2f8;
+        padding-left: 50px;
+        // opacity: 1 ;    doesn't work!
+ 
         ul {
           display: flex;
           flex-flow: column;
+          align-items: flex-start;
+
           li {
-            // display: block;
+            font-weight: bold;
+            text-align: left;
           }
         }
 
-        display: inline-block;
-        flex-flow: column;
-        background: #e9bae5;
-        // font-size: 2rem !important;
-        // padding: 2rem;
-        // margin: 2rem;
+               
       }
     }
   }
 
   #hamburger {
-    // display: inline-block;
-    // position: relative;
+    display: none;
+    position: absolute;
     // top: 50px;
-    // left: 50px;
+    left: 10px;
+
 
     z-index: 1;
 
@@ -169,7 +183,7 @@ image {
 
 
 
-  
+
   #header2 {
     color: $primary-color;
     padding: 10px;
@@ -600,6 +614,12 @@ footer {
   #navbar {
     flex-flow: row;
 
+
+
+    #hamburger, #check-box {
+      display: inline-block;
+    }
+
     nav {
       display: none;
       font-size: 1.1rem;
@@ -608,6 +628,8 @@ footer {
     }
 
     #header2 {
+padding-left: 50px;
+
       #logo-line1 {
         font-size: 1.5rem;
       }

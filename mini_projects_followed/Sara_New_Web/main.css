@@ -43,23 +43,38 @@ image {
   display: flex;
   align-items: center;
   justify-content: space-around; }
-  #navbar input:first-child:checked + #hamburger #ham-wrapper span {
-    opacity: 1;
-    background: #232323; }
-    #navbar input:first-child:checked + #hamburger #ham-wrapper span:nth-child(1) {
-      transform: translateY(9px) rotate(45deg); }
-    #navbar input:first-child:checked + #hamburger #ham-wrapper span:nth-child(2) {
-      opacity: 0; }
-    #navbar input:first-child:checked + #hamburger #ham-wrapper span:nth-child(3) {
-      transform: translateY(-9px) rotate(-45deg); }
-  #navbar input:first-child:checked ~ nav {
-    display: inline-block;
-    flex-flow: column;
-    background: #e9bae5; }
-    #navbar input:first-child:checked ~ nav ul {
-      display: flex;
-      flex-flow: column; }
+  #navbar #check-box {
+    position: absolute;
+    display: none;
+    width: 45px;
+    height: 35px;
+    left: 0;
+    z-index: 200;
+    opacity: 0; }
+    #navbar #check-box:checked + #hamburger #ham-wrapper span {
+      opacity: 1;
+      background: #232323; }
+      #navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg); }
+      #navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(2) {
+        opacity: 0; }
+      #navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg); }
+    #navbar #check-box:checked ~ nav {
+      display: inline-block;
+      background: #fcd2f8;
+      padding-left: 50px; }
+      #navbar #check-box:checked ~ nav ul {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start; }
+        #navbar #check-box:checked ~ nav ul li {
+          font-weight: bold;
+          text-align: left; }
   #navbar #hamburger {
+    display: none;
+    position: absolute;
+    left: 10px;
     z-index: 1;
     -webkit-user-select: none;
     user-select: none; }
@@ -316,14 +331,18 @@ footer {
 @media (max-width: 500px) {
   #navbar {
     flex-flow: row; }
+    #navbar #hamburger, #navbar #check-box {
+      display: inline-block; }
     #navbar nav {
       display: none;
       font-size: 1.1rem;
       padding-top: 0; }
-    #navbar #header2 #logo-line1 {
-      font-size: 1.5rem; }
-    #navbar #header2 #logo-line2 {
-      font-size: 1.2rem; }
+    #navbar #header2 {
+      padding-left: 50px; }
+      #navbar #header2 #logo-line1 {
+        font-size: 1.5rem; }
+      #navbar #header2 #logo-line2 {
+        font-size: 1.2rem; }
   #cars-container {
     display: grid;
     grid-gap: 2rem;
