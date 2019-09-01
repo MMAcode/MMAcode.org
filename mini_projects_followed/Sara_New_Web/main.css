@@ -172,8 +172,10 @@ image {
     color: #970071; } }
 
 @keyframes animate_car {
-  0% { }
+  0% {
+    opacity: 0; }
   100% {
+    opacity: 1;
     transform: scale(1);
     transform: translateX(-30%); } }
 

@@ -303,11 +303,13 @@ image {
 
 @keyframes animate_car {
   0% {
+    opacity: 0;
   }
 
   100% {
     // width: 90%;
     // // height: 90%;
+    opacity: 1;
     transform: scale(1);
     transform: translateX(-30%);
   }
