@@ -64,7 +64,8 @@ image {
     #navbar #check-box:checked ~ nav {
       display: inline-block;
       background: #fcd2f8;
-      padding-left: 50px;
+      padding-left: 5px;
+      padding-top: 70px;
       width: 100%;
       animation: An-show-navbar 0.5s forwards ease-in-out; }
       #navbar #check-box:checked ~ nav ul {
@@ -73,11 +74,9 @@ image {
         align-items: flex-start; }
         #navbar #check-box:checked ~ nav ul li {
           font-weight: bold;
-          text-align: left;
-          flex-wrap: nowrap;
-          display: flex; }
-          #navbar #check-box:checked ~ nav ul li a {
-            flex-wrap: nowrap; }
+          text-align: left; }
+      #navbar #check-box:checked ~ nav + #header2 {
+        padding-left: 5px; }
   #navbar #hamburger {
     display: none;
     position: absolute;

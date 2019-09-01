@@ -116,8 +116,9 @@ image {
       & ~ nav {
         display: inline-block;
         background: #fcd2f8;
-        padding-left: 50px;
-    width: 100%;
+        padding-left: 5px;
+        padding-top: 70px;
+        width: 100%;
 
         // opacity: 1 ;    doesn't work!
 
@@ -132,14 +133,11 @@ image {
           li {
             font-weight: bold;
             text-align: left;
-            flex-wrap: nowrap;
-            display: flex;
-
-            a {
-            flex-wrap: nowrap;
-
-            }
           }
+        }
+        // adjust padding of the company name
+        & + #header2 {
+          padding-left: 5px;
         }
       }
     }
@@ -234,7 +232,6 @@ image {
 }
 
 @keyframes An-show-navbar {
-
   0% {
     // background: orange;
     // width: 1px;
@@ -250,13 +247,7 @@ image {
     // left: 10px;
     // transform: translateX(0);
   }
-
 }
-
-
-
-
-
 
 #start-offset {
   display: block;
@@ -581,15 +572,6 @@ footer {
     }
   }
 }
-
-
-
-
-
-
-
-
-
 
 // MEDIA QUERIES
 
