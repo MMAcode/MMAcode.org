@@ -27,6 +27,9 @@ body {
 a {
   text-decoration: none;
   color: $primary-color;
+
+  // transition
+  // border-bottom: 5px solid $primary-color;
 }
 
 image {
@@ -448,7 +451,7 @@ image {
 // }
 
 #contacts-wrapper {
-  background-color: $primary-color;
+  background-color: $primary-color-light;
   display: flex;
   justify-content: space-around;
 
@@ -478,6 +481,22 @@ image {
 
       .contact-text {
         font-weight: bold;
+
+        a {
+          padding: 0;
+          img {
+            height: 60px;
+            transform: translateY(5px);
+
+            // transform: scale(3);
+            transition: transform 0.5s ease-in-out;
+         
+            &:hover {
+              // border-bottom: 3px solid $primary-color;
+              transform: scale(1.2);
+            }
+          }
+        }
       }
     }
   }
@@ -578,7 +597,7 @@ footer {
       background: $background-color-pinky;
 
       img {
-        max-height: 30vw;
+        // max-height: 30vw;
       }
     }
   }

@@ -260,7 +260,7 @@ image {
     padding: 1rem; }
 
 #contacts-wrapper {
-  background-color: #970071;
+  background-color: #ce6ab5;
   display: flex;
   justify-content: space-around; }
   #contacts-wrapper #contacts {
@@ -278,6 +278,14 @@ image {
         color: white; }
       #contacts-wrapper #contacts .single-contact .contact-text {
         font-weight: bold; }
+        #contacts-wrapper #contacts .single-contact .contact-text a {
+          padding: 0; }
+          #contacts-wrapper #contacts .single-contact .contact-text a img {
+            height: 60px;
+            transform: translateY(5px);
+            transition: transform 0.5s ease-in-out; }
+            #contacts-wrapper #contacts .single-contact .contact-text a img:hover {
+              transform: scale(1.2); }
   #contacts-wrapper form {
     height: 200px;
     overflow: hidden; }
@@ -335,8 +343,6 @@ footer {
 
 #galery #galery-mixed .photo-container {
   background: #fcade8; }
-  #galery #galery-mixed .photo-container img {
-    max-height: 30vw; }
 
 @media (max-width: 925px) {
   body {
