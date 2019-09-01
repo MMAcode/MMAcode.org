@@ -38,13 +38,41 @@ image {
   width: 100%;
   top: 0;
   z-index: 101;
-  transition: top 0.3s;
-  /* Transition effect when sliding down (and up) */
   background-color: #fdfcf5;
   opacity: 0.9;
   display: flex;
   align-items: center;
   justify-content: space-around; }
+  #navbar input:first-child:checked + #hamburger #ham-wrapper span {
+    opacity: 1;
+    background: #232323; }
+    #navbar input:first-child:checked + #hamburger #ham-wrapper span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg); }
+    #navbar input:first-child:checked + #hamburger #ham-wrapper span:nth-child(2) {
+      opacity: 0; }
+    #navbar input:first-child:checked + #hamburger #ham-wrapper span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg); }
+  #navbar input:first-child:checked ~ nav {
+    display: inline-block;
+    flex-flow: column;
+    background: #e9bae5; }
+    #navbar input:first-child:checked ~ nav ul {
+      display: flex;
+      flex-flow: column; }
+  #navbar #hamburger {
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none; }
+    #navbar #hamburger #ham-wrapper span {
+      display: block;
+      width: 33px;
+      height: 4px;
+      margin-bottom: 5px;
+      position: relative;
+      background: #a10494;
+      border-radius: 3px;
+      z-index: 1;
+      transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease; }
   #navbar #header2 {
     color: #970071;
     padding: 10px; }
@@ -286,13 +314,16 @@ footer {
     height: 150px; } }
 
 @media (max-width: 500px) {
-  #navbar #header2 #logo-line1 {
-    font-size: 1.5rem; }
-  #navbar #header2 #logo-line2 {
-    font-size: 1.2rem; }
-  #navbar nav {
-    font-size: 1.1rem;
-    padding-top: 0; }
+  #navbar {
+    flex-flow: row; }
+    #navbar nav {
+      display: none;
+      font-size: 1.1rem;
+      padding-top: 0; }
+    #navbar #header2 #logo-line1 {
+      font-size: 1.5rem; }
+    #navbar #header2 #logo-line2 {
+      font-size: 1.2rem; }
   #cars-container {
     display: grid;
     grid-gap: 2rem;

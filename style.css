@@ -33,6 +33,7 @@ ul {
 
 li {
   line-height: 2rem;
+  position: relative;
 }
 
 p em {
@@ -55,19 +56,25 @@ a {
 
 
 .preview {
-  width: 100%;
+  
   display: none;
-  width:    500px;
-  height: 300px;
+  width: 500px;
+  
+
 }
 
 a:hover+.preview,
 .preview:hover {
   display: block;
-  position: relative;
-  top: -10px;
+  position: absolute;
+  /z-index: 20;
+  top: 5px;
   left: 40px;
+  height: 300px;
+
 }
+
+
 
 
 .comment {

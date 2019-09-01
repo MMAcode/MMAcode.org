@@ -1,15 +1,12 @@
-// open "sass_support_files" folder in terminal, 
+// open "sass_support_files" folder in terminal,
 // type: npm run sass
 
 // Variables
-$background-color-pinky:#fcade8;
+$background-color-pinky: #fcade8;
 $background-color: #fdfcf5;
-$background-color-lighter:white;
+$background-color-lighter: white;
 $primary-color: #970071;
 $primary-color-light: #ce6ab5;
-
-
-
 
 * {
   margin: 0;
@@ -22,11 +19,10 @@ body {
   // line-height: 1.6;
   // background-color: $background-color;
   // background: url("./images/./Background_photos/./black-and-white-bouquet-love-71298.jpg") no-repeat center center/cover;
-  background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover;
+  background: url("./images/Background_photos/blured2.jpg ") no-repeat center
+    center/cover;
   width: 100%;
 }
-
-
 
 a {
   text-decoration: none;
@@ -36,9 +32,6 @@ a {
 image {
   width: 100%;
 }
-
-
-
 
 // CLASSES
 .container {
@@ -62,19 +55,18 @@ image {
   width: 80%;
   margin: 2rem auto;
   // border-bottom: 5px solid $primary-color;
-  background: linear-gradient(to right, rgba(255, 0, 0, 0), $primary-color, rgba(0, 128, 0, 0));
+  background: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    $primary-color,
+    rgba(0, 128, 0, 0)
+  );
 }
-
-
-
-
 
 // hiding navbar on scrolling in js
 // .nav-up {
 //   top: -240px;
 // }
-
-
 
 // SECTIONS
 #navbar {
@@ -83,19 +75,101 @@ image {
   width: 100%;
   top: 0;
   z-index: 101;
-  transition: top 0.3s;
-  /* Transition effect when sliding down (and up) */
-
-
   background-color: $background-color;
   opacity: 0.9;
-
   display: flex;
   align-items: center;
   justify-content: space-around;
 
-  // padding: 0.5rem 1rem;
 
+
+
+
+
+
+
+
+
+
+
+
+  // hamburger menu
+  input:first-child {
+    &:checked {
+      // change hamburger into the cross
+      & + #hamburger #ham-wrapper span {
+        opacity: 1;
+        background: #232323;
+
+        &:nth-child(1) {
+          transform: translateY(9px) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: translateY(-9px) rotate(-45deg);
+        }
+      }
+
+      // show navbar
+      & ~ nav {
+        ul {
+          display: flex;
+          flex-flow: column;
+          li {
+            // display: block;
+          }
+        }
+
+        display: inline-block;
+        flex-flow: column;
+        background: #e9bae5;
+        // font-size: 2rem !important;
+        // padding: 2rem;
+        // margin: 2rem;
+      }
+    }
+  }
+
+  #hamburger {
+    // display: inline-block;
+    // position: relative;
+    // top: 50px;
+    // left: 50px;
+
+    z-index: 1;
+
+    -webkit-user-select: none;
+    user-select: none;
+
+    #ham-wrapper {
+      span {
+        display: block;
+        width: 33px;
+        height: 4px;
+        margin-bottom: 5px;
+        position: relative;
+        background: #a10494;
+        border-radius: 3px;
+        z-index: 1;
+        // transform-origin: 4px -100%;
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+          background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+  
   #header2 {
     color: $primary-color;
     padding: 10px;
@@ -119,6 +193,7 @@ image {
   nav {
     // position: fixed;
     font-size: 1.3rem;
+    // display: none;
 
     //  padding-bottom: 20px;
 
@@ -133,8 +208,6 @@ image {
       padding-left: 10px;
       padding-right: 10px;
       // overflow: hidden;
-
-
 
       li {
         display: inline-block;
@@ -163,18 +236,15 @@ image {
 
 // INTRODUCTION
 #Intro {
-
   height: 500px;
   width: 100%;
   position: relative;
-
 
   &-text {
     max-width: 400px;
     float: left;
     // height: 500px;
     margin: 3rem;
-
 
     #price {
       color: orangered;
@@ -190,7 +260,8 @@ image {
     height: 20%;
     right: 0;
     top: 0;
-    background: url(./images/./cover_photo/./ssss2.png) no-repeat right bottom/contain;
+    background: url(./images/./cover_photo/./ssss2.png) no-repeat right
+      bottom/contain;
     animation: animate_car 4s forwards 1s ease-in-out;
     -webkit-animation: animate_car 4s forwards 1s ease-in-out;
   }
@@ -210,16 +281,10 @@ image {
   100% {
     width: 100%;
     height: 100%;
-
   }
 }
 
-
-
-
 // OUR CARS
-
-
 
 #cars-container {
   display: grid;
@@ -232,10 +297,7 @@ image {
   align-items: center;
 }
 
-
 .car {
-  
-  
   background-color: $primary-color-light;
   border: 4px solid $primary-color;
   padding: 0.3rem;
@@ -250,12 +312,11 @@ image {
     background-color: $background-color-pinky;
   }
 
-a{
-position: absolute;
-width: 100%;
-height: 100%;
-}
-
+  a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 
   &-1 {
     grid-area: car1;
@@ -267,8 +328,12 @@ height: 100%;
     -o-transform: rotate(-0.01turn);
 
     border: 10px solid black;
-    border-image: linear-gradient(45deg, $primary-color, $background-color-lighter) 1;
-
+    border-image: linear-gradient(
+        45deg,
+        $primary-color,
+        $background-color-lighter
+      )
+      1;
   }
 
   &-2 {
@@ -281,7 +346,6 @@ height: 100%;
 
     border-width: 8px;
     border-image: linear-gradient($primary-color, $background-color-lighter) 10;
-
 
     &:hover {
       border-image: linear-gradient(white, $primary-color) 10;
@@ -297,7 +361,14 @@ height: 100%;
     -o-transform: rotate(-0.007turn);
 
     border: 10px solid transparent;
-    border-image: repeating-linear-gradient(45deg, pink, pink 1%, purple 1%, purple 8%) 10;
+    border-image: repeating-linear-gradient(
+        45deg,
+        pink,
+        pink 1%,
+        purple 1%,
+        purple 8%
+      )
+      10;
 
     position: sticky;
     top: 0;
@@ -320,7 +391,6 @@ height: 100%;
     border-image-repeat: none;
     background-color: transparent;
     box-shadow: none;
-
   }
 
   // url("./images/./frame.svg")
@@ -331,7 +401,6 @@ height: 100%;
     margin: auto;
 
     border: 1px solid $primary-color;
-
   }
 
   &-name {
@@ -357,7 +426,12 @@ height: 100%;
 
     .single-contact {
       border-bottom: 2px solid transparent;
-      border-image: linear-gradient(90deg, $background-color-lighter, $primary-color) 10;
+      border-image: linear-gradient(
+          90deg,
+          $background-color-lighter,
+          $primary-color
+        )
+        10;
 
       .contact-title,
       .contact-text {
@@ -393,7 +467,6 @@ height: 100%;
     padding-bottom: 75%; // This is the aspect ratio
     height: 0;
 
-
     #map {
       position: absolute;
       top: 0;
@@ -402,8 +475,6 @@ height: 100%;
       height: 100px !important;
     }
   }
-
-
 }
 
 footer {
@@ -412,7 +483,6 @@ footer {
   align-items: center;
   justify-content: center;
   height: 100px;
-
 
   p {
     text-align: center;
@@ -423,24 +493,9 @@ footer {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // GALERY
 
 #galery {
-
   .car-title {
     display: flex;
     align-items: flex-end;
@@ -475,7 +530,12 @@ footer {
 
   .decorated-borders img {
     border: 0.5vw solid black;
-    border-image: linear-gradient(45deg, $primary-color-light, $background-color-lighter) 1;
+    border-image: linear-gradient(
+        45deg,
+        $primary-color-light,
+        $background-color-lighter
+      )
+      1;
   }
 
   #galery-mixed {
@@ -493,36 +553,13 @@ footer {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // MEDIA QUERIES
 
-@media(max-width: 925px) {
-
-
-
+@media (max-width: 925px) {
   body {
     // background-color: rgba(141, 247, 141, 0.295);
-    background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover;
+    background-image: url("./images/Background_photos/blured2-mini.jpg ")
+      no-repeat center center/cover;
   }
 
   #navbar {
@@ -543,8 +580,6 @@ footer {
       // z-index: 100;
       // background-color: $background-color;
       // opacity: 0.9;
-
-
     }
 
     // #start-offset2 {
@@ -554,19 +589,23 @@ footer {
     //   // position: relative;
     //   // top: 150px;
     // }
-
   }
 
   #start-offset {
     height: 150px;
   }
-
-
 }
 
-@media(max-width: 500px) {
-
+@media (max-width: 500px) {
   #navbar {
+    flex-flow: row;
+
+    nav {
+      display: none;
+      font-size: 1.1rem;
+      // font-weight: bold;
+      padding-top: 0;
+    }
 
     #header2 {
       #logo-line1 {
@@ -577,20 +616,13 @@ footer {
         font-size: 1.2rem;
       }
     }
-
-    nav {
-      font-size: 1.1rem;
-      // font-weight: bold;
-      padding-top: 0;
-    }
   }
 
   #cars-container {
     display: grid;
     grid-gap: 2rem;
     padding: 2rem;
-    grid-template-areas:
-      "car1""car2""car3""car4";
+    grid-template-areas: "car1" "car2" "car3" "car4";
     justify-items: center;
     align-items: center;
   }
