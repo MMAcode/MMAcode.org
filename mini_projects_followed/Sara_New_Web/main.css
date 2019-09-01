@@ -49,6 +49,7 @@ image {
     width: 45px;
     height: 35px;
     left: 0;
+    top: 23px;
     z-index: 200;
     opacity: 0; }
     #navbar #check-box:checked + #hamburger #ham-wrapper span {
@@ -63,17 +64,24 @@ image {
     #navbar #check-box:checked ~ nav {
       display: inline-block;
       background: #fcd2f8;
-      padding-left: 50px; }
+      padding-left: 50px;
+      width: 100%;
+      animation: An-show-navbar 0.5s forwards ease-in-out; }
       #navbar #check-box:checked ~ nav ul {
         display: flex;
         flex-flow: column;
         align-items: flex-start; }
         #navbar #check-box:checked ~ nav ul li {
           font-weight: bold;
-          text-align: left; }
+          text-align: left;
+          flex-wrap: nowrap;
+          display: flex; }
+          #navbar #check-box:checked ~ nav ul li a {
+            flex-wrap: nowrap; }
   #navbar #hamburger {
     display: none;
     position: absolute;
+    top: 23px;
     left: 10px;
     z-index: 1;
     -webkit-user-select: none;
@@ -102,6 +110,7 @@ image {
     font-size: 1.3rem; }
     #navbar nav ul {
       list-style: none;
+      overflow: hidden;
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
@@ -120,6 +129,12 @@ image {
         -o-transition: border-bottom 0.5s ease-in-out; }
         #navbar nav ul li:hover {
           border-bottom: 3px solid #970071; }
+
+@keyframes An-show-navbar {
+  0% {
+    padding: 0px;
+    transform: translateX(-100%); }
+  100% { } }
 
 #start-offset {
   display: block;
@@ -331,7 +346,8 @@ footer {
 @media (max-width: 500px) {
   #navbar {
     flex-flow: row; }
-    #navbar #hamburger, #navbar #check-box {
+    #navbar #hamburger,
+    #navbar #check-box {
       display: inline-block; }
     #navbar nav {
       display: none;

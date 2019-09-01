@@ -81,18 +81,6 @@ image {
   align-items: center;
   justify-content: space-around;
 
-
-
-
-
-
-
-
-
-
-
-
-
   // hamburger menu
   #check-box {
     position: absolute;
@@ -101,10 +89,10 @@ image {
     width: 45px;
     height: 35px;
     left: 0;
+    top: 23px;
     z-index: 200;
     opacity: 0;
-    
-    
+
     &:checked {
       // change hamburger into the cross
       & + #hamburger #ham-wrapper span {
@@ -129,8 +117,13 @@ image {
         display: inline-block;
         background: #fcd2f8;
         padding-left: 50px;
+    width: 100%;
+
         // opacity: 1 ;    doesn't work!
- 
+
+        // animation of incoming navbar
+        animation: An-show-navbar 0.5s forwards ease-in-out;
+
         ul {
           display: flex;
           flex-flow: column;
@@ -139,10 +132,15 @@ image {
           li {
             font-weight: bold;
             text-align: left;
+            flex-wrap: nowrap;
+            display: flex;
+
+            a {
+            flex-wrap: nowrap;
+
+            }
           }
         }
-
-               
       }
     }
   }
@@ -150,9 +148,8 @@ image {
   #hamburger {
     display: none;
     position: absolute;
-    // top: 50px;
+    top: 23px;
     left: 10px;
-
 
     z-index: 1;
 
@@ -175,14 +172,6 @@ image {
       }
     }
   }
-
-
-
-
-
-
-
-
 
   #header2 {
     color: $primary-color;
@@ -213,6 +202,7 @@ image {
 
     ul {
       list-style: none;
+      overflow: hidden;
       display: flex;
       flex-wrap: wrap;
       // overflow: scroll;
@@ -242,6 +232,31 @@ image {
     }
   }
 }
+
+@keyframes An-show-navbar {
+
+  0% {
+    // background: orange;
+    // width: 1px;
+    // width: 100%;
+
+    padding: 0px;
+    // left: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    // background: green;
+    // left: 10px;
+    // transform: translateX(0);
+  }
+
+}
+
+
+
+
+
 
 #start-offset {
   display: block;
@@ -567,6 +582,15 @@ footer {
   }
 }
 
+
+
+
+
+
+
+
+
+
 // MEDIA QUERIES
 
 @media (max-width: 925px) {
@@ -614,9 +638,8 @@ footer {
   #navbar {
     flex-flow: row;
 
-
-
-    #hamburger, #check-box {
+    #hamburger,
+    #check-box {
       display: inline-block;
     }
 
@@ -628,7 +651,7 @@ footer {
     }
 
     #header2 {
-padding-left: 50px;
+      padding-left: 50px;
 
       #logo-line1 {
         font-size: 1.5rem;
