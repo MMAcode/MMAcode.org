@@ -19,8 +19,7 @@ body {
   // line-height: 1.6;
   // background-color: $background-color;
   // background: url("./images/./Background_photos/./black-and-white-bouquet-love-71298.jpg") no-repeat center center/cover;
-  background: url("./images/Background_photos/blured2.jpg ") no-repeat center
-    center/cover;
+  background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover;
   width: 100%;
 }
 
@@ -62,12 +61,10 @@ image {
   width: 80%;
   margin: 2rem auto;
   // border-bottom: 5px solid $primary-color;
-  background: linear-gradient(
-    to right,
-    rgba(255, 0, 0, 0),
-    $primary-color,
-    rgba(0, 128, 0, 0)
-  );
+  background: linear-gradient(to right,
+      rgba(255, 0, 0, 0),
+      $primary-color,
+      rgba(0, 128, 0, 0));
 }
 
 // hiding navbar on scrolling in js
@@ -101,8 +98,9 @@ image {
     opacity: 0;
 
     &:checked {
+
       // change hamburger into the cross
-      & + #hamburger #ham-wrapper span {
+      &+#hamburger #ham-wrapper span {
         opacity: 1;
         background: #232323;
 
@@ -120,7 +118,7 @@ image {
       }
 
       // show navbar
-      & ~ nav {
+      &~nav {
         display: inline-block;
         background: #fcd2f8;
         padding-left: 5px;
@@ -142,8 +140,9 @@ image {
             text-align: left;
           }
         }
+
         // adjust padding of the company name
-        & + #header2 {
+        &+#header2 {
           padding-left: 5px;
         }
       }
@@ -285,6 +284,8 @@ image {
 
   &-photo {
     position: absolute;
+    // display: none;
+    visibility: hidden;
     width: 70%;
     height: 70%;
     margin: auto;
@@ -292,11 +293,13 @@ image {
     transform: scale(0.2);
     right: 0%;
     top: 30%;
-
-    background: url(./images/./cover_photo/./moving-car-smaller.png) no-repeat
-      right bottom/contain;
+    background: url(./images/./cover_photo/./moving-car-smaller.png) no-repeat right bottom/contain;
     animation: animate_car 1s forwards 0s ease-in;
     -webkit-animation: animate_car 4s forwards 1s ease-in-out;
+    -webkit-transform: scale(0.2);
+    -moz-transform: scale(0.2);
+    -ms-transform: scale(0.2);
+    -o-transform: scale(0.2);
   }
 }
 
@@ -313,6 +316,8 @@ image {
 @keyframes animate_car {
   0% {
     opacity: 0;
+    visibility: visible;
+
   }
 
   100% {
@@ -321,6 +326,7 @@ image {
     opacity: 1;
     transform: scale(1);
     transform: translateX(-10%);
+    visibility: visible;
   }
 }
 
@@ -368,12 +374,9 @@ image {
     -o-transform: rotate(-0.01turn);
 
     border: 10px solid black;
-    border-image: linear-gradient(
-        45deg,
+    border-image: linear-gradient(45deg,
         $primary-color,
-        $background-color-lighter
-      )
-      1;
+        $background-color-lighter) 1;
   }
 
   &-2 {
@@ -401,14 +404,11 @@ image {
     -o-transform: rotate(-0.007turn);
 
     border: 10px solid transparent;
-    border-image: repeating-linear-gradient(
-        45deg,
+    border-image: repeating-linear-gradient(45deg,
         pink,
         pink 1%,
         purple 1%,
-        purple 8%
-      )
-      10;
+        purple 8%) 10;
   }
 
   &-4 {
@@ -457,23 +457,23 @@ image {
   display: grid;
   grid-column-gap: 2vw;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  
 
+  // grid-template-columns: 1fr minmax(400px, 1fr);
   // grid-template-columns: repeat(2, minmax(400px, 1fr));
   // grid-auto-columns:auto;
   // grid-auto-flow: row
   // grid-template-columns: auto;
 
 
-// display: flex;
-// width: 100%;
-// flex-flow: wrap;
- 
+  // display: flex;
+  // width: 100%;
+  // flex-flow: wrap;
+
 
   margin: 1rem 0;
-  
 
-  & > * {
+
+  &>* {
     // flex:1;
     // padding: 1rem;
     // margin: 0 0.5rem;
@@ -490,12 +490,9 @@ image {
       display: flex;
 
       border-bottom: 2px solid transparent;
-      border-image: linear-gradient(
-          90deg,
+      border-image: linear-gradient(90deg,
           $background-color-lighter,
-          $primary-color
-        )
-        10;
+          $primary-color) 10;
 
       .contact-title,
       .contact-text {
@@ -515,6 +512,7 @@ image {
 
         a {
           padding: 0;
+
           img {
             height: 60px;
             transform: translateY(5px);
@@ -534,7 +532,7 @@ image {
 
   #contact-form {
     display: inline-block;
-    
+
     color: white;
     padding: 1rem;
     // min-width: 300px;
@@ -550,6 +548,7 @@ image {
       #form-lines {
         font-size: 1.4rem;
       }
+
       label,
       input,
       textarea {
@@ -563,11 +562,9 @@ image {
         padding: 0 0 0 10px;
         border: none;
         border-radius: 5px;
-        background: linear-gradient(
-          90deg,
-          $background-color-lighter 50%,
-          $primary-color
-        );
+        background: linear-gradient(90deg,
+            $background-color-lighter 50%,
+            $primary-color);
       }
 
       label {
@@ -653,12 +650,9 @@ footer {
 
   .decorated-borders img {
     border: 0.5vw solid black;
-    border-image: linear-gradient(
-        45deg,
+    border-image: linear-gradient(45deg,
         $primary-color-light,
-        $background-color-lighter
-      )
-      1;
+        $background-color-lighter) 1;
   }
 
   #galery-mixed {
@@ -681,8 +675,7 @@ footer {
 @media (max-width: 925px) {
   body {
     // background-color: rgba(141, 247, 141, 0.295);
-    background-image: url("./images/Background_photos/blured2-mini.jpg ")
-      no-repeat center center/cover;
+    background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover;
   }
 
   #navbar {
@@ -752,7 +745,7 @@ footer {
     display: grid;
     grid-gap: 2rem;
     padding: 2rem;
-    grid-template-areas: "car1" "car2" "car3" "car4";
+    grid-template-areas: "car1""car2""car3""car4";
     justify-items: center;
     align-items: center;
   }
@@ -768,6 +761,7 @@ footer {
         padding-bottom: 0 !important;
         // color: green !important;
         font-size: 18px !important;
+
         br {
           display: none;
         }
