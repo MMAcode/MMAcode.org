@@ -304,14 +304,15 @@ image {
 
   &-photo {
     position: absolute;
+    z-index: -10;
     visibility: hidden; //  so it doesn't pop up on page load
-    width: 70%;
-    height: 70%;
+    width: 90%;
+    height: 90%;
     margin: auto;
     transform-origin: 97% 5%;
     transform: scale(0.2);
-    right: 0%;
-    top: 30%;
+    right: -5%;
+    top: 10%;
     background: url(./images/./cover_photo/./moving-car-smaller.png) no-repeat
       right bottom/contain;
     animation: animate_car 1s forwards 0s ease-in;

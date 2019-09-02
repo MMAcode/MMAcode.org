@@ -155,14 +155,15 @@ image {
       -webkit-animation: animate_price 5s 2; }
   #Intro-photo {
     position: absolute;
+    z-index: -10;
     visibility: hidden;
-    width: 70%;
-    height: 70%;
+    width: 90%;
+    height: 90%;
     margin: auto;
     transform-origin: 97% 5%;
     transform: scale(0.2);
-    right: 0%;
-    top: 30%;
+    right: -5%;
+    top: 10%;
     background: url(./images/./cover_photo/./moving-car-smaller.png) no-repeat right bottom/contain;
     animation: animate_car 1s forwards 0s ease-in;
     -webkit-animation: animate_car 4s forwards 1s ease-in-out;
