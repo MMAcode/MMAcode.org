@@ -19,7 +19,7 @@ h1 {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 2rem;
-  
+
 }
 
 /* h2 {
@@ -66,10 +66,10 @@ a {
 
 
 .preview {
-  
+
   display: none;
   width: 500px;
-  
+
 
 }
 
@@ -85,6 +85,43 @@ a:hover+.preview,
 }
 
 
+/* put this around the link */
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-wrapper a {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+
+  box-shadow: 2px 2px rgba(133, 132, 132, 0.473);
+  text-decoration: none;
+  /* color: rgb(9, 130, 243); */
+  font-weight: 700;
+  background: greenyellow;
+  
+  transition: background 0.3s;
+  -webkit-transition: background 0.3s;
+  -moz-transition: background 0.3s;
+  -ms-transition: background 0.3s;
+  -o-transition: background 0.3s;
+ 
+}
+.button-wrapper a:hover {
+  background: green;
+}
+
+
+
+
+
+
 
 
 .comment {
@@ -97,7 +134,7 @@ a:hover+.preview,
 .grid-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  
+
 }
 
 .grid-wrapper>* {
@@ -117,9 +154,7 @@ a:hover+.preview,
   margin-bottom: 0.6rem;
 }
 
-.description {
-  
-}
+.description {}
 
 .poster {
   background-color: rgb(166, 219, 116);
