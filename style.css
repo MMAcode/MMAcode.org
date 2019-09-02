@@ -16,12 +16,15 @@ body {
 
 
 h1 {
-  padding-top: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  
 }
 
-h2 {
+/* h2 {
   padding-top: 1.5rem;
-}
+} */
 
 h3 {
   padding-top: 1rem;
@@ -37,6 +40,11 @@ li {
   position: relative;
 }
 
+
+p {
+  padding: 0.2rem 0;
+}
+
 p em {
   color: rgb(160, 160, 160);
 }
@@ -46,13 +54,14 @@ a {
   color: blue;
 }
 
-/* UTILITIES-classes */
-.container {
-  margin: 1rem;
-}
 
-.container p {
-  padding: 0.2rem 2rem;
+
+
+/* UTILITIES-classes */
+.main-container {
+  max-width: 1500px;
+  margin: auto;
+  padding: 0 0 1rem 2rem;
 }
 
 
@@ -85,16 +94,45 @@ a:hover+.preview,
   font-style: italic;
 }
 
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  
+}
 
-/* SECTIONS */
-.title {
-  text-align: center;
-  font-size: 4rem;
-  padding-top: 2rem;
+.grid-wrapper>* {
+  padding: 1rem;
 }
 
 
+.title {
+  text-align: center;
+  font-size: 4rem;
+  /* padding-top: 2rem; */
+}
 
+.heading {
+  text-align: center;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.description {
+  
+}
+
+.poster {
+  background-color: rgb(166, 219, 116);
+  padding: 2rem;
+  margin: 1rem;
+}
+
+
+/* SECTIONS */
+
+
+
+/* translate button */
 #translate a {
   position: absolute;
   right: 5px;
@@ -122,4 +160,16 @@ a:hover+.preview,
   height: 40px;
   padding-right: 5px;
 
+}
+
+
+
+
+
+#table-of-content {
+  background-color: rgb(248, 213, 99);
+}
+
+#current-project {
+  background-color: rgb(203, 255, 119);
 }
