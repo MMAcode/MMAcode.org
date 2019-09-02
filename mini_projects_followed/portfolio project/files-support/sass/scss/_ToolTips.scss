@@ -1,0 +1,163 @@
+
+// class=ttte    span.ttt     (class to the element, new on the end of the element)
+
+// .p-r  (position:relative)
+//  span.tttss{Label'*}>span.ttt     (all as sibling before, parent position relative (.p-r))
+//        style="left:60px;" 
+
+
+
+// .tttss {display: none;}
+
+
+
+
+
+
+// ** ttt ToolTipText
+// class=ttte    span.ttt     (class to the element, new on the end of the element)
+// span.tttss{Label*}>span.ttt     (all as sibling before)
+
+// 2 options:
+// A) placing comment to last layer (=small element)
+//    --> last child of that element is added, child of that child is added (span.ttts, span.ttt and tool tip text)
+//    tag ttte is added to element
+// B) placing comment to "meta" layer
+//    --> sibling before (*label* span.tttss) and it's child (span.ttt) are added
+
+//
+// ttte ads * automaticaly on the end
+// tttss not, & highlights background
+
+// * * ALL TOOLTIPS
+.ttt {
+  display: none; 
+  position: absolute; 
+  z-index: 6;
+  font-size: 1rem;
+  font-weight: normal;
+  background-color: black;
+  color: yellow;
+  text-align: left;
+  text-transform: none; //so that other classes don't mess with this text
+  // white-space: pre-wrap; I// can't use as beautify rearranges text
+  border-radius: 15px;
+  padding: 5px 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+
+
+// * * SMALL TOOLTIPS
+
+// add * on the end
+.ttte::after {
+  position: absolute; //* in inline elements went on the next line otherwise
+          // display: inline; - didn't have effect
+  text-transform: none;
+  content: "*";
+  color: red;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+// highlight background
+.ttte:hover {
+  animation: animate1 1s forwards ease-in-out;
+  -webkit-animation: animate1 2s forwards ease-in-out;
+}
+
+@keyframes animate1 {
+  100% {
+    background-color: rgba(255, 255, 0, 0.5);
+  }
+}
+
+// show tooltip
+.ttte:hover>.ttt {
+  display: block;
+  margin-top: -0.4rem;
+  opacity: 0;
+  animation: animate2 1s forwards ease-in-out;
+  -webkit-animation: animate2 0.3s forwards ease-in-out;
+}
+
+@keyframes animate2 {
+  100% {
+    opacity: 1;
+  }
+}
+
+//* * BIG-ELEMENTS (=NOT LAST)
+
+// Stars design
+.tttss {
+  @extend .ttte::after;
+  font-weight: 900;
+  font-size: 0.7rem;
+  position: absolute;
+  left:0;
+  // text-align: left !important;
+  z-index: 5;
+}
+
+// start position: absolute, make parent element position relative by taging that element by .r
+.p-r {
+  position: relative;
+}
+
+
+
+// --- coloured overlay ---
+.tttss:hover+* {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.tttss:hover+*::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: animate3 0.3s forwards ease-in-out;
+  -webkit-animation: animate3 0.3s forwards ease-in-out;
+}
+
+@keyframes animate3 {
+  100% {
+    background-color: rgba(245, 181, 97, 0.575);
+  }
+}
+
+// show tool tip
+.tttss:hover>.ttt {
+  display: block;
+  color: rgb(245, 181, 97);
+  //font-weight: 700;
+  margin-top: -0.3rem;
+  opacity: 0;
+  width: 50vw;
+  animation: animate4 1s forwards ease-in-out;
+  -webkit-animation: animate4 1s forwards ease-in-out;
+}
+
+@keyframes animate4 {
+  100% {
+    opacity: 0.6;
+  }
+}
+
+// * * SIMPLE
+// - to select first following sibling
+// in html: create .ttt as direct sibling to add tooltiptext
+// =  will display tooltips any time you hover over the element which is element just before that tooltip
+//   *:hover+.ttt {
+//   display: block;
+//   visibility: visible;
+// }
