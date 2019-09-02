@@ -142,7 +142,8 @@ image {
 #Intro {
   height: 65vh;
   width: 100%;
-  position: relative; }
+  position: relative;
+  overflow: hidden; }
   #Intro-text {
     max-width: 400px;
     float: left;
@@ -162,7 +163,7 @@ image {
     right: -15%;
     top: 30%;
     background: url(./images/./cover_photo/./moving-car-smaller.png) no-repeat right bottom/contain;
-    animation: animate_car 3s forwards 1s ease-in;
+    animation: animate_car 1s forwards 0s ease-in;
     -webkit-animation: animate_car 4s forwards 1s ease-in-out; }
 
 @keyframes animate_price {
