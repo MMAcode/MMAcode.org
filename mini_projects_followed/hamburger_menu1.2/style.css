@@ -164,6 +164,6 @@ input:checked~#ham-wrapper span:nth-last-child(2) {
 /*
   * And let's slide it in from the left
   */
-#menuToggle input:checked~ul {
+#menuToggle input:checked~#menu {
   transform: none;
 }
