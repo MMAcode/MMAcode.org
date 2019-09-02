@@ -259,7 +259,8 @@ image {
 
 // INTRODUCTION
 #Intro {
-  height: 500px;
+  // height: 500px;
+  height: 65vh;
   width: 100%;
   position: relative;
 
@@ -693,7 +694,6 @@ footer {
     .single-contact {
       flex-flow: column;
 
-      
       // font-size: 14px !important;
       .contact-title {
         padding-bottom: 0 !important;
