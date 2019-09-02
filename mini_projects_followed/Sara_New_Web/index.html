@@ -77,6 +77,7 @@
           </div>
           <div class="car-name">
             <p>Hurricane Compton</p>
+            <p> <em> (The most popular choice.)</em></p>
           </div>
           <div class="car-comment"></div>
         </div>
@@ -123,36 +124,52 @@
       <div id="contacts-wrapper">
         <div id="contacts">
           <div class="single-contact">
-            <p class="contact-title">Phone:</p>
+            <p class="contact-title">Phone</p>
             <p class="contact-text">0744 6253 669</p>
           </div>
           <div class="single-contact">
-            <p class="contact-title">Email:</p>
+            <p class="contact-title">Email</p>
             <p class="contact-text">worsfoldfamily@btinternet.com</p>
           </div>
           <div class="single-contact">
-            <p class="contact-title">Facebook:</p>
+            <p class="contact-title">Facebook</p>
             <p class="contact-text"><a target="_blank" href="https://www.facebook.com/armstrongweddingcarsofhampshire/"><img src="./images/./facebook.png" alt=""></a></p>
           </div>
           <div class="single-contact">
-            <p class="contact-title">Address: <br /><br /><br /></p>
+            <p class="contact-title">Address <br /><br /><br /></p>
             <p class="contact-text">Armstrong Wedding Cars
               <br />60 Glenleigh Park
                <br /> Havant
                <br>PO9 2PH
-              
-
-
-
-
-
             </p>
           </div>
         </div>
 
-        <form action="">
-          <h1>Contact Form</h1>
-        </form>
+        <div id="contact-form">
+          <form class="p-1" action="process.php" method="POST">
+            <h1>Contact Form</h1>
+            
+            <div id="form-lines">
+              <label for="f-name">Name</label>
+              <input id="f-Name" type="text" name="f-Name" placeholder="Enter Name">
+      
+              <label for="f-email">Email</label>
+              <input id="f-email" type="email" name="f-email" placeholder="Enter Email">
+      
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" type="number" name="f-phone" placeholder="Enter Phone Number">
+      
+              <label for="f-message">Message</label>
+              <textarea name="message" id="f-message" rows="3" placeholder="Enter Message"></textarea>
+      
+      
+              <input type="submit" value="Send" class="btn">
+            </div>
+          </form>
+        </div>
+
+
+
       </div>
 
       <div id="map-container">
@@ -172,6 +189,14 @@
       <img src="./images/./MMAcode-logo.png" alt="" />
       <p>Made by MMAcode.org</p>
     </footer>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+    <!-- local js file -->
+    <script src="./js/main.js"></script>
   </body>
 
   <!-- <script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Form template</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+  <div id="contact-form">
+    <form class="p-1" action="process.php" method="POST">
+      <h1>Contact Form</h1>
+      
+      <div class="form-lines">
+        <label for="f-name">Name</label>
+        <input id="f-Name" type="text" name="f-Name" placeholder="Enter Name">
+
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="f-email" placeholder="Enter Email">
+
+        <label for="f-phone">Phone</label>
+        <input id="f-phone" type="number" name="f-phone" placeholder="Enter Phone Number">
+
+        <label for="f-message">Message</label>
+        <textarea name="message" id="f-message" rows="3" placeholder="Enter Message"></textarea>
+
+
+        <input type="submit" value="Send" class="btn">
+      </div>
+    </form>
+  </div>
+
+</body>
+
+</html>

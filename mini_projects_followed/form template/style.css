@@ -1,0 +1,45 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#contact-form {
+  padding: 1rem;
+}
+
+#contact-form h1 {
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#contact-form form {
+  margin: auto;
+}
+
+#contact-form form label,
+#contact-form form input,
+#contact-form form textarea {
+  display: block;
+}
+
+#contact-form form input,
+#contact-form form textarea {
+  width: 100%;
+  line-height: 2.5;
+  padding: 0;
+  padding-left: 10px;
+  border: none;
+  background: -webkit-gradient(linear, left top, right top, color-stop(75%, #dd9292), to(black));
+  background: linear-gradient(90deg, #dd9292 75%, black);
+}
+
+#contact-form form label {
+  padding-top: 10px;
+}
+
+#contact-form form .btn {
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+}
+/*# sourceMappingURL=style.css.map */

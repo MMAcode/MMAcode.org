@@ -50,6 +50,10 @@ image {
   margin-top: 2rem;
   margin-bottom: 2rem;
   z-index: -2;
+
+  // position: sticky;
+  // top: 50px;
+  // z-index: 399;
 }
 
 .separator {
@@ -286,7 +290,7 @@ image {
     margin: auto;
     transform-origin: 97% 5%;
     transform: scale(0.2);
-    right: -15%;
+    right: 0%;
     top: 30%;
 
     background: url(./images/./cover_photo/./moving-car-smaller.png) no-repeat
@@ -316,7 +320,7 @@ image {
     // // height: 90%;
     opacity: 1;
     transform: scale(1);
-    transform: translateX(-30%);
+    transform: translateX(-10%);
   }
 }
 
@@ -405,10 +409,6 @@ image {
         purple 8%
       )
       10;
-
-    position: sticky;
-    top: 0;
-    z-index: 99;
   }
 
   &-4 {
@@ -453,12 +453,20 @@ image {
 // }
 
 #contacts-wrapper {
-  background-color: $primary-color-light;
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap: 2vw;
+  margin: 1rem 0;
+  
+
+  & > * {
+    padding: 1rem;
+    background-color: $primary-color;
+  }
 
   #contacts {
-    margin: 2rem;
+    // margin: 2rem;
+    // min-width: 500px;
 
     .single-contact {
       display: flex;
@@ -506,14 +514,53 @@ image {
     }
   }
 
-  form {
-    // width: 200px;
-    height: 200px;
-    overflow: hidden;
+  #contact-form {
+    color: white;
+    padding: 1rem;
 
     h1 {
+      padding-bottom: 10px;
       text-align: center;
-      // width: 100%;
+    }
+
+    form {
+      margin: auto;
+
+      #form-lines {
+        font-size: 1.4rem;
+      }
+      label,
+      input,
+      textarea {
+        display: block;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        line-height: 2.5;
+        padding: 0 0 0 10px;
+        border: none;
+        border-radius: 5px;
+        background: linear-gradient(
+          90deg,
+          $background-color-lighter 50%,
+          $primary-color
+        );
+      }
+
+      label {
+        padding-top: 10px;
+        padding-bottom: 5px;
+        font-size: 1.5 rem;
+      }
+
+      .btn {
+        margin-top: 10px;
+        display: block;
+        width: 100%;
+        // text-align: center;
+      }
     }
   }
 

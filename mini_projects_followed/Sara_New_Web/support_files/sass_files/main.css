@@ -1,0 +1,695 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #970071;
+}
+
+image {
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.title {
+  text-align: center;
+  color: #970071;
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  z-index: -2;
+}
+
+.separator {
+  display: block;
+  height: 5px;
+  width: 80%;
+  margin: 2rem auto;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 0, 0, 0)), color-stop(#970071), to(rgba(0, 128, 0, 0)));
+  background: linear-gradient(to right, rgba(255, 0, 0, 0), #970071, rgba(0, 128, 0, 0));
+}
+
+#navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 101;
+  background-color: #fdfcf5;
+  opacity: 0.9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#navbar #check-box {
+  position: absolute;
+  display: none;
+  width: 45px;
+  height: 35px;
+  left: 0;
+  top: 23px;
+  z-index: 200;
+  opacity: 0;
+}
+
+#navbar #check-box:checked + #hamburger #ham-wrapper span {
+  opacity: 1;
+  background: #232323;
+}
+
+#navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(1) {
+  -webkit-transform: translateY(9px) rotate(45deg);
+          transform: translateY(9px) rotate(45deg);
+}
+
+#navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(2) {
+  opacity: 0;
+}
+
+#navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(3) {
+  -webkit-transform: translateY(-9px) rotate(-45deg);
+          transform: translateY(-9px) rotate(-45deg);
+}
+
+#navbar #check-box:checked ~ nav {
+  display: inline-block;
+  background: #fcd2f8;
+  padding-left: 5px;
+  padding-top: 70px;
+  width: 100%;
+  -webkit-animation: An-show-navbar 0.5s forwards ease-in-out;
+          animation: An-show-navbar 0.5s forwards ease-in-out;
+}
+
+#navbar #check-box:checked ~ nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+#navbar #check-box:checked ~ nav ul li {
+  font-weight: bold;
+  text-align: left;
+}
+
+#navbar #check-box:checked ~ nav + #header2 {
+  padding-left: 5px;
+}
+
+#navbar #hamburger {
+  display: none;
+  position: absolute;
+  top: 23px;
+  left: 10px;
+  z-index: 1;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+}
+
+#navbar #hamburger #ham-wrapper span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #a10494;
+  border-radius: 3px;
+  z-index: 1;
+  -webkit-transition: background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  transition: background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+#navbar #header2 {
+  color: #970071;
+  padding: 10px;
+}
+
+#navbar #header2 #logo-line1, #navbar #header2 #logo-line2 {
+  font-weight: bold;
+}
+
+#navbar #header2 #logo-line1 {
+  font-size: 2rem;
+}
+
+#navbar #header2 #logo-line2 {
+  font-size: 1.5rem;
+  text-align: right;
+}
+
+#navbar nav {
+  font-size: 1.3rem;
+}
+
+#navbar nav ul {
+  list-style: none;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#navbar nav ul li {
+  display: inline-block;
+  text-align: center;
+  padding: 0.7rem;
+  border-bottom: 3px solid rgba(0, 0, 0, 0);
+  transition: border-bottom 0.5s ease-in-out;
+  -webkit-transition: border-bottom 0.5s ease-in-out;
+  -moz-transition: border-bottom 0.5s ease-in-out;
+  -ms-transition: border-bottom 0.5s ease-in-out;
+  -o-transition: border-bottom 0.5s ease-in-out;
+}
+
+#navbar nav ul li:hover {
+  border-bottom: 3px solid #970071;
+}
+
+@-webkit-keyframes An-show-navbar {
+  0% {
+    padding: 0px;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+  }
+}
+
+@keyframes An-show-navbar {
+  0% {
+    padding: 0px;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+  }
+}
+
+#start-offset {
+  display: block;
+  height: 110px;
+}
+
+#Intro {
+  height: 65vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+#Intro-text {
+  max-width: 400px;
+  float: left;
+  margin: 3rem;
+}
+
+#Intro-text #price {
+  color: orangered;
+  padding: 1rem;
+  animation: animate_price 5s 2;
+  -webkit-animation: animate_price 5s 2;
+}
+
+#Intro-photo {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  margin: auto;
+  -webkit-transform-origin: 97% 5%;
+          transform-origin: 97% 5%;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2);
+  right: 0%;
+  top: 30%;
+  background: url(./images/./cover_photo/./moving-car-smaller.png) no-repeat right bottom/contain;
+  animation: animate_car 1s forwards 0s ease-in;
+  -webkit-animation: animate_car 4s forwards 1s ease-in-out;
+}
+
+@-webkit-keyframes animate_price {
+  80% {
+    color: orangered;
+  }
+  90% {
+    color: #970071;
+  }
+}
+
+@keyframes animate_price {
+  80% {
+    color: orangered;
+  }
+  90% {
+    color: #970071;
+  }
+}
+
+@-webkit-keyframes animate_car {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform: translateX(-10%);
+            transform: translateX(-10%);
+  }
+}
+
+@keyframes animate_car {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform: translateX(-10%);
+            transform: translateX(-10%);
+  }
+}
+
+#cars-container {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 2rem;
+  padding: 2rem;
+      grid-template-areas: "car1 car2" "car3 car4";
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.car {
+  background-color: #ce6ab5;
+  border: 4px solid #970071;
+  padding: 0.3rem;
+  -webkit-box-shadow: 5px 6px 7px 1px rgba(0, 0, 0, 0.54);
+          box-shadow: 5px 6px 7px 1px rgba(0, 0, 0, 0.54);
+  transition: background-color 0.4s ease-in-out;
+  -webkit-transition: background-color 0.4s ease-in-out;
+  -moz-transition: background-color 0.4s ease-in-out;
+  -ms-transition: background-color 0.4s ease-in-out;
+  -o-transition: background-color 0.4s ease-in-out;
+}
+
+.car:hover {
+  background-color: #fcade8;
+}
+
+.car a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.car-1 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: car1;
+  transform: rotate(-0.01turn);
+  -webkit-transform: rotate(-0.01turn);
+  -moz-transform: rotate(-0.01turn);
+  -ms-transform: rotate(-0.01turn);
+  -o-transform: rotate(-0.01turn);
+  border: 10px solid black;
+  -o-border-image: linear-gradient(45deg, #970071, white) 1;
+     border-image: linear-gradient(45deg, #970071, white) 1;
+}
+
+.car-2 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: car2;
+  transform: rotate(0.005turn);
+  -webkit-transform: rotate(0.005turn);
+  -moz-transform: rotate(0.005turn);
+  -ms-transform: rotate(0.005turn);
+  -o-transform: rotate(0.005turn);
+  border-width: 8px;
+  -o-border-image: linear-gradient(#970071, white) 10;
+     border-image: -webkit-gradient(linear, left top, left bottom, from(#970071), to(white)) 10;
+     border-image: linear-gradient(#970071, white) 10;
+}
+
+.car-2:hover {
+  -o-border-image: linear-gradient(white, #970071) 10;
+     border-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#970071)) 10;
+     border-image: linear-gradient(white, #970071) 10;
+}
+
+.car-3 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: car3;
+  transform: rotate(-0.007turn);
+  -webkit-transform: rotate(-0.007turn);
+  -moz-transform: rotate(-0.007turn);
+  -ms-transform: rotate(-0.007turn);
+  -o-transform: rotate(-0.007turn);
+  border: 10px solid transparent;
+  -o-border-image: repeating-linear-gradient(45deg, pink, pink 1%, purple 1%, purple 8%) 10;
+     border-image: repeating-linear-gradient(45deg, pink, pink 1%, purple 1%, purple 8%) 10;
+}
+
+.car-4 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: car4;
+  transform: rotate(0.008turn);
+  -webkit-transform: rotate(0.008turn);
+  -moz-transform: rotate(0.008turn);
+  -ms-transform: rotate(0.008turn);
+  -o-transform: rotate(0.008turn);
+  border: 10px solid;
+  border-image-source: url("./images/./frame.svg");
+  border-image-slice: 30%;
+  border-image-width: 60px;
+  border-image-outset: 1.7;
+  border-image-repeat: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.car-photo img {
+  width: 97%;
+  display: block;
+  margin: auto;
+  border: 1px solid #970071;
+}
+
+.car-name {
+  text-align: center;
+  padding: 1rem;
+}
+
+#contacts-wrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(280px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding: 1rem;
+  background-color: #970071;
+}
+
+#contacts-wrapper > * {
+  padding: 1rem;
+}
+
+#contacts-wrapper #contacts .single-contact {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 2px solid transparent;
+  -o-border-image: linear-gradient(90deg, white, #970071) 10;
+     border-image: -webkit-gradient(linear, left top, right top, from(white), to(#970071)) 10;
+     border-image: linear-gradient(90deg, white, #970071) 10;
+}
+
+#contacts-wrapper #contacts .single-contact .contact-title,
+#contacts-wrapper #contacts .single-contact .contact-text {
+  display: inline-block;
+  padding: 1rem 0 1rem 1rem;
+  font-size: 1.4rem;
+}
+
+#contacts-wrapper #contacts .single-contact .contact-title {
+  width: 110px;
+  color: white;
+}
+
+#contacts-wrapper #contacts .single-contact .contact-text {
+  font-weight: bold;
+}
+
+#contacts-wrapper #contacts .single-contact .contact-text a {
+  padding: 0;
+}
+
+#contacts-wrapper #contacts .single-contact .contact-text a img {
+  height: 60px;
+  -webkit-transform: translateY(5px);
+          transform: translateY(5px);
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+
+#contacts-wrapper #contacts .single-contact .contact-text a img:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+#contacts-wrapper #contact-form {
+  color: white;
+  padding: 1rem;
+}
+
+#contacts-wrapper #contact-form h1 {
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#contacts-wrapper #contact-form form {
+  margin: auto;
+}
+
+#contacts-wrapper #contact-form form label,
+#contacts-wrapper #contact-form form input,
+#contacts-wrapper #contact-form form textarea {
+  display: block;
+}
+
+#contacts-wrapper #contact-form form input,
+#contacts-wrapper #contact-form form textarea {
+  width: 100%;
+  line-height: 2.5;
+  padding: 0 0 0 10px;
+  border: none;
+  background: -webkit-gradient(linear, left top, right top, color-stop(75%, white), to(#970071));
+  background: linear-gradient(90deg, white 75%, #970071);
+}
+
+#contacts-wrapper #contact-form form label {
+  padding-top: 10px;
+}
+
+#contacts-wrapper #contact-form form .btn {
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+}
+
+#contacts-wrapper #map-container {
+  position: relative;
+  padding-bottom: 75%;
+  height: 0;
+}
+
+#contacts-wrapper #map-container #map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100px !important;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100px;
+}
+
+footer p {
+  text-align: center;
+}
+
+footer img {
+  height: 40px;
+}
+
+#galery .car-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 20px;
+}
+
+#galery .car-title h1 {
+  color: #970071;
+  padding-top: 20px;
+  margin: 0;
+}
+
+#galery .car-title img {
+  height: 40px;
+}
+
+#galery .photo-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: scroll;
+  background: #970071;
+}
+
+#galery .photo-container img {
+  max-height: 40vw;
+  margin: 10px 1.3vw;
+}
+
+#galery .decorated-borders img {
+  border: 0.5vw solid black;
+  -o-border-image: linear-gradient(45deg, #ce6ab5, white) 1;
+     border-image: linear-gradient(45deg, #ce6ab5, white) 1;
+}
+
+#galery #galery-mixed h1 {
+  color: #fcade8;
+}
+
+#galery #galery-mixed .photo-container {
+  background: #fcade8;
+}
+
+@media (max-width: 925px) {
+  body {
+    background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover;
+  }
+  #navbar {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #navbar nav {
+    padding-top: 10px;
+  }
+  #start-offset {
+    height: 150px;
+  }
+}
+
+@media (max-width: 500px) {
+  #navbar {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row;
+            flex-flow: row;
+  }
+  #navbar #hamburger,
+  #navbar #check-box {
+    display: inline-block;
+  }
+  #navbar nav {
+    display: none;
+    font-size: 1.1rem;
+    padding-top: 0;
+  }
+  #navbar #header2 {
+    padding-left: 50px;
+  }
+  #navbar #header2 #logo-line1 {
+    font-size: 1.5rem;
+  }
+  #navbar #header2 #logo-line2 {
+    font-size: 1.2rem;
+  }
+  #cars-container {
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 2rem;
+    padding: 2rem;
+        grid-template-areas: "car1" "car2" "car3" "car4";
+    justify-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #contacts-wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+  }
+  #contacts-wrapper .single-contact {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+  }
+  #contacts-wrapper .single-contact .contact-title {
+    padding-bottom: 0 !important;
+    font-size: 18px !important;
+  }
+  #contacts-wrapper .single-contact .contact-title br {
+    display: none;
+  }
+  #contacts-wrapper .single-contact .contact-text {
+    font-size: 18px !important;
+  }
+}
+/*# sourceMappingURL=main.css.map */

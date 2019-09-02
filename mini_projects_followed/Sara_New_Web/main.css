@@ -160,7 +160,7 @@ image {
     margin: auto;
     transform-origin: 97% 5%;
     transform: scale(0.2);
-    right: -15%;
+    right: 0%;
     top: 30%;
     background: url(./images/./cover_photo/./moving-car-smaller.png) no-repeat right bottom/contain;
     animation: animate_car 1s forwards 0s ease-in;
@@ -178,7 +178,7 @@ image {
   100% {
     opacity: 1;
     transform: scale(1);
-    transform: translateX(-30%); } }
+    transform: translateX(-10%); } }
 
 #cars-container {
   display: grid;
@@ -232,10 +232,7 @@ image {
     -ms-transform: rotate(-0.007turn);
     -o-transform: rotate(-0.007turn);
     border: 10px solid transparent;
-    border-image: repeating-linear-gradient(45deg, pink, pink 1%, purple 1%, purple 8%) 10;
-    position: sticky;
-    top: 0;
-    z-index: 99; }
+    border-image: repeating-linear-gradient(45deg, pink, pink 1%, purple 1%, purple 8%) 10; }
   .car-4 {
     grid-area: car4;
     transform: rotate(0.008turn);
@@ -261,38 +258,65 @@ image {
     padding: 1rem; }
 
 #contacts-wrapper {
-  background-color: #ce6ab5;
-  display: flex;
-  justify-content: space-around; }
-  #contacts-wrapper #contacts {
-    margin: 2rem; }
-    #contacts-wrapper #contacts .single-contact {
-      display: flex;
-      border-bottom: 2px solid transparent;
-      border-image: linear-gradient(90deg, white, #970071) 10; }
-      #contacts-wrapper #contacts .single-contact .contact-title,
-      #contacts-wrapper #contacts .single-contact .contact-text {
-        display: inline-block;
-        padding: 1rem 0 1rem 1rem;
-        font-size: 1.4rem; }
-      #contacts-wrapper #contacts .single-contact .contact-title {
-        width: 110px;
-        color: white; }
-      #contacts-wrapper #contacts .single-contact .contact-text {
-        font-weight: bold; }
-        #contacts-wrapper #contacts .single-contact .contact-text a {
-          padding: 0; }
-          #contacts-wrapper #contacts .single-contact .contact-text a img {
-            height: 60px;
-            transform: translateY(5px);
-            transition: transform 0.5s ease-in-out; }
-            #contacts-wrapper #contacts .single-contact .contact-text a img:hover {
-              transform: scale(1.2); }
-  #contacts-wrapper form {
-    height: 200px;
-    overflow: hidden; }
-    #contacts-wrapper form h1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap: 2vw;
+  margin: 1rem 0; }
+  #contacts-wrapper > * {
+    padding: 1rem;
+    background-color: #970071; }
+  #contacts-wrapper #contacts .single-contact {
+    display: flex;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(90deg, white, #970071) 10; }
+    #contacts-wrapper #contacts .single-contact .contact-title,
+    #contacts-wrapper #contacts .single-contact .contact-text {
+      display: inline-block;
+      padding: 1rem 0 1rem 1rem;
+      font-size: 1.4rem; }
+    #contacts-wrapper #contacts .single-contact .contact-title {
+      width: 110px;
+      color: white; }
+    #contacts-wrapper #contacts .single-contact .contact-text {
+      font-weight: bold; }
+      #contacts-wrapper #contacts .single-contact .contact-text a {
+        padding: 0; }
+        #contacts-wrapper #contacts .single-contact .contact-text a img {
+          height: 60px;
+          transform: translateY(5px);
+          transition: transform 0.5s ease-in-out; }
+          #contacts-wrapper #contacts .single-contact .contact-text a img:hover {
+            transform: scale(1.2); }
+  #contacts-wrapper #contact-form {
+    color: white;
+    padding: 1rem; }
+    #contacts-wrapper #contact-form h1 {
+      padding-bottom: 10px;
       text-align: center; }
+    #contacts-wrapper #contact-form form {
+      margin: auto; }
+      #contacts-wrapper #contact-form form #form-lines {
+        font-size: 1.4rem; }
+      #contacts-wrapper #contact-form form label,
+      #contacts-wrapper #contact-form form input,
+      #contacts-wrapper #contact-form form textarea {
+        display: block; }
+      #contacts-wrapper #contact-form form input,
+      #contacts-wrapper #contact-form form textarea {
+        width: 100%;
+        line-height: 2.5;
+        padding: 0 0 0 10px;
+        border: none;
+        border-radius: 5px;
+        background: linear-gradient(90deg, white 50%, #970071); }
+      #contacts-wrapper #contact-form form label {
+        padding-top: 10px;
+        padding-bottom: 5px;
+        font-size: 1.5 rem; }
+      #contacts-wrapper #contact-form form .btn {
+        margin-top: 10px;
+        display: block;
+        width: 100%; }
   #contacts-wrapper #map-container {
     position: relative;
     padding-bottom: 75%;
