@@ -14,6 +14,10 @@ $primary-color-light: #ce6ab5;
   box-sizing: border-box;
 }
 
+html {
+  // font-size: 120%;
+}
+
 body {
   // font-family: "Dosis", sans-serif;
   // line-height: 1.6;
@@ -22,6 +26,23 @@ body {
   background: url("./images/Background_photos/blured2.jpg ") no-repeat center
     center/cover;
   width: 100%;
+
+  // font-family: "Macondo Swash Caps", cursive;
+  // font-family: "Muli", sans-serif;
+  // font-family: "Macondo", cursive;
+  // font-family: "Open Sans", sans-serif;
+  font-family: "Great Vibes", cursive;
+  letter-spacing: 0.2rem;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 300;
+}
+
+p {
+  font-size: 1.5rem;
 }
 
 a {
@@ -46,9 +67,9 @@ image {
 .title {
   text-align: center;
   color: $primary-color;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  // margin-bottom: 2rem;
   z-index: -2;
 
   // position: sticky;
@@ -100,6 +121,10 @@ image {
     z-index: 200;
     opacity: 0;
 
+    &:hover + #hamburger #ham-wrapper span {
+      background: $background-color-pinky;
+    }
+
     &:checked {
       // change hamburger into the cross
       & + #hamburger #ham-wrapper span {
@@ -126,37 +151,20 @@ image {
         padding-left: 5px;
         padding-top: 70px;
         width: 100%;
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // transition instead?
-        // msi jit jinam do toho 
+        // msi jit jinam do toho
         // transition: transform 1s  ease;
-        
-        
+
         // animation of incoming navbar
-        animation: An-show-navbar 0.5s forwards ease-in-out;
-        
+        animation: An-show-navbar 0.25s forwards ease-out;
+
         ul {
           display: flex;
           flex-flow: column;
           align-items: flex-start;
 
           li {
-            font-weight: bold;
             text-align: left;
           }
         }
@@ -202,7 +210,7 @@ image {
     padding: 10px;
 
     %logo {
-      font-weight: bold;
+      letter-spacing: 0.2rem;
     }
 
     #logo-line1 {
@@ -219,7 +227,7 @@ image {
 
   nav {
     // position: fixed;
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     // display: none;
 
     //  padding-bottom: 20px;
@@ -241,7 +249,7 @@ image {
         display: inline-block;
         text-align: center;
         // width: 100px;
-        padding: 0.7rem;
+        padding: 0.7rem 1.2rem;
         border-bottom: 3px solid rgba(0, 0, 0, 0);
         transition: border-bottom 0.5s ease-in-out;
         -webkit-transition: border-bottom 0.5s ease-in-out;
@@ -293,6 +301,7 @@ image {
     float: left;
     // height: 500px;
     margin: 3rem;
+    // font-size: 1.5rem;
 
     #price {
       color: orangered;
@@ -312,7 +321,7 @@ image {
     transform-origin: 97% 5%;
     transform: scale(0.2);
     right: -5%;
-    top: 10%;
+    top: 15%;
     background: url(./images/./cover_photo/./moving-car-smaller.png) no-repeat
       right bottom/contain;
     animation: animate_car 1s forwards 0s ease-in;
@@ -345,7 +354,7 @@ image {
     // // height: 90%;
     opacity: 1;
     transform: scale(1);
-    transform: translateX(-10%);
+    transform: translate(-10%, -15%);
     visibility: visible;
   }
 }
@@ -357,15 +366,14 @@ image {
   grid-gap: 2rem;
   padding: 2rem;
   grid-template-areas:
-    "car1 car2"
-    "car3 car4";
+    "car2 car1"
+    // "car3 car4";
   justify-items: center;
   align-items: center;
 }
 
 .car {
-  background-color: $primary-color-light;
-  border: 4px solid $primary-color;
+  background-color: $primary-color;
   padding: 0.3rem;
   box-shadow: 5px 6px 7px 1px rgba(0, 0, 0, 0.54);
   transition: background-color 0.4s ease-in-out;
@@ -374,7 +382,15 @@ image {
   -ms-transition: background-color 0.4s ease-in-out;
   -o-transition: background-color 0.4s ease-in-out;
 
+  border: 8px solid white;
+  // border: 8px;
+  // border-width: 8px;
+  // border-image: linear-gradient($primary-color, $background-color-lighter) 10;
+  // border-image: linear-gradient(white, transparent) 10;
+  border-radius: 0 0 10% 10%;
+
   &:hover {
+    // border-image: linear-gradient(white, transparent) 10;
     background-color: $background-color-pinky;
   }
 
@@ -393,13 +409,13 @@ image {
     -ms-transform: rotate(-0.01turn);
     -o-transform: rotate(-0.01turn);
 
-    border: 10px solid black;
-    border-image: linear-gradient(
-        45deg,
-        $primary-color,
-        $background-color-lighter
-      )
-      1;
+    // border: 10px solid black;
+    // border-image: linear-gradient(
+    //     45deg,
+    //     $primary-color,
+    //     $background-color-lighter
+    //   )
+    //   1;
   }
 
   &-2 {
@@ -410,12 +426,12 @@ image {
     -ms-transform: rotate(0.005turn);
     -o-transform: rotate(0.005turn);
 
-    border-width: 8px;
-    border-image: linear-gradient($primary-color, $background-color-lighter) 10;
+    // border-width: 8px;
+    // border-image: linear-gradient($primary-color, $background-color-lighter) 10;
 
-    &:hover {
-      border-image: linear-gradient(white, $primary-color) 10;
-    }
+    // &:hover {
+    //   border-image: linear-gradient(white, $primary-color) 10;
+    // }
   }
 
   &-3 {
@@ -467,6 +483,7 @@ image {
 
   &-name {
     text-align: center;
+    color: white;
     padding: 1rem;
   }
 }
@@ -481,6 +498,7 @@ image {
 #contacts-wrapper {
   // width: 100%;
   display: grid;
+  overflow: hidden;
   grid-column-gap: 2vw;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 
@@ -534,7 +552,10 @@ image {
       }
 
       .contact-text {
-        font-weight: bold;
+        font-family: serif;
+        letter-spacing: 0.1rem;
+        word-spacing: 0.1rem;
+        color: $background-color-pinky;
 
         a {
           padding: 0;
@@ -605,7 +626,17 @@ image {
         margin-top: 10px;
         display: block;
         width: 100%;
+        background: $background-color-pinky;
+        font-family: "Macondo Swash Caps", cursive;
+        font-size: 1.2rem;
+        color: $primary-color;
+        transition: background 0.3s;
         // text-align: center;
+
+        &:hover {
+          cursor: pointer;
+          background: white;
+        }
       }
     }
   }
@@ -634,6 +665,7 @@ footer {
 
   p {
     text-align: center;
+    font: 1em macondo;
   }
 
   img {
@@ -711,43 +743,8 @@ footer {
   }
 
   #navbar {
-    // position: relative;
-    flex-direction: column;
-
-    // display: block;
-    nav {
-      // padding-top: 20px;
-
-      // position: fixed;
-      // top: 0;
-      // overflow: hidden;
-
-      padding-top: 10px;
-
-      // width: 100%;
-      // z-index: 100;
-      // background-color: $background-color;
-      // opacity: 0.9;
-    }
-
-    // #start-offset2 {
-    //   display: block;
-    //   height: 70px;
-    //   width: 100%;
-    //   // position: relative;
-    //   // top: 150px;
-    // }
-  }
-
-  #start-offset {
-    height: 150px;
-  }
-}
-
-@media (max-width: 500px) {
-  #navbar {
-    flex-flow: row;
-
+    // justify-content: flex-end;
+    // justify-content: space-between;
     #hamburger,
     #check-box {
       display: inline-block;
@@ -756,12 +753,13 @@ footer {
     nav {
       display: none;
       font-size: 1.1rem;
-      // font-weight: bold;
       padding-top: 0;
     }
 
     #header2 {
-      padding-left: 50px;
+      // justify-self: end;
+      padding-right: auto;
+      padding-left: 50px; // so it doesn;t overlap hamburger
 
       #logo-line1 {
         font-size: 1.5rem;
@@ -773,17 +771,29 @@ footer {
     }
   }
 
+  #navbar {
+    // flex-direction: column;
+  }
+
+  #start-offset {
+    height: 150px;
+  }
+}
+
+@media (max-width: 500px) {
   #cars-container {
     display: grid;
     grid-gap: 2rem;
     padding: 2rem;
-    grid-template-areas: "car1" "car2" "car3" "car4";
+    grid-template-areas: "car2" "car1"; //"car3" "car4";
     justify-items: center;
     align-items: center;
   }
 
   #contacts-wrapper {
-    flex-flow: column;
+    // flex-flow: column;
+
+    grid-template-columns: repeat(auto-fit, minmax(251px, 1fr));
 
     .single-contact {
       flex-flow: column;
@@ -792,7 +802,7 @@ footer {
       .contact-title {
         padding-bottom: 0 !important;
         // color: green !important;
-        font-size: 18px !important;
+        // font-size: 18px !important;
 
         br {
           display: none;

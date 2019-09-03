@@ -5,7 +5,15 @@
 
 body {
   background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover;
-  width: 100%; }
+  width: 100%;
+  font-family: "Great Vibes", cursive;
+  letter-spacing: 0.2rem; }
+
+h1, h2, h3 {
+  font-weight: 300; }
+
+p {
+  font-size: 1.5rem; }
 
 a {
   text-decoration: none;
@@ -21,9 +29,8 @@ image {
 .title {
   text-align: center;
   color: #970071;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-top: 2rem;
-  margin-bottom: 2rem;
   z-index: -2; }
 
 .separator {
@@ -52,6 +59,8 @@ image {
     top: 23px;
     z-index: 200;
     opacity: 0; }
+    #navbar #check-box:hover + #hamburger #ham-wrapper span {
+      background: #fcade8; }
     #navbar #check-box:checked + #hamburger #ham-wrapper span {
       opacity: 1;
       background: #232323; }
@@ -67,13 +76,12 @@ image {
       padding-left: 5px;
       padding-top: 70px;
       width: 100%;
-      animation: An-show-navbar 0.5s forwards ease-in-out; }
+      animation: An-show-navbar 0.25s forwards ease-out; }
       #navbar #check-box:checked ~ nav ul {
         display: flex;
         flex-flow: column;
         align-items: flex-start; }
         #navbar #check-box:checked ~ nav ul li {
-          font-weight: bold;
           text-align: left; }
       #navbar #check-box:checked ~ nav + #header2 {
         padding-left: 5px; }
@@ -99,14 +107,14 @@ image {
     color: #970071;
     padding: 10px; }
     #navbar #header2 #logo-line1, #navbar #header2 #logo-line2 {
-      font-weight: bold; }
+      letter-spacing: 0.2rem; }
     #navbar #header2 #logo-line1 {
       font-size: 2rem; }
     #navbar #header2 #logo-line2 {
       font-size: 1.5rem;
       text-align: right; }
   #navbar nav {
-    font-size: 1.3rem; }
+    font-size: 1.7rem; }
     #navbar nav ul {
       list-style: none;
       overflow: hidden;
@@ -119,7 +127,7 @@ image {
       #navbar nav ul li {
         display: inline-block;
         text-align: center;
-        padding: 0.7rem;
+        padding: 0.7rem 1.2rem;
         border-bottom: 3px solid rgba(0, 0, 0, 0);
         transition: border-bottom 0.5s ease-in-out;
         -webkit-transition: border-bottom 0.5s ease-in-out;
@@ -163,7 +171,7 @@ image {
     transform-origin: 97% 5%;
     transform: scale(0.2);
     right: -5%;
-    top: 10%;
+    top: 15%;
     background: url(./images/./cover_photo/./moving-car-smaller.png) no-repeat right bottom/contain;
     animation: animate_car 1s forwards 0s ease-in;
     -webkit-animation: animate_car 4s forwards 1s ease-in-out;
@@ -185,27 +193,28 @@ image {
   100% {
     opacity: 1;
     transform: scale(1);
-    transform: translateX(-10%);
+    transform: translate(-10%, -15%);
     visibility: visible; } }
 
 #cars-container {
   display: grid;
   grid-gap: 2rem;
   padding: 2rem;
-  grid-template-areas: "car1 car2" "car3 car4";
+  grid-template-areas: "car2 car1";
   justify-items: center;
   align-items: center; }
 
 .car {
-  background-color: #ce6ab5;
-  border: 4px solid #970071;
+  background-color: #970071;
   padding: 0.3rem;
   box-shadow: 5px 6px 7px 1px rgba(0, 0, 0, 0.54);
   transition: background-color 0.4s ease-in-out;
   -webkit-transition: background-color 0.4s ease-in-out;
   -moz-transition: background-color 0.4s ease-in-out;
   -ms-transition: background-color 0.4s ease-in-out;
-  -o-transition: background-color 0.4s ease-in-out; }
+  -o-transition: background-color 0.4s ease-in-out;
+  border: 8px solid white;
+  border-radius: 0 0 10% 10%; }
   .car:hover {
     background-color: #fcade8; }
   .car a {
@@ -218,20 +227,14 @@ image {
     -webkit-transform: rotate(-0.01turn);
     -moz-transform: rotate(-0.01turn);
     -ms-transform: rotate(-0.01turn);
-    -o-transform: rotate(-0.01turn);
-    border: 10px solid black;
-    border-image: linear-gradient(45deg, #970071, white) 1; }
+    -o-transform: rotate(-0.01turn); }
   .car-2 {
     grid-area: car2;
     transform: rotate(0.005turn);
     -webkit-transform: rotate(0.005turn);
     -moz-transform: rotate(0.005turn);
     -ms-transform: rotate(0.005turn);
-    -o-transform: rotate(0.005turn);
-    border-width: 8px;
-    border-image: linear-gradient(#970071, white) 10; }
-    .car-2:hover {
-      border-image: linear-gradient(white, #970071) 10; }
+    -o-transform: rotate(0.005turn); }
   .car-3 {
     grid-area: car3;
     transform: rotate(-0.007turn);
@@ -263,10 +266,12 @@ image {
     border: 1px solid #970071; }
   .car-name {
     text-align: center;
+    color: white;
     padding: 1rem; }
 
 #contacts-wrapper {
   display: grid;
+  overflow: hidden;
   grid-column-gap: 2vw;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   margin: 1rem 0; }
@@ -287,7 +292,10 @@ image {
         width: 110px;
         color: white; }
       #contacts-wrapper #contacts .single-contact .contact-text {
-        font-weight: bold; }
+        font-family: serif;
+        letter-spacing: 0.1rem;
+        word-spacing: 0.1rem;
+        color: #fcade8; }
         #contacts-wrapper #contacts .single-contact .contact-text a {
           padding: 0; }
           #contacts-wrapper #contacts .single-contact .contact-text a img {
@@ -326,7 +334,15 @@ image {
       #contacts-wrapper #contact-form form .btn {
         margin-top: 10px;
         display: block;
-        width: 100%; }
+        width: 100%;
+        background: #fcade8;
+        font-family: "Macondo Swash Caps", cursive;
+        font-size: 1.2rem;
+        color: #970071;
+        transition: background 0.3s; }
+        #contacts-wrapper #contact-form form .btn:hover {
+          cursor: pointer;
+          background: white; }
   #contacts-wrapper #map-container {
     position: relative;
     padding-bottom: 75%;
@@ -345,7 +361,8 @@ footer {
   justify-content: center;
   height: 100px; }
   footer p {
-    text-align: center; }
+    text-align: center;
+    font: 1em macondo; }
   footer img {
     height: 40px; }
 
@@ -383,43 +400,37 @@ footer {
 @media (max-width: 925px) {
   body {
     background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover; }
-  #navbar {
-    flex-direction: column; }
-    #navbar nav {
-      padding-top: 10px; }
+  #navbar #hamburger,
+  #navbar #check-box {
+    display: inline-block; }
+  #navbar nav {
+    display: none;
+    font-size: 1.1rem;
+    padding-top: 0; }
+  #navbar #header2 {
+    padding-right: auto;
+    padding-left: 50px; }
+    #navbar #header2 #logo-line1 {
+      font-size: 1.5rem; }
+    #navbar #header2 #logo-line2 {
+      font-size: 1.2rem; }
   #start-offset {
     height: 150px; } }
 
 @media (max-width: 500px) {
-  #navbar {
-    flex-flow: row; }
-    #navbar #hamburger,
-    #navbar #check-box {
-      display: inline-block; }
-    #navbar nav {
-      display: none;
-      font-size: 1.1rem;
-      padding-top: 0; }
-    #navbar #header2 {
-      padding-left: 50px; }
-      #navbar #header2 #logo-line1 {
-        font-size: 1.5rem; }
-      #navbar #header2 #logo-line2 {
-        font-size: 1.2rem; }
   #cars-container {
     display: grid;
     grid-gap: 2rem;
     padding: 2rem;
-    grid-template-areas: "car1" "car2" "car3" "car4";
+    grid-template-areas: "car2" "car1";
     justify-items: center;
     align-items: center; }
   #contacts-wrapper {
-    flex-flow: column; }
+    grid-template-columns: repeat(auto-fit, minmax(251px, 1fr)); }
     #contacts-wrapper .single-contact {
       flex-flow: column; }
       #contacts-wrapper .single-contact .contact-title {
-        padding-bottom: 0 !important;
-        font-size: 18px !important; }
+        padding-bottom: 0 !important; }
         #contacts-wrapper .single-contact .contact-title br {
           display: none; }
       #contacts-wrapper .single-contact .contact-text {
