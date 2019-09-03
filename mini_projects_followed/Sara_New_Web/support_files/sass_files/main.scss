@@ -130,7 +130,7 @@ image {
       // change hamburger into the cross
       & + #hamburger #ham-wrapper span {
         opacity: 1;
-        background: #232323;
+        // background: #232323;
 
         &:nth-child(1) {
           transform: translateY(9px) rotate(45deg);
@@ -149,9 +149,10 @@ image {
       & ~ nav {
         display: inline-block;
         background: #fcd2f8;
-        padding-left: 5px;
-        padding-top: 70px;
-        width: 100%;
+        padding: 20px;
+        margin-left: 20px;
+        // padding-top: 70px;
+        // width: 100%;
 
         // transition instead?
         // msi jit jinam do toho
@@ -163,7 +164,9 @@ image {
         ul {
           display: flex;
           flex-flow: column;
-          align-items: flex-start;
+          // align-items: flex-start;
+          align-items: center;
+
 
           li {
             text-align: left;
@@ -366,9 +369,7 @@ image {
   display: grid;
   grid-gap: 2rem;
   padding: 2rem;
-  grid-template-areas:
-    "car2 car1"// "car3 car4"
-    ;
+  grid-template-areas: "car2 car1 car4" ; // "car3"
   justify-items: center;
   align-items: center;
 }
@@ -395,11 +396,11 @@ image {
     background-color: $background-color-pinky;
   }
 
-  a {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
+  // a {
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 100%;
+  // }
 
   &-1 {
     grid-area: car1;
@@ -462,14 +463,14 @@ image {
     -ms-transform: rotate(0.008turn);
     -o-transform: rotate(0.008turn);
 
-    border: 10px solid;
-    border-image-source: url("./images/./frame.svg");
-    border-image-slice: 30%;
-    border-image-width: 60px;
-    border-image-outset: 1.7;
-    border-image-repeat: none;
-    background-color: transparent;
-    box-shadow: none;
+    // border: 10px solid;
+    // border-image-source: url("./images/./frame.svg");
+    // border-image-slice: 30%;
+    // border-image-width: 60px;
+    // border-image-outset: 1.7;
+    // border-image-repeat: none;
+    // background-color: transparent;
+    // box-shadow: none;
   }
 
   // url("./images/./frame.svg")
@@ -486,6 +487,10 @@ image {
     text-align: center;
     color: white;
     padding: 1rem;
+    
+    .comment {
+      font-size: 1.1rem;
+    }
   }
 }
 
@@ -501,7 +506,7 @@ image {
   display: grid;
   overflow: hidden;
   grid-column-gap: 2vw;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
 
   // grid-template-columns: 1fr minmax(400px, 1fr);
   // grid-template-columns: repeat(2, minmax(400px, 1fr));
@@ -557,6 +562,7 @@ image {
         letter-spacing: 0.1rem;
         word-spacing: 0.1rem;
         color: $background-color-pinky;
+        // color: rgb(255, 255, 255);
 
         a {
           padding: 0;
@@ -625,7 +631,7 @@ image {
 
       .btn {
         margin: 10px auto 0 auto;
-        padding:7px 0 0 0;
+        padding: 7px 0 0 0;
 
         display: block;
         width: 100px;
@@ -639,12 +645,12 @@ image {
         color: $primary-color;
         // transition: background 0.3s,  transform 0.3s;
         transition: background, transform;
-        transition: 0.15s ease-in-out;
+        transition: 0.5s;
 
-        &:hover {
+        &:hover, &:active {
           cursor: pointer;
           background: white;
-          transform: scale(0.9);
+          transform: scale(1.2);
         }
       }
     }
@@ -671,15 +677,26 @@ footer {
   align-items: center;
   justify-content: center;
   height: 100px;
+  background: $primary-color;
+  
 
-  p {
+  a {
+    display: block;
+    color: white;
     text-align: center;
-    font: 1em macondo;
+    // font: 1em macondo;
+    transition: transform 500ms;
+
+    &:hover, &:active {
+      transform: scale(1.2);
+    }
   }
 
   img {
     height: 40px;
   }
+
+  
 }
 
 // GALERY
@@ -713,18 +730,10 @@ footer {
     img {
       max-height: 40vw;
       // padding: 10px 2vw;
+      border: 0.5vw solid white;
+      border-radius: 10px;
       margin: 10px 1.3vw;
     }
-  }
-
-  .decorated-borders img {
-    border: 0.5vw solid black;
-    border-image: linear-gradient(
-        45deg,
-        $primary-color-light,
-        $background-color-lighter
-      )
-      1;
   }
 
   #galery-mixed {
@@ -761,7 +770,7 @@ footer {
 
     nav {
       display: none;
-      font-size: 1.1rem;
+      font-size: 2rem;
       padding-top: 0;
     }
 
@@ -771,11 +780,11 @@ footer {
       padding-left: 50px; // so it doesn;t overlap hamburger
 
       #logo-line1 {
-        font-size: 1.5rem;
+        font-size: 2.5rem;
       }
 
       #logo-line2 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
       }
     }
   }
@@ -794,10 +803,18 @@ footer {
     display: grid;
     grid-gap: 2rem;
     padding: 2rem;
-    grid-template-areas: "car2" "car1"; //"car3" "car4";
+    grid-template-areas: "car2" "car1" "car4"; //"car3" "car4";
     justify-items: center;
     align-items: center;
   }
+
+#header2 p {
+  font-size: 5vw !important;
+
+  // #logo-line1, #logo-line2 {
+  //   font-size: 1rem !important;
+  // }
+}
 
   #contacts-wrapper {
     // flex-flow: column;

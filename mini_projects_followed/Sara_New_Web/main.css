@@ -65,8 +65,7 @@ image {
     #navbar #check-box:hover + #hamburger #ham-wrapper span {
       background: #fcade8; }
     #navbar #check-box:checked + #hamburger #ham-wrapper span {
-      opacity: 1;
-      background: #232323; }
+      opacity: 1; }
       #navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(1) {
         transform: translateY(9px) rotate(45deg); }
       #navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(2) {
@@ -76,14 +75,13 @@ image {
     #navbar #check-box:checked ~ nav {
       display: inline-block;
       background: #fcd2f8;
-      padding-left: 5px;
-      padding-top: 70px;
-      width: 100%;
+      padding: 20px;
+      margin-left: 20px;
       animation: An-show-navbar 0.25s forwards ease-out; }
       #navbar #check-box:checked ~ nav ul {
         display: flex;
         flex-flow: column;
-        align-items: flex-start; }
+        align-items: center; }
         #navbar #check-box:checked ~ nav ul li {
           text-align: left; }
       #navbar #check-box:checked ~ nav + #header2 {
@@ -203,7 +201,7 @@ image {
   display: grid;
   grid-gap: 2rem;
   padding: 2rem;
-  grid-template-areas: "car2 car1";
+  grid-template-areas: "car2 car1 car4";
   justify-items: center;
   align-items: center; }
 
@@ -220,10 +218,6 @@ image {
   border-radius: 0 0 10% 10%; }
   .car:hover {
     background-color: #fcade8; }
-  .car a {
-    position: absolute;
-    width: 100%;
-    height: 100%; }
   .car-1 {
     grid-area: car1;
     transform: rotate(-0.01turn);
@@ -253,15 +247,7 @@ image {
     -webkit-transform: rotate(0.008turn);
     -moz-transform: rotate(0.008turn);
     -ms-transform: rotate(0.008turn);
-    -o-transform: rotate(0.008turn);
-    border: 10px solid;
-    border-image-source: url("./images/./frame.svg");
-    border-image-slice: 30%;
-    border-image-width: 60px;
-    border-image-outset: 1.7;
-    border-image-repeat: none;
-    background-color: transparent;
-    box-shadow: none; }
+    -o-transform: rotate(0.008turn); }
   .car-photo img {
     width: 97%;
     display: block;
@@ -271,12 +257,14 @@ image {
     text-align: center;
     color: white;
     padding: 1rem; }
+    .car-name .comment {
+      font-size: 1.1rem; }
 
 #contacts-wrapper {
   display: grid;
   overflow: hidden;
   grid-column-gap: 2vw;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   margin-top: 1rem; }
   #contacts-wrapper > * {
     background-color: #970071; }
@@ -345,11 +333,11 @@ image {
         line-height: 1.7rem;
         color: #970071;
         transition: background, transform;
-        transition: 0.15s ease-in-out; }
-        #contacts-wrapper #contact-form form .btn:hover {
+        transition: 0.5s; }
+        #contacts-wrapper #contact-form form .btn:hover, #contacts-wrapper #contact-form form .btn:active {
           cursor: pointer;
           background: white;
-          transform: scale(0.9); }
+          transform: scale(1.2); }
   #contacts-wrapper #map-container {
     position: relative;
     padding-bottom: 75%;
@@ -366,10 +354,15 @@ footer {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  height: 100px; }
-  footer p {
+  height: 100px;
+  background: #970071; }
+  footer a {
+    display: block;
+    color: white;
     text-align: center;
-    font: 1em macondo; }
+    transition: transform 500ms; }
+    footer a:hover, footer a:active {
+      transform: scale(1.2); }
   footer img {
     height: 40px; }
 
@@ -392,11 +385,9 @@ footer {
   background: #970071; }
   #galery .photo-container img {
     max-height: 40vw;
+    border: 0.5vw solid white;
+    border-radius: 10px;
     margin: 10px 1.3vw; }
-
-#galery .decorated-borders img {
-  border: 0.5vw solid black;
-  border-image: linear-gradient(45deg, #ce6ab5, white) 1; }
 
 #galery #galery-mixed h1 {
   color: #fcade8; }
@@ -412,15 +403,15 @@ footer {
     display: inline-block; }
   #navbar nav {
     display: none;
-    font-size: 1.1rem;
+    font-size: 2rem;
     padding-top: 0; }
   #navbar #header2 {
     padding-right: auto;
     padding-left: 50px; }
     #navbar #header2 #logo-line1 {
-      font-size: 1.5rem; }
+      font-size: 2.5rem; }
     #navbar #header2 #logo-line2 {
-      font-size: 1.2rem; }
+      font-size: 1.5rem; }
   #start-offset {
     height: 150px; } }
 
@@ -429,9 +420,11 @@ footer {
     display: grid;
     grid-gap: 2rem;
     padding: 2rem;
-    grid-template-areas: "car2" "car1";
+    grid-template-areas: "car2" "car1" "car4";
     justify-items: center;
     align-items: center; }
+  #header2 p {
+    font-size: 5vw !important; }
   #contacts-wrapper {
     grid-template-columns: repeat(auto-fit, minmax(251px, 1fr)); }
     #contacts-wrapper .single-contact {
