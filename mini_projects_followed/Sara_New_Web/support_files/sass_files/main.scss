@@ -122,9 +122,9 @@ image {
     z-index: 200;
     opacity: 0;
 
-    &:hover + #hamburger #ham-wrapper span {
-      background: $background-color-pinky;
-    }
+    // &:hover + #hamburger #ham-wrapper span {
+    //   background: $background-color-pinky;
+    // }
 
     &:checked {
       // change hamburger into the cross
@@ -147,12 +147,13 @@ image {
 
       // show navbar
       & ~ nav {
-        display: inline-block;
+        display: block;
         background: #fcd2f8;
+        // padding: 20px 0 20px 20px;
         padding: 20px;
-        margin-left: 20px;
+        margin-left: 10px;
         // padding-top: 70px;
-        // width: 100%;
+        width: 60%;
 
         // transition instead?
         // msi jit jinam do toho
@@ -165,11 +166,16 @@ image {
           display: flex;
           flex-flow: column;
           // align-items: flex-start;
-          align-items: center;
-
+          align-items: stretch;
+          padding: 0;
 
           li {
-            text-align: left;
+            // text-align: left;
+            // overflow: hidden;
+            display: block;
+            a {
+              display: block;
+            }
           }
         }
 
@@ -231,7 +237,6 @@ image {
   nav {
     // position: fixed;
     font-size: 1.7rem;
- 
 
     // display: none;
 
@@ -370,7 +375,7 @@ image {
   display: grid;
   grid-gap: 3vw;
   padding: 3vw;
-  grid-template-areas: "car2 car1 car4" ; // "car3"
+  grid-template-areas: "car2 car1 car4"; // "car3"
   justify-items: center;
   align-items: center;
 }
@@ -488,7 +493,7 @@ image {
     text-align: center;
     color: white;
     padding: 1rem;
-    
+
     .comment {
       font-size: 1.1rem;
     }
@@ -648,7 +653,8 @@ image {
         transition: background, transform;
         transition: 0.5s;
 
-        &:hover, &:active {
+        &:hover,
+        &:active {
           cursor: pointer;
           background: white;
           transform: scale(1.2);
@@ -679,7 +685,6 @@ footer {
   justify-content: center;
   height: 100px;
   background: $primary-color;
-  
 
   a {
     display: block;
@@ -688,7 +693,8 @@ footer {
     // font: 1em macondo;
     transition: transform 500ms;
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
       transform: scale(1.2);
     }
   }
@@ -696,8 +702,6 @@ footer {
   img {
     height: 40px;
   }
-
-  
 }
 
 // GALERY
@@ -809,13 +813,13 @@ footer {
     align-items: center;
   }
 
-#header2 p {
-  font-size: 5vw !important;
+  #header2 p {
+    font-size: 5vw !important;
 
-  // #logo-line1, #logo-line2 {
-  //   font-size: 1rem !important;
-  // }
-}
+    // #logo-line1, #logo-line2 {
+    //   font-size: 1rem !important;
+    // }
+  }
 
   #contacts-wrapper {
     // flex-flow: column;

@@ -62,8 +62,6 @@ image {
     top: 23px;
     z-index: 200;
     opacity: 0; }
-    #navbar #check-box:hover + #hamburger #ham-wrapper span {
-      background: #fcade8; }
     #navbar #check-box:checked + #hamburger #ham-wrapper span {
       opacity: 1; }
       #navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(1) {
@@ -73,17 +71,21 @@ image {
       #navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg); }
     #navbar #check-box:checked ~ nav {
-      display: inline-block;
+      display: block;
       background: #fcd2f8;
       padding: 20px;
-      margin-left: 20px;
+      margin-left: 10px;
+      width: 60%;
       animation: An-show-navbar 0.25s forwards ease-out; }
       #navbar #check-box:checked ~ nav ul {
         display: flex;
         flex-flow: column;
-        align-items: center; }
+        align-items: stretch;
+        padding: 0; }
         #navbar #check-box:checked ~ nav ul li {
-          text-align: left; }
+          display: block; }
+          #navbar #check-box:checked ~ nav ul li a {
+            display: block; }
       #navbar #check-box:checked ~ nav + #header2 {
         padding-left: 5px; }
   #navbar #hamburger {
