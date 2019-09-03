@@ -212,7 +212,6 @@ image {
   #header2 {
     color: $primary-color;
     padding: 10px;
-
     %logo {
       letter-spacing: 0.2rem;
     }
@@ -232,6 +231,8 @@ image {
   nav {
     // position: fixed;
     font-size: 1.7rem;
+ 
+
     // display: none;
 
     //  padding-bottom: 20px;
@@ -367,8 +368,8 @@ image {
 
 #cars-container {
   display: grid;
-  grid-gap: 2rem;
-  padding: 2rem;
+  grid-gap: 3vw;
+  padding: 3vw;
   grid-template-areas: "car2 car1 car4" ; // "car3"
   justify-items: center;
   align-items: center;

@@ -199,8 +199,8 @@ image {
 
 #cars-container {
   display: grid;
-  grid-gap: 2rem;
-  padding: 2rem;
+  grid-gap: 3vw;
+  padding: 3vw;
   grid-template-areas: "car2 car1 car4";
   justify-items: center;
   align-items: center; }
