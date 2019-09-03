@@ -39,6 +39,7 @@ h1,
 h2,
 h3 {
   font-weight: 300;
+  font-size: 2rem;
 }
 
 p {
@@ -366,8 +367,8 @@ image {
   grid-gap: 2rem;
   padding: 2rem;
   grid-template-areas:
-    "car2 car1"
-    // "car3 car4";
+    "car2 car1"// "car3 car4"
+    ;
   justify-items: center;
   align-items: center;
 }
@@ -512,7 +513,7 @@ image {
   // width: 100%;
   // flex-flow: wrap;
 
-  margin: 1rem 0;
+  margin-top: 1rem;
 
   & > * {
     // flex:1;
@@ -623,19 +624,27 @@ image {
       }
 
       .btn {
-        margin-top: 10px;
+        margin: 10px auto 0 auto;
+        padding:7px 0 0 0;
+
         display: block;
-        width: 100%;
-        background: $background-color-pinky;
-        font-family: "Macondo Swash Caps", cursive;
-        font-size: 1.2rem;
-        color: $primary-color;
-        transition: background 0.3s;
+        width: 100px;
         // text-align: center;
+
+        background: $background-color-pinky;
+        // font-family: "Macondo Swash Caps", cursive;
+        font-family: "Great Vibes", cursive;
+        font-size: 1.5rem;
+        line-height: 1.7rem;
+        color: $primary-color;
+        // transition: background 0.3s,  transform 0.3s;
+        transition: background, transform;
+        transition: 0.15s ease-in-out;
 
         &:hover {
           cursor: pointer;
           background: white;
+          transform: scale(0.9);
         }
       }
     }

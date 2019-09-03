@@ -9,8 +9,11 @@ body {
   font-family: "Great Vibes", cursive;
   letter-spacing: 0.2rem; }
 
-h1, h2, h3 {
-  font-weight: 300; }
+h1,
+h2,
+h3 {
+  font-weight: 300;
+  font-size: 2rem; }
 
 p {
   font-size: 1.5rem; }
@@ -274,7 +277,7 @@ image {
   overflow: hidden;
   grid-column-gap: 2vw;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  margin: 1rem 0; }
+  margin-top: 1rem; }
   #contacts-wrapper > * {
     background-color: #970071; }
   #contacts-wrapper #contacts {
@@ -332,17 +335,21 @@ image {
         padding-bottom: 5px;
         font-size: 1.5 rem; }
       #contacts-wrapper #contact-form form .btn {
-        margin-top: 10px;
+        margin: 10px auto 0 auto;
+        padding: 7px 0 0 0;
         display: block;
-        width: 100%;
+        width: 100px;
         background: #fcade8;
-        font-family: "Macondo Swash Caps", cursive;
-        font-size: 1.2rem;
+        font-family: "Great Vibes", cursive;
+        font-size: 1.5rem;
+        line-height: 1.7rem;
         color: #970071;
-        transition: background 0.3s; }
+        transition: background, transform;
+        transition: 0.15s ease-in-out; }
         #contacts-wrapper #contact-form form .btn:hover {
           cursor: pointer;
-          background: white; }
+          background: white;
+          transform: scale(0.9); }
   #contacts-wrapper #map-container {
     position: relative;
     padding-bottom: 75%;
