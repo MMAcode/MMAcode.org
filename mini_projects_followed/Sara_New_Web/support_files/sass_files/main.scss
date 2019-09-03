@@ -299,7 +299,11 @@ image {
 
 #start-offset {
   display: block;
-  height: 110px;
+  height: 70px;
+}
+#extra-offset-front-page {
+  display: block;
+  height: 40px;
 }
 
 // INTRODUCTION
@@ -712,6 +716,12 @@ footer {
 
 #galery {
   // position: relative;
+
+  #close-button-button,
+  #allert {
+    display: none;
+  }
+
   .car-title {
     display: flex;
     align-items: flex-end;
@@ -800,13 +810,14 @@ footer {
   }
 
   #start-offset {
-    height: 150px;
+    height: 50px;
   }
 
   #galery {
     position: relative;
 
     #close-button-button {
+      display: block;
       position: fixed;
       z-index: 501;
 
