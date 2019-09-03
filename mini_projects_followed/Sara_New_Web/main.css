@@ -71,19 +71,22 @@ image {
       #navbar #check-box:checked + #hamburger #ham-wrapper span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg); }
     #navbar #check-box:checked ~ nav {
-      display: block;
+      display: inline-block;
       background: #fcd2f8;
       padding: 20px;
       margin-left: 10px;
-      width: 60%;
       animation: An-show-navbar 0.25s forwards ease-out; }
       #navbar #check-box:checked ~ nav ul {
         display: flex;
         flex-flow: column;
-        align-items: stretch;
-        padding: 0; }
+        align-items: center;
+        padding: 0;
+        margin: auto;
+        width: 130px; }
         #navbar #check-box:checked ~ nav ul li {
-          display: block; }
+          display: block;
+          padding-left: 0;
+          padding-right: 0; }
           #navbar #check-box:checked ~ nav ul li a {
             display: block; }
       #navbar #check-box:checked ~ nav + #header2 {
