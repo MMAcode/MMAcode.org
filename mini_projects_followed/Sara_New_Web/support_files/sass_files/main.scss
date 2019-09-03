@@ -105,7 +105,7 @@ image {
   top: 0;
   z-index: 101;
   background-color: $background-color;
-  opacity: 0.9;
+  opacity: 0.94;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -708,9 +708,10 @@ footer {
   }
 }
 
-// GALERY
+//** GALERY
 
 #galery {
+  // position: relative;
   .car-title {
     display: flex;
     align-items: flex-end;
@@ -731,7 +732,7 @@ footer {
   .photo-container {
     display: flex;
     align-items: center;
-    overflow: scroll;
+    overflow: auto;
 
     // background: linear-gradient(rgba(255, 255, 255, 0) 5%, rgba(153, 9, 224, 1) 30%, rgba(153, 9, 224, 1) 70%, rgba(255, 255, 255, 0) 95%);
     background: #970071;
@@ -760,7 +761,7 @@ footer {
   }
 }
 
-// MEDIA QUERIES
+//** MEDIA QUERIES
 
 @media (max-width: 925px) {
   body {
@@ -789,7 +790,7 @@ footer {
       padding-left: 50px; // so it doesn;t overlap hamburger
 
       #logo-line1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
 
       #logo-line2 {
@@ -798,12 +799,89 @@ footer {
     }
   }
 
-  #navbar {
-    // flex-direction: column;
-  }
-
   #start-offset {
     height: 150px;
+  }
+
+  #galery {
+    position: relative;
+
+    #close-button-button {
+      position: fixed;
+      z-index: 501;
+
+      bottom: 145px;
+      height: 70px;
+
+      right: 50%;
+      width: 200px;
+      transform: translate(50%, 0);
+
+      background: rgba(255, 0, 0, 0.781);
+      border: 10px $primary-color solid;
+      opacity: 0;
+
+      &:checked {
+        display: none;
+        z-index: -10;
+        opacity: 0;
+
+        transition: z-index, opacity;
+        transition: 1s;
+        + #allert {
+          // display: none;
+          z-index: -10;
+          opacity: 0;
+
+          transition: z-index, opacity;
+          transition: 1s;
+        }
+      }
+    }
+
+    #allert {
+      position: fixed;
+      z-index: 500;
+      top: 100px;
+      bottom: 100px;
+      right: 10%;
+      left: 10%;
+      background: white;
+      border: 10px $primary-color solid;
+      // border-radius: 20px;
+
+      display: flex;
+      // display: none;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        text-align: center;
+        font-size: 30px;
+        font-family: serif;
+      }
+
+      #close-button-text {
+        position: absolute;
+        bottom: 40px;
+        padding: 10px;
+        border: 3px $primary-color solid;
+        background: $background-color-pinky;
+      }
+
+      // animation: An-Fade-Out 3s forwards 2s ease-in-out;
+    }
+  }
+
+  @keyframes An-Fade-Out {
+    99% {
+      // opacity: 0;
+    }
+    100% {
+      opacity: 0;
+      // display: none !important;
+      z-index: -10;
+    }
   }
 }
 
