@@ -115,12 +115,16 @@ image {
     position: absolute;
     display: none;
     // float: left;
-    width: 45px;
-    height: 35px;
+    width: 50px;
+    height: 45px;
     left: 0;
-    top: 23px;
+    top: 10px;
     z-index: 200;
     opacity: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     // &:hover + #hamburger #ham-wrapper span {
     //   background: $background-color-pinky;
@@ -221,7 +225,19 @@ image {
 
   #header2 {
     color: $primary-color;
+    display: inline-block;
     padding: 10px;
+
+    position: relative;
+    #fill-the-space {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1003;
+    }
+
     %logo {
       letter-spacing: 0.2rem;
     }
@@ -796,8 +812,8 @@ footer {
 
     #header2 {
       // justify-self: end;
-      padding-right: auto;
-      padding-left: 50px; // so it doesn;t overlap hamburger
+      // padding-right: auto;
+      margin-left: 50px; // so it doesn;t overlap hamburger
 
       #logo-line1 {
         font-size: 2rem;

@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #F7F099;
+  background-color: #f7f099;
   /* :rgba(244, 241, 187, 1); */
   /* rgb(247, 224, 122); */
   /* line-height: 1.6rem; */
@@ -14,12 +14,10 @@ body {
   overflow: scroll;
 }
 
-
 h1 {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 2rem;
-
 }
 
 /* h2 {
@@ -30,7 +28,6 @@ h3 {
   padding-top: 1rem;
 }
 
-
 ul {
   padding-left: 2.5rem;
 }
@@ -39,7 +36,6 @@ li {
   line-height: 2rem;
   position: relative;
 }
-
 
 p {
   padding: 0.2rem 0;
@@ -54,9 +50,6 @@ a {
   color: blue;
 }
 
-
-
-
 /* UTILITIES-classes */
 .main-container {
   max-width: 1500px;
@@ -64,16 +57,12 @@ a {
   padding: 0 0 1rem 2rem;
 }
 
-
 .preview {
-
   display: none;
   width: 500px;
-
-
 }
 
-a:hover+.preview,
+a:hover + .preview,
 .preview:hover {
   display: block;
   position: absolute;
@@ -81,9 +70,7 @@ a:hover+.preview,
   top: 5px;
   left: 40px;
   height: 300px;
-
 }
-
 
 /* put this around the link */
 .button-wrapper {
@@ -105,24 +92,16 @@ a:hover+.preview,
   /* color: rgb(9, 130, 243); */
   font-weight: 700;
   background: greenyellow;
-  
+
   transition: background 0.3s;
   -webkit-transition: background 0.3s;
   -moz-transition: background 0.3s;
   -ms-transition: background 0.3s;
   -o-transition: background 0.3s;
- 
 }
 .button-wrapper a:hover {
   background: green;
 }
-
-
-
-
-
-
-
 
 .comment {
   padding: 0;
@@ -134,13 +113,11 @@ a:hover+.preview,
 .grid-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-
 }
 
-.grid-wrapper>* {
+.grid-wrapper > * {
   padding: 1rem;
 }
-
 
 .title {
   text-align: center;
@@ -154,18 +131,20 @@ a:hover+.preview,
   margin-bottom: 0.6rem;
 }
 
-.description {}
+.description {
+}
 
 .poster {
   background-color: rgb(166, 219, 116);
   padding: 2rem;
-  margin: 1rem;
+  border: 2px solid black;
+  -webkit-box-shadow: 11px 7px 0px 0px rgba(199, 179, 199, 0.48);
+  -moz-box-shadow: 11px 7px 0px 0px rgba(199, 179, 199, 0.48);
+  box-shadow: 11px 7px 5px 0px rgba(75, 74, 75, 0.48);
+  /* margin: 1rem; */
 }
 
-
 /* SECTIONS */
-
-
 
 /* translate button */
 #translate a {
@@ -194,12 +173,7 @@ a:hover+.preview,
 .flag {
   height: 40px;
   padding-right: 5px;
-
 }
-
-
-
-
 
 #table-of-content {
   background-color: rgb(248, 213, 99);
