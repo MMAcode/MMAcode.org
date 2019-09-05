@@ -345,16 +345,13 @@ image {
           cursor: pointer;
           background: white;
           transform: scale(1.2); }
-  #contacts-wrapper #map-container {
-    position: relative;
-    padding-bottom: 75%;
-    height: 0; }
-    #contacts-wrapper #map-container #map {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100% !important;
-      height: 100px !important; }
+
+#map-container {
+  height: 70vh;
+  width: 100%; }
+  #map-container #map {
+    width: 100%;
+    height: 70vh; }
 
 footer {
   display: flex;

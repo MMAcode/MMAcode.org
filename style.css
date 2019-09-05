@@ -182,3 +182,8 @@ a:hover + .preview,
 #current-project {
   background-color: rgb(203, 255, 119);
 }
+
+#current-project iframe {
+  width: 50%;
+  height: 600px;
+}
