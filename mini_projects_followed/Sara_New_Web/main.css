@@ -93,7 +93,8 @@ image {
           #navbar #check-box:checked ~ nav ul li a {
             display: block; }
       #navbar #check-box:checked ~ nav + #header2 {
-        padding-left: 5px; }
+        margin: 0;
+        padding: 2px; }
   #navbar #hamburger {
     display: none;
     position: absolute;
