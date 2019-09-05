@@ -6,6 +6,7 @@
 body {
   background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover;
   width: 100%;
+  background-attachment: fixed;
   font-family: "Great Vibes", cursive;
   letter-spacing: 0.2rem; }
 
@@ -176,7 +177,7 @@ image {
     margin-left: 6rem; }
     #Intro-text #price {
       color: orangered;
-      padding: 1rem;
+      padding: 1rem 0;
       animation: animate_price 5s 2;
       -webkit-animation: animate_price 5s 2; }
   #Intro img {
@@ -187,7 +188,8 @@ image {
     margin: 30vh 10vw 0 10vw;
     shape-margin: 0.5rem;
     shape-outside: url(./images/./cover_photo/./moving-car-smaller.png);
-    animation: animate_car 3s forwards 0s ease-in; }
+    animation: animate_car 3s forwards 0s ease-in;
+    -webkit-animation: animate_car 3s forwards 0s ease-in; }
 
 @keyframes animate_price {
   80% {
@@ -361,7 +363,8 @@ footer {
   justify-content: center;
   padding: 1rem;
   background: #970071; }
-  footer p, footer a {
+  footer p,
+  footer a {
     color: white;
     text-align: center;
     font-size: 1.4rem;
@@ -390,6 +393,7 @@ footer {
 
 #galery .photo-container {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   overflow: auto;
   background: #970071; }
@@ -407,7 +411,8 @@ footer {
 
 @media (max-width: 925px) {
   body {
-    background-image: url("./images/Background_photos/blured2-mini.jpg ") no-repeat center center/cover; }
+    background: url("./images/Background_photos/blured2-mini.jpg ") no-repeat left center/cover;
+    background-attachment: fixed; }
   #navbar #hamburger,
   #navbar #check-box {
     display: inline-block; }

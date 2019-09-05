@@ -23,9 +23,11 @@ body {
   // line-height: 1.6;
   // background-color: $background-color;
   // background: url("./images/./Background_photos/./black-and-white-bouquet-love-71298.jpg") no-repeat center center/cover;
-  background: url("./images/Background_photos/blured2.jpg ") no-repeat center
-    center/cover;
+  
+  
+  background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover;
   width: 100%;
+  background-attachment: fixed;
 
   // font-family: "Macondo Swash Caps", cursive;
   // font-family: "Muli", sans-serif;
@@ -84,12 +86,10 @@ image {
   width: 80%;
   margin: 2rem auto;
   // border-bottom: 5px solid $primary-color;
-  background: linear-gradient(
-    to right,
-    rgba(255, 0, 0, 0),
-    $primary-color,
-    rgba(0, 128, 0, 0)
-  );
+  background: linear-gradient(to right,
+      rgba(255, 0, 0, 0),
+      $primary-color,
+      rgba(0, 128, 0, 0));
 }
 
 // hiding navbar on scrolling in js
@@ -131,8 +131,9 @@ image {
     // }
 
     &:checked {
+
       // change hamburger into the cross
-      & + #hamburger #ham-wrapper span {
+      &+#hamburger #ham-wrapper span {
         opacity: 1;
         // background: #232323;
 
@@ -150,7 +151,7 @@ image {
       }
 
       // show navbar
-      & ~ nav {
+      &~nav {
         display: inline-block;
         background: #fcd2f8;
         // padding: 20px 0 20px 20px;
@@ -181,6 +182,7 @@ image {
             display: block;
             padding-left: 0;
             padding-right: 0;
+
             a {
               display: block;
             }
@@ -188,7 +190,7 @@ image {
         }
 
         // adjust padding of the company name
-        & + #header2 {
+        &+#header2 {
           padding-left: 5px;
         }
       }
@@ -230,6 +232,7 @@ image {
     // margin: auto;
 
     position: relative;
+
     #fill-the-space {
       position: absolute;
       top: 0;
@@ -318,6 +321,7 @@ image {
   display: block;
   height: 70px;
 }
+
 #extra-offset-front-page {
   display: block;
   height: 40px;
@@ -352,7 +356,7 @@ image {
 
     #price {
       color: orangered;
-      padding: 1rem;
+      padding: 1rem 0;
       animation: animate_price 5s 2;
       -webkit-animation: animate_price 5s 2;
     }
@@ -365,12 +369,11 @@ image {
     width: 7%;
     height: auto;
     opacity: 0;
-
     margin: 30vh 10vw 0 10vw;
     shape-margin: 0.5rem;
     shape-outside: url(./images/./cover_photo/./moving-car-smaller.png);
-
     animation: animate_car 3s forwards 0s ease-in;
+    -webkit-animation: animate_car 3s forwards 0s ease-in;
   }
 
   @keyframes animate_price {
@@ -384,11 +387,14 @@ image {
   }
 
   @keyframes animate_car {
+
     // 0% {
     //   opacity: 0;
     //   // visibility: visible;
     // }
-    10% {opacity: 30%;}
+    10% {
+      opacity: 30%;
+    }
 
     100% {
       width: 50%;
@@ -517,14 +523,11 @@ image {
     -o-transform: rotate(-0.007turn);
 
     border: 10px solid transparent;
-    border-image: repeating-linear-gradient(
-        45deg,
+    border-image: repeating-linear-gradient(45deg,
         pink,
         pink 1%,
         purple 1%,
-        purple 8%
-      )
-      10;
+        purple 8%) 10;
   }
 
   &-4 {
@@ -592,7 +595,7 @@ image {
 
   margin-top: 1rem;
 
-  & > * {
+  &>* {
     // flex:1;
     // padding: 1rem;
     // margin: 0 0.5rem;
@@ -609,12 +612,9 @@ image {
       display: flex;
 
       border-bottom: 2px solid transparent;
-      border-image: linear-gradient(
-          90deg,
+      border-image: linear-gradient(90deg,
           $background-color-lighter,
-          $primary-color
-        )
-        10;
+          $primary-color) 10;
 
       .contact-title,
       .contact-text {
@@ -688,11 +688,9 @@ image {
         padding: 0 0 0 10px;
         border: none;
         border-radius: 5px;
-        background: linear-gradient(
-          90deg,
-          $background-color-lighter 50%,
-          $primary-color
-        );
+        background: linear-gradient(90deg,
+            $background-color-lighter 50%,
+            $primary-color);
       }
 
       label {
@@ -753,7 +751,8 @@ footer {
   // height: 100px;
   background: $primary-color;
 
-  p,a {
+  p,
+  a {
     // display: block;
     color: white;
     text-align: center;
@@ -761,22 +760,24 @@ footer {
     line-height: 1.7rem;
     // font: 1em macondo;
     transition: transform 500ms;
-    }
-    a {
-      color: $background-color-pinky;
-      &:hover,
-      &:active {
-        transform: scale(1.2);
-      }
+  }
 
-      // animation: contact-developer 3s infinite 0s ease-in;;
+  a {
+    color: $background-color-pinky;
+
+    &:hover,
+    &:active {
+      transform: scale(1.2);
+    }
+
+    // animation: contact-developer 3s infinite 0s ease-in;;
   }
 
   // @keyframes contact-developer {
   //   50%
   //   {color: white;}
   // }
-  
+
 
   // img {
   //   height: 40px;
@@ -820,6 +821,7 @@ footer {
 
   .photo-container {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     overflow: auto;
 
@@ -850,16 +852,29 @@ footer {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 //** MEDIA QUERIES
 
 @media (max-width: 925px) {
   body {
     // background-color: rgba(141, 247, 141, 0.295);
-    background-image: url("./images/Background_photos/blured2-mini.jpg ")
-      no-repeat center center/cover;
+    background: url("./images/Background_photos/blured2-mini.jpg ") no-repeat left center/cover;
+    background-attachment: fixed;
   }
 
   #navbar {
+
     // justify-content: flex-end;
     // justify-content: space-between;
     #hamburger,
@@ -895,21 +910,6 @@ footer {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   #Intro {
     &-text {
       max-width: 700px;
@@ -919,14 +919,15 @@ footer {
       // text-align: justify;
     }
 
-    // ** intro photo
-
     img {
       margin: 30vh 6vw 0 6vw;
     }
 
     @keyframes animate_car {
-      10% {opacity: 30%;}
+      10% {
+        opacity: 30%;
+      }
+
       100% {
         width: 70%;
         opacity: 1;
@@ -960,7 +961,8 @@ footer {
 
         transition: z-index, opacity;
         transition: 1s;
-        + #allert {
+
+        +#allert {
           // display: none;
           z-index: -10;
           opacity: 0;
@@ -1009,6 +1011,7 @@ footer {
     99% {
       // opacity: 0;
     }
+
     100% {
       opacity: 0;
       // display: none !important;
@@ -1025,39 +1028,33 @@ footer {
 
 
 @media (max-width: 500px) {
- 
+
   #Intro {
     &-text {
       max-width: 700px;
-      // padding: 2rem;
-      // margin: auto;
       margin: 6vw;
-      // text-align: justify;
     }
 
-    // ** intro photo
-
-    // img {
-    //   margin: 30vh 6vw 0 6vw;
-    // }
-
     @keyframes animate_car {
-      10% {opacity: 30%;}
+      10% {
+        opacity: 30%;
+      }
+
       100% {
         width: 80%;
         opacity: 1;
       }
     }
   }
- 
- 
- 
- 
+
+
+
+
   #cars-container {
     display: grid;
     grid-gap: 2rem;
     padding: 2rem;
-    grid-template-areas: "car2" "car1" "car4"; //"car3" "car4";
+    grid-template-areas: "car2""car1""car4"; //"car3" "car4";
     justify-items: center;
     align-items: center;
   }
