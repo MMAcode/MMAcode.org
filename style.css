@@ -183,7 +183,13 @@ a:hover + .preview,
   background-color: rgb(203, 255, 119);
 }
 
+
+
+#current-project #iframe-container {
+  width: 100%;
+  height: 200px;
+}
 #current-project iframe {
-  width: 50%;
-  height: 600px;
+  width: 100%;
+  height: 200px;
 }

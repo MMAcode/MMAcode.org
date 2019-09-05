@@ -77,7 +77,7 @@ image {
       display: inline-block;
       background: #fcd2f8;
       padding: 20px;
-      margin-left: 10px;
+      margin-left: 26px;
       animation: An-show-navbar 0.25s forwards ease-out; }
       #navbar #check-box:checked ~ nav ul {
         display: flex;
@@ -409,7 +409,7 @@ footer {
 
 @media (max-width: 925px) {
   body {
-    background: url("./images/Background_photos/blured2-mini.jpg ") no-repeat left center/cover;
+    background: url("./images/Background_photos/blured2-mini.jpg ") no-repeat left top/contain;
     background-attachment: fixed; }
   #navbar #hamburger,
   #navbar #check-box {
