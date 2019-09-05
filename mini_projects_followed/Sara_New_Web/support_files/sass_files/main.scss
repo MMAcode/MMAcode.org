@@ -741,7 +741,7 @@ footer {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  min-height: 18vh;
+  min-height: 22vh;
   // height: 100px;
   background: $primary-color;
 
@@ -849,15 +849,6 @@ footer {
 
 
 
-
-
-
-
-
-
-
-
-
 //** MEDIA QUERIES
 
 @media (max-width: 925px) {
@@ -932,16 +923,51 @@ footer {
   #galery {
     position: relative;
 
+    
+    #allert {
+      position: fixed;
+      z-index: 500;
+      top: 5vh;
+      bottom: 40px;
+      right: 2vh;
+      left: 2vh;
+      background: white;
+      border: 10px $primary-color solid;
+      // border-radius: 20px;
+
+      display: flex;
+      // flex-flow: column;
+      // display: none;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        text-align: center;
+        font-size: 10vw;
+        font-family: serif;
+      }
+
+      #close-button-text {
+        position: absolute;
+        bottom: 40px;
+        padding: 10px;
+        border: 3px $primary-color solid;
+        background: $background-color-pinky;
+      }
+
+      // animation: An-Fade-Out 3s forwards 2s ease-in-out;
+    }
+
     #close-button-button {
       display: block;
       position: fixed;
       z-index: 501;
 
-      bottom: 145px;
+      bottom: 83px;
       height: 70px;
 
       right: 50%;
-      width: 200px;
+      width: 170px;
       transform: translate(50%, 0);
 
       background: rgba(255, 0, 0, 0.781);
@@ -967,38 +993,7 @@ footer {
       }
     }
 
-    #allert {
-      position: fixed;
-      z-index: 500;
-      top: 100px;
-      bottom: 100px;
-      right: 10%;
-      left: 10%;
-      background: white;
-      border: 10px $primary-color solid;
-      // border-radius: 20px;
 
-      display: flex;
-      // display: none;
-      align-items: center;
-      justify-content: center;
-
-      p {
-        text-align: center;
-        font-size: 30px;
-        font-family: serif;
-      }
-
-      #close-button-text {
-        position: absolute;
-        bottom: 40px;
-        padding: 10px;
-        border: 3px $primary-color solid;
-        background: $background-color-pinky;
-      }
-
-      // animation: An-Fade-Out 3s forwards 2s ease-in-out;
-    }
   }
 
   @keyframes An-Fade-Out {

@@ -360,7 +360,7 @@ footer {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  min-height: 18vh;
+  min-height: 22vh;
   background: #970071; }
   footer p,
   footer a {
@@ -440,14 +440,36 @@ footer {
       opacity: 1; } }
   #galery {
     position: relative; }
+    #galery #allert {
+      position: fixed;
+      z-index: 500;
+      top: 5vh;
+      bottom: 40px;
+      right: 2vh;
+      left: 2vh;
+      background: white;
+      border: 10px #970071 solid;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      #galery #allert p {
+        text-align: center;
+        font-size: 10vw;
+        font-family: serif; }
+      #galery #allert #close-button-text {
+        position: absolute;
+        bottom: 40px;
+        padding: 10px;
+        border: 3px #970071 solid;
+        background: #fcade8; }
     #galery #close-button-button {
       display: block;
       position: fixed;
       z-index: 501;
-      bottom: 145px;
+      bottom: 83px;
       height: 70px;
       right: 50%;
-      width: 200px;
+      width: 170px;
       transform: translate(50%, 0);
       background: rgba(255, 0, 0, 0.781);
       border: 10px #970071 solid;
@@ -463,28 +485,6 @@ footer {
           opacity: 0;
           transition: z-index, opacity;
           transition: 1s; }
-    #galery #allert {
-      position: fixed;
-      z-index: 500;
-      top: 100px;
-      bottom: 100px;
-      right: 10%;
-      left: 10%;
-      background: white;
-      border: 10px #970071 solid;
-      display: flex;
-      align-items: center;
-      justify-content: center; }
-      #galery #allert p {
-        text-align: center;
-        font-size: 30px;
-        font-family: serif; }
-      #galery #allert #close-button-text {
-        position: absolute;
-        bottom: 40px;
-        padding: 10px;
-        border: 3px #970071 solid;
-        background: #fcade8; }
   @keyframes An-Fade-Out {
     99% { }
     100% {
