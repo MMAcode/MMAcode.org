@@ -360,6 +360,7 @@ footer {
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  min-height: 18vh;
   background: #970071; }
   footer p,
   footer a {
