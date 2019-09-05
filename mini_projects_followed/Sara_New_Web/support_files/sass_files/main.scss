@@ -323,18 +323,29 @@ image {
 }
 
 // INTRODUCTION
-#Intro {
-  // height: 500px;
 
+
+
+
+
+
+
+
+
+
+
+
+#Intro {
   position: relative;
   overflow: hidden;
-  height: 65vh;
+  // height: 65vh;
   width: 100%;
 
   &-text {
-    max-width: 600px;
+    max-width: 50vw;
 
-    margin-left: 3rem;
+    margin-left: 6rem;
+
     // margin: 3rem;
     // font-size: 1.5rem;
 
@@ -350,88 +361,41 @@ image {
 
   img {
     float: right;
-    // transform: translatey(20%);
-    // transform: scale(0.2);
-    width: 30%;
+    width: 7%;
     height: auto;
+    opacity: 0;
 
-    // padding-right: 1vw;
-    // padding: 3rem;
-    margin: 4rem;
-    shape-margin: 2rem;
+    margin: 30vh 10vw 0 10vw;
+    shape-margin: 0.5rem;
     shape-outside: url(./images/./cover_photo/./moving-car-smaller.png);
 
     animation: animate_car 3s forwards 0s ease-in;
   }
 
-  // &-photo {
-  // overflow: hidden;
-  // float: right;
+  @keyframes animate_price {
+    80% {
+      color: orangered;
+    }
 
-  // width: 70%;
-
-  // visibility: hidden; //  so it doesn't pop up on page load
-  // position: relative;
-
-  // margin: auto;
-  // transform-origin: 97% 5%;
-  // transform: scale(0.2);
-  // right: -5%;
-  // top: 0;
-
-  // animation: animate_car 1s forwards 0s ease-in;
-  // -webkit-animation: animate_car 4s forwards 1s ease-in-out;
-  // -webkit-transform: scale(0.2);
-  // -moz-transform: scale(0.2);
-  // -ms-transform: scale(0.2);
-  // -o-transform: scale(0.2);
-  // }
-}
-
-// clip-path: url("#clipPolygon");
-// -webkit-clip-path: polygon(475px 2px,1023px 3px,1025px 635px,599px 637px,319px 590px,124px 522px,122px 479px,1px 440px,2px 364px,85px 206px,443px 91px);
-
-@keyframes animate_price {
-  80% {
-    color: orangered;
+    90% {
+      color: $primary-color;
+    }
   }
 
-  90% {
-    color: $primary-color;
+  @keyframes animate_car {
+    // 0% {
+    //   opacity: 0;
+    //   // visibility: visible;
+    // }
+    10% {opacity: 30%;}
+
+    100% {
+      width: 50%;
+      opacity: 1;
+      // visibility: visible;
+    }
   }
 }
-
-@keyframes animate_car {
-  0% {
-    // opacity: 0;
-    // visibility: visible;
-  }
-
-  100% {
-    width: 70%;
-    // height: auto;
-    // opacity: 1;
-    // transform: scale(1);
-    // transform: translate(-10%, -15%);
-    // visibility: visible;
-  }
-}
-
-// @keyframes animate_car {
-//   0% {
-//     opacity: 0;
-//     visibility: visible;
-//   }
-
-//   100% {
-//     // width: 90%;
-//     // // height: 90%;
-//     opacity: 1;
-//     transform: scale(1);
-//     transform: translate(-10%, -15%);
-//     visibility: visible;
-//   }
-// }
 
 // &-photo {
 //   position: absolute;
@@ -452,6 +416,22 @@ image {
 //   -moz-transform: scale(0.2);
 //   -ms-transform: scale(0.2);
 //   -o-transform: scale(0.2);
+// }
+
+// @keyframes animate_car {
+//   0% {
+//     opacity: 0;
+//     visibility: visible;
+//   }
+
+//   100% {
+//     // width: 90%;
+//     // // height: 90%;
+//     opacity: 1;
+//     transform: scale(1);
+//     transform: translate(-10%, -15%);
+//     visibility: visible;
+//   }
 // }
 
 // OUR CARS
@@ -890,6 +870,48 @@ footer {
     height: 50px;
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  #Intro {
+    &-text {
+      max-width: 700px;
+      // padding: 2rem;
+      // margin: auto;
+      margin: 6vw;
+      // text-align: justify;
+    }
+
+    // ** intro photo
+
+    img {
+      margin: 30vh 6vw 0 6vw;
+    }
+
+    @keyframes animate_car {
+      10% {opacity: 30%;}
+      100% {
+        width: 70%;
+        opacity: 1;
+      }
+    }
+  }
+
   #galery {
     position: relative;
 
@@ -973,7 +995,42 @@ footer {
   }
 }
 
+
+
+
+
+
+
+
 @media (max-width: 500px) {
+ 
+  #Intro {
+    &-text {
+      max-width: 700px;
+      // padding: 2rem;
+      // margin: auto;
+      margin: 6vw;
+      // text-align: justify;
+    }
+
+    // ** intro photo
+
+    // img {
+    //   margin: 30vh 6vw 0 6vw;
+    // }
+
+    @keyframes animate_car {
+      10% {opacity: 30%;}
+      100% {
+        width: 80%;
+        opacity: 1;
+      }
+    }
+  }
+ 
+ 
+ 
+ 
   #cars-container {
     display: grid;
     grid-gap: 2rem;
