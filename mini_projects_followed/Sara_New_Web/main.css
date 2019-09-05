@@ -370,7 +370,8 @@ footer {
     line-height: 1.7rem;
     transition: transform 500ms; }
   footer a {
-    color: #fcade8; }
+    color: #fcade8;
+    border-bottom: 1px dotted #fcade8; }
     footer a:hover, footer a:active {
       transform: scale(1.2); }
 

@@ -758,6 +758,8 @@ footer {
 
   a {
     color: $background-color-pinky;
+    // text-decoration: wavy underline;
+    border-bottom: 1px dotted $background-color-pinky; 
 
     &:hover,
     &:active {
