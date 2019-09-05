@@ -113,7 +113,6 @@ image {
       transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease; }
   #navbar #header2 {
     color: #970071;
-    display: inline-block;
     padding: 10px;
     position: relative; }
     #navbar #header2 #fill-the-space {
@@ -360,17 +359,18 @@ footer {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  height: 100px;
+  padding: 1rem;
   background: #970071; }
-  footer a {
-    display: block;
+  footer p, footer a {
     color: white;
     text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
     transition: transform 500ms; }
+  footer a {
+    color: #fcade8; }
     footer a:hover, footer a:active {
       transform: scale(1.2); }
-  footer img {
-    height: 40px; }
 
 #galery #close-button-button,
 #galery #allert {

@@ -225,8 +225,9 @@ image {
 
   #header2 {
     color: $primary-color;
-    display: inline-block;
+    // display: block;
     padding: 10px;
+    // margin: auto;
 
     position: relative;
     #fill-the-space {
@@ -748,26 +749,47 @@ footer {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  height: 100px;
+  padding: 1rem;
+  // height: 100px;
   background: $primary-color;
 
-  a {
-    display: block;
+  p,a {
+    // display: block;
     color: white;
     text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
     // font: 1em macondo;
     transition: transform 500ms;
-
-    &:hover,
-    &:active {
-      transform: scale(1.2);
     }
+    a {
+      color: $background-color-pinky;
+      &:hover,
+      &:active {
+        transform: scale(1.2);
+      }
+
+      // animation: contact-developer 3s infinite 0s ease-in;;
   }
 
-  img {
-    height: 40px;
-  }
+  // @keyframes contact-developer {
+  //   50%
+  //   {color: white;}
+  // }
+  
+
+  // img {
+  //   height: 40px;
+  // }
 }
+
+
+
+
+
+
+
+
 
 //** GALERY
 
