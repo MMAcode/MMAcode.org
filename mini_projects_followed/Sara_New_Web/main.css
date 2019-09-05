@@ -409,7 +409,7 @@ footer {
 
 @media (max-width: 925px) {
   body {
-    background: url("./images/Background_photos/blured2-mini.jpg ") no-repeat left top/contain;
+    background: url("./images/Background_photos/blured2-mini.jpg ") no-repeat left top/cover;
     background-attachment: fixed; }
   #navbar #hamburger,
   #navbar #check-box {
