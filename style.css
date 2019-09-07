@@ -125,7 +125,6 @@ img {
 .grid-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  /* grid-template-columns: repeat(auto-fit, minmax(10px, 700fr)); */
 }
 
 .grid-wrapper>* {
@@ -148,7 +147,6 @@ img {
   -webkit-box-shadow: 11px 7px 0px 0px rgba(199, 179, 199, 0.48);
   -moz-box-shadow: 11px 7px 0px 0px rgba(199, 179, 199, 0.48);
   box-shadow: 11px 7px 5px 0px rgba(75, 74, 75, 0.48);
-  /* margin: 1rem; */
 }
 
 .wmax400 {
