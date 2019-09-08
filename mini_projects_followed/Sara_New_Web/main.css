@@ -289,12 +289,12 @@ image {
         font-size: 1.4rem; }
       #contacts-wrapper #contacts .single-contact .contact-title {
         width: 110px;
-        color: white; }
+        color: #fcade8; }
       #contacts-wrapper #contacts .single-contact .contact-text {
         font-family: serif;
         letter-spacing: 0.1rem;
         word-spacing: 0.1rem;
-        color: #fcade8; }
+        color: white; }
         #contacts-wrapper #contacts .single-contact .contact-text a {
           padding: 0; }
           #contacts-wrapper #contacts .single-contact .contact-text a img {
