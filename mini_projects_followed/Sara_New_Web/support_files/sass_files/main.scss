@@ -23,9 +23,9 @@ body {
   // line-height: 1.6;
   // background-color: $background-color;
   // background: url("./images/./Background_photos/./black-and-white-bouquet-love-71298.jpg") no-repeat center center/cover;
-  
-  
-  background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover;
+
+  background: url("./images/Background_photos/blured2.jpg ") no-repeat center
+    center/cover;
   width: 100%;
   background-attachment: fixed;
 
@@ -86,10 +86,12 @@ image {
   width: 80%;
   margin: 2rem auto;
   // border-bottom: 5px solid $primary-color;
-  background: linear-gradient(to right,
-      rgba(255, 0, 0, 0),
-      $primary-color,
-      rgba(0, 128, 0, 0));
+  background: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    $primary-color,
+    rgba(0, 128, 0, 0)
+  );
 }
 
 // hiding navbar on scrolling in js
@@ -131,9 +133,8 @@ image {
     // }
 
     &:checked {
-
       // change hamburger into the cross
-      &+#hamburger #ham-wrapper span {
+      & + #hamburger #ham-wrapper span {
         opacity: 1;
         // background: #232323;
 
@@ -151,7 +152,7 @@ image {
       }
 
       // show navbar
-      &~nav {
+      & ~ nav {
         display: inline-block;
         background: #fcd2f8;
         // padding: 20px 0 20px 20px;
@@ -190,7 +191,7 @@ image {
         }
 
         // adjust padding of the company name
-        &+#header2 {
+        & + #header2 {
           // padding-left: 0;
           margin: 0;
           padding: 2px;
@@ -331,7 +332,6 @@ image {
 
 // INTRODUCTION
 
-
 #Intro {
   position: relative;
   overflow: hidden;
@@ -379,7 +379,6 @@ image {
   }
 
   @keyframes animate_car {
-
     // 0% {
     //   opacity: 0;
     //   // visibility: visible;
@@ -515,11 +514,14 @@ image {
     -o-transform: rotate(-0.007turn);
 
     border: 10px solid transparent;
-    border-image: repeating-linear-gradient(45deg,
+    border-image: repeating-linear-gradient(
+        45deg,
         pink,
         pink 1%,
         purple 1%,
-        purple 8%) 10;
+        purple 8%
+      )
+      10;
   }
 
   &-4 {
@@ -587,7 +589,7 @@ image {
 
   margin-top: 1rem;
 
-  &>* {
+  & > * {
     // flex:1;
     // padding: 1rem;
     // margin: 0 0.5rem;
@@ -604,9 +606,12 @@ image {
       display: flex;
 
       border-bottom: 2px solid transparent;
-      border-image: linear-gradient(90deg,
+      border-image: linear-gradient(
+          90deg,
           $background-color-lighter,
-          $primary-color) 10;
+          $primary-color
+        )
+        10;
 
       .contact-title,
       .contact-text {
@@ -625,7 +630,7 @@ image {
         font-family: serif;
         letter-spacing: 0.1rem;
         word-spacing: 0.1rem;
-        color: white !important;
+        color: yellow !important;
         // color: rgb(255, 255, 255);
 
         a {
@@ -679,9 +684,11 @@ image {
         padding: 0 0 0 10px;
         border: none;
         border-radius: 5px;
-        background: linear-gradient(90deg,
-            $background-color-lighter 50%,
-            $primary-color);
+        background: linear-gradient(
+          90deg,
+          $background-color-lighter 50%,
+          $primary-color
+        );
       }
 
       label {
@@ -726,9 +733,9 @@ image {
   width: 100%;
 
   #map {
-  //   // position: absolute;
-  //   // top: 0;
-  //   // left: 0;
+    //   // position: absolute;
+    //   // top: 0;
+    //   // left: 0;
     width: 100%;
     height: 70vh;
   }
@@ -758,7 +765,7 @@ footer {
   a {
     color: $background-color-pinky;
     // text-decoration: wavy underline;
-    border-bottom: 1px dotted $background-color-pinky; 
+    border-bottom: 1px dotted $background-color-pinky;
 
     &:hover,
     &:active {
@@ -773,19 +780,10 @@ footer {
   //   {color: white;}
   // }
 
-
   // img {
   //   height: 40px;
   // }
 }
-
-
-
-
-
-
-
-
 
 //** GALERY
 
@@ -847,20 +845,17 @@ footer {
   }
 }
 
-
-
-
 //** MEDIA QUERIES
 
 @media (max-width: 925px) {
   body {
     // background-color: rgba(141, 247, 141, 0.295);
-    background: url("./images/Background_photos/blured2-mini.jpg ") no-repeat left top/cover;
+    background: url("./images/Background_photos/blured2-mini.jpg ") no-repeat
+      left top/cover;
     background-attachment: fixed;
   }
 
   #navbar {
-
     // justify-content: flex-end;
     // justify-content: space-between;
     #hamburger,
@@ -893,9 +888,6 @@ footer {
     height: 50px;
   }
 
-
-
-
   #Intro {
     &-text {
       max-width: 700px;
@@ -924,7 +916,6 @@ footer {
   #galery {
     position: relative;
 
-    
     #allert {
       position: fixed;
       z-index: 500;
@@ -983,7 +974,7 @@ footer {
         transition: z-index, opacity;
         transition: 1s;
 
-        +#allert {
+        + #allert {
           // display: none;
           z-index: -10;
           opacity: 0;
@@ -993,8 +984,6 @@ footer {
         }
       }
     }
-
-
   }
 
   @keyframes An-Fade-Out {
@@ -1010,15 +999,7 @@ footer {
   }
 }
 
-
-
-
-
-
-
-
 @media (max-width: 500px) {
-
   #Intro {
     &-text {
       max-width: 700px;
@@ -1037,14 +1018,11 @@ footer {
     }
   }
 
-
-
-
   #cars-container {
     display: grid;
     grid-gap: 2rem;
     padding: 2rem;
-    grid-template-areas: "car2""car1""car4"; //"car3" "car4";
+    grid-template-areas: "car2" "car1" "car4"; //"car3" "car4";
     justify-items: center;
     align-items: center;
   }
