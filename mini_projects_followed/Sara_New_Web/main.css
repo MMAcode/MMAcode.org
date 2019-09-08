@@ -311,8 +311,7 @@ image {
       padding-bottom: 10px;
       text-align: center; }
     #contacts-wrapper #contact-form form {
-      margin: auto;
-      color: green !important; }
+      margin: auto; }
       #contacts-wrapper #contact-form form #form-lines {
         font-size: 1.4rem; }
       #contacts-wrapper #contact-form form label,
