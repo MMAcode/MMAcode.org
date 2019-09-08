@@ -285,9 +285,6 @@ image {
       #contacts-wrapper #contacts .single-contact a[href^="tel"] {
         color: inherit;
         text-decoration: none; }
-      #contacts-wrapper #contacts .single-contact #phone-number {
-        color: brown;
-        text-decoration: none; }
       #contacts-wrapper #contacts .single-contact .contact-title,
       #contacts-wrapper #contacts .single-contact .contact-text {
         display: inline-block;
@@ -295,12 +292,12 @@ image {
         font-size: 1.4rem; }
       #contacts-wrapper #contacts .single-contact .contact-title {
         width: 110px;
-        color: #fcade8; }
+        color: white; }
       #contacts-wrapper #contacts .single-contact .contact-text {
         font-family: serif;
         letter-spacing: 0.1rem;
         word-spacing: 0.1rem;
-        color: white; }
+        color: #fcade8; }
         #contacts-wrapper #contacts .single-contact .contact-text a {
           padding: 0; }
           #contacts-wrapper #contacts .single-contact .contact-text a img {
