@@ -282,9 +282,6 @@ image {
       display: flex;
       border-bottom: 2px solid transparent;
       border-image: linear-gradient(90deg, white, #970071) 10; }
-      #contacts-wrapper #contacts .single-contact a[href^="tel"] {
-        color: inherit;
-        text-decoration: none; }
       #contacts-wrapper #contacts .single-contact .contact-title,
       #contacts-wrapper #contacts .single-contact .contact-text {
         display: inline-block;
@@ -306,6 +303,14 @@ image {
             transition: transform 0.5s ease-in-out; }
             #contacts-wrapper #contacts .single-contact .contact-text a img:hover {
               transform: scale(1.2); }
+      #contacts-wrapper #contacts .single-contact #email-us {
+        color: #fcade8;
+        border-bottom: 1px dotted #fcade8; }
+        #contacts-wrapper #contacts .single-contact #email-us:hover, #contacts-wrapper #contacts .single-contact #email-us:active {
+          transform: scale(1.2); }
+      #contacts-wrapper #contacts .single-contact a[href^="tel"] {
+        color: inherit;
+        text-decoration: none; }
   #contacts-wrapper #contact-form {
     display: inline-block;
     color: white;
