@@ -5,9 +5,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- <script src="freecontactformvalidation.js"></script>
+  <script>
+    required.add('Full_Name', 'NOT_EMPTY', 'Full Name');
+    required.add('Email_Address', 'EMAIL', 'Email Address');
+    required.add('Your_Message', 'NOT_EMPTY', 'Your Message');
+    required.add('AntiSpam', 'NOT_EMPTY', 'Anti-Spam Question');
+  </script> -->
   <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Macondo|Muli|Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./main.css" />
   <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+
   <title>Armstrong Wedding Cars</title>
 </head>
 
@@ -153,17 +161,30 @@
       </div>
 
       <div id="contact-form">
-        <form method=”post” name=”contact_form” action=”contact-form-handler.php”> Your Name: <input type=”text”
-            name=”name”> Email Address:
 
-          <input type=”text” name=”email”> Message:
+        <form action=https://formspree.io/email@domain.tld"" method="POST" name="Wedding Car Request">
+          <h1>Contact Form</h1>
 
-          <textarea name=”message”></textarea>
+          <div id="form-lines">
+            <label for="f-name">Name</label>
+            <input id="f-Name" type="text" name="f-Name" placeholder="Enter Name">
 
-          <input type=”submit” value=”Submit”>
+            <label for="f-email">Email</label>
+            <input id="f-email" type="email" name="f-email" placeholder="Enter Email">
 
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" type="number" name="f-phone" placeholder="Enter Phone Number">
+
+            <label for="f-message">Message</label>
+            <textarea name="message" id="f-message" rows="3" placeholder="Enter Message"></textarea>
+
+
+            <input type="submit" value="Send" class="btn" name="name_must_be_also_here">
+          </div>
         </form>
+
       </div>
+    </div>
 
 
 
@@ -193,12 +214,7 @@
   <!-- local js file -->
   <script src="./js/main.js"></script>
 
-  <script language=”JavaScript”>
-    var frmvalidator = new Validator(“contactform”);
-    frmvalidator.addValidation(“name”, ”req”, ”Please provide your name”);
-    frmvalidator.addValidation(“email”, ”req”, ”Please provide your email”);
-    frmvalidator.addValidation(“email”, ”email”, “Please enter a valid email address”);
-  </script>
+
 </body>
 
 <!-- <script>
