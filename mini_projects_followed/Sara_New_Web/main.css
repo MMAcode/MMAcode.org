@@ -282,6 +282,9 @@ image {
       display: flex;
       border-bottom: 2px solid transparent;
       border-image: linear-gradient(90deg, white, #970071) 10; }
+      #contacts-wrapper #contacts .single-contact #phone-number {
+        color: inherit;
+        text-decoration: none; }
       #contacts-wrapper #contacts .single-contact .contact-title,
       #contacts-wrapper #contacts .single-contact .contact-text {
         display: inline-block;
@@ -294,7 +297,7 @@ image {
         font-family: serif;
         letter-spacing: 0.1rem;
         word-spacing: 0.1rem;
-        color: yellow !important; }
+        color: yellow; }
         #contacts-wrapper #contacts .single-contact .contact-text a {
           padding: 0; }
           #contacts-wrapper #contacts .single-contact .contact-text a img {
