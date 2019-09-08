@@ -1023,6 +1023,10 @@ footer {
 }
 
 @media (max-width: 500px) {
+  html {
+    font-size: 125%;
+  }
+
   #Intro {
     &-text {
       max-width: 700px;
