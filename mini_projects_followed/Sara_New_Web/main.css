@@ -294,7 +294,7 @@ image {
         font-family: serif;
         letter-spacing: 0.1rem;
         word-spacing: 0.1rem;
-        color: white; }
+        color: white !important; }
         #contacts-wrapper #contacts .single-contact .contact-text a {
           padding: 0; }
           #contacts-wrapper #contacts .single-contact .contact-text a img {
