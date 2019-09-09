@@ -24,8 +24,7 @@ body {
   // background-color: $background-color;
   // background: url("./images/./Background_photos/./black-and-white-bouquet-love-71298.jpg") no-repeat center center/cover;
 
-  background: url("./images/Background_photos/blured2.jpg ") no-repeat center
-    center/cover;
+  background: url("./images/Background_photos/blured2.jpg ") no-repeat center center/cover;
   width: 100%;
   background-attachment: fixed;
 
@@ -86,12 +85,10 @@ image {
   width: 80%;
   margin: 2rem auto;
   // border-bottom: 5px solid $primary-color;
-  background: linear-gradient(
-    to right,
-    rgba(255, 0, 0, 0),
-    $primary-color,
-    rgba(0, 128, 0, 0)
-  );
+  background: linear-gradient(to right,
+      rgba(255, 0, 0, 0),
+      $primary-color,
+      rgba(0, 128, 0, 0));
 }
 
 // hiding navbar on scrolling in js
@@ -133,8 +130,9 @@ image {
     // }
 
     &:checked {
+
       // change hamburger into the cross
-      & + #hamburger #ham-wrapper span {
+      &+#hamburger #ham-wrapper span {
         opacity: 1;
         // background: #232323;
 
@@ -152,7 +150,7 @@ image {
       }
 
       // show navbar
-      & ~ nav {
+      &~nav {
         display: inline-block;
         background: #fcd2f8;
         // padding: 20px 0 20px 20px;
@@ -191,7 +189,7 @@ image {
         }
 
         // adjust padding of the company name
-        & + #header2 {
+        &+#header2 {
           // padding-left: 0;
           margin: 0;
           padding: 2px;
@@ -379,6 +377,7 @@ image {
   }
 
   @keyframes animate_car {
+
     // 0% {
     //   opacity: 0;
     //   // visibility: visible;
@@ -514,14 +513,11 @@ image {
     -o-transform: rotate(-0.007turn);
 
     border: 10px solid transparent;
-    border-image: repeating-linear-gradient(
-        45deg,
+    border-image: repeating-linear-gradient(45deg,
         pink,
         pink 1%,
         purple 1%,
-        purple 8%
-      )
-      10;
+        purple 8%) 10;
   }
 
   &-4 {
@@ -589,7 +585,7 @@ image {
 
   margin-top: 1rem;
 
-  & > * {
+  &>* {
     // flex:1;
     // padding: 1rem;
     // margin: 0 0.5rem;
@@ -606,12 +602,9 @@ image {
       display: flex;
 
       border-bottom: 2px solid transparent;
-      border-image: linear-gradient(
-          90deg,
+      border-image: linear-gradient(90deg,
           $background-color-lighter,
-          $primary-color
-        )
-        10;
+          $primary-color) 10;
 
       .contact-title,
       .contact-text {
@@ -655,10 +648,12 @@ image {
         color: $background-color-pinky;
 
         transition: transform 500ms;
+
         // font-style: italic;
         #email-us-span {
           border-bottom: 1px dotted $background-color-pinky;
         }
+
         &:hover,
         &:active {
           transform: scale(1.2);
@@ -689,7 +684,32 @@ image {
     }
 
     form {
+
+      // free contact form design setting Miro
+      tbody {
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .freecontactform {
+        width: 100%;
+      }
+
+      tr {
+        display: flex;
+        flex-flow: column;
+        align-items: stretch;
+        width: 100%;
+      }
+
+      a {
+        color: $background-color-pinky;
+      }
+
+
+
       margin: auto;
+
       #form-lines {
         font-size: 1.4rem;
       }
@@ -707,11 +727,13 @@ image {
         padding: 0 0 0 10px;
         border: none;
         border-radius: 5px;
-        background: linear-gradient(
-          90deg,
-          $background-color-lighter 50%,
-          $primary-color
-        );
+        background: linear-gradient(90deg,
+            $background-color-lighter 50%,
+            $primary-color);
+      }
+
+      textarea {
+        min-height: 150px;
       }
 
       label {
@@ -873,12 +895,12 @@ footer {
 @media (max-width: 925px) {
   body {
     // background-color: rgba(141, 247, 141, 0.295);
-    background: url("./images/Background_photos/blured2-mini.jpg ") no-repeat
-      left top/cover;
+    background: url("./images/Background_photos/blured2-mini.jpg ") no-repeat left top/cover;
     background-attachment: fixed;
   }
 
   #navbar {
+
     // justify-content: flex-end;
     // justify-content: space-between;
     #hamburger,
@@ -997,7 +1019,7 @@ footer {
         transition: z-index, opacity;
         transition: 1s;
 
-        + #allert {
+        +#allert {
           // display: none;
           z-index: -10;
           opacity: 0;
@@ -1049,7 +1071,7 @@ footer {
     display: grid;
     grid-gap: 2rem;
     padding: 2rem;
-    grid-template-areas: "car2" "car1" "car4"; //"car3" "car4";
+    grid-template-areas: "car2""car1""car4"; //"car3" "car4";
     justify-items: center;
     align-items: center;
   }

@@ -326,6 +326,18 @@ image {
       text-align: center; }
     #contacts-wrapper #contact-form form {
       margin: auto; }
+      #contacts-wrapper #contact-form form tbody {
+        width: 100%;
+        margin: 0 auto; }
+      #contacts-wrapper #contact-form form .freecontactform {
+        width: 100%; }
+      #contacts-wrapper #contact-form form tr {
+        display: flex;
+        flex-flow: column;
+        align-items: stretch;
+        width: 100%; }
+      #contacts-wrapper #contact-form form a {
+        color: #fcade8; }
       #contacts-wrapper #contact-form form #form-lines {
         font-size: 1.4rem; }
       #contacts-wrapper #contact-form form label,
@@ -340,6 +352,8 @@ image {
         border: none;
         border-radius: 5px;
         background: linear-gradient(90deg, white 50%, #970071); }
+      #contacts-wrapper #contact-form form textarea {
+        min-height: 150px; }
       #contacts-wrapper #contact-form form label {
         padding-top: 10px;
         padding-bottom: 5px;

@@ -5,13 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <!-- <script src="freecontactformvalidation.js"></script>
+
+  <!-- free contact form -->
+  <script src="freecontactformvalidation.js"></script>
   <script>
     required.add('Full_Name', 'NOT_EMPTY', 'Full Name');
     required.add('Email_Address', 'EMAIL', 'Email Address');
     required.add('Your_Message', 'NOT_EMPTY', 'Your Message');
     required.add('AntiSpam', 'NOT_EMPTY', 'Anti-Spam Question');
-  </script> -->
+  </script>
+
   <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Macondo|Muli|Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./main.css" />
   <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
@@ -164,25 +167,81 @@
 
       <div id="contact-form">
 
-        <form action="https://formspree.io/miroslav.makarov@gmail.com" method="POST" name="Wedding Car Request">
-          <h1>Contact Form</h1>
+        <form name="freecontactform" method="post" action="freecontactformprocess.php"
+          onsubmit="return validate.check(this)">
+          <table class="freecontactform">
+            <tr>
+              <td colspan="2">
 
-          <div id="form-lines">
-            <label for="f-name">Name</label>
-            <input id="f-Name" type="text" name="f-Name" placeholder="Enter Name">
+                <h1 class="freecontactformheader">Contact Us</h1>
 
-            <label for="f-email">Email</label>
-            <input id="f-email" type="email" name="f-email" placeholder="Enter Email">
+                <div class="freecontactformmessage">Fields marked with <span class="required_star"> * </span> are
+                  mandatory.
+                </div>
 
-            <label for="f-phone">Phone</label>
-            <input id="f-phone" type="number" name="f-phone" placeholder="Enter Phone Number">
-
-            <label for="f-message">Message</label>
-            <textarea name="message" id="f-message" rows="3" placeholder="Enter Message"></textarea>
-
-
-            <input type="submit" value="Send" class="btn">
-          </div>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <label for="Full_Name" class="required">Full Name<span class="required_star"> * </span></label>
+              </td>
+              <td valign="top">
+                <input type="text" name="Full_Name" id="Full_Name" maxlength="80">
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <label for="Email_Address" class="required">Email Address<span class="required_star"> * </span></label>
+              </td>
+              <td valign="top">
+                <input type="text" name="Email_Address" id="Email_Address" maxlength="100">
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <label for="Telephone_Number" class="not-required">Telephone Number</label>
+              </td>
+              <td valign="top">
+                <input type="text" name="Telephone_Number" id="Telephone_Number" maxlength="100">
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <label for="Your_Message" class="required">Your Message<span class="required_star"> * </span></label>
+              </td>
+              <td valign="top">
+                <textarea name="Your_Message" id="Your_Message" maxlength="2000"></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align:center">
+                <div class="antispammessage">
+                  To help prevent automated spam, please answer this question
+                  <br /><br />
+                  <div class="antispamquestion">
+                    <span class="required_star"> * </span>
+                    Using only numbers, what is 10 plus 15? &nbsp;
+                    <input type="text" name="AntiSpam" id="AntiSpam" maxlength="100">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align:center">
+                <br /><br />
+                <input type="submit" value="Send" class="btn">
+                <br /><br />
+                <!--
+  If you want to remove this author link,
+  please purchase an unbranded version from: https://www.freecontactform.com/unbranded_form.php
+  Or upgrade to the more professional version at: https://www.freecontactform.com/responsive_form.php
+  -->
+                <div>Form provided by: <a href="https://www.freecontactform.com" target="_blank"
+                    rel="nofollow">FreeContactForm.com</a></div>
+                <br /><br />
+              </td>
+            </tr>
+          </table>
         </form>
 
       </div>
