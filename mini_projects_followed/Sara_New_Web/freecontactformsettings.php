@@ -1,7 +1,7 @@
 
 <?php
 $email_to = "miroslav.makarov@gmail.com"; // your email address
-$email_subject = "Contact Form Message"; // email subject line
+$email_subject = "Wedding Car Request"; // email subject line
 $thankyou = "thankyou.htm"; // thank you page
 
 // if you update the question on the form -
