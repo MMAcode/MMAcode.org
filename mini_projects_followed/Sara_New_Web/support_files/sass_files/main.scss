@@ -696,14 +696,14 @@ image {
       }
 
       tr {
-        display: flex;
-        flex-flow: column;
+        display: flex !important;
+        flex-flow: column !important;
         align-items: stretch;
         width: 100%;
       }
 
       a {
-        color: $background-color-pinky;
+        color: $background-color-pinky !important;
       }
 
 

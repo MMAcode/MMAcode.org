@@ -332,12 +332,12 @@ image {
       #contacts-wrapper #contact-form form .freecontactform {
         width: 100%; }
       #contacts-wrapper #contact-form form tr {
-        display: flex;
-        flex-flow: column;
+        display: flex !important;
+        flex-flow: column !important;
         align-items: stretch;
         width: 100%; }
       #contacts-wrapper #contact-form form a {
-        color: #fcade8; }
+        color: #fcade8 !important; }
       #contacts-wrapper #contact-form form #form-lines {
         font-size: 1.4rem; }
       #contacts-wrapper #contact-form form label,
