@@ -59,11 +59,11 @@ a {
 
 a:hover {
   color: red;
-  transform:scale(1.03);
-  -webkit-transform:scale(1.03);
-  -moz-transform:scale(1.03);
-  -ms-transform:scale(1.03);
-  -o-transform:scale(1.03);
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  -o-transform: scale(1.03);
 }
 
 img {
@@ -84,7 +84,8 @@ img {
 
 .button-wrapper a {
   /*display: block;
-  */padding: 10px;
+  */
+  padding: 10px;
   margin: 5px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -94,7 +95,8 @@ img {
   box-shadow: 2px 2px rgba(133, 132, 132, 0.473);
   text-decoration: none;
   /*color: rgb(9, 130, 243);
-  */font-weight: 700;
+  */
+  font-weight: 700;
   background: greenyellow;
 
   transition: all 1s;
@@ -106,11 +108,11 @@ img {
 
 .button-wrapper a:hover {
   background: green;
-  transform:scale(1.1);
-  -webkit-transform:scale(1.1);
-  -moz-transform:scale(1.1);
-  -ms-transform:scale(1.1);
-  -o-transform:scale(1.1);
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
 }
 
 
@@ -259,14 +261,15 @@ a:hover+.preview,
 
 #current-project #iframe-container {
   width: 100%;
-  height: 200px;
+  /* height: 200px; */
   overflow: hidden;
 }
 
 #current-project iframe {
   width: 100%;
-  height: 200px;
-  overflow: hidden;
+  /*height: 200px;
+  */
+  
 }
 
 #table-of-content {

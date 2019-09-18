@@ -362,8 +362,8 @@ image {
     margin: 30vh 10vw 0 10vw;
     shape-margin: 0.5rem;
     shape-outside: url(./images/./cover_photo/./moving-car-smaller.png);
-    animation: animate_car 3s forwards 0s ease-in;
-    -webkit-animation: animate_car 3s forwards 0s ease-in;
+    animation: animate_car 3s forwards 0s ease;
+    -webkit-animation: animate_car 3s forwards 0s ease;
   }
 
   @keyframes animate_price {
@@ -685,7 +685,29 @@ image {
 
     form {
 
+
       // free contact form design setting Miro
+      .freecontactformmessage {
+        display: none;
+      }
+
+      .required_star {
+        display: none;
+        // 
+      }
+
+      label {
+        font-family: serif;
+      }
+
+      input[type="submit"]~div {
+        display: none;
+      }
+
+      .antispamquestion {
+        font-size: 1.3rem;
+      }
+
       tbody {
         width: 100%;
         margin: 0 auto;
@@ -730,6 +752,7 @@ image {
         background: linear-gradient(90deg,
             $background-color-lighter 50%,
             $primary-color);
+        color: #ce6ab5 !important;
       }
 
       textarea {
@@ -767,6 +790,9 @@ image {
           transform: scale(1.2);
         }
       }
+
+
+
     }
   }
 }
@@ -877,11 +903,11 @@ footer {
 
   #galery-mixed {
     h1 {
-      color: $background-color-pinky;
+      color: $primary-color-light;
     }
 
     .photo-container {
-      background: $background-color-pinky;
+      background: $primary-color-light;
 
       img {
         // max-height: 30vw;
@@ -970,6 +996,7 @@ footer {
       left: 2vh;
       background: white;
       border: 10px $primary-color solid;
+      font-family: serif;
       // border-radius: 20px;
 
       display: flex;

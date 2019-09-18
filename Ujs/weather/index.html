@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <section id="weather-wrapper">
+      <h1>Ninja Mira Weather</h1>
+      <div id="location-wrapper">
+        <form id="weather-search">
+          <label for="city">Type a city...</label>
+          <input name="city" type="text" placeholder="City..." />
+        </form>
+      </div>
+      <div id="hidden-weather">
+        
+        <div id="weather-photo">
+          <img src="img/download.png"/>
+        </div>
+        <div id="weather-info">
+          <img src="img/icons/1.svg"/>
+          <h2>City</h2>
+          <p>country</p>
+          <p>char</p>
+          <h1 id="temh1erature">temp</p>
+        </div>
+      </div>
+    </section>
+
+    <script src="server-request.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

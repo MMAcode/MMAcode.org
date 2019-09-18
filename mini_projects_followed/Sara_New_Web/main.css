@@ -189,8 +189,8 @@ image {
     margin: 30vh 10vw 0 10vw;
     shape-margin: 0.5rem;
     shape-outside: url(./images/./cover_photo/./moving-car-smaller.png);
-    animation: animate_car 3s forwards 0s ease-in;
-    -webkit-animation: animate_car 3s forwards 0s ease-in; }
+    animation: animate_car 3s forwards 0s ease;
+    -webkit-animation: animate_car 3s forwards 0s ease; }
 
 @keyframes animate_price {
   80% {
@@ -326,6 +326,16 @@ image {
       text-align: center; }
     #contacts-wrapper #contact-form form {
       margin: auto; }
+      #contacts-wrapper #contact-form form .freecontactformmessage {
+        display: none; }
+      #contacts-wrapper #contact-form form .required_star {
+        display: none; }
+      #contacts-wrapper #contact-form form label {
+        font-family: serif; }
+      #contacts-wrapper #contact-form form input[type="submit"] ~ div {
+        display: none; }
+      #contacts-wrapper #contact-form form .antispamquestion {
+        font-size: 1.3rem; }
       #contacts-wrapper #contact-form form tbody {
         width: 100%;
         margin: 0 auto; }
@@ -351,7 +361,8 @@ image {
         padding: 0 0 0 10px;
         border: none;
         border-radius: 5px;
-        background: linear-gradient(90deg, white 50%, #970071); }
+        background: linear-gradient(90deg, white 50%, #970071);
+        color: #ce6ab5 !important; }
       #contacts-wrapper #contact-form form textarea {
         min-height: 150px; }
       #contacts-wrapper #contact-form form label {
@@ -432,10 +443,10 @@ footer {
     margin: 10px 1.3vw; }
 
 #galery #galery-mixed h1 {
-  color: #fcade8; }
+  color: #ce6ab5; }
 
 #galery #galery-mixed .photo-container {
-  background: #fcade8; }
+  background: #ce6ab5; }
 
 @media (max-width: 925px) {
   body {
@@ -478,6 +489,7 @@ footer {
       left: 2vh;
       background: white;
       border: 10px #970071 solid;
+      font-family: serif;
       display: flex;
       align-items: center;
       justify-content: center; }

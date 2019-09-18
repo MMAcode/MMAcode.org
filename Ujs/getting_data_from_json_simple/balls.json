@@ -1,0 +1,21 @@
+[{
+    "vec": "mic1",
+    "cena": 1001,
+    "prodano": false
+  },
+  {
+    "vec": "mic2",
+    "cena": 1002,
+    "prodano": true
+  },
+  {
+    "vec": "mic3",
+    "cena": 1003,
+    "prodano": true
+  },
+  {
+    "vec": "mic4",
+    "cena": 1004,
+    "prodano": false
+  }
+]
