@@ -1,6 +1,8 @@
 let dueCount = 0;
 let toLearnCount = 0;
-const cards = db.collection('FlipCards');
+// const cards = db.collection('FlipCards');
+const cards = db.collection('FlipCardsTrials');
+
 const currentCardS = null;
 let currentCard = {};
 let currentCardID = null;
@@ -21,7 +23,8 @@ let arrayTimes = [];
 let timeCounter = 3000;
 for (let i = 1; i < 10; i++) {
   arrayTimes.push(timeCounter);
-  timeCounter = timeCounter * 5;
+  timeCounter = timeCounter;
+  // timeCounter = timeCounter * 5;
 }
 // console.log('array of times for levels:');
 // console.log(arrayTimes);
@@ -144,8 +147,8 @@ let showThreeButtons = () => {
 
 
 let hintNotUsed = () => {
-  console.log('checking cheating');
-  console.log(clickHintCounter);
+  // console.log('checking cheating');
+  // console.log(clickHintCounter);
   if (clickHintCounter > 0) { return false }
   else { return true };
 }
@@ -161,12 +164,19 @@ let updateCurrentCard = (e) => {
   if (e.target.parentNode.id === 'BtnUp') {
 
     if (hintNotUsed()) {
-      if (en) {
+      console.log('updating level on variable inside programme');
+      console.log('level originaly=', lev, 'in en originaly', en, 'in currentCard.enCheck originaly', currentCard.enCheck);
+      if (en === true) {
         lev++;
+        console.log('level en is originaly true - now=', lev);
         en = false;
       } else {
+        console.log('level if en is false - now=', lev);
+
         en = true;
       }
+      console.log('level now=', lev, 'en now=', en);
+
     } else {
       alert('STOP CHEATING, I know you used a hint!;-)');
     }
@@ -234,12 +244,11 @@ let ResetLettersOnClick = () => {
   clickHintCounter = 0;
   hintLettersToShow = '';
 }
-// ***
 let showLevel = () => {
-  // let string = ;
-  if (currentCard.enCheck = false) { levelIndicator.innerHTML = `L. ${currentCard.level}a` }
+  // **
+  if (currentCard.enCheck === false) { levelIndicator.innerHTML = `L. ${currentCard.level}a` }
   else { levelIndicator.innerHTML = `L. ${currentCard.level}b` }
-
+  console.log(currentCard.enCheck);
 }
 
 // PAGES
@@ -289,8 +298,6 @@ let updateDatabaseTHEN_UI = () => {
       // alert('You are out of cards to learn./some may be waiting/. Add/Make new cards to learn.');
       if (window.confirm('You are out of cards to learn./some may be waiting/. Add/Make new cards to learn.')) {
         window.location.href = 'index.html';
-        updateDatabaseTHEN_UI();
-// **
       };
       // window.open(/index.html);
     }

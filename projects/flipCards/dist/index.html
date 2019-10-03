@@ -87,7 +87,7 @@ form.addEventListener('submit', e => {
     lastSeen: 0
   };
 
-  db.collection('FlipCards').add(newCard).then(() => {
+  db.collection('FlipCardsTrials').add(newCard).then(() => {
     console.log('Flip-card added');
   }).catch(err => {
     console.log(err);
