@@ -14,18 +14,19 @@ const threeBt = document.querySelector('#threeButtons');
 let firstWordHTML = document.querySelector('#wordOne');
 let secondWordHTML = document.querySelector('#wordTwo');
 let levelIndicator = document.querySelector('#levelIndicator');
-let showAllCardsHTML = document.querySelector('showAllCards');
+let showAllCardsHTML = document.querySelector('#showAllCards');
+let deleteCardHTML = document.querySelector('#deleteCard');
 let clickHintCounter = 0;
 let hintLettersToShow = '';
 
 
 // levels - times
 let arrayTimes = [];
-let timeCounter = 3000;
+let timeCounter = 1000;
 for (let i = 1; i < 10; i++) {
   arrayTimes.push(timeCounter);
-  timeCounter = timeCounter;
-  // timeCounter = timeCounter * 5;
+  // timeCounter = timeCounter;
+  timeCounter = timeCounter * 5;
 }
 // console.log('array of times for levels:');
 // console.log(arrayTimes);
@@ -48,6 +49,22 @@ for (let i = 1; i < 10; i++) {
 
 
 ////////////////////////////// F SET UP
+// F delete card
+let deleteCard = async () => {
+  console.log('ready to delete card');
+  console.log(currentCardID);
+  cards.doc(currentCardID).delete().then(() => {
+    console.log('deleted');
+    updateDatabaseTHEN_UI();
+  });
+
+
+}
+
+
+
+
+
 // F-update and Count Due
 let updateAndCountDue = async data => {
   let now = new Date().getTime();
@@ -325,13 +342,16 @@ let updateDatabaseTHEN_UI = () => {
 
 
 //////////////////////////////// MAIN
-// console.log('getting to listening to al cards click');
+// console.log('getting to listening to al cards click1');
 
 // refresh.style.display = 'none';
 
 updateDatabaseTHEN_UI();
+// console.log('getting to listening to al cards click2');
+
 nextBt.addEventListener('click', e => { showPageTwo(); });
 threeBt.addEventListener('click', ee => { updateALL(ee); })
+deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
-// console.log('getting to listening to al cards click');
+console.log('getting to listening to al cards click3');
 // showAllCardsHTML.addEventListener('click', e => showALLCards);
