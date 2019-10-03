@@ -11,6 +11,7 @@ const nextBt = document.querySelector('#b_next');
 const threeBt = document.querySelector('#threeButtons');
 let firstWordHTML = document.querySelector('#wordOne');
 let secondWordHTML = document.querySelector('#wordTwo');
+let levelIndicator = document.querySelector('#levelIndicator');
 let clickHintCounter = 0;
 let hintLettersToShow = '';
 
@@ -232,6 +233,12 @@ let ShowLetterOnClick = () => {
 let ResetLettersOnClick = () => {
   clickHintCounter = 0;
   hintLettersToShow = '';
+}
+// ***
+let showLevel = () => {
+  // let string = ;
+  if (currentCard.enCheck = false) { levelIndicator.innerHTML = `L. ${currentCard.level}a` }
+  else { levelIndicator.innerHTML = `L. ${currentCard.level}b` }
 
 }
 
@@ -244,23 +251,23 @@ let showPageOne = () => {
   threeBt.style.display = 'none';
   // activating letter hints
   clickHintCounter = 0;
-  console.log('current clickhintCouner=', clickHintCounter);
+  // console.log('current clickhintCouner=', clickHintCounter);
   hintLettersToShow = '';
-  console.log('page one Activated');
+  // console.log('page one Activated');
 
 
   // secondWordHTML.onclick = ShowLetterOnClick();
   secondWordHTML.addEventListener('click', ShowLetterOnClick);
-
+  showLevel();
 }
 
 let showPageTwo = () => {
-  console.log('Page two Activated.');
-   // secondWordHTML.onclick = null;
+  // console.log('Page two Activated.');
+  // secondWordHTML.onclick = null;
   // secondWordHTML.removeEventListener();
   // secondWordHTML.removeEventListener('click', e => ResetLettersOnClick());
-  console.log('clickHint listener SHOUND be removed');
-  console.log('current clickhintCouner=', clickHintCounter);
+  // console.log('clickHint listener SHOUND be removed');
+  // console.log('current clickhintCouner=', clickHintCounter);
   secondWordHTML.textContent = wordTwo;
   showThreeButtons();
 
@@ -282,6 +289,8 @@ let updateDatabaseTHEN_UI = () => {
       // alert('You are out of cards to learn./some may be waiting/. Add/Make new cards to learn.');
       if (window.confirm('You are out of cards to learn./some may be waiting/. Add/Make new cards to learn.')) {
         window.location.href = 'index.html';
+        updateDatabaseTHEN_UI();
+// **
       };
       // window.open(/index.html);
     }
