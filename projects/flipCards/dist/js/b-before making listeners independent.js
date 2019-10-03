@@ -11,9 +11,6 @@ const nextBt = document.querySelector('#b_next');
 const threeBt = document.querySelector('#threeButtons');
 let firstWordHTML = document.querySelector('#wordOne');
 let secondWordHTML = document.querySelector('#wordTwo');
-let clickHintCounter = 0;
-let hintLettersToShow = '';
-
 
 // levels - times
 let arrayTimes = [];
@@ -22,8 +19,8 @@ for (let i = 1; i < 10; i++) {
   arrayTimes.push(timeCounter);
   timeCounter = timeCounter * 5;
 }
-// console.log('array of times for levels:');
-// console.log(arrayTimes);
+console.log('array of times for levels:');
+console.log(arrayTimes);
 
 
 
@@ -33,7 +30,7 @@ for (let i = 1; i < 10; i++) {
 let updateAndCountDue = async data => {
   let now = new Date().getTime();
   dueCount = 0;
-  // console.log('L1-1-1: starting "updateAndCountDue" in MAIN-ASYNC');
+  console.log('L1-1-1: starting "updateAndCountDue" in MAIN-ASYNC');
   data.docs.forEach(doc => {
     let card = doc.data();
     if (card.dueTime < now) {
@@ -44,15 +41,15 @@ let updateAndCountDue = async data => {
     }
   });
   console.log(`dueCount = ${dueCount}.`);
-  // console.log('L1-1-1: finishing "updateAndCountDue" in MAIN-ASYNC');
+  console.log('L1-1-1: finishing "updateAndCountDue" in MAIN-ASYNC');
   return dueCount;
 };
 
 // get current card from DUE
 let getCardFromDue = async cards => {
-  // console.log('L1-1-2: starting "getCardFromDue" in MAIN-ASYNC');
+  console.log('L1-1-2: starting "getCardFromDue" in MAIN-ASYNC');
   let dataOrdered = await cards.where('due', '==', true).orderBy('lastSeen').get();
-  // console.log('error content');
+  console.log('error content');
   currentCard = await dataOrdered.docs[0].data();
   currentCardID = dataOrdered.docs[0].id;
   // console.log('Most current DUE card:');
@@ -68,7 +65,7 @@ let countToLearnCards = async (cards) => {
   // console.log('L1-1-3: STARTING counting "to learn" elements:');
   let dataToCount = await cards.where('mainStage', '==', 'to learn').get();
   toLearnCount = dataToCount.docs.length;
-  console.log('L1-1-3: ENDING to learn counted:', toLearnCount);
+  // console.log('L1-1-3: ENDING to learn counted:', toLearnCount);
   return toLearnCount;
 };
 
@@ -89,10 +86,10 @@ let getCardFromToLearn = async (cards) => {
 let updateDataReturnCard = async () => {
   let data = await cards.get();
   dueCount = await updateAndCountDue(data);
-  // console.log('L1-1 MAIN ASYNC: returned "dueCount"=', dueCount);
+  console.log('L1-1 MAIN ASYNC: returned "dueCount"=', dueCount);
   if (dueCount > 0) {
     currentCard = await getCardFromDue(cards);
-    // console.log('L1-1 MAIN ASYNC: returned "currentCard"=', currentCard);
+    console.log('L1-1 MAIN ASYNC: returned "currentCard"=', currentCard);
     // console.log('L1-1 MAIN ASYNC:  "currentCardID"=', currentCardID);
     return currentCard;
   }
@@ -142,12 +139,6 @@ let showThreeButtons = () => {
 
 
 
-let hintNotUsed = () => {
-  console.log('checking cheating');
-  console.log(clickHintCounter);
-  if (clickHintCounter > 0) { return false }
-  else { return true };
-}
 let updateCurrentCard = (e) => {
   let en = currentCard.enCheck;
   let lev = currentCard.level;
@@ -158,16 +149,11 @@ let updateCurrentCard = (e) => {
     lev = lev > 1 ? lev - 1 : 0;
   }
   if (e.target.parentNode.id === 'BtnUp') {
-
-    if (hintNotUsed()) {
-      if (en) {
-        lev++;
-        en = false;
-      } else {
-        en = true;
-      }
+    if (en) {
+      lev++;
+      en = false;
     } else {
-      alert('STOP CHEATING, I know you used a hint!;-)');
+      en = true;
     }
   }
 
@@ -196,7 +182,7 @@ let updateCardInFirebase = async () => {
     dueTime: currentCard.dueTime,
     mainStage: currentCard.mainStage
   });
-  // console.log(' card in FIREBASE updated');
+  console.log(' card in FIREBASE updated');
 }
 
 
@@ -213,61 +199,24 @@ let updateALL = async (e) => {
 
 
 
-// HINTS on p1:   show LETTER on click as 
-let ShowLetterOnClick = (e) => {
-  clickHintCounter++;
-  console.log('in function:');
-  console.log(clickHintCounter);
-  let hintWord = wordTwo;
-  // console.log('you just clicked on hint');
-  if (clickHintCounter <= wordTwo.length) {
-    hintLettersToShow += wordTwo[clickHintCounter - 1];
-    secondWordHTML.textContent = hintLettersToShow + '...';
-  }
-  if (clickHintCounter > wordTwo.length) {
-    secondWordHTML.textContent = hintLettersToShow;
-  }
-  // console.log('hintLettersToShow:', hintLettersToShow);
-}
 
 // PAGES
 let showPageOne = () => {
+  // console.log('1.2.1 F show page one Activated');
   assignWordsAndColours(currentCard);
   firstWordHTML.textContent = wordOne;
-  secondWordHTML.textContent = '...';
+  secondWordHTML.textContent = ' X ';
   nextBt.style.display = 'block';
   threeBt.style.display = 'none';
-  // activating letter hints
-  clickHintCounter = 0;
-  console.log('current clickhintCouner=', clickHintCounter);
-  hintLettersToShow = '';
-  console.log('1.2.1 F show page one Activated');
-
-  secondWordHTML.addEventListener('click', e =>
-    // {
-    ShowLetterOnClick()
-    // console.log('show letter on click activated');
-    // }
-  );
+  nextBt.addEventListener('click', e => { showPageTwo(); })
 
 }
 
 let showPageTwo = () => {
-  console.log('1.2.2 F show page two Activated.');
-  secondWordHTML.onclick = null;
-  secondWordHTML.removeEventListener('click', e =>
-    // {
-    ShowLetterOnClick()
-    // console.log('clickHint listener SHOUND be removed IN THE REMOVE f.');
-
-    // }
-  );
-  console.log('clickHint listener SHOUND be removed');
-  console.log('current clickhintCouner=', clickHintCounter);
-
+  // console.log('1.2.2 F show page two Activated.');
   secondWordHTML.textContent = wordTwo;
   showThreeButtons();
-
+  threeBt.addEventListener('click', ee => { updateALL(ee); })
 }
 
 
@@ -276,29 +225,26 @@ let showPageTwo = () => {
 
 let updateDatabaseTHEN_UI = () => {
   updateDataReturnCard().then((ans) => {
-    // console.log('L1 "updateDataReturnCard" function finished.');
-    console.log('Card got from database:', ans, typeof ans);
+    console.log('L1 "updateDataReturnCard" function finished.');
+    console.log('L1 returned:', ans, typeof ans);
     if (typeof ans === 'string') {
       console.log('string returned from main function');
       nextBt.style.display = 'none';
       threeBt.style.display = 'none';
       // alert('You are out of cards to learn./some may be waiting/. Add/Make new cards to learn.');
-      if (window.confirm('You are out of cards to learn./some may be waiting/. Add/Make new cards to learn.')) {
-        window.location.href = 'index.html';
-      };
-      // window.open(/index.html);
+      // window.open("https://www.geeksforgeeks.org")
     }
     if (typeof ans === 'object') {
       showPageOne();
     }
-    console.log('"updateDatabaseTHEN_UI" JUST FINISHING!!!!!!!!!!!!!!!!!!');
   });
 }
 
 
 //////////////////////////////// MAIN
-refresh.style.display = 'none';
+refresh.addEventListener('click', e => {
+  // console.log('clicked');
+  updateDatabaseTHEN_UI();
+});
 
-updateDatabaseTHEN_UI();
-nextBt.addEventListener('click', e => { showPageTwo(); });
-threeBt.addEventListener('click', ee => { updateALL(ee); })
+// updateDatabaseTHEN_UI();
