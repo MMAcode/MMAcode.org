@@ -214,10 +214,9 @@ let updateALL = async (e) => {
 
 
 // HINTS on p1:   show LETTER on click as 
-let ShowLetterOnClick = (e) => {
+let ShowLetterOnClick = () => {
   clickHintCounter++;
-  console.log('in function:');
-  console.log(clickHintCounter);
+  console.log('click counter in function:', clickHintCounter);
   let hintWord = wordTwo;
   // console.log('you just clicked on hint');
   if (clickHintCounter <= wordTwo.length) {
@@ -228,6 +227,12 @@ let ShowLetterOnClick = (e) => {
     secondWordHTML.textContent = hintLettersToShow;
   }
   // console.log('hintLettersToShow:', hintLettersToShow);
+}
+
+let ResetLettersOnClick = () => {
+  clickHintCounter = 0;
+  hintLettersToShow = '';
+
 }
 
 // PAGES
@@ -241,30 +246,21 @@ let showPageOne = () => {
   clickHintCounter = 0;
   console.log('current clickhintCouner=', clickHintCounter);
   hintLettersToShow = '';
-  console.log('1.2.1 F show page one Activated');
+  console.log('page one Activated');
 
-  secondWordHTML.addEventListener('click', e =>
-    // {
-    ShowLetterOnClick()
-    // console.log('show letter on click activated');
-    // }
-  );
+
+  // secondWordHTML.onclick = ShowLetterOnClick();
+  secondWordHTML.addEventListener('click', ShowLetterOnClick);
 
 }
 
 let showPageTwo = () => {
-  console.log('1.2.2 F show page two Activated.');
-  secondWordHTML.onclick = null;
-  secondWordHTML.removeEventListener('click', e =>
-    // {
-    ShowLetterOnClick()
-    // console.log('clickHint listener SHOUND be removed IN THE REMOVE f.');
-
-    // }
-  );
+  console.log('Page two Activated.');
+   // secondWordHTML.onclick = null;
+  // secondWordHTML.removeEventListener();
+  // secondWordHTML.removeEventListener('click', e => ResetLettersOnClick());
   console.log('clickHint listener SHOUND be removed');
   console.log('current clickhintCouner=', clickHintCounter);
-
   secondWordHTML.textContent = wordTwo;
   showThreeButtons();
 
@@ -277,6 +273,7 @@ let showPageTwo = () => {
 let updateDatabaseTHEN_UI = () => {
   updateDataReturnCard().then((ans) => {
     // console.log('L1 "updateDataReturnCard" function finished.');
+    ResetLettersOnClick();
     console.log('Card got from database:', ans, typeof ans);
     if (typeof ans === 'string') {
       console.log('string returned from main function');
