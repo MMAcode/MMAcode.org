@@ -1,7 +1,7 @@
 let dueCount = 0;
 let toLearnCount = 0;
 // const cards = db.collection('FlipCards');
-const cards = db.collection('FlipCardsTrials');
+const cards = db.collection('FlipCards');
 
 const currentCardS = null;
 let currentCard = {};
@@ -14,6 +14,7 @@ const threeBt = document.querySelector('#threeButtons');
 let firstWordHTML = document.querySelector('#wordOne');
 let secondWordHTML = document.querySelector('#wordTwo');
 let levelIndicator = document.querySelector('#levelIndicator');
+let showAllCardsHTML = document.querySelector('showAllCards');
 let clickHintCounter = 0;
 let hintLettersToShow = '';
 
@@ -28,6 +29,20 @@ for (let i = 1; i < 10; i++) {
 }
 // console.log('array of times for levels:');
 // console.log(arrayTimes);
+
+//////////////////////////////////EXTRA
+// show all cards
+// let showAllCards = async () => {
+//   console.log('in show All cards F');
+//   let dataAll = await cards.get();
+//   let cardsInfo = dataOrdered.docs.forEach(doc => {
+//     console.log(doc);
+//   })
+// }
+
+
+
+
 
 
 
@@ -310,8 +325,13 @@ let updateDatabaseTHEN_UI = () => {
 
 
 //////////////////////////////// MAIN
-refresh.style.display = 'none';
+// console.log('getting to listening to al cards click');
+
+// refresh.style.display = 'none';
 
 updateDatabaseTHEN_UI();
 nextBt.addEventListener('click', e => { showPageTwo(); });
 threeBt.addEventListener('click', ee => { updateALL(ee); })
+
+// console.log('getting to listening to al cards click');
+// showAllCardsHTML.addEventListener('click', e => showALLCards);

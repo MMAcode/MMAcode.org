@@ -24,7 +24,9 @@
     </div>
     <br>
     <button><a href="practice.html">learn/practice</a></button>
-    
+    <div id="showAllCards">
+      <p>Show all cards</p>
+    </div>
   </div>
 
 
@@ -87,7 +89,7 @@ form.addEventListener('submit', e => {
     lastSeen: 0
   };
 
-  db.collection('FlipCardsTrials').add(newCard).then(() => {
+  db.collection('FlipCards').add(newCard).then(() => {
     console.log('Flip-card added');
   }).catch(err => {
     console.log(err);
