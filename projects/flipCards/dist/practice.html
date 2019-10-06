@@ -10,7 +10,7 @@
 
 <body>
   <div id="container">
-    <h1>Training/Practice</h1>
+    <h1>Vocabulary Practice</h1>
     <a href="index.html">Main Menu</a>
     <br> <br>
     <div id="training_wrapper">
@@ -23,24 +23,30 @@
         <p id="wordOne">-</p>
         <p id="wordTwo">-</p>
       </div>
-      <div id="levelIndicator">
+      <div id="levelIndicator"></div>
 
-      </div>
+      <p>audio icon here</p>
+      <audio id="audio" src=""></audio>
+
       <div id="test"> refresh</div>
-      <div id="b_next">Next</div>
-      <div id="threeButtons">
-        <div id="BtnDown">
-          <p>Down</p>
-        </div>
-        <div id="BtnStay">
-          <p>Stay</p>
-        </div>
-        <div id="BtnUp">
-          <p>Up</p>
+      <button id="deleteCard">Delete Card</button>
+      <br>
+
+      <div id="bottonWrapper">
+        <div id="b_next">SHOW</div>
+        <div id="threeButtons">
+          <div id="BtnDown">
+            Down
+          </div>
+          <div id="BtnStay">
+            Stay
+          </div>
+          <div id="BtnUp">
+            Up
+          </div>
         </div>
       </div>
-      <br>
-      <div id="deleteCard">Delete Card</div>
+
     </div>
 
   </div>
@@ -87,6 +93,7 @@
 
 
   <script src="js/bundle.js"></script>
+  <script src="js/voice.js"></script>
 </body>
 
 </html>

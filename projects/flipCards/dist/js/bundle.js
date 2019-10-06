@@ -19,17 +19,59 @@ let deleteCardHTML = document.querySelector('#deleteCard');
 let clickHintCounter = 0;
 let hintLettersToShow = '';
 
+/////////// F LEVELS - TIMES
+// to bigger time units  -return array
+let toBiggerUnits = (unitsBefore, chunks) => {
+  let biggerUnits = Math.floor(unitsBefore / chunks);
+  let unitsAfter = unitsBefore % chunks;
+  let array = [biggerUnits, unitsAfter];
+  return array;
+}
+// convert timeStamp to message
+let timeStampToMessage = (timeStamp) => {
+  // let stringTemplate = ' Due again in ';
+  let string = '';
+  let sec = Math.round(timeStamp / 1000);
+  let minBefore = Math.floor(sec / 60);
+  sec = sec % 60;
+  let min = toBiggerUnits(minBefore, 60)[1];
+  let hoursBefore = toBiggerUnits(minBefore, 60)[0];
 
-// levels - times
+  let hours = toBiggerUnits(hoursBefore, 24)[1];
+  let daysBefore = toBiggerUnits(hoursBefore, 24)[0];
+
+  let days = toBiggerUnits(daysBefore, 365)[1];
+  let yearsBefore = toBiggerUnits(daysBefore, 24)[0];
+  if (days > 0) { string += `${days} day`; if (days > 1) { string += 's' }; }
+  else if (hours > 0) { string += `${hours} hour`; if (hours > 1) { string += 's' }; }
+  else if (min > 0) { string += `${min} minute`; if (min > 1) { string += 's' }; }
+  else if (sec > 0) { string += `${sec} second`; if (sec > 1) { string += 's' }; }
+  // string = stringTemplate + string;
+  return string;
+}
+
+
+
+//////// levels - times - MAIN
 let arrayTimes = [];
-let timeCounter = 1000;
-for (let i = 1; i < 10; i++) {
+let timeCounter = 10000;
+let oneArray = [];
+let levelLearned = 10; //if level 10 --> label as learned
+for (let i = 1; i < levelLearned; i++) {
   arrayTimes.push(timeCounter);
   // timeCounter = timeCounter;
   timeCounter = timeCounter * 5;
 }
-// console.log('array of times for levels:');
-// console.log(arrayTimes);
+console.log('array of times for levels:');
+console.log(arrayTimes);
+arrayTimes.forEach((time) => {
+  // console.log(time);
+  // timeStampToMessage(time);
+  oneArray += [`${timeStampToMessage(time)}; `]; 
+});
+console.log(oneArray);
+
+
 
 //////////////////////////////////EXTRA
 // show all cards
@@ -91,6 +133,14 @@ let getCardFromDue = async cards => {
   // console.log('error content');
   currentCard = await dataOrdered.docs[0].data();
   currentCardID = dataOrdered.docs[0].id;
+
+  let dueCardsOrdered = [];
+  dataOrdered.docs.forEach((doc) => {
+    dueCardsOrdered.push(doc.data());
+  });
+
+  console.log(dueCardsOrdered);
+
   // console.log('Most current DUE card:');
   // console.log(currentCard);
   // console.log(currentCardID);
@@ -176,6 +226,25 @@ let showThreeButtons = () => {
   threeBt.style.display = 'flex';
 }
 
+// **
+let jumpLevels = (level) => {
+  console.log('');
+  console.log('starting F timeJump');
+  console.log(`current card level: ${level}, enCheck: ${currentCard.enCheck}.`);
+  let now = new Date().getTime();
+  let timeJump = now - currentCard.lastSeen;
+  console.log(`card last time seen ${timeStampToMessage(timeJump)}`);
+  console.log('since last time seen: ', timeJump);
+  console.log('next tie should be seen in:', arrayTimes[level]);
+
+  while (timeJump > arrayTimes[level]) {
+    level++;
+    if (level === levelLearned - 1) { break; }; //you can jump max to level Learned-1 (9)
+  }
+  console.log('Ending F timeJump');
+  console.log(`current card level: ${level}, enCheck: ${currentCard.enCheck}.`);
+  return level;
+}
 
 
 let hintNotUsed = () => {
@@ -193,22 +262,27 @@ let updateCurrentCard = (e) => {
   if (e.target.parentNode.id === 'BtnStay') {
     lev = lev > 1 ? lev - 1 : 0;
   }
-  if (e.target.parentNode.id === 'BtnUp') {
 
+  // correct Ans
+  if (e.target.parentNode.id === 'BtnUp') {
     if (hintNotUsed()) {
-      console.log('updating level on variable inside programme');
-      console.log('level originaly=', lev, 'in en originaly', en, 'in currentCard.enCheck originaly', currentCard.enCheck);
+      // console.log('updating level on variable inside programme');
+      console.log('original level:', lev, 'original enCheck (on variable):', en, 'on current card(to double check):', currentCard.enCheck);
+
+
       if (en === true) {
         lev++;
-        console.log('level en is originaly true - now=', lev);
+        // console.log('level en is originaly true - now=', lev);
         en = false;
       } else {
-        console.log('level if en is false - now=', lev);
+        // console.log('level if en is false - now=', lev);
 
         en = true;
       }
-      console.log('level now=', lev, 'en now=', en);
 
+      if (lev < levelLearned - 1) lev = jumpLevels(lev); // level has to be 2+smaller(8 or smaller) to go into jump consideration
+
+      console.log('updated level(in variable):', lev, 'updated enCheck:', en);
     } else {
       alert('STOP CHEATING, I know you used a hint!;-)');
     }
@@ -220,9 +294,9 @@ let updateCurrentCard = (e) => {
   let now = new Date().getTime();
   currentCard.lastSeen = now;
   currentCard.due = false;
-  currentCard.dueTime = now + arrayTimes[lev];
 
-  if (lev > 8) {
+  if (lev < levelLearned) { currentCard.dueTime = now + arrayTimes[lev]; }
+  else if (lev = levelLearned) {
     currentCard.mainStage = 'learned';
     // console.log('card labeled learned');
     // console.log(currentCard);
@@ -231,6 +305,8 @@ let updateCurrentCard = (e) => {
 }
 
 let updateCardInFirebase = async () => {
+  console.log('card to be updated like this:');
+  console.log(currentCard);
   await cards.doc(currentCardID).update({
     enCheck: currentCard.enCheck,
     level: currentCard.level,
@@ -277,14 +353,20 @@ let ResetLettersOnClick = () => {
   hintLettersToShow = '';
 }
 let showLevel = () => {
-  // **
   if (currentCard.enCheck === false) { levelIndicator.innerHTML = `L. ${currentCard.level}a` }
   else { levelIndicator.innerHTML = `L. ${currentCard.level}b` }
-  console.log(currentCard.enCheck);
+  // console.log(currentCard.enCheck);
 }
+
+
+// not activated
+
+
+
 
 // PAGES
 let showPageOne = () => {
+  // console.log('page one Activated');
   assignWordsAndColours(currentCard);
   firstWordHTML.textContent = wordOne;
   secondWordHTML.textContent = '...';
@@ -292,14 +374,16 @@ let showPageOne = () => {
   threeBt.style.display = 'none';
   // activating letter hints
   clickHintCounter = 0;
-  // console.log('current clickhintCouner=', clickHintCounter);
   hintLettersToShow = '';
-  // console.log('page one Activated');
-
-
-  // secondWordHTML.onclick = ShowLetterOnClick();
   secondWordHTML.addEventListener('click', ShowLetterOnClick);
   showLevel();
+
+  // if (currentCard.enCheck) { readCzechWord(); };
+
+
+
+  // **
+
 }
 
 let showPageTwo = () => {
@@ -324,7 +408,7 @@ let updateDatabaseTHEN_UI = () => {
     ResetLettersOnClick();
     console.log('Card got from database:', ans, typeof ans);
     if (typeof ans === 'string') {
-      console.log('string returned from main function');
+      // console.log('string returned from main function');
       nextBt.style.display = 'none';
       threeBt.style.display = 'none';
       // alert('You are out of cards to learn./some may be waiting/. Add/Make new cards to learn.');
@@ -336,7 +420,7 @@ let updateDatabaseTHEN_UI = () => {
     if (typeof ans === 'object') {
       showPageOne();
     }
-    console.log('"updateDatabaseTHEN_UI" JUST FINISHING!!!!!!!!!!!!!!!!!!');
+    // console.log('"updateDatabaseTHEN_UI" JUST FINISHING!!!!!!!!!!!!!!!!!!');
   });
 }
 
@@ -353,5 +437,5 @@ nextBt.addEventListener('click', e => { showPageTwo(); });
 threeBt.addEventListener('click', ee => { updateALL(ee); })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
-console.log('getting to listening to al cards click3');
+// console.log('getting to listening to al cards click3');
 // showAllCardsHTML.addEventListener('click', e => showALLCards);

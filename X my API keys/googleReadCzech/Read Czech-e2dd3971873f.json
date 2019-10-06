@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "read-czech",
+  "private_key_id": "e2dd3971873f3bdd7066ecc1a750f24cf6636731",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQCV79BD5BjSze7e\nTrcAyjEtiR2BnvM1M9ltJvRNBD6Rafuu9VMmyJWVI92JCPGSEIMWwZDVpVGshx5A\nqx9tEhZdIemn3zwm4YXLy5UUHkdkfhlR6NsAbSXy6bqplowUUUg4BxSQWYXOA4xE\nLRRixHtWWSsHGaHb/toEjFoaaCqhGYfPLEq8HJkYBs6atC6O1nc6KxbYfulPLIB5\nAuHBvmpUBK2vMrURzG+mjDUQvhWy5p8LAqHMGFkH3s4AVdQf4LfAaDUvuH+GCaZ6\n/FDyY0LG0ylDBrbG3JmwUWpozfEOBqtOochNmoBiVj1oPD9AaqdRpNhBW7fzEQQe\niFdJp1tvAgMBAAECgf8qky9PHGG6NugYqGDMapSMTlfIdIBFquXwyg8yFzqWkjwL\nj2NyMc86UhIIhFtycYE8gnKA0L9Qp8oehVl20tsohPQ0vaXkcfQQktcisCoF2pc/\niVHy6jzMqQ+QIUhLrgxTwYsBGGGXsCJcYfvRdy9GtjOaUIbLsDYqrSkwkMroX0RO\nH5oZSjQBHzSrz1GvzoNBNqnN105dD2fk3+NopUUpE6vZs7SmvZv9fcYWAES860oM\n2IQmWdR770Lg9dTt1X0vkufxdJEHEt+nmi8n02vOOy5NaiuPpZRBuqG57RDiBoST\nnoiuHhB5go1GFGT9xM9nmkDNVZyMEWd3SKT2TpECgYEAx12S/6LQOd9VVqHd3Rcz\nG2RDodrme02VgGlIrSqfYaMcKn8G3Lf2Cd5ysdA0/0fBGkDeebafvUqN5TBN1poL\ntTDcaMPEyeaM27BqbX7JNizNyqFX4sc9+0RLpvf4uOrO/9CcIuRVXrrHybGmA45d\n6J4VgK//6SbRLE/E3zvJQ38CgYEAwIej8DR2ZxUC9mZDPwGPMcqyZUQ6x40yfM8i\nPjgiHF9eH3qKo8uleUufRWmsUo6hFSGlPFVkCzDoZ0rBnnT/3hHXp3Ivot6xQRMY\nhqvhybDG7F5HvwvZQHL4GbGIcY78XgbiQahX2xUVgpeqF01irKrgtg/MlsaU94G0\n1twmIBECgYBkAbmaiKahUTmywnHT1S5q4CnZCECzu6ByEN5HF2lqBfM8Egp0L8e4\n/aBVOBdNs0XXkJDJR2XsA3kYbdmt/ApBcugtmX6etQsVrPJGSOJQTbtRmQvIE6Aw\n6fp1IFDhGdCKnK+mBRoZ8eIEeBvKDuFmrd4ldqQN5c3px33/aTM1qwKBgGeAhAF+\nMqj4Ar+z+jLFA9YgwgbuxyrAHYQ7Vo1cX/ogytjhZ+bmc+7hWJ5YUOuRAcf6bnog\n7ceWY1okNjKZc3RO40CBglpsnZ3+RhEgFiH3hvlLNgbet8yOAhLN/iwOUl26Fah2\nd8SvcQDjx+z/DS0GMAewNqxX1X25nR5k+5oBAoGBAJKFsJZTMHtJQ03SQ+vvr9WL\nkVN+Vlavk6ukvn42z7k91zIoyg6X6GzvEkOPcpdjY7dhAZ1tY+rfLtDb1meyGpnM\nRlFMxvpTNbpOJvOUJ3zOUkkO4p0z+kQopBeBOwxp8WCVzRTqePvmt92rMlwjghiI\n5jocJB1raSUGnKAFvHnX\n-----END PRIVATE KEY-----\n",
+  "client_email": "read-czech-word-outloud@read-czech.iam.gserviceaccount.com",
+  "client_id": "108388064578526773959",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/read-czech-word-outloud%40read-czech.iam.gserviceaccount.com"
+}
