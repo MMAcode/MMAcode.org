@@ -19,6 +19,7 @@ let deleteCardHTML = document.querySelector('#deleteCard');
 let clickHintCounter = 0;
 let hintLettersToShow = '';
 
+
 /////////// F LEVELS - TIMES
 // to bigger time units  -return array
 let toBiggerUnits = (unitsBefore, chunks) => {
@@ -67,7 +68,7 @@ console.log(arrayTimes);
 arrayTimes.forEach((time) => {
   // console.log(time);
   // timeStampToMessage(time);
-  oneArray += [`${timeStampToMessage(time)}; `]; 
+  oneArray += [`${timeStampToMessage(time)}; `];
 });
 console.log(oneArray);
 
