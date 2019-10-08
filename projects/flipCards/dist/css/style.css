@@ -57,6 +57,8 @@ label {
   min-height: 100vh;
   margin: 0 auto;
   background-color: #b8b8ee; }
+  #container h1 {
+    padding: 1rem 1rem; }
   #container #newWord_container {
     text-align-last: left;
     margin: 1rem 2rem;
@@ -64,7 +66,8 @@ label {
     padding: 5vmin; }
 
 #training_wrapper {
-  position: relative; }
+  position: relative;
+  height: 100%; }
   #training_wrapper #language_labels span:nth-child(1) {
     color: red; }
   #training_wrapper #language_labels span:nth-child(3) {
@@ -95,7 +98,9 @@ label {
       cursor: pointer; }
   #training_wrapper #threeButtons {
     display: none;
-    padding: 0; }
+    padding: 0;
+    align-items: center;
+    justify-content: center; }
     #training_wrapper #threeButtons * {
       flex: 1;
       height: 100%;
@@ -109,6 +114,6 @@ label {
   #training_wrapper #deleteCard {
     display: flex; }
   #training_wrapper #bottonWrapper {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%; }

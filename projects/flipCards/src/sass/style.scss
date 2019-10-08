@@ -89,6 +89,10 @@ label {
   margin: 0 auto;
   background-color: $cBg;
 
+  h1 {
+    padding: 1rem 1rem;
+  }
+
   #newWord_container {
     text-align-last: left;
     margin: 1rem 2rem;
@@ -100,7 +104,9 @@ label {
 
 #training_wrapper {
   position: relative;
-  // min-height: 100%;
+  height: 100%;
+
+
 
   #language_labels {
     span {
@@ -156,9 +162,13 @@ label {
   #threeButtons {
     display: none;
     padding: 0;
+    // height: 100%;
+    align-items: center;
+    justify-content: center;
 
     * {
       flex: 1;
+      // flex-grow:1;
       height: 100%;
       padding: 2rem 1rem;
     }
@@ -180,14 +190,18 @@ label {
     display: flex;
     // text-align: left;
     // justify-content: flex-start;
+  }
 
+  #trainingBody {
+    // height: 80vh;
   }
 
   #bottonWrapper {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
-
+    // height: 20vh;
+    // background: red;
   }
 
 }

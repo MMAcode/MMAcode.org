@@ -14,7 +14,7 @@ const threeBt = document.querySelector('#threeButtons');
 let firstWordHTML = document.querySelector('#wordOne');
 let secondWordHTML = document.querySelector('#wordTwo');
 let levelIndicator = document.querySelector('#levelIndicator');
-// let showAllCardsHTML = document.querySelector('#showAllCards');
+let showAllCardsHTML = document.querySelector('#showAllCards');
 let deleteCardHTML = document.querySelector('#deleteCard');
 let clickHintCounter = 0;
 let hintLettersToShow = '';
@@ -22,9 +22,6 @@ let hintLettersToShow = '';
 
 /////////// F LEVELS - TIMES
 // to bigger time units  -return array
-let now = new Date().getTime();
-console.log('current time: ', now);
-
 let toBiggerUnits = (unitsBefore, chunks) => {
   let biggerUnits = Math.floor(unitsBefore / chunks);
   let unitsAfter = unitsBefore % chunks;
@@ -103,72 +100,102 @@ let deleteCard = async () => {
     console.log('deleted');
     updateDatabaseTHEN_UI();
   });
+
+
 }
+
+
+
 
 
 // F-update and Count Due
-let updateDue = async data => {
+let updateAndCountDue = async data => {
   let now = new Date().getTime();
   dueCount = 0;
-  // console.log('L1-1-1: starting "updateDue" in MAIN-ASYNC');
-  let dueToUpdate = await cards.where('mainStage', '==', 'learning').where('due', '==', false).where('dueTime', '<', now);
-  let ddData = await dueToUpdate.get();
-  // console.log('cards which needs to have DUE changed to TRUE:');
-  ddData.docs.forEach((doc) => {
-    // console.log(doc.data());
-    cards.doc(doc.id).update({ due: true });
-  })
+  // console.log('L1-1-1: starting "updateAndCountDue" in MAIN-ASYNC');
+  data.docs.forEach(doc => {
+    let card = doc.data();
+    if (card.dueTime < now) {
+      cards.doc(doc.id).update({ due: true });
+      dueCount++;
+    } else {
+      cards.doc(doc.id).update({ due: false });
+    }
+  });
+  console.log(`dueCount = ${dueCount}.`);
+  // console.log('L1-1-1: finishing "updateAndCountDue" in MAIN-ASYNC');
+  return dueCount;
 };
 
-
 // get current card from DUE
-let getCardFromDue = async () => {
+let getCardFromDue = async cards => {
+  // console.log('L1-1-2: starting "getCardFromDue" in MAIN-ASYNC');
+  let dataOrdered = await cards.where('due', '==', true).orderBy('lastSeen').get();
+  // console.log('error content');
+  currentCard = await dataOrdered.docs[0].data();
+  currentCardID = dataOrdered.docs[0].id;
 
-  let dataOrdered = await cards.where('mainStage', '==', 'learning').where('due', '==', true).orderBy('lastSeen', "desc").limit(1).get();
-  // console.log('dataOrdered:', dataOrdered.docs.length);
-  if (dataOrdered.docs.length == 0) { console.log('no DUE card right NOW.'); dueCount = 0; }
-  else {
-    currentCard = dataOrdered.docs[0].data();
-    currentCardID = dataOrdered.docs[0].id;
-    dueCount = 1;
-    console.log('because DUE card was found, "current card" was updated.', currentCard, "card's ID: ", currentCardID);
-  }
+  let dueCardsOrdered = [];
+  dataOrdered.docs.forEach((doc) => {
+    dueCardsOrdered.push(doc.data());
+  });
+
+  console.log(dueCardsOrdered);
+
+  // console.log('Most current DUE card:');
+  // console.log(currentCard);
+  // console.log(currentCardID);
+  // console.log('L1-1-2: finishing "getCardFromDue" in MAIN-ASYNC');
   return currentCard;
 }
 
-
+// count "to learn" cards
+let countToLearnCards = async (cards) => {
+  toLearnCount = 0;
+  // console.log('L1-1-3: STARTING counting "to learn" elements:');
+  let dataToCount = await cards.where('mainStage', '==', 'to learn').get();
+  toLearnCount = dataToCount.docs.length;
+  console.log('L1-1-3: ENDING to learn counted:', toLearnCount);
+  return toLearnCount;
+};
 
 // get "to learn" card
 let getCardFromToLearn = async (cards) => {
   // console.log('L1-1-4 STARTING getting ToLEARN card.');
-  let checkIfACardFromToLearn = await cards.where('mainStage', '==', 'to learn').limit(1).get();
-  if (checkIfACardFromToLearn.docs.length == 0) { console.log('no TO LEARN card right NOW.'); toLearnCount = 0; }
-  else {
-    let now = new Date().getTime();
-    currentCard = checkIfACardFromToLearn.docs[0].data();
-    currentCardID = checkIfACardFromToLearn.docs[0].id;
-    currentCard.mainStage = 'learning';
-    currentCard.lastSeen = now;
-    toLearnCount = 1;
-    console.log('because TO LEARN card was found, "current card" was updated.', currentCard, "card's ID: ", currentCardID);
-  }
+  let dataOfToLearnCards = await cards.where('mainStage', '==', 'to learn').get();
+  currentCard = dataOfToLearnCards.docs[0].data();
+  currentCardID = dataOfToLearnCards.docs[0].id;
+  // console.log('L1-1-4 ENDING - Card from "to learn" cards:');
+  // console.log(currentCard);
+  // console.log(currentCardID);
+  currentCard.mainStage = 'learning';
+  return currentCard;
 }
 
 /////////////////////////////// F-Main async
 let updateDataReturnCard = async () => {
-  // console.log('STARTING GET CARD main f.');
-  console.log('GetDueCard f. finished, current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
-  currentCardOrNull = await updateDue();
-
-  let testIfACard = await getCardFromDue();
-  if (dueCount === 0) {
-    console.log('we will start GetToLEarnCard f. now...');
-    let xXx = await getCardFromToLearn(cards);
-    if (toLearnCount > 0) {
-      return currentCard;
-    } else { return 'no card to use.'; }
+  let data = await cards.get();
+  dueCount = await updateAndCountDue(data);
+  // console.log('L1-1 MAIN ASYNC: returned "dueCount"=', dueCount);
+  if (dueCount > 0) {
+    currentCard = await getCardFromDue(cards);
+    // console.log('L1-1 MAIN ASYNC: returned "currentCard"=', currentCard);
+    // console.log('L1-1 MAIN ASYNC:  "currentCardID"=', currentCardID);
+    return currentCard;
   }
-  else { return currentCard; }
+  else {
+    let toLearnCount = await countToLearnCards(cards);
+    console.log('L1-1 toLEarnCount RETURNED value:', toLearnCount);
+    if (toLearnCount > 0) {
+      currentCard = await getCardFromToLearn(cards);
+      // console.log('L1-1 toLEARN card returned');
+      // console.log(currentCard);
+      // console.log(currentCardID);
+      return currentCard;
+    } else {
+      return 'no card to use.';
+    }
+  }
 }
 
 
@@ -380,9 +407,7 @@ let showPageTwo = () => {
 
 let updateDatabaseTHEN_UI = () => {
   updateDataReturnCard().then((ans) => {
-    console.log('FINISHING GET CARD main f.');
-    console.log('current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
-    console.log('L1 "updateDataReturnCard" function finished.');
+    // console.log('L1 "updateDataReturnCard" function finished.');
     ResetLettersOnClick();
     console.log('Card got from database:', ans, typeof ans);
     if (typeof ans === 'string') {
