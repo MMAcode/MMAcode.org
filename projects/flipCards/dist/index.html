@@ -30,9 +30,9 @@
     </div> -->
     <br>
     <br>
-    <p>a</p>
+    <p>xx a</p>
     <div id="userStatus"></div>
-    <button id="signIn/OutButton"> <a href="signIn.html">Sign-in</a></button>
+    <button id="signInOutButton"> <a href="signIn.html">Sign-in</a></button>
   </div>
 
 
@@ -117,13 +117,13 @@
 
     // user button
     let status = document.querySelector('#userStatus');
-    let = signButton = document.querySelector('#signIn/OutButton');
+    let = signButton = document.querySelector('#signInOutButton');
 
     let changeButtonToSignOut = () => {
       signButton.innerHTML = '<span>Log out.</span>';
       signButton.addEventListener('click', () => {
         auth.signOut();
-        status.innerHTML = `<p>User logged out.</p>`;
+        status.innerHTML = `<p>xx User logged out.</p>`;
       })
     }
 
@@ -139,7 +139,7 @@
         let userCollection = db.collection(user.uid);
       } else {
         console.log('no-one is logged in');
-        status.innerHTML = '<p>No User logged in.</p>';
+        status.innerHTML = '<p>xx No User logged in.</p>';
       }
     });
   </script>
