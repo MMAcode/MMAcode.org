@@ -36,7 +36,7 @@
   <script type="text/javascript">
     // FirebaseUI config.
     var uiConfig = {
-      signInSuccessUrl: '<index.html>',
+      signInSuccessUrl: 'index.html',
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -45,7 +45,8 @@
         // firebase.auth.GithubAuthProvider.PROVIDER_ID,
         {
           provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          requireDisplayName: false
+          requireDisplayName: false,
+          signInMethod: 'firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD'
         }
         // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
         // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
