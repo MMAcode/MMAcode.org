@@ -30,6 +30,7 @@
     </div> -->
     <br>
     <br>
+    <p>ahoj</p>
     <div id="userStatus"></div>
     <button> <a href="signIn.html">Sign-in</a></button>
   </div>
@@ -115,8 +116,10 @@
     let status = document.querySelector('#userStatus');
     auth.onAuthStateChanged(user => {
       if (user) {
-        console.log('you are logged in');
-        status.innerHTML = '<p>you are logged in</p>';
+        console.log('you are logged in as...');
+        console.log(user);
+        console.log(user.email);
+        status.innerHTML = '<p>you are logged in as...</p>';
       } else {
         console.log('no-one is logged in');
         status.innerHTML = '<p>No User logged in.</p>';
