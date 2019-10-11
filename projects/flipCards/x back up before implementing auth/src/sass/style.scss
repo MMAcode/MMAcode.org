@@ -1,0 +1,207 @@
+// ** variables
+$cBg:rgb(184, 184, 238);
+$cBg_NewCard:rgb(154, 154, 247);
+$defaultFontSize:20px;
+
+/**
+*
+*
+*
+*
+*
+*
+*
+ */
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: $defaultFontSize;
+  line-height: $defaultFontSize * 1, 5;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  // margin-bottom: .55rem;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+}
+
+
+p {}
+
+a {
+  text-decoration: none;
+}
+
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  padding: 1rem;
+  font-size: $defaultFontSize;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+label,
+input {
+  display: block;
+  font-size: $defaultFontSize !important;
+  padding-bottom: 0.3rem;
+
+
+}
+
+label {
+  padding-top: 1rem;
+}
+
+
+
+
+// **Main
+#container {
+  max-width: 500px;
+  text-align: center;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: $cBg;
+
+  h1 {
+    padding: 1rem 1rem;
+  }
+
+  #newWord_container {
+    text-align-last: left;
+    margin: 1rem 2rem;
+    background-color: $cBg_NewCard;
+    padding: 5vmin;
+  }
+}
+
+
+#training_wrapper {
+  position: relative;
+  height: 100%;
+
+
+
+  #language_labels {
+    span {
+      &:nth-child(1) {
+        color: red;
+      }
+
+      &:nth-child(3) {
+        color: blue;
+      }
+    }
+  }
+
+  #words {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+
+    * {
+      padding: 1rem 3rem;
+      font-size: 4rem;
+      background-color: white;
+      font-weight: 700;
+      margin-bottom: 1px;
+
+      border-radius: 20px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      -ms-border-radius: 20px;
+      -o-border-radius: 20px;
+    }
+  }
+
+  #b_next,
+  #threeButtons {
+    // display: block;
+    width: 100%;
+    // margin-top: 2rem;
+    background-color: rgb(96, 96, 221);
+    padding: 2rem 1rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  // #b_next {
+  // display: none;
+  // }
+
+  #threeButtons {
+    display: none;
+    padding: 0;
+    // height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    * {
+      flex: 1;
+      // flex-grow:1;
+      height: 100%;
+      padding: 2rem 1rem;
+    }
+
+    #BtnDown {
+      background-color: red;
+    }
+
+    #BtnStay {
+      background-color: rgb(255, 230, 0);
+    }
+
+    #BtnUp {
+      background-color: rgb(4, 228, 34);
+    }
+  }
+
+  #deleteCard {
+    display: flex;
+    // text-align: left;
+    // justify-content: flex-start;
+  }
+
+  #trainingBody {
+    // height: 80vh;
+  }
+
+  #bottonWrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    // height: 20vh;
+    // background: red;
+  }
+
+}

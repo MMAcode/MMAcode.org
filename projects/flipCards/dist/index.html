@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/style.css">
-  <title></title>
+  <title>Vocabulary Practice by MMAcode</title>
+
 </head>
 
 <body>
@@ -27,6 +28,9 @@
     <!-- <div id="showAllCards">
       Show all cards
     </div> -->
+    <br>
+    <br>
+    <button> <a href="signIn.html">Sign-in</a></button>
   </div>
 
 
@@ -41,15 +45,12 @@
 
 
 
-
-
-
+  <!-- firebase package which was originally on the botton -->
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
-
-  <!-- TODO : Add SDKs for Firebase products that you want to use
-       https://firebase.google.com/docs/web/setup#config-web-app -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js"></script> -->
 
   <script>
     // Your web app's Firebase configuration
@@ -58,47 +59,52 @@
       authDomain: "ninja2-634e4.firebaseapp.com",
       databaseURL: "https://ninja2-634e4.firebaseio.com",
       projectId: "ninja2-634e4",
-      storageBucket: "ninja2-634e4.appspot.com",
-      messagingSenderId: "900566306511",
       appId: "1:900566306511:web:044e5cb5c69760492db1ba"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    // firebase.analytics();
     const db = firebase.firestore();
+    const auth = firebase.auth();
   </script>
 
 
-<script>
-// get inputs from the form
-form = document.querySelector('form');
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  let enInput = form.enInput.value;
-  let czInput = form.czInput.value;
 
-  // add new object into firebase
-  const newCard = {
-    enWord: enInput,
-    czWord: czInput,
-    mainStage: 'to learn',
-    enCheck: false,
-    czCheck: false,
-    level: 0,
-    dueTime: 8888888888888,
-    due: false,
-    lastSeen: 0
-  };
 
-  db.collection('FlipCards').add(newCard).then(() => {
-    console.log('Flip-card added');
-  }).catch(err => {
-    console.log(err);
-    console.log('I could NOT add object into the database.');
-  });
-  // reset form
-  form.reset();
-})
-</script>
+
+
+
+  <script>
+    // get inputs from the form
+    form = document.querySelector('form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      let enInput = form.enInput.value;
+      let czInput = form.czInput.value;
+
+      // add new object into firebase
+      const newCard = {
+        enWord: enInput,
+        czWord: czInput,
+        mainStage: 'to learn',
+        enCheck: false,
+        czCheck: false,
+        level: 0,
+        dueTime: 8888888888888,
+        due: false,
+        lastSeen: 0
+      };
+
+      db.collection('FlipCards').add(newCard).then(() => {
+        console.log('Flip-card added');
+      }).catch(err => {
+        console.log(err);
+        console.log('I could NOT add object into the database.');
+      });
+      // reset form
+      form.reset();
+    })
+  </script>
 
 
   <!-- <script src="js/bundle.js"></script> -->

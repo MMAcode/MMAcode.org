@@ -1,0 +1,119 @@
+/**
+*
+*
+*
+*
+*
+*
+*
+ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  font-size: 20px;
+  line-height: 20px, 5; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: white; }
+
+a {
+  text-decoration: none; }
+
+img {
+  width: 100%;
+  height: auto; }
+
+button {
+  padding: 1rem;
+  font-size: 20px; }
+  button:hover {
+    cursor: pointer; }
+
+label,
+input {
+  display: block;
+  font-size: 20px !important;
+  padding-bottom: 0.3rem; }
+
+label {
+  padding-top: 1rem; }
+
+#container {
+  max-width: 500px;
+  text-align: center;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: #b8b8ee; }
+  #container h1 {
+    padding: 1rem 1rem; }
+  #container #newWord_container {
+    text-align-last: left;
+    margin: 1rem 2rem;
+    background-color: #9a9af7;
+    padding: 5vmin; }
+
+#training_wrapper {
+  position: relative;
+  height: 100%; }
+  #training_wrapper #language_labels span:nth-child(1) {
+    color: red; }
+  #training_wrapper #language_labels span:nth-child(3) {
+    color: blue; }
+  #training_wrapper #words {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center; }
+    #training_wrapper #words * {
+      padding: 1rem 3rem;
+      font-size: 4rem;
+      background-color: white;
+      font-weight: 700;
+      margin-bottom: 1px;
+      border-radius: 20px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      -ms-border-radius: 20px;
+      -o-border-radius: 20px; }
+  #training_wrapper #b_next,
+  #training_wrapper #threeButtons {
+    width: 100%;
+    background-color: #6060dd;
+    padding: 2rem 1rem; }
+    #training_wrapper #b_next:hover,
+    #training_wrapper #threeButtons:hover {
+      cursor: pointer; }
+  #training_wrapper #threeButtons {
+    display: none;
+    padding: 0;
+    align-items: center;
+    justify-content: center; }
+    #training_wrapper #threeButtons * {
+      flex: 1;
+      height: 100%;
+      padding: 2rem 1rem; }
+    #training_wrapper #threeButtons #BtnDown {
+      background-color: red; }
+    #training_wrapper #threeButtons #BtnStay {
+      background-color: #ffe600; }
+    #training_wrapper #threeButtons #BtnUp {
+      background-color: #04e422; }
+  #training_wrapper #deleteCard {
+    display: flex; }
+  #training_wrapper #bottonWrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%; }

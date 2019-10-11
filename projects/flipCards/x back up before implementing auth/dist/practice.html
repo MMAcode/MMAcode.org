@@ -1,0 +1,108 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <title></title>
+</head>
+
+<body>
+  <div id="container">
+    <div id="training_wrapper">
+      <div id="trainingBody">
+        <h1>Vocabulary Practice</h1>
+
+        <div id="language_labels">
+          <span> in English </span>
+          <span>/</span>
+          <span>in Czech</span>
+        </div>
+        <div id="words">
+          <p id="wordOne">-</p>
+          <p id="wordTwo">-</p>
+        </div>
+        <div id="levelIndicator"></div>
+        <br> <br>
+
+        <p>audio icon here</p>
+        <audio id="audio" src=""></audio>
+
+        <div id="test"> refresh</div>
+        <br>
+
+        <a href="index.html">Main Menu</a>
+
+        <button id="deleteCard">Delete Card</button>
+      </div>
+
+
+      <div id="bottonWrapper">
+        <div id="b_next">SHOW</div>
+        <div id="threeButtons">
+          <div id="BtnDown">
+            Down
+          </div>
+          <div id="BtnStay">
+            Stay
+          </div>
+          <div id="BtnUp">
+            Up
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js"></script>
+
+  <!-- TODO : Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAY9FCIHSK9v0LSa8i_PWxm06kx_Isv4Uo",
+      authDomain: "ninja2-634e4.firebaseapp.com",
+      databaseURL: "https://ninja2-634e4.firebaseio.com",
+      projectId: "ninja2-634e4",
+      storageBucket: "ninja2-634e4.appspot.com",
+      messagingSenderId: "900566306511",
+      appId: "1:900566306511:web:044e5cb5c69760492db1ba"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+  </script>
+
+
+
+
+  <script src="js/bundle.js"></script>
+</body>
+
+</html>

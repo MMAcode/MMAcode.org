@@ -74,7 +74,9 @@
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js"></script> -->
 
   <!-- TODO : Add SDKs for Firebase products that you want to use
        https://firebase.google.com/docs/web/setup#config-web-app -->
@@ -92,7 +94,9 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    // firebase.analytics();
     const db = firebase.firestore();
+    const auth = firebase.auth();
   </script>
 
 
