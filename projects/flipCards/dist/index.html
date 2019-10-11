@@ -124,6 +124,7 @@
       signButton.addEventListener('click', () => {
         auth.signOut();
         status.innerHTML = `<p>xx User logged out.</p>`;
+        signButton.innerHTML = '<a href="signIn.html">Sign-in</a>';
       })
     }
 
