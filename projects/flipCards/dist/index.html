@@ -30,6 +30,7 @@
     </div> -->
     <br>
     <br>
+    <div id="userStatus"></div>
     <button> <a href="signIn.html">Sign-in</a></button>
   </div>
 
@@ -104,6 +105,23 @@
       // reset form
       form.reset();
     })
+
+
+
+
+
+
+    // user status
+    let status = document.querySelector('#userStatus');
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log('you are logged in');
+        status.innerHTML = '<p>you are logged in</p>';
+      } else {
+        console.log('no-one is logged in');
+        status.innerHTML = '<p>No User logged in.</p>';
+      }
+    });
   </script>
 
 
