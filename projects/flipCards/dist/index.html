@@ -133,10 +133,13 @@
         console.log('you are logged in as...');
         console.log(user);
         console.log(user.email);
+        console.log(user.uid);
         status.innerHTML = `<p>you are logged in as ${user.email}. Enjoy!</p>`;
         changeButtonToSignOut();
 
-        let userCollection = db.collection(user.uid).add(credentials.user.uid).set({userEmail: user.uid});;
+        let userCollection = db.collection(user.uid).doc(user.uid).set({
+          user: user.uid
+        });
 
       } else {
         console.log('no-one is logged in');
