@@ -1,7 +1,7 @@
 let dueCount = 0;
 let toLearnCount = 0;
 // const cards = db.collection('FlipCards');
-const cards = db.collection('FlipCards');
+let cards = db.collection('FlipCards');
 
 const currentCardS = null;
 let currentCard = {};
@@ -16,8 +16,10 @@ let secondWordHTML = document.querySelector('#wordTwo');
 let levelIndicator = document.querySelector('#levelIndicator');
 // let showAllCardsHTML = document.querySelector('#showAllCards');
 let deleteCardHTML = document.querySelector('#deleteCard');
+let loggedStatus = document.querySelector('#loggedInStatus');
 let clickHintCounter = 0;
 let hintLettersToShow = '';
+
 
 
 /////////// F LEVELS - TIMES
@@ -407,6 +409,13 @@ let updateDatabaseTHEN_UI = () => {
 // console.log('getting to listening to al cards click1');
 
 // refresh.style.display = 'none';
+auth.onAuthStateChanged(user => {
+  if (user) {
+    loggedStatus.innerHTML = `<p>${user.email}. Enjoy!</p>`
+    cards = db.collection(user.uid);
+  }
+  else { loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>'; }
+});
 
 updateDatabaseTHEN_UI();
 // console.log('getting to listening to al cards click2');
