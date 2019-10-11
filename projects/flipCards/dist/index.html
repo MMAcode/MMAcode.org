@@ -30,7 +30,7 @@
     </div> -->
     <br>
     <br>
-    <p>yy a</p>
+    <p> a</p>
     <div id="userStatus"></div>
     <button id="signInOutButton"> <a href="signIn.html">Sign-in</a></button>
   </div>
@@ -138,7 +138,8 @@
         changeButtonToSignOut();
 
         let userCollection = db.collection(user.uid).doc(user.uid).set({
-          user: user.uid
+          userEmail: user.email,
+          userID: user.uid
         });
 
       } else {
