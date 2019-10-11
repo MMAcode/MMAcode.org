@@ -411,7 +411,7 @@ let updateDatabaseTHEN_UI = () => {
 // refresh.style.display = 'none';
 auth.onAuthStateChanged(user => {
   if (user) {
-    loggedStatus.innerHTML = `<p>${user.email}. Enjoy!</p>`
+    loggedStatus.innerHTML = `<p>Enjoy ${user.email}!</p>`
     cards = db.collection(user.uid);
   }
   else { loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>'; }

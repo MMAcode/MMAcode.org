@@ -30,7 +30,7 @@
     </div> -->
     <br>
     <br>
-    <p> a</p>
+    <p></p>
     <div id="userStatus"></div>
     <button id="signInOutButton"> <a href="signIn.html">Sign-in</a></button>
     <br><br>
@@ -82,34 +82,40 @@
 
   <script>
     // get inputs from the form
-    form = document.querySelector('form');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      let enInput = form.enInput.value;
-      let czInput = form.czInput.value;
+    let activateNEwCardListener = (user) => {
+      form = document.querySelector('form');
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        let enInput = form.enInput.value;
+        let czInput = form.czInput.value;
 
-      // add new object into firebase
-      const newCard = {
-        enWord: enInput,
-        czWord: czInput,
-        mainStage: 'to learn',
-        enCheck: false,
-        czCheck: false,
-        level: 0,
-        dueTime: 8888888888888,
-        due: false,
-        lastSeen: 0
-      };
+        // add new object into firebase
+        const newCard = {
+          enWord: enInput,
+          czWord: czInput,
+          mainStage: 'to learn',
+          enCheck: false,
+          czCheck: false,
+          level: 0,
+          dueTime: 8888888888888,
+          due: false,
+          lastSeen: 0
+        };
 
-      db.collection(user.uid).add(newCard).then(() => {
-        console.log('Flip-card added');
-      }).catch(err => {
-        console.log(err);
-        console.log('I could NOT add object into the database.');
-      });
-      // reset form
-      form.reset();
-    })
+        db.collection(user.uid).add(newCard).then(() => {
+          console.log('Flip-card added');
+        }).catch(err => {
+          console.log(err);
+          console.log('I could NOT add object into the database.');
+        });
+        // reset form
+        form.reset();
+      })
+    }
+
+
+
+
 
 
 
@@ -119,6 +125,7 @@
 
     // buttons
     const ccButton = document.querySelector('#copyCollection');
+    const addWordForm = document.querySelector('#newWord_container');
 
     // user button
     let status = document.querySelector('#userStatus');
@@ -147,11 +154,13 @@
     // user status
     auth.onAuthStateChanged(user => {
       if (user) {
+        // copy docs from collection to collection
         // ccButton.innerHTML = '<span>Copy default collection of words to my collection.</span>';
         // ccButton.addEventListener('click', () => {
         //   copyCollection(user);
         //   ccButton.style.display = 'none';
         // })
+        activateNEwCardListener(user);
         console.log('you are logged in as...');
         console.log(user);
         console.log(user.email);
@@ -166,15 +175,13 @@
         });
 
       } else {
+        addWordForm.style.display = 'none';
         ccButton.style.display = 'none';
         console.log('no-one is logged in');
         console.log(user);
         status.innerHTML = '<p>xx No User logged in.</p>';
       }
     });
-
-
-    // copy docs from collection to collection
   </script>
 
 
