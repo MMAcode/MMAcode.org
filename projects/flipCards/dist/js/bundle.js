@@ -112,12 +112,12 @@ let deleteCard = async () => {
 let updateDue = async data => {
   let now = new Date().getTime();
   dueCount = 0;
-  // console.log('L1-1-1: starting "updateDue" in MAIN-ASYNC');
+  console.log('L1-1-1: starting "updateDue" in MAIN-ASYNC');
   let dueToUpdate = await cards.where('mainStage', '==', 'learning').where('due', '==', false).where('dueTime', '<', now);
   let ddData = await dueToUpdate.get();
   // console.log('cards which needs to have DUE changed to TRUE:');
   ddData.docs.forEach((doc) => {
-    // console.log(doc.data());
+    console.log(doc.data());
     cards.doc(doc.id).update({ due: true });
   })
 };
@@ -158,11 +158,11 @@ let getCardFromToLearn = async (cards) => {
 
 /////////////////////////////// F-Main async
 let updateDataReturnCard = async () => {
-  // console.log('STARTING GET CARD main f.');
-  console.log('GetDueCard f. finished, current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
+  console.log('STARTING GET CARD main f.a');
   currentCardOrNull = await updateDue();
-
   let testIfACard = await getCardFromDue();
+
+  console.log('GetDueCard f. finished, current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
   if (dueCount === 0) {
     console.log('we will start GetToLEarnCard f. now...');
     let xXx = await getCardFromToLearn(cards);
@@ -413,11 +413,12 @@ auth.onAuthStateChanged(user => {
   if (user) {
     loggedStatus.innerHTML = `<p>Enjoy ${user.email}!</p>`
     cards = db.collection(user.uid);
+    updateDatabaseTHEN_UI();
   }
   else { loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>'; }
 });
 
-updateDatabaseTHEN_UI();
+
 // console.log('getting to listening to al cards click2');
 
 nextBt.addEventListener('click', e => { showPageTwo(); });
