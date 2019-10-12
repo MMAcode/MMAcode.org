@@ -17,6 +17,8 @@ let levelIndicator = document.querySelector('#levelIndicator');
 // let showAllCardsHTML = document.querySelector('#showAllCards');
 let deleteCardHTML = document.querySelector('#deleteCard');
 let loggedStatus = document.querySelector('#loggedInStatus');
+let scoreHTML = document.querySelector('#scoreCounter');
+let score = 0;
 let clickHintCounter = 0;
 let hintLettersToShow = '';
 
@@ -215,6 +217,7 @@ let jumpLevels = (level) => {
 
   while (timeJump > arrayTimes[level]) {
     level++;
+    score++;
     if (level === levelLearned - 1) { break; }; //you can jump max to level Learned-1 (9)
   }
   console.log('Ending F timeJump');
@@ -233,12 +236,17 @@ let updateCurrentCard = (e) => {
   console.log('updateCurrenCard F running', currentCard);
   let en = currentCard.enCheck;
   let lev = currentCard.level;
-  // if (e.target.parentNode.id === 'BtnDown') {
+  console.log('level before:', lev);
   if (e.target.id === 'BtnDown') {
+    if (lev > 1) { score = score - 2; };
+    if (lev === 1) {
+      score = score - 1;
+    };
     lev = lev > 2 ? lev - 2 : 0;
   }
   if (e.target.id === 'BtnStay') {
-    lev = lev > 1 ? lev - 1 : 0;
+    // lev = lev > 1 ? lev - 1 : 0;
+    console.log("let's keep the level the same.");
   }
 
   // correct Ans
@@ -250,6 +258,7 @@ let updateCurrentCard = (e) => {
 
       if (en === true) {
         lev++;
+        score++;
         // console.log('level en is originaly true - now=', lev);
         en = false;
       } else {
@@ -268,6 +277,7 @@ let updateCurrentCard = (e) => {
 
   currentCard.enCheck = en;
   currentCard.level = lev;
+  console.log('level after:', lev);
 
   let now = new Date().getTime();
   currentCard.lastSeen = now;
@@ -375,12 +385,15 @@ let showPageTwo = () => {
   showThreeButtons();
 
 }
-
+let updateScoreUI = () => {
+  scoreHTML.innerHTML = `<p>Session score: ${score}</p>`;
+}
 
 
 
 
 let updateDatabaseTHEN_UI = () => {
+  updateScoreUI();
   updateDataReturnCard().then((ans) => {
     console.log('FINISHING GET CARD main f.');
     console.log('current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
