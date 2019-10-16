@@ -326,12 +326,12 @@ let ShowLetterOnClick = () => {
   console.log('click counter in function:', clickHintCounter);
   let hintWord = wordTwo;
   // console.log('you just clicked on hint');
-  if (clickHintCounter <= wordTwo.length) {
+  if (clickHintCounter < wordTwo.length) {
     hintLettersToShow += wordTwo[clickHintCounter - 1];
     secondWordHTML.textContent = hintLettersToShow + '...';
   }
-  if (clickHintCounter > wordTwo.length) {
-    secondWordHTML.textContent = hintLettersToShow;
+  if (clickHintCounter === wordTwo.length) {
+    secondWordHTML.textContent = wordTwo;
   }
   // console.log('hintLettersToShow:', hintLettersToShow);
 }
@@ -355,6 +355,11 @@ let showLevel = () => {
 // PAGES
 let showPageOne = () => {
   // console.log('page one Activated');
+
+  // speak the word if Language-to-learn displayed
+  // responsiveVoice.speak("hello world");
+  //   https://responsivevoice.org/api/
+  
   assignWordsAndColours(currentCard);
   firstWordHTML.textContent = wordOne;
   secondWordHTML.textContent = '...';
@@ -381,6 +386,7 @@ let showPageTwo = () => {
   // secondWordHTML.removeEventListener('click', e => ResetLettersOnClick());
   // console.log('clickHint listener SHOUND be removed');
   // console.log('current clickhintCouner=', clickHintCounter);
+  clickHintCounter = 1000;
   secondWordHTML.textContent = wordTwo;
   showThreeButtons();
 
