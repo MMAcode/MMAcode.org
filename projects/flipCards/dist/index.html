@@ -169,10 +169,22 @@
 
         changeButtonToSignOut();
 
-        let userCollection = db.collection(user.uid).doc(user.uid).set({
-          userEmail: user.email,
-          userID: user.uid
-        });
+        let userExists = async () => {
+          let user = await db.collection(user.uid).doc(user.uid).get();
+          console.log('user user to ACCESS:', user.exists);
+          if (user.exists === true) {
+            return true
+          } else {
+            return false
+          };
+        }
+
+        if (!userExists()) {
+          let userCollection = db.collection(user.uid).doc(user.uid).set({
+            userEmail: user.email,
+            userID: user.uid
+          });
+        }
 
       } else {
         addWordForm.style.display = 'none';
