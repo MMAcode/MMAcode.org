@@ -235,7 +235,7 @@ let jumpLevels = (level) => {
 let hintNotUsed = () => {
   // console.log('checking cheating');
   // console.log(clickHintCounter);
-  if (clickHintCounter > 0) { return false }
+  if (clickHintCounter > 0 && clickHintCounter < 500) { return false }
   else { return true };
 }
 let updateCurrentCard = (e) => {
@@ -359,7 +359,7 @@ let showLevel = () => {
 
 
 // PAGES
-let showPageOne = () => {
+let showPageOne = async () => {
   // console.log('page one Activated');
 
   // speak the word if Language-to-learn displayed
@@ -371,36 +371,25 @@ let showPageOne = () => {
   secondWordHTML.textContent = '...';
   nextBt.style.display = 'block';
   threeBt.style.display = 'none';
+
+  // **
+  // SPEAKING
+  if (!showNativeWordFirst && !languageSwap) {
+    console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
+    let cekej = await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
+  }
+  if (showNativeWordFirst && languageSwap) {
+    console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
+    let cekejToo = await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
+    // console.log(responsiveVoice.speak(wordOne, responsiveVoiceLanguage));
+  }
+
   // activating letter hints
   clickHintCounter = 0;
   hintLettersToShow = '';
-
-
-
-  // SPEAKING
-  if (!showNativeWordFirst) {
-    if (!languageSwap) {
-      console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
-      responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
-    }
-  }
-
-  if (showNativeWordFirst) {
-    if (languageSwap) {
-      console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
-      responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
-     }
-  }
-  // responsiveVoice.speak("ahoj světe, hello world", responsiveVoiceLanguage);
-
-  // responsiveVoice.speak("ahoj světe, hello world", "Czech Female");
-
-  // };
-
+  console.log('clickHintCounter: ', clickHintCounter);
   secondWordHTML.addEventListener('click', ShowLetterOnClick);
   showLevel();
-
-  // if (currentCard.enCheck) { readCzechWord(); };
 
 
 
@@ -417,9 +406,23 @@ let showPageTwo = () => {
   // console.log('current clickhintCouner=', clickHintCounter);
   clickHintCounter = 1000;
   secondWordHTML.textContent = wordTwo;
-  showThreeButtons();
 
+  // SPEAKING
+  // for english speaking  users (Abi)...
+  if (showNativeWordFirst && !languageSwap) {
+    console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
+    responsiveVoice.speak(wordTwo, responsiveVoiceLanguage);
+  }
+  // for czech speaking  users (Me, Dana, Stana)...
+  if (!showNativeWordFirst && languageSwap) {
+    console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
+    responsiveVoice.speak(wordTwo, responsiveVoiceLanguage);
+    // console.log(responsiveVoice.speak(wordOne, responsiveVoiceLanguage));
+  }
+
+  showThreeButtons();
 }
+
 let updateScoreUI = () => {
   scoreHTML.innerHTML = `<p>Session score: ${score}</p>`;
 }
