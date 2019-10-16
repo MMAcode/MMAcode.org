@@ -19,9 +19,14 @@ let deleteCardHTML = document.querySelector('#deleteCard');
 let loggedStatus = document.querySelector('#loggedInStatus');
 let scoreHTML = document.querySelector('#scoreCounter');
 let score = 0;
+
 let clickHintCounter = 0;
 let hintLettersToShow = '';
 
+let languageToSpeak = '';
+let responsiveVoiceLanguage = '';
+let showNativeWordFirst = true;
+let languageSwap = true;  //users who have native language czech
 
 
 /////////// F LEVELS - TIMES
@@ -188,11 +193,13 @@ let assignWordsAndColours = (currentCard) => {
     wordTwo = currentCard.enWord;
     firstWordHTML.style.color = 'blue';
     secondWordHTML.style.color = 'red';
+    showNativeWordFirst = false;
   } else {
     wordOne = currentCard.enWord;
     wordTwo = currentCard.czWord;
     firstWordHTML.style.color = 'red';
     secondWordHTML.style.color = 'blue';
+    showNativeWordFirst = true;
   }
   // console.log('1.2.1.1 word 1 is:', wordOne);
   // console.log('1.2.1.1 word 2 is:', wordTwo);
@@ -204,7 +211,6 @@ let showThreeButtons = () => {
   threeBt.style.display = 'flex';
 }
 
-// **
 let jumpLevels = (level) => {
   console.log('');
   console.log('starting F timeJump');
@@ -359,8 +365,8 @@ let showPageOne = () => {
   // speak the word if Language-to-learn displayed
   // responsiveVoice.speak("hello world");
   //   https://responsivevoice.org/api/
-  
-  assignWordsAndColours(currentCard);
+
+  assignWordsAndColours(currentCard);  // which word to speak first also decided here
   firstWordHTML.textContent = wordOne;
   secondWordHTML.textContent = '...';
   nextBt.style.display = 'block';
@@ -368,6 +374,29 @@ let showPageOne = () => {
   // activating letter hints
   clickHintCounter = 0;
   hintLettersToShow = '';
+
+
+
+  // SPEAKING
+  if (!showNativeWordFirst) {
+    if (!languageSwap) {
+      console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
+      responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
+    }
+  }
+
+  if (showNativeWordFirst) {
+    if (languageSwap) {
+      console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
+      responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
+     }
+  }
+  // responsiveVoice.speak("ahoj světe, hello world", responsiveVoiceLanguage);
+
+  // responsiveVoice.speak("ahoj světe, hello world", "Czech Female");
+
+  // };
+
   secondWordHTML.addEventListener('click', ShowLetterOnClick);
   showLevel();
 
@@ -424,6 +453,28 @@ let updateDatabaseTHEN_UI = () => {
 }
 
 
+// F speaking 
+
+let setLanguagesToSpeak = async (user) => {
+  console.log('starting SETTING LANGUAGE TO SPEAK:');
+  let userInfo = await cards.doc(user.uid).get();
+  languageToSpeak = userInfo.data().langToLearn;
+  console.log('language to speak:', languageToSpeak);
+
+  if (languageToSpeak === 'czech') {
+    responsiveVoiceLanguage = 'Czech Female';
+    languageSwap = false;   //users with native English, not czech, like Abi
+  }
+  else if (languageToSpeak === 'english') { responsiveVoiceLanguage = 'UK English Female'; }
+  else if (languageToSpeak === 'french') { responsiveVoiceLanguage = 'French Female'; }
+
+  console.log('languageSwapp?', languageSwap, '; responsiveVoiceLanguage: ', responsiveVoiceLanguage);
+  console.log('finishing SETTING LANGUAGE TO SPEAK:');
+  // console.log(userInfo.docs[0].data());
+  // languageToSpeak = 
+}
+
+
 //////////////////////////////// MAIN
 // console.log('getting to listening to al cards click1');
 
@@ -432,7 +483,11 @@ auth.onAuthStateChanged(user => {
   if (user) {
     loggedStatus.innerHTML = `<p>Enjoy ${user.email}!</p>`
     cards = db.collection(user.uid);
-    updateDatabaseTHEN_UI();
+    setLanguagesToSpeak(user).then(() => {
+      updateDatabaseTHEN_UI();
+    })
+
+
   }
   else { loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>'; }
 });
