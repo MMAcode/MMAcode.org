@@ -1,0 +1,17 @@
+{
+  "name": "flipCards",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "webpack-cli": "^3.3.9",
+    "webpack": "^4.41.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "webpack": "node_modules/.bin/webpack -w --mode development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
