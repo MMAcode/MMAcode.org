@@ -71,14 +71,35 @@ let timeStampToMessage = (timeStamp) => {
 
 //////// levels - times - MAIN
 let arrayTimes = [];
-let timeCounter = 10000;
+let timeCounter = 1000;
+// let timeCounter = 10000;
 let oneArray = [];
 let levelLearned = 10; //if level 10 --> label as learned
-for (let i = 1; i < levelLearned; i++) {
-  arrayTimes.push(timeCounter);
-  // timeCounter = timeCounter;
-  timeCounter = timeCounter * 5;
-}
+
+// for (let i = 1; i < levelLearned; i++) {
+//   arrayTimes.push(timeCounter);
+//   timeCounter = timeCounter * 5;
+// }
+
+// for (let i = 1; i < levelLearned; i++) {
+//   arrayTimes.push(timeCounter);
+// }
+
+
+arrayTimes = [
+  1000 * 10, //sec
+  1000 * 60,
+  60000 * 5, //min
+  3600000 * 1, //hours
+  3600000 * 6,
+  3600000 * 22,
+  86400000 * 2, //days
+  86400000 * 5,
+  86400000 * 15
+]
+
+// arrayTimes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 console.log('array of times for levels:');
 console.log(arrayTimes);
 arrayTimes.forEach((time) => {
@@ -119,6 +140,7 @@ let deleteCard = async () => {
 }
 
 
+
 // F-update and Count Due
 let updateDue = async data => {
   let now = new Date().getTime();
@@ -126,17 +148,34 @@ let updateDue = async data => {
   console.log('L1-1-1: starting "updateDue" in MAIN-ASYNC');
   let dueToUpdate = await cards.where('mainStage', '==', 'learning').where('due', '==', false).where('dueTime', '<', now);
   let ddData = await dueToUpdate.get();
-  // console.log('cards which needs to have DUE changed to TRUE:');
+  console.log('cards which are going to have DUE changed to TRUE:');
+
+
+
+
+  // this promise is not usefull, it doesn't wait for the updated cards anyway
+  // return new Promise((resolve, reject) => {
   ddData.docs.forEach((doc) => {
     console.log(doc.data());
-    cards.doc(doc.id).update({ due: true });
-  })
+    cards.doc(doc.id).update({ due: true }).then(function () { console.log('XXXXXXXXupdating "due status" finishedXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'); });
+  });
+  // resolve('due statuses hopefully updated!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  // });
+
+
+  // wait 200ms after updating due times so that due card can be loaded 
+  if (ddData.docs.length > 0) {
+    await new Promise(resolve => {
+      setTimeout(resolve, 200);
+    });
+  }
+
 };
 
 
 // get current card from DUE
 let getCardFromDue = async () => {
-
+  console.log('starting get card from Due');
   let dataOrdered = await cards.where('mainStage', '==', 'learning').where('due', '==', true).orderBy('lastSeen', "desc").limit(1).get();
   // console.log('dataOrdered:', dataOrdered.docs.length);
   if (dataOrdered.docs.length == 0) { console.log('no DUE card right NOW.'); dueCount = 0; }
@@ -171,7 +210,9 @@ let getCardFromToLearn = async (cards) => {
 let updateDataReturnCard = async () => {
   console.log('STARTING GET CARD main f.a');
   let currentCardOrNull = await updateDue();
+  // console.log(currentCardOrNull, 'xxxxxxxxxxxxxxxxxxxxx');
   let testIfACard = await getCardFromDue();
+  // updateDue().then(getCardFromDue());
 
   console.log('GetDueCard f. finished, current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
   if (dueCount === 0) {
@@ -248,11 +289,14 @@ let updateCurrentCard = (e) => {
   let lev = currentCard.level;
   console.log('level before:', lev);
   if (e.target.id === 'BtnDown') {
-    if (lev > 1) { score = score - 2; };
-    if (lev === 1) {
-      score = score - 1;
-    };
-    lev = lev > 2 ? lev - 2 : 0;
+    // if (lev > 1) { score = score - 2; };
+    // if (lev === 1) {
+    //   score = score - 1;
+    // };
+    // lev = lev > 2 ? lev - 2 : 0;
+    score -= lev;
+    // alert(`score lowered by ${lev}, lev going down to 0.`);
+    lev = 0;
   }
   if (e.target.id === 'BtnStay') {
     // lev = lev > 1 ? lev - 1 : 0;
