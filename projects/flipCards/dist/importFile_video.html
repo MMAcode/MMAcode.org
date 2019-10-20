@@ -21,11 +21,13 @@
 
   <script>
     let fileHTML = document.getElementById("fileUpload");
-    fileHTML.addEventListener('change', function (e) {
-      // console.log(fileUpload.files);
-      var reader = new FileReader();
-      reader.readAsArrayBuffer(e.target.files[0]);
 
+    // F handle file
+    let handleFile = (e, pathMiro) => {
+      // console.log(e.target.files[0]);
+      // console.log(e.dataTransfer.files[0]);
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(pathMiro);
       reader.onload = function (e) {
         var data = new Uint8Array(reader.result);
         var wb = XLSX.read(data, {
@@ -34,11 +36,29 @@
         console.log(wb.Sheets.Sheet1);
         console.log(wb.Sheets.Sheet1.A1.h);
 
-
+        // DEAL WITH THE DATA....
       }
+    }
 
 
+
+
+
+    /////////////// MAIN
+    fileHTML.addEventListener('change', function (e) {
+      handleFile(e, e.target.files[0]);
     });
+
+    // drag and drop listeners
+    document.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.stopPropagation();
+    })
+    document.addEventListener('drop', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      handleFile(e, e.dataTransfer.files[0]);
+    })
   </script>
 </body>
 
