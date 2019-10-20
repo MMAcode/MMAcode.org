@@ -53,7 +53,8 @@ label {
 
 .centerIt {
   display: block;
-  margin: auto; }
+  margin: auto;
+  text-align: center; }
 
 #container {
   max-width: 500px;

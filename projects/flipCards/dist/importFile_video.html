@@ -14,7 +14,11 @@
 <body>
   <button class="centerIt"><a href="index.html">Main menu</a></button>
   <br><br>
-  <input type="file" id="fileUpload">
+  <input type="file" id="fileUpload" class="centerIt">
+  <br>
+
+  <p>Or drag and drop your excel file here...</p>
+
 
 
 
@@ -33,8 +37,14 @@
         var wb = XLSX.read(data, {
           type: 'array'
         });
-        console.log(wb.Sheets.Sheet1);
-        console.log(wb.Sheets.Sheet1.A1.h);
+        var sheet = wb.Sheets.Sheet1;
+
+        // A,B = columns
+        //1,2 = rows
+        console.log(sheet);
+        console.log(sheet.A1.h);
+        console.log(sheet["A1"].h);
+
 
         // DEAL WITH THE DATA....
       }
