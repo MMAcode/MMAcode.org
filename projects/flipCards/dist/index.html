@@ -23,7 +23,7 @@
         <input type="submit">
       </form>
     </div>
-    <button><a href="importFile_video.html">import words from file</a></button>
+    <button id="importBtn"><a href="importFile_video.html">import words from file</a></button>
 
     <br>
     <!-- <div id="showAllCards">
@@ -127,6 +127,7 @@
     // buttons
     const ccButton = document.querySelector('#copyCollection');
     const addWordForm = document.querySelector('#newWord_container');
+    const importBtnXX = document.querySelector('#importBtn');
 
     // user button
     let status = document.querySelector('#userStatus');
@@ -162,14 +163,15 @@
         //   ccButton.style.display = 'none';
         // })
         activateNEwCardListener(user);
-        console.log('you are logged in as...');
-        console.log(user);
-        console.log(user.email);
-        console.log(user.uid);
+        // console.log('you are logged in as...');
+        // console.log(user);
+        // console.log(user.email);
+        // console.log(user.uid);
         status.innerHTML = `<p>you are logged in as ${user.email}. Enjoy!</p>`;
 
         changeButtonToSignOut();
 
+        // check if user exists
         let userExists = async () => {
           let user = await db.collection(user.uid).doc(user.uid).get();
           console.log('user user to ACCESS:', user.exists);
@@ -189,7 +191,8 @@
 
       } else {
         addWordForm.style.display = 'none';
-        ccButton.style.display = 'none';
+        // ccButton.style.display = 'none';
+        importBtnXX.style.display = 'none';
         console.log('no-one is logged in');
         console.log(user);
         status.innerHTML = '<p>xx No User logged in.</p>';

@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/xlsx.full.min.js"></script>
   <script src="js/FileSaver.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script> -->
   <title></title>
 </head>
 
@@ -26,6 +28,38 @@
   <script>
     let fileHTML = document.getElementById("fileUpload");
 
+    // // F handle file
+    // let handleFile = (e, pathMiro) => {
+    //   // console.log(e.target.files[0]);
+    //   // console.log(e.dataTransfer.files[0]);
+    //   var reader = new FileReader();
+    //   reader.readAsArrayBuffer(pathMiro);
+    //   reader.onload = function (e) {
+    //     var data = new Uint8Array(reader.result);
+    //     var wb = XLSX.read(data, {
+    //       type: 'binary'
+    //     });
+    //     var sheet = wb.Sheets.Sheet1;
+
+    // var excelAsObject = XLSX.utils.sheet_to_row_object_array(sheet);
+    // console.log(excelAsObject);
+
+    // var json_object = JSON.stringify(excelAsObject);
+    // console.log(JSON.parse(json_object));
+
+    //     // A,B = columns
+    //     //1,2 = rows
+    //     console.log(wb);
+    //     console.log(sheet);
+    //     console.log(sheet.A1.h);
+    //     // console.log(sheet["A1"].h);
+    //     // console.log(sheet["!ref"]);
+
+
+    //     // DEAL WITH THE DATA....
+    //   }
+    // }
+
     // F handle file
     let handleFile = (e, pathMiro) => {
       // console.log(e.target.files[0]);
@@ -37,19 +71,29 @@
         var wb = XLSX.read(data, {
           type: 'array'
         });
-        var sheet = wb.Sheets.Sheet1;
+        var sheetOneName = wb.SheetNames[0];
+        // console.log(wb.SheetNames[0]);
+        // console.log(wb.Sheets);
+        var sheet = wb.Sheets[sheetOneName];
+
+        var excelAsObject = XLSX.utils.sheet_to_row_object_array(sheet);
+        // var json_object = JSON.stringify(excelAsObject);
+        // console.log(JSON.parse(json_object));
 
         // A,B = columns
         //1,2 = rows
-        console.log(sheet);
-        console.log(sheet.A1.h);
-        console.log(sheet["A1"].h);
+        // console.log(wb);
+        // console.log(sheet);
+        // console.log(sheet.A1.h);
+        console.log(excelAsObject);
+        // console.log(sheet["A1"].h);
+        // console.log(sheet["!ref"]);
 
 
         // DEAL WITH THE DATA....
+        
       }
     }
-
 
 
 
