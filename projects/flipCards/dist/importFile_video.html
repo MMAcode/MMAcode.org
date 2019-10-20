@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/xlsx.full.min.js"></script>
+  <script src="js/FileSaver.min.js"></script>
+  <title></title>
+</head>
+
+<body>
+  <button class="centerIt"><a href="index.html">Main menu</a></button>
+  <br><br>
+  <input type="file" id="fileUpload">
+
+
+
+
+  <script>
+    let fileHTML = document.getElementById("fileUpload");
+    fileHTML.addEventListener('change', function (e) {
+      // console.log(fileUpload.files);
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(e.target.files[0]);
+
+      reader.onload = function (e) {
+        var data = new Uint8Array(reader.result);
+        var wb = XLSX.read(data, {
+          type: 'array'
+        });
+        console.log(wb.Sheets.Sheet1);
+        console.log(wb.Sheets.Sheet1.A1.h);
+
+
+      }
+
+
+    });
+  </script>
+</body>
+
+</html>

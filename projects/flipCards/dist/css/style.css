@@ -51,6 +51,10 @@ input {
 label {
   padding-top: 1rem; }
 
+.centerIt {
+  display: block;
+  margin: auto; }
+
 #container {
   max-width: 500px;
   text-align: center;
@@ -60,7 +64,7 @@ label {
   #container h1 {
     padding: 1rem 1rem; }
   #container #newWord_container {
-    text-align-last: left;
+    text-align: left;
     margin: 1rem 2rem;
     background-color: #9a9af7;
     padding: 5vmin; }
