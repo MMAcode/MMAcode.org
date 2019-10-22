@@ -40,9 +40,9 @@
     <p>Or drag and drop your excel file here...</p>
     <br><br>
     <h5>Instructions:</h5>
-    <p>for .xlsx from simple sheet with 2 columns:</p>
+    <p>For .xlsx from simple sheet with 2 columns:</p>
     <p>1) label columns of the first row with numbers 1 and 2.</p>
-    <p>2) 1 represents colum of words in your language, 2 represents words in language you want to learn </p>
+    <p>2) In second row, label with "1" column of words in your language, and with "2" column of words in language you want to learn. </p>
   </div>
 
   <div id="cardToCheckAllert">
@@ -202,7 +202,6 @@
                     "_self");
                   // window.open("practice.html", "_self");
                 });
-
               }
             }).catch(err => {
               console.log(err);
@@ -210,14 +209,96 @@
             });
           }
         });
+      });
+      cancelImport.addEventListener('click', (e) => {
+        window.location.reload();
+      });
+    };
+
+
+    let prepareCardfromNormalFile = (objectS, rowNum, colToLearn) => {
+      let currentWord = objectS[rowNum];
+      // create new object for firebase
+      const newCard = {
+        languageNative: 'n',
+        languageToLearn: 'tL',
+        mainStage: 'to learn',
+        enCheck: false,
+        level: 0,
+        dueTime: 8888888888888,
+        due: false,
+        lastSeen: 8888888888888
+      };
+
+      // set words to the object for firebase
+      if (colToLearn == 1) {
+        newCard.languageToLearn = currentWord[1];
+        newCard.languageNative = currentWord[2];
+
+      } else {
+        newCard.languageToLearn = currentWord[2];
+        newCard.languageNative = currentWord[1];
+      }
+      return newCard;
+    }
+
+
+    let handleNormalFile = (objectFromFile) => {
+      let objR2 = objectFromFile[0];
+      // console.log(objR2);
+      // console.log(objR2[1]);
+      let columnToLearn = 0;
+      if (objR2[1] == 2) {
+        columnToLearn = 1;
+      }
+      if (objR2[2] == 2) {
+        columnToLearn = 2;
+      }
+
+      console.log(`column ${columnToLearn} has words to learn`);
+      let row = 1;
+      let cardToUpload = prepareCardfromNormalFile(objectFromFile, row, columnToLearn);
+      // console.log(cardToUpload);
+
+      alertFile.style.display = 'block';
+      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+      nativeCheckHTML.innerHTML = `<h5>${cardToUpload.languageNative}</h5>`;
+      toLearnCheckHTML.innerHTML = `<h5>${cardToUpload.languageToLearn}</h5>`;
 
 
 
+      proccedImport.addEventListener('click', (e) => {
+        nativeCheckHTML.innerHTML = `<h5>OK, moment...</h5>`;
+        toLearnCheckHTML.innerHTML = `<h5>OK moment...</h5>`;
 
+        auth.onAuthStateChanged(user => {
 
-
-
-
+          for (let i = 1; i < objectFromFile.length; i++) {
+            let currentCard = prepareCardfromNormalFile(objectFromFile, i, columnToLearn);
+            // console.log(currentCard);
+            db.collection(user.uid).add(currentCard).then(() => {
+              console.log('Flip-card added');
+              alertFile.innerHTML =
+                `<h5>${i} out of ${objectFromFile.length-1} cards processed.</h5><br><h5>Please wait and don't touch anything until the process finishes, or it may mess your cards up completely!</h5>`;
+              if (i === objectFromFile.length - 1) {
+                console.log('finished');
+                alertFile.innerHTML = `<h2>Done.</h2>`;
+                let wait = (ms) => {
+                  return new Promise(resolve => setTimeout(resolve, ms));
+                }
+                wait(500).then(() => {
+                  alertFile.style.display = 'none';
+                  window.open("https://www.mmacode.org/projects/flipcards/dist/practice.html",
+                    "_self");
+                  // window.open("practice.html", "_self");
+                });
+              }
+            }).catch(err => {
+              console.log(err);
+              console.log('I could NOT add object into the database.');
+            });
+          }
+        });
       });
       cancelImport.addEventListener('click', (e) => {
         window.location.reload();
@@ -226,10 +307,9 @@
 
 
 
-    };
 
-
-
+    }
+    // **
 
 
 
@@ -270,7 +350,7 @@
         }
 
         if (googleORnormal == "normal") {
-          // handleNormalFile(excelAsObject);
+          handleNormalFile(excelAsObject);
         }
       }
     }

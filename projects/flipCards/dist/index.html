@@ -19,7 +19,7 @@
       <form action="">
         <label for="nativeInput">Native word:</label>
         <input name="nativeInput" type="text">
-        <label for="toLearnInput">To Learn word:</label>
+        <label for="toLearnInput">Word to learn:</label>
         <input name="toLearnInput" type="text">
         <input type="submit">
       </form>
@@ -182,9 +182,22 @@
           if (userDoc.exists === true) {
             console.log('user doc exists');
 
+            // ///////count cards
             // db.collection(user.uid).get().then((data) => {
             //   console.log(data.docs.length,' cards');
             // });
+
+            ////////// delete all cards
+            // db.collection(user.uid).get().then((data) => {
+            //   data.docs.forEach(doc => {
+            //     console.log(doc.id);
+            //     if (doc.id !== user.uid) {
+            //       db.collection(user.uid).doc(doc.id).delete();
+            //     }
+            //   })
+            // });
+
+
 
           } else {
             console.log('user doc doesnt exist, i am going to create one...');
