@@ -30,7 +30,9 @@ let hintLettersToShow = '';
 let languageToSpeak = '';
 let responsiveVoiceLanguage = '';
 let showNativeWordFirst = true;
-let languageSwap = true;  //users who have native language czech
+// let languageSwap = true;  //users who have native language czech
+let languageSwap = false;  //users who have native language czech
+
 
 
 /////////// F LEVELS - TIMES
@@ -234,14 +236,21 @@ let assignWordsAndColours = (currentCard) => {
   // console.log(currentCard.enCheck);
   let en = currentCard.enCheck;
   if (en) {
-    wordOne = currentCard.czWord;
-    wordTwo = currentCard.enWord;
+    // wordOne = currentCard.czWord;
+    wordOne = currentCard.languageToLearn;
+    // wordTwo = currentCard.enWord;
+    wordTwo = currentCard.languageNative;
+
     firstWordHTML.style.color = 'blue';
     secondWordHTML.style.color = 'red';
     showNativeWordFirst = false;
   } else {
-    wordOne = currentCard.enWord;
-    wordTwo = currentCard.czWord;
+    // wordOne = currentCard.enWord;
+    wordOne = currentCard.languageNative;
+    // wordTwo = currentCard.czWord;
+    wordTwo = currentCard.languageToLearn;
+    console.log(wordTwo, 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM');
+
     firstWordHTML.style.color = 'red';
     secondWordHTML.style.color = 'blue';
     showNativeWordFirst = true;
@@ -455,6 +464,7 @@ let showPageTwo = () => {
   // console.log('clickHint listener SHOUND be removed');
   // console.log('current clickhintCouner=', clickHintCounter);
   clickHintCounter = 1000;
+  console.log(wordTwo, 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
   secondWordHTML.textContent = wordTwo;
 
   // SPEAKING
@@ -516,7 +526,7 @@ let setLanguagesToSpeak = async (user) => {
 
   if (languageToSpeak === 'czech') {
     responsiveVoiceLanguage = 'Czech Female';
-    languageSwap = false;   //users with native English, not czech, like Abi
+    // languageSwap = false;   //users with native English, not czech, like Abi
   }
   else if (languageToSpeak === 'english') { responsiveVoiceLanguage = 'UK English Female'; }
   else if (languageToSpeak === 'french') { responsiveVoiceLanguage = 'French Female'; }
@@ -530,8 +540,6 @@ let setLanguagesToSpeak = async (user) => {
 
 //////////////////////////////// MAIN
 // console.log('getting to listening to al cards click1');
-
-// refresh.style.display = 'none';
 auth.onAuthStateChanged(user => {
   if (user) {
     loggedStatus.innerHTML = `<p>Enjoy ${user.email}!</p>`
@@ -539,12 +547,9 @@ auth.onAuthStateChanged(user => {
     setLanguagesToSpeak(user).then(() => {
       updateDatabaseTHEN_UI();
     })
-
-
   }
   else { loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>'; }
 });
-
 
 // console.log('getting to listening to al cards click2');
 

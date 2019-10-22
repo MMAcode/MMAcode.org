@@ -16,52 +16,226 @@
 <body>
   <button class="centerIt"><a href="index.html">Main menu</a></button>
   <br><br>
-  <input type="file" id="fileUpload" class="centerIt">
-  <br>
+  <div id="googleDrop">
+    <h3>Excel (.xlsx) from GOOGLE TRANSLATE</h3>
+    <input type="file" id="googleFileUpload" class="centerIt">
+    <br>
 
-  <p>Or drag and drop your excel file here...</p>
+    <p>Or drag and drop your excel file here...</p>
+    <br><br>
+    <h5>Instructions:</h5>
+    <p>for .xlsx from GOOGLE TRANSLATE:</p>
+    <p>1) label columns of the first row with numbers 1,2,3,4</p>
+    <p>2) columns of the second row has to contain numbers 1,1,2,1 where 2 is labeling word under number 2 as language
+      to
+      learn </p>
+    <p>3) if you don't get it, read it again :-)-.</p>
+  </div>
+
+  <div id="normalDrop">
+    <h3>Excel (.xlsx) with 2 columns</h3>
+    <input type="file" id="normalFileUpload" class="centerIt">
+    <br>
+
+    <p>Or drag and drop your excel file here...</p>
+    <br><br>
+    <h5>Instructions:</h5>
+    <p>for .xlsx from simple sheet with 2 columns:</p>
+    <p>1) label columns of the first row with numbers 1 and 2.</p>
+    <p>2) 1 represents colum of words in your language, 2 represents words in language you want to learn </p>
+  </div>
+
+  <div id="cardToCheckAllert">
+    <h3>Did we get the data right?:</h3>
+    <br>
+    <p>Word in native language:</p>
+    <div id="nativeLAngCheck"></div>
+    <br>
+    <p>Word in language to learn:</p>
+    <div id="langToLearnCheck"></div>
+    <div>
+      <p class="button" id="proccedImport">Yes, PROCEED with import.</p>
+      <p class="button" id="cancelImport">No, CANCEL import.</p>
+    </div>
+  </div>
+
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js"></script> -->
+
+  <!-- TODO : Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAY9FCIHSK9v0LSa8i_PWxm06kx_Isv4Uo",
+      authDomain: "ninja2-634e4.firebaseapp.com",
+      databaseURL: "https://ninja2-634e4.firebaseio.com",
+      projectId: "ninja2-634e4",
+      storageBucket: "ninja2-634e4.appspot.com",
+      messagingSenderId: "900566306511",
+      appId: "1:900566306511:web:044e5cb5c69760492db1ba"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // firebase.analytics();
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+  </script>
+
+
 
 
 
 
 
   <script>
-    let fileHTML = document.getElementById("fileUpload");
-
-    // // F handle file
-    // let handleFile = (e, pathMiro) => {
-    //   // console.log(e.target.files[0]);
-    //   // console.log(e.dataTransfer.files[0]);
-    //   var reader = new FileReader();
-    //   reader.readAsArrayBuffer(pathMiro);
-    //   reader.onload = function (e) {
-    //     var data = new Uint8Array(reader.result);
-    //     var wb = XLSX.read(data, {
-    //       type: 'binary'
-    //     });
-    //     var sheet = wb.Sheets.Sheet1;
-
-    // var excelAsObject = XLSX.utils.sheet_to_row_object_array(sheet);
-    // console.log(excelAsObject);
-
-    // var json_object = JSON.stringify(excelAsObject);
-    // console.log(JSON.parse(json_object));
-
-    //     // A,B = columns
-    //     //1,2 = rows
-    //     console.log(wb);
-    //     console.log(sheet);
-    //     console.log(sheet.A1.h);
-    //     // console.log(sheet["A1"].h);
-    //     // console.log(sheet["!ref"]);
+    let googleFileHTML = document.querySelector("#googleFileUpload");
+    let googleDropHTML = document.querySelector('#googleDrop');
+    let normalFileHTML = document.querySelector("#normalFileUpload");
+    let normalDropHTML = document.querySelector('#normalDrop');
+    let alertFile = document.querySelector('#cardToCheckAllert');
+    let nativeCheckHTML = document.querySelector('#nativeLAngCheck');
+    let toLearnCheckHTML = document.querySelector('#langToLearnCheck');
+    let proccedBtn = document.querySelector('#proccedImport');
+    let cancelBtn = document.querySelector('#cancelImport');
 
 
-    //     // DEAL WITH THE DATA....
-    //   }
-    // }
+    // identify lang to learn
+    let gtLanguageToLearn = (objectFromFile) => {
+      // first row of excel file has to be numbers labeling columns 1,2,3,4
+      // second row has to be numbers 1,1,2,1 where 2 is labeling word under number 2 as language to learn
 
-    // F handle file
-    let handleFile = (e, pathMiro) => {
+      // objR1 would be first row which serves as labels
+      // console.log(objR1);
+      // console.log(objR1['1']);
+
+      let objR2 = objectFromFile[0];
+      // console.log(objR2);
+      let column = 1;
+      for (let i = 1; i < 5; i++) {
+        // let objColl = objR2[`${i}`];
+        let objColl = objR2[i];
+
+        // console.log(objColl);
+        if (objColl == 2) {
+          column = i;
+          break;
+        }
+      }
+      // console.log('words to learn are in column ', column);
+      let objR3 = objectFromFile[1];
+      let langToLearn = objR3[`${column}`];
+      // console.log('lang to learn: ', langToLearn);
+      return langToLearn;
+    }
+
+
+
+
+    let handleGTranslateObject = (object) => {
+      // console.log('time to sort google translate file data from object');
+      let langToLearn = gtLanguageToLearn(object);
+      // console.log('lang to learn: ', langToLearn);
+      // console.log(object.length);
+
+      let prepareCard = (objectS, number) => {
+        let currentWord = object[number];
+        // create new object for firebase
+        const newCard = {
+          languageNative: 'ahoj',
+          languageToLearn: 'vole',
+          mainStage: 'to learn',
+          enCheck: false,
+          level: 0,
+          dueTime: 8888888888888,
+          due: false,
+          lastSeen: 8888888888888
+        };
+
+        // set words to the object for firebase
+        if (currentWord[1] == langToLearn) {
+          newCard.languageToLearn = currentWord[3];
+          newCard.languageNative = currentWord[4];
+
+        } else {
+          newCard.languageToLearn = currentWord[4];
+          newCard.languageNative = currentWord[3];
+        }
+        return newCard;
+      }
+
+      let currentCard = prepareCard(object, 1);
+
+      console.log(currentCard);
+      alertFile.style.display = 'block';
+      nativeCheckHTML.innerHTML = `<h5>${currentCard.languageNative}</h5>`
+      toLearnCheckHTML.innerHTML = `<h5>${currentCard.languageToLearn}</h5>`
+
+      proccedImport.addEventListener('click', (e) => {
+        nativeCheckHTML.innerHTML = `<h5>OK, moment...</h5>`;
+        toLearnCheckHTML.innerHTML = `<h5>OK moment...</h5>`;
+
+        auth.onAuthStateChanged(user => {
+
+          for (let i = 1; i < object.length; i++) {
+            let currentCard = prepareCard(object, i);
+            // console.log(currentCard);
+            db.collection(user.uid).add(currentCard).then(() => {
+              console.log('Flip-card added');
+              alertFile.innerHTML =
+                `<h5>${i} out of ${object.length-1} cards processed.</h5><br><h5>Please wait and don't touch anything until the process finishes, or it may mess your cards up completely!</h5>`;
+              if (i === object.length - 1) {
+                console.log('finished');
+                alertFile.innerHTML = `<h2>Done.</h2>`;
+                let wait = (ms) => {
+                  return new Promise(resolve => setTimeout(resolve, ms));
+                }
+                wait(500).then(() => {
+                  alertFile.style.display = 'none';
+                  window.open("https://www.mmacode.org/projects/flipcards/dist/practice.html",
+                    "_self");
+                  // window.open("practice.html", "_self");
+                });
+
+              }
+            }).catch(err => {
+              console.log(err);
+              console.log('I could NOT add object into the database.');
+            });
+          }
+        });
+
+
+
+
+
+
+
+
+      });
+      cancelImport.addEventListener('click', (e) => {
+        window.location.reload();
+      });
+
+
+
+
+    };
+
+
+
+
+
+
+
+    // F handle file (different path depending on if uploaded or dropped)
+    let handleFile = (e, pathMiro, googleORnormal) => {
       // console.log(e.target.files[0]);
       // console.log(e.dataTransfer.files[0]);
       var reader = new FileReader();
@@ -91,7 +265,13 @@
 
 
         // DEAL WITH THE DATA....
-        
+        if (googleORnormal == "google") {
+          handleGTranslateObject(excelAsObject);
+        }
+
+        if (googleORnormal == "normal") {
+          // handleNormalFile(excelAsObject);
+        }
       }
     }
 
@@ -99,19 +279,38 @@
 
 
     /////////////// MAIN
-    fileHTML.addEventListener('change', function (e) {
-      handleFile(e, e.target.files[0]);
+
+
+    googleFileHTML.addEventListener('change', function (e) {
+      handleFile(e, e.target.files[0], "google");
     });
 
+    normalFileHTML.addEventListener('change', function (e) {
+      handleFile(e, e.target.files[0], "normal");
+    });
+
+
     // drag and drop listeners
-    document.addEventListener('dragover', e => {
+    googleDropHTML.addEventListener('dragover', e => {
       e.preventDefault();
       e.stopPropagation();
     })
-    document.addEventListener('drop', e => {
+
+    googleDropHTML.addEventListener('drop', e => {
       e.preventDefault();
       e.stopPropagation();
-      handleFile(e, e.dataTransfer.files[0]);
+      handleFile(e, e.dataTransfer.files[0], "google");
+    })
+
+    normalDropHTML.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.stopPropagation();
+    })
+
+    normalDropHTML.addEventListener('drop', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      handleFile(e, e.dataTransfer.files[0], "normal");
     })
   </script>
 </body>

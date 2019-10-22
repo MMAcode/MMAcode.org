@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/xlsx.full.min.js"></script>
+  <script src="js/FileSaver.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script> -->
+  <title></title>
+</head>
+
+<body>
+  <button class="centerIt"><a href="index.html">Main menu</a></button>
+  <br><br>
+  <input type="file" id="fileUpload" class="centerIt">
+  <br>
+
+  <p>Or drag and drop your excel file here...</p>
+
+
+
+
+
+  <script>
+    let fileHTML = document.getElementById("fileUpload");
+
+    // // F handle file
+    // let handleFile = (e, pathMiro) => {
+    //   // console.log(e.target.files[0]);
+    //   // console.log(e.dataTransfer.files[0]);
+    //   var reader = new FileReader();
+    //   reader.readAsArrayBuffer(pathMiro);
+    //   reader.onload = function (e) {
+    //     var data = new Uint8Array(reader.result);
+    //     var wb = XLSX.read(data, {
+    //       type: 'binary'
+    //     });
+    //     var sheet = wb.Sheets.Sheet1;
+
+    // var excelAsObject = XLSX.utils.sheet_to_row_object_array(sheet);
+    // console.log(excelAsObject);
+
+    // var json_object = JSON.stringify(excelAsObject);
+    // console.log(JSON.parse(json_object));
+
+    //     // A,B = columns
+    //     //1,2 = rows
+    //     console.log(wb);
+    //     console.log(sheet);
+    //     console.log(sheet.A1.h);
+    //     // console.log(sheet["A1"].h);
+    //     // console.log(sheet["!ref"]);
+
+
+    //     // DEAL WITH THE DATA....
+    //   }
+    // }
+
+    // F handle file
+    let handleFile = (e, pathMiro) => {
+      // console.log(e.target.files[0]);
+      // console.log(e.dataTransfer.files[0]);
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(pathMiro);
+      reader.onload = function (e) {
+        var data = new Uint8Array(reader.result);
+        var wb = XLSX.read(data, {
+          type: 'array'
+        });
+        var sheetOneName = wb.SheetNames[0];
+        // console.log(wb.SheetNames[0]);
+        // console.log(wb.Sheets);
+        var sheet = wb.Sheets[sheetOneName];
+
+        var excelAsObject = XLSX.utils.sheet_to_row_object_array(sheet);
+        // var json_object = JSON.stringify(excelAsObject);
+        // console.log(JSON.parse(json_object));
+
+        // A,B = columns
+        //1,2 = rows
+        // console.log(wb);
+        // console.log(sheet);
+        // console.log(sheet.A1.h);
+        console.log(excelAsObject);
+        // console.log(sheet["A1"].h);
+        // console.log(sheet["!ref"]);
+
+
+        // DEAL WITH THE DATA....
+        
+      }
+    }
+
+
+
+
+    /////////////// MAIN
+    fileHTML.addEventListener('change', function (e) {
+      handleFile(e, e.target.files[0]);
+    });
+
+    // drag and drop listeners
+    document.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.stopPropagation();
+    })
+    document.addEventListener('drop', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      handleFile(e, e.dataTransfer.files[0]);
+    })
+  </script>
+</body>
+
+</html>

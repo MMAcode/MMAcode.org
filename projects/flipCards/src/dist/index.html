@@ -17,14 +17,14 @@
     <div id="newWord_container">
       <h4> Add new word to learn:</h4>
       <form action="">
-        <label for="nativeInput">Native word:</label>
-        <input name="nativeInput" type="text">
-        <label for="toLearnInput">To Learn word:</label>
-        <input name="toLearnInput" type="text">
+        <label for="enInput">English word:</label>
+        <input name="enInput" type="text">
+        <label for="czInput">Czech word:</label>
+        <input name="czInput" type="text">
         <input type="submit">
       </form>
     </div>
-    <a class="button" id="importBtn" href="importFile_video.html">import words from excel (.xlsx) file</a>
+    <a class="button" id="importBtn" href="importFile_video.html">import words from file</a>
 
     <br>
     <!-- <div id="showAllCards">
@@ -37,7 +37,7 @@
     <br>
     <a class="button" id="signInOutButton" href="signIn.html">Sign-in</a>
     <br><br>
-    <!-- <a id="administrator" href="administrator.html">administrator</a> -->
+    <a id="administrator" href="administrator.html">administrator</a>
 
     <!-- <button id="copyCollection"></button> -->
 
@@ -91,20 +91,20 @@
       form = document.querySelector('form');
       form.addEventListener('submit', e => {
         e.preventDefault();
-        let nativeInput = form.nativeInput.value;
-        let toLearnInput = form.toLearnInput.value;
+        let enInput = form.enInput.value;
+        let czInput = form.czInput.value;
 
         // add new object into firebase
         const newCard = {
-          languageNative: nativeInput,
-          languageToLearn: toLearnInput,
+          enWord: enInput,
+          czWord: czInput,
           mainStage: 'to learn',
           enCheck: false,
           czCheck: false,
           level: 0,
           dueTime: 8888888888888,
           due: false,
-          lastSeen: 8888888888888
+          lastSeen: 0
         };
 
         db.collection(user.uid).add(newCard).then(() => {
@@ -167,36 +167,31 @@
         //   ccButton.style.display = 'none';
         // })
         activateNEwCardListener(user);
-        console.log('you are logged in as...');
-        console.log(user);
-        console.log(user.email);
-        console.log(user.uid);
+        // console.log('you are logged in as...');
+        // console.log(user);
+        // console.log(user.email);
+        // console.log(user.uid);
         status.innerHTML = `<p>you are logged in as ${user.email}. Enjoy!</p>`;
+
         changeButtonToSignOut();
 
-        // check if user doc exists
+        // check if user exists
         let userExists = async () => {
-          let userDoc = await db.collection(user.uid).doc(user.uid).get();
-          console.log(userDoc);
-          console.log('user to ACCESS:', userDoc.exists);
-          if (userDoc.exists === true) {
-            console.log('user doc exists');
-
-            // db.collection(user.uid).get().then((data) => {
-            //   console.log(data.docs.length,' cards');
-            // });
-
+          let user = await db.collection(user.uid).doc(user.uid).get();
+          console.log('user user to ACCESS:', user.exists);
+          if (user.exists === true) {
+            return true
           } else {
-            console.log('user doc doesnt exist, i am going to create one...');
-            // here should be initiated for to collect info like language to learn, native language etc. in async mode; then after suplying the data, doc should be created
-            let userCollection = db.collection(user.uid).doc(user.uid).set({
-              userEmail: user.email,
-              userID: user.uid
-            });
+            return false
           };
-        };
-        userExists();
+        }
 
+        if (!userExists()) {
+          let userCollection = db.collection(user.uid).doc(user.uid).set({
+            userEmail: user.email,
+            userID: user.uid
+          });
+        }
 
       } else {
         addWordForm.style.display = 'none';

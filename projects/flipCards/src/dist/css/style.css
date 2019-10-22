@@ -27,8 +27,7 @@ h5,
 h6 {
   line-height: 1.3;
   text-transform: uppercase;
-  color: white;
-  text-align: center; }
+  color: white; }
 
 a {
   text-decoration: none; }
@@ -58,7 +57,7 @@ label {
 
 .button {
   padding: 1rem;
-  margin: 1.4rem !important;
+  margin: 0.2rem;
   background: #f7c7c7;
   border: 1px solid white; }
   .button:hover {
@@ -131,31 +130,3 @@ label {
     position: absolute;
     bottom: 0;
     width: 100%; }
-
-#googleDrop,
-#normalDrop {
-  border: 2px dotted gray;
-  margin: 1rem;
-  padding: 4rem; }
-
-#googleDrop {
-  background: #dfa1f1; }
-
-#normalDrop {
-  background: #b636f1; }
-
-#cardToCheckAllert {
-  display: none;
-  position: fixed;
-  left: 5%;
-  top: 5%;
-  width: 90%;
-  height: 90%;
-  padding: 1rem;
-  background: blue; }
-
-#proccedImport {
-  background: green; }
-
-#cancelImport {
-  background: red; }

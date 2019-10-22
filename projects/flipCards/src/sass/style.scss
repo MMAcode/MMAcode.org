@@ -41,6 +41,7 @@ h6 {
   line-height: 1.3;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
+  text-align: center;
 }
 
 
@@ -57,7 +58,7 @@ img {
 }
 
 button {
-  padding: 1rem;
+  // padding: 1rem;
   font-size: $defaultFontSize;
 
   &:hover {
@@ -82,15 +83,25 @@ label {
 
 .centerIt {
   display: block;
-  margin:auto;
+  margin: auto;
   text-align: center;
 
   // flex-flow: column;
   // align-items: center;
   // justify-content: center;
-
 }
 
+.button {
+  padding: 1rem;
+  margin: 1.4rem !important;
+  background: rgb(247, 199, 199);
+  border: 1px solid white;
+
+  &:hover {
+    background: rgb(247, 144, 144);
+    cursor: pointer;
+  }
+}
 
 
 // **Main
@@ -217,4 +228,38 @@ label {
     // background: red;
   }
 
+}
+
+#googleDrop,
+#normalDrop {
+  border: 2px dotted gray;
+  margin: 1rem;
+  padding: 4rem;
+}
+
+#googleDrop {
+  background: rgb(223, 161, 241);
+}
+
+#normalDrop {
+  background: rgb(182, 54, 241);
+}
+
+#cardToCheckAllert {
+  display: none;
+  position: fixed;
+  left: 5%;
+  top: 5%;
+  width: 90%;
+  height: 90%;
+  padding: 1rem;
+  background: blue;
+}
+
+#proccedImport {
+  background: green;
+}
+
+#cancelImport {
+  background: red;
 }

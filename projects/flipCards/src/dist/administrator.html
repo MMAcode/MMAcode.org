@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <a class="button" href="index.html">Main menu</a>
+  <br><br>
+  <div class="button" id="updateAllCardsButID">update all cards but ID card</div>
+
+
+
+
+
+
+
+
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js"></script> -->
+
+  <!-- TODO : Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAY9FCIHSK9v0LSa8i_PWxm06kx_Isv4Uo",
+      authDomain: "ninja2-634e4.firebaseapp.com",
+      databaseURL: "https://ninja2-634e4.firebaseio.com",
+      projectId: "ninja2-634e4",
+      storageBucket: "ninja2-634e4.appspot.com",
+      messagingSenderId: "900566306511",
+      appId: "1:900566306511:web:044e5cb5c69760492db1ba"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // firebase.analytics();
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+  </script>
+
+
+<script src="js/administrator.js"></script>
+
+</body>
+
+</html>
