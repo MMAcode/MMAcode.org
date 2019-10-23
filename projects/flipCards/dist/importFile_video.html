@@ -42,7 +42,8 @@
     <h5>Instructions:</h5>
     <p>For .xlsx from simple sheet with 2 columns:</p>
     <p>1) label columns of the first row with numbers 1 and 2.</p>
-    <p>2) In second row, label with "1" column of words in your language, and with "2" column of words in language you want to learn. </p>
+    <p>2) In second row, label with "1" column of words in your language, and with "2" column of words in language you
+      want to learn. </p>
   </div>
 
   <div id="cardToCheckAllert">
@@ -220,8 +221,8 @@
       let currentWord = objectS[rowNum];
       // create new object for firebase
       const newCard = {
-        languageNative: 'n',
-        languageToLearn: 'tL',
+        languageNative: '',
+        languageToLearn: '',
         mainStage: 'to learn',
         enCheck: false,
         level: 0,
@@ -231,14 +232,21 @@
       };
 
       // set words to the object for firebase
+
+      // if (currentWord[1] !== undefined && currentWord[2] !== undefined) {
       if (colToLearn == 1) {
+        // console.log(currentWord[1]);
+        // console.log(currentWord[2]);
         newCard.languageToLearn = currentWord[1];
         newCard.languageNative = currentWord[2];
 
       } else {
+        // console.log(currentWord[1]);
+        // console.log(currentWord[2]);
         newCard.languageToLearn = currentWord[2];
         newCard.languageNative = currentWord[1];
       }
+      // }
       return newCard;
     }
 
@@ -261,7 +269,7 @@
       // console.log(cardToUpload);
 
       alertFile.style.display = 'block';
-      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+      // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
       nativeCheckHTML.innerHTML = `<h5>${cardToUpload.languageNative}</h5>`;
       toLearnCheckHTML.innerHTML = `<h5>${cardToUpload.languageToLearn}</h5>`;
 
@@ -275,28 +283,32 @@
 
           for (let i = 1; i < objectFromFile.length; i++) {
             let currentCard = prepareCardfromNormalFile(objectFromFile, i, columnToLearn);
-            // console.log(currentCard);
-            db.collection(user.uid).add(currentCard).then(() => {
-              console.log('Flip-card added');
-              alertFile.innerHTML =
-                `<h5>${i} out of ${objectFromFile.length-1} cards processed.</h5><br><h5>Please wait and don't touch anything until the process finishes, or it may mess your cards up completely!</h5>`;
-              if (i === objectFromFile.length - 1) {
-                console.log('finished');
-                alertFile.innerHTML = `<h2>Done.</h2>`;
-                let wait = (ms) => {
-                  return new Promise(resolve => setTimeout(resolve, ms));
+
+            if (currentCard.languageNative !== undefined && currentCard.languageToLearn !== undefined) {
+              db.collection(user.uid).add(currentCard)
+              .then(() => {
+                console.log('Flip-card added');
+                alertFile.innerHTML =
+                  `<h5>${i} out of ${objectFromFile.length-1} cards processed.</h5><br><h5>Please wait and don't touch anything until the process finishes, or it may mess your cards up completely!</h5>`;
+                if (i === objectFromFile.length - 1) {
+                  console.log('finished');
+                  alertFile.innerHTML = `<h2>Done.</h2>`;
+                  let wait = (ms) => {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                  }
+                  wait(500).then(() => {
+                    alertFile.style.display = 'none';
+                    window.open("https://www.mmacode.org/projects/flipcards/dist/practice.html",
+                      "_self");
+                    // window.open("practice.html", "_self");
+                  });
                 }
-                wait(500).then(() => {
-                  alertFile.style.display = 'none';
-                  window.open("https://www.mmacode.org/projects/flipcards/dist/practice.html",
-                    "_self");
-                  // window.open("practice.html", "_self");
-                });
-              }
-            }).catch(err => {
-              console.log(err);
-              console.log('I could NOT add object into the database.');
-            });
+              })
+              .catch(err => {
+                console.log(err);
+                console.log('I could NOT add object into the database.');
+              });
+            }
           }
         });
       });
@@ -331,9 +343,11 @@
         var sheet = wb.Sheets[sheetOneName];
 
         var excelAsObject = XLSX.utils.sheet_to_row_object_array(sheet);
-        // var json_object = JSON.stringify(excelAsObject);
+        var json_object = JSON.stringify(excelAsObject);
+        // console.log('hereh');
         // console.log(JSON.parse(json_object));
-
+        excelAsObject = JSON.parse(json_object);
+        console.log('ssssssssssssssssssssssss');
         // A,B = columns
         //1,2 = rows
         // console.log(wb);
