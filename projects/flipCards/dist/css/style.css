@@ -66,6 +66,7 @@ label {
     cursor: pointer; }
 
 #container {
+  position: relative;
   max-width: 500px;
   text-align: center;
   min-height: 100vh;
@@ -128,9 +129,12 @@ label {
   #training_wrapper #deleteCard {
     display: flex; }
   #training_wrapper #bottonWrapper {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    width: 100%; }
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex; }
 
 #googleDrop,
 #normalDrop {
