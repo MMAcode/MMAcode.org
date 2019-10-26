@@ -1,4 +1,5 @@
-import { importPozdrav } from './test';
+// import { importPozdrav } from './test';
+// import { StopwatchPoints } from './stopwatchPoints';
 
 
 
@@ -6,6 +7,8 @@ let dueCount = 0;
 let toLearnCount = 0;
 // const cards = db.collection('FlipCards');
 let cards = db.collection('FlipCards');
+let userID = 0;
+let userInfo = null;
 
 const currentCardS = null;
 let currentCard = {};
@@ -89,16 +92,18 @@ let levelLearned = 10; //if level 10 --> label as learned
 
 
 arrayTimes = [
-  1000 * 10, //sec
+  1000 * 10, //sec     L0
   1000 * 60,
   60000 * 5, //min
   3600000 * 1, //hours
   3600000 * 6,
   3600000 * 22,
+  3600000 * 22,
   86400000 * 2, //days
   86400000 * 5,
-  86400000 * 15
+  86400000 * 15  //    L9 adds this much time (first level is updated, then this time is added based on current level)
 ]
+console.log('level 9  adds ', arrayTimes[9], " ms to now time");
 
 // arrayTimes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -135,7 +140,7 @@ console.log(oneArray);
 let deleteCard = async () => {
   console.log('ready to delete card');
   console.log(currentCardID);
-  cards.doc(currentCardID).delete().then(() => {
+  cards.collection("cardsLearningNotDue").doc(currentCardID).delete().then(() => {
     console.log('deleted');
     updateDatabaseTHEN_UI();
   });
@@ -148,19 +153,27 @@ let updateDue = async data => {
   let now = new Date().getTime();
   dueCount = 0;
   console.log('L1-1-1: starting "updateDue" in MAIN-ASYNC');
-  let dueToUpdate = await cards.where('mainStage', '==', 'learning').where('due', '==', false).where('dueTime', '<', now);
+  // let dueToUpdate = await cards.where('mainStage', '==', 'learning').where('due', '==', false).where('dueTime', '<', now);
+  let dueToUpdate = await cards.collection("cardsLearningNotDue").where('dueTime', '<', now);
   let ddData = await dueToUpdate.get();
   console.log('cards which are going to have DUE changed to TRUE:');
 
-
-
-
   // this promise is not usefull, it doesn't wait for the updated cards anyway
   // return new Promise((resolve, reject) => {
-  ddData.docs.forEach((doc) => {
-    console.log(doc.data());
-    cards.doc(doc.id).update({ due: true }).then(function () { console.log('XXXXXXXXupdating "due status" finishedXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'); });
+  ddData.docs.forEach((docC) => {
+    // console.log(doc.data());
+    let cardToMove = docC.data();
+    // console.log(cardToMove);
+    // console.log(docC.id);
+    cards.collection("cardsLearningDue").doc(docC.id).set(cardToMove).then(() => {
+      cards.collection("cardsLearningNotDue").doc(docC.id).delete();
+      // console.log('------- CARD MOVED TO DUE GROUP qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+
+    });
   });
+  // cards.collection("cardsLearningNotDue").doc(doc.id).update({ due: true }).then(function () { console.log('XXXXXXXXupdating "due status" finishedXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'); });
+  // cards.collection("cardsLearningDue").add()
+
   // resolve('due statuses hopefully updated!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
   // });
 
@@ -177,13 +190,22 @@ let updateDue = async data => {
 
 // get current card from DUE
 let getCardFromDue = async () => {
-  console.log('starting get card from Due');
-  let dataOrdered = await cards.where('mainStage', '==', 'learning').where('due', '==', true).orderBy('lastSeen', "desc").limit(1).get();
+  // console.log('starting get card from Due');
+  // console.log('------- STARTING TO GET CARD FROM DUE GROUP qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+
+  // let dataOrdered = await cards.where('mainStage', '==', 'learning').where('due', '==', true).orderBy('lastSeen', "desc").limit(1).get();
+  let dataOrdered = await cards.collection("cardsLearningDue").orderBy('lastSeen', "desc").limit(1).get();
   // console.log('dataOrdered:', dataOrdered.docs.length);
   if (dataOrdered.docs.length == 0) { console.log('no DUE card right NOW.'); dueCount = 0; }
   else {
     currentCard = dataOrdered.docs[0].data();
     currentCardID = dataOrdered.docs[0].id;
+    let cardMoveHere = await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard).then(() => {
+      cards.collection("cardsLearningDue").doc(currentCardID).delete();
+      // console.log('------- CARD MOVED TO DUE GROUP qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+    });
+
+    // let cardToMove = await cards.collection("cardsLearningDue").
     dueCount = 1;
     console.log('because DUE card was found, "current card" was updated.', currentCard, "card's ID: ", currentCardID);
   }
@@ -195,7 +217,8 @@ let getCardFromDue = async () => {
 // get "to learn" card
 let getCardFromToLearn = async (cards) => {
   // console.log('L1-1-4 STARTING getting ToLEARN card.');
-  let checkIfACardFromToLearn = await cards.where('mainStage', '==', 'to learn').limit(1).get();
+  // let checkIfACardFromToLearn = await cards.where('mainStage', '==', 'to learn').limit(1).get();
+  let checkIfACardFromToLearn = await cards.collection("cardsToLearn").limit(1).get();
   if (checkIfACardFromToLearn.docs.length == 0) { console.log('no TO LEARN card right NOW.'); toLearnCount = 0; }
   else {
     let now = new Date().getTime();
@@ -203,6 +226,10 @@ let getCardFromToLearn = async (cards) => {
     currentCardID = checkIfACardFromToLearn.docs[0].id;
     currentCard.mainStage = 'learning';
     currentCard.lastSeen = now;
+    let cardMoveHere = await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard).then(() => {
+      cards.collection("cardsToLearn").doc(currentCardID).delete();
+      // console.log('------- CARD MOVED TO DUE GROUP qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+    });
     toLearnCount = 1;
     console.log('because TO LEARN card was found, "current card" was updated.', currentCard, "card's ID: ", currentCardID);
   }
@@ -348,7 +375,8 @@ let updateCurrentCard = (e) => {
 
   if (lev < levelLearned) { currentCard.dueTime = now + arrayTimes[lev]; }
   else if (lev = levelLearned) {
-    currentCard.mainStage = 'learned';
+    currentCard.level = 888;
+    // currentCard.mainStage = 'learned';
     // console.log('card labeled learned');
     // console.log(currentCard);
     alert('Congrats -this card was added to "learned" pile.');
@@ -356,16 +384,28 @@ let updateCurrentCard = (e) => {
 }
 
 let updateCardInFirebase = async () => {
-  console.log('card to be updated like this:');
-  console.log(currentCard);
-  await cards.doc(currentCardID).update({
-    enCheck: currentCard.enCheck,
-    level: currentCard.level,
-    lastSeen: currentCard.lastSeen,
-    due: currentCard.due,
-    dueTime: currentCard.dueTime,
-    mainStage: currentCard.mainStage
-  });
+  // console.log('card to be updated like this:');
+  // console.log(currentCard);
+  // await cards.doc(currentCardID).update({
+
+  if (currentCard.level != 888) {
+    await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard);
+    // await cards.collection("cardsLearningDue").doc(currentCardID).delete();
+  };
+  if (currentCard.level == 888) {
+    await cards.collection("cardsLearned").doc(currentCardID).set(currentCard).then(() => {
+      cards.collection("cardsLearningNotDue").doc(currentCardID).delete();
+    });
+  }
+
+  // update({
+  //     enCheck: currentCard.enCheck,
+  //   level: currentCard.level,
+  //   lastSeen: currentCard.lastSeen,
+  //   due: currentCard.due,
+  //   dueTime: currentCard.dueTime,
+  //   mainStage: currentCard.mainStage
+  // });
   // console.log(' card in FIREBASE updated');
 }
 
@@ -520,8 +560,8 @@ let updateDatabaseTHEN_UI = () => {
 
 let setLanguagesToSpeak = async (user) => {
   console.log('starting SETTING LANGUAGE TO SPEAK:');
-  let userInfo = await cards.doc(user.uid).get();
-  languageToSpeak = userInfo.data().langToLearn;
+
+  languageToSpeak = userInfo.langToLearn;
   console.log('language to speak:', languageToSpeak);
 
   if (languageToSpeak === 'czech') {
@@ -540,13 +580,27 @@ let setLanguagesToSpeak = async (user) => {
 
 //////////////////////////////// MAIN
 // console.log('getting to listening to al cards click1');
-auth.onAuthStateChanged(user => {
+auth.onAuthStateChanged((user) => {
   if (user) {
-    loggedStatus.innerHTML = `<p>Enjoy ${user.email}!</p>`
-    cards = db.collection(user.uid);
-    setLanguagesToSpeak(user).then(() => {
-      updateDatabaseTHEN_UI();
-    })
+    userID = user.uid;
+    // cards = db.collection(userID);
+    cards = db.collection("users").doc(user.email);
+    // userInfo = await
+    cards.collection("about").doc("info").get().then((userDoc) => {
+      // loggedStatus.innerHTML = `<p>Enjoy ${user.email}!</p>`
+      userInfo = userDoc.data();
+      loggedStatus.innerHTML = `<p>Enjoy ${userInfo.username}!</p>`
+      setLanguagesToSpeak(user).then(() => {
+        updateDatabaseTHEN_UI();
+      });
+
+    });
+
+
+
+    // StopwatchPoints(cards, userID).then((cardXX) => {
+    //   // console.log('cccccccccccccxxxxxxxxxxxxxxxxxxxxxxxxxxXXXXXXXXXXXXX', cardXX);
+    // });
   }
   else { loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>'; }
 });
@@ -559,3 +613,5 @@ deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
 // console.log('getting to listening to al cards click3');
 // showAllCardsHTML.addEventListener('click', e => showALLCards);
+
+export { cards, userID };

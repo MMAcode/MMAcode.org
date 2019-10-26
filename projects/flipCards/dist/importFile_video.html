@@ -179,41 +179,44 @@
       toLearnCheckHTML.innerHTML = `<h5>${currentCard.languageToLearn}</h5>`
 
       proccedImport.addEventListener('click', (e) => {
-        nativeCheckHTML.innerHTML = `<h5>OK, moment...</h5>`;
-        toLearnCheckHTML.innerHTML = `<h5>OK moment...</h5>`;
+          nativeCheckHTML.innerHTML = `<h5>OK, moment...</h5>`;
+          toLearnCheckHTML.innerHTML = `<h5>OK moment...</h5>`;
 
-        auth.onAuthStateChanged(user => {
+          auth.onAuthStateChanged(user => {
 
-          for (let i = 1; i < object.length; i++) {
-            let currentCard = prepareCard(object, i);
-            // console.log(currentCard);
-            db.collection(user.uid).add(currentCard).then(() => {
-              console.log('Flip-card added');
-              alertFile.innerHTML =
-                `<h5>${i} out of ${object.length-1} cards processed.</h5><br><h5>Please wait and don't touch anything until the process finishes, or it may mess your cards up completely!</h5>`;
-              if (i === object.length - 1) {
-                console.log('finished');
-                alertFile.innerHTML = `<h2>Done.</h2>`;
-                let wait = (ms) => {
-                  return new Promise(resolve => setTimeout(resolve, ms));
-                }
-                wait(500).then(() => {
-                  alertFile.style.display = 'none';
-                  window.open("https://www.mmacode.org/projects/flipcards/dist/practice.html",
-                    "_self");
-                  // window.open("practice.html", "_self");
-                });
-              }
-            }).catch(err => {
-              console.log(err);
-              console.log('I could NOT add object into the database.');
-            });
-          }
-        });
+              for (let i = 1; i < object.length; i++) {
+                let currentCard = prepareCard(object, i);
+                // console.log(currentCard);
+                // db.collection(user.uid).add(currentCard).then(() => {
+                db.collection("users").doc(user.email).collection("cardsToLearn").add(currentCard).then(() => {
+
+                    console.log('Flip-card added');
+                    alertFile.innerHTML =
+                      `<h5>${i} out of ${object.length-1} cards processed.</h5><br><h5>Please wait and don't touch anything until the process finishes, or it may mess your cards up completely!</h5>`;
+                    if (i === object.length - 1) {
+                      console.log('finished');
+                      alertFile.innerHTML = `<h2>Done.</h2>`;
+                      let wait = (ms) => {
+                        return new Promise(resolve => setTimeout(resolve, ms));
+                      }
+                      wait(500).then(() => {
+                          alertFile.style.display = 'none';
+                          // window.open("https://www.mmacode.org/projects/flipcards/dist/practice.html",
+                          window.location.reload();
+                          "_self");
+                        // window.open("practice.html", "_self");
+                      });
+                  }
+                }).catch(err => {
+                console.log(err);
+                console.log('I could NOT add object into the database.');
+              });
+            }
+          });
       });
-      cancelImport.addEventListener('click', (e) => {
-        window.location.reload();
-      });
+    cancelImport.addEventListener('click', (e) => {
+      window.location.reload();
+    });
     };
 
 
@@ -276,45 +279,46 @@
 
 
       proccedImport.addEventListener('click', (e) => {
-        nativeCheckHTML.innerHTML = `<h5>OK, moment...</h5>`;
-        toLearnCheckHTML.innerHTML = `<h5>OK moment...</h5>`;
+          nativeCheckHTML.innerHTML = `<h5>OK, moment...</h5>`;
+          toLearnCheckHTML.innerHTML = `<h5>OK moment...</h5>`;
 
-        auth.onAuthStateChanged(user => {
+          auth.onAuthStateChanged(user => {
 
-          for (let i = 1; i < objectFromFile.length; i++) {
-            let currentCard = prepareCardfromNormalFile(objectFromFile, i, columnToLearn);
+              for (let i = 1; i < objectFromFile.length; i++) {
+                let currentCard = prepareCardfromNormalFile(objectFromFile, i, columnToLearn);
 
-            if (currentCard.languageNative !== undefined && currentCard.languageToLearn !== undefined) {
-              db.collection(user.uid).add(currentCard)
-              .then(() => {
-                console.log('Flip-card added');
-                alertFile.innerHTML =
-                  `<h5>${i} out of ${objectFromFile.length-1} cards processed.</h5><br><h5>Please wait and don't touch anything until the process finishes, or it may mess your cards up completely!</h5>`;
-                if (i === objectFromFile.length - 1) {
-                  console.log('finished');
-                  alertFile.innerHTML = `<h2>Done.</h2>`;
-                  let wait = (ms) => {
-                    return new Promise(resolve => setTimeout(resolve, ms));
-                  }
-                  wait(500).then(() => {
-                    alertFile.style.display = 'none';
-                    window.open("https://www.mmacode.org/projects/flipcards/dist/practice.html",
-                      "_self");
-                    // window.open("practice.html", "_self");
-                  });
-                }
-              })
-              .catch(err => {
-                console.log(err);
-                console.log('I could NOT add object into the database.');
-              });
+                if (currentCard.languageNative !== undefined && currentCard.languageToLearn !== undefined) {
+                  db.collection("users").doc(user.email).collection("cardsToLearn").add(currentCard)
+                    .then(() => {
+                        console.log('Flip-card added');
+                        alertFile.innerHTML =
+                          `<h5>${i} out of ${objectFromFile.length-1} cards processed.</h5><br><h5>Please wait and don't touch anything until the process finishes, or it may mess your cards up completely!</h5>`;
+                        if (i === objectFromFile.length - 1) {
+                          console.log('finished');
+                          alertFile.innerHTML = `<h2>Done.</h2>`;
+                          let wait = (ms) => {
+                            return new Promise(resolve => setTimeout(resolve, ms));
+                          }
+                          wait(500).then(() => {
+                              alertFile.style.display = 'none';
+                              // window.open("https://www.mmacode.org/projects/flipcards/dist/practice.html",
+                              window.location.reload();
+                              "_self");
+                            // window.open("practice.html", "_self");
+                          });
+                      }
+                    })
+                .catch(err => {
+                  console.log(err);
+                  console.log('I could NOT add object into the database.');
+                });
+              }
             }
-          }
-        });
+          });
       });
-      cancelImport.addEventListener('click', (e) => {
-        window.location.reload();
-      });
+    cancelImport.addEventListener('click', (e) => {
+      window.location.reload();
+    });
 
 
 

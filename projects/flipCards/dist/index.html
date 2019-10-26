@@ -12,6 +12,12 @@
 
 <body>
   <div id="container">
+    <div id="userStatusWrapper">
+      <div id="userStatus"></div>
+      <!-- <br> -->
+      <a class="button" id="signInOutButton" href="signIn.html">Sign-in</a>
+    </div>
+
     <h1>Vocabulary training</h1>
     <h3>
       <a class="button" href="practice.html">learn/practice</a></h3>
@@ -37,14 +43,56 @@
     <br>
     <br>
     <p></p>
-    <div id="userStatus"></div>
-    <br>
-    <a class="button" id="signInOutButton" href="signIn.html">Sign-in</a>
+
     <br><br>
     <!-- <a id="administrator" href="administrator.html">administrator</a> -->
 
-    <!-- <button id="copyCollection"></button> -->
 
+
+
+
+
+
+
+    <!-- <button id="copyCollection"></button> -->
+    <div id="firstTimeUser">
+      <form id="firstTimeUserForm" action="">
+        <h4>Select your native language:</h4>
+        <p class="centerIt">(required)</p>
+
+        <!-- NATIVE LANG -->
+        <input required type="radio" id="nLanguageCZ" name="nLanguage" value="czech">
+        <label for="nLanguageCZ">Czech</label>
+        <br>
+        <input type="radio" id="nLanguageEN" name="nLanguage" value="english">
+        <label for="nLanguageEN">English</label>
+        <!-- <p>(More languages upon request...)</p> -->
+        <br> <br>
+
+        <!-- LANG TO LEARN -->
+        <h4>Select language to learn:</h4>
+        <p class="centerIt">(required)</p>
+
+        <input required type="radio" id="lLanguageCZ" name="lLanguage" value="czech">
+        <label for="lLanguageCZ">Czech</label>
+        <br>
+        <input type="radio" id="lLanguageEN" name="lLanguage" value="english">
+        <label for="lLanguageEN">English</label>
+        <br>
+        <input type="radio" id="lLanguageFR" name="lLanguage" value="french">
+        <label for="lLanguageFR">French</label>
+        <!-- <p>(More languages upon request...)</p> -->
+
+        <br>
+
+        <br>
+        <br>
+        <label for="usernameX">How do you want to be called? <br>(You can change your username later too.)</label>
+        <input class="centerIt" id="usernameX" type="text" name="username">
+        <br>
+        <input class="button centerIt" type="submit" value="submit">
+      </form>
+    </div>
   </div>
 
 
@@ -111,7 +159,9 @@
           lastSeen: 8888888888888
         };
 
-        db.collection(user.uid).add(newCard).then(() => {
+        // db.collection(user.uid).add(newCard).then(() => {
+        //  new-DB-structure
+        db.collection("users").doc(user.email).collection("cardsToLearn").add(newCard).then(() => {
           console.log('Flip-card added');
         }).catch(err => {
           console.log(err);
@@ -124,6 +174,48 @@
 
 
 
+
+
+
+    // first time user set up
+    let getUserLanguagesFromHtml = async (user) => {
+      console.log('F to update user file started --------------------------------------');
+      let form = document.querySelector('#firstTimeUserForm');
+      let updateDB = false;
+      let formWrapperDisplay = document.querySelector('#firstTimeUser');
+
+      formWrapperDisplay.style.display = "block";
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        // console.log(e);
+        // console.log(form.nLanguage.value);
+        // console.log(form.lLanguage.value);
+        // console.log(form.username.value);
+
+
+        // if (updateDB == true) {
+        console.log('updating user doc in DB +++++++++++++++++++++++++++++');
+        // create user doc in Firebase
+        let userDocX = await db.collection("users").doc(user.email).collection("about").doc("info").set({
+          userEmail: user.email,
+          userID: user.uid,
+          langToLearn: form.lLanguage.value,
+          langNative: form.nLanguage.value,
+          username: form.username.value
+        });
+        window.location.reload();
+
+        // formWrapperDisplay.style.display = "none";
+        // }
+
+
+      })
+
+
+
+
+    }
 
 
 
@@ -150,17 +242,7 @@
       })
     }
 
-    // F copy collection and contained cards exactly - with levels etc
-    let copyCollection = async (user) => {
-      const cards = db.collection('FlipCards');
-      // const userID = user.uid;
-      let userCol = db.collection(user.uid);
-      let origCol = await cards.get();
-      origCol.docs.forEach(doc => {
-        // console.log(doc.data());
-        userCol.add(doc.data());
-      })
-    }
+
     // user status
     auth.onAuthStateChanged(user => {
       if (user) {
@@ -180,37 +262,171 @@
 
         // check if user doc exists
         let userExists = async () => {
-          let userDoc = await db.collection(user.uid).doc(user.uid).get();
+          // let userDoc = await db.collection(user.uid).doc(user.uid).get();
+          //  new-DB-structure
+          let userDoc = await db.collection("users").doc(user.email).collection("about").doc("info").get();
+
           console.log(userDoc);
           console.log('user to ACCESS:', userDoc.exists);
           if (userDoc.exists === true) {
             console.log('user doc exists');
+            status.innerHTML = `<p>Welcome <br><strong> ${userDoc.data().username} </strong></p>`;
+
+
+
+
+            ////////// delete all cards in a given collection
+            // let deleteCardsInUsersCollection = (colName) => {
+            //   db.collection("users").doc(user.email).collection(colName).get().then((data) => {
+            //     data.docs.forEach(doc => {
+            //       // console.log(doc.id);
+            //       db.collection("users").doc(user.email).collection(colName).doc(doc.id)
+            //         .delete();
+            //     })
+            //   });
+            // }
+            // deleteCardsInUsersCollection("cardsLearningNotDue");
+            // deleteCardsInUsersCollection("cardsLearningDue");
+            // deleteCardsInUsersCollection("cardsToLearn");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // MOVE all cards from old to new structure
+
+            let moveAllCardsToNewStructure = async () => {
+
+              let oldCardsC = await db.collection(user.uid).get();
+              let newCardsD = db.collection("users").doc(user.email);
+
+              console.log(oldCardsC, '--------------------------------------------');
+              let i = 1;
+              oldCardsC.docs.forEach(doc => {
+                // console.log(doc.data());
+                console.log(i);
+                i++;
+
+
+
+                if (doc.data().mainStage == "to learn") {
+                  newCardsD.collection("cardsToLearn").add(doc.data()).then(() => {
+                    db.collection(user.uid).doc(doc.id).delete();
+                  });
+                };
+
+                if (doc.data().due == false && doc.data().mainStage == "learning") {
+                  newCardsD.collection("cardsLearningNotDue").add(doc.data()).then(() => {
+                    db.collection(user.uid).doc(doc.id).delete();
+                  });
+                };
+                if (doc.data().due == true && doc.data().mainStage == "learning") {
+                  newCardsD.collection("cardsLearningDue").add(doc.data()).then(() => {
+                    db.collection(user.uid).doc(doc.id).delete();
+                  });
+                };
+                if (doc.data().mainStage == "learned") {
+                  newCardsD.collection("cardsLearned").add(doc.data()).then(() => {
+                    db.collection(user.uid).doc(doc.id).delete();
+                  });
+                };
+              });
+
+
+
+
+
+
+
+
+
+
+
+              // F copy collection and contained cards exactly - with levels etc
+              // let copyCollection = async (user) => {
+              //   const cards = db.collection('FlipCards');
+              //   // const userID = user.uid;
+              //   let userCol = db.collection(user.uid);
+              //   let origCol = await cards.get();
+              //   origCol.docs.forEach(doc => {
+              //     // console.log(doc.data());
+              //     userCol.add(doc.data());
+              //   })
+              // }
+            }
+
+
+
+            // moveAllCardsToNewStructure();
 
             // ///////count cards
-            // db.collection(user.uid).get().then((data) => {
-            //   console.log(data.docs.length,' cards');
+            //  db.collection("users").doc(user.email).collection("cardsToLearn").get().then((data) => {
+            //   console.log("to learn: ", data.docs.length,' cards');
+            // });
+            // db.collection("users").doc(user.email).collection("cardsLearningDue").get().then((data) => {
+            //   console.log("due: ",data.docs.length,' cards');
+            // });
+            // db.collection("users").doc(user.email).collection("cardsLearningNotDue").get().then((data) => {
+            //   console.log("not due/waiting: ",data.docs.length,' cards');
+            // });
+            // db.collection("users").doc(user.email).collection("cardsLearned").get().then((data) => {
+            //   console.log("learned: ",data.docs.length,' cards');
             // });
 
-            ////////// delete all cards
-            // db.collection(user.uid).get().then((data) => {
-            //   data.docs.forEach(doc => {
-            //     console.log(doc.id);
-            //     if (doc.id !== user.uid) {
-            //       db.collection(user.uid).doc(doc.id).delete();
-            //     }
-            //   })
-            // });
 
 
 
-          } else {
+
+
+
+
+
+
+
+          } else { //=if user doc doesn't exist yet...
             console.log('user doc doesnt exist, i am going to create one...');
             // here should be initiated for to collect info like language to learn, native language etc. in async mode; then after suplying the data, doc should be created
-            let userCollection = db.collection(user.uid).doc(user.uid).set({
-              userEmail: user.email,
-              userID: user.uid
-            });
+            // let userCollection = db.collection(user.uid).doc(user.uid).set({
+            //   userEmail: user.email,
+            //   userID: user.uid
+            // });
+
+
+
+            // import {
+            //   getUserLanguagesFromHtml
+            // } from "./js/firstTimeUser.js";
+
+            // let getUserLanguagesFromHtml = async () => {
+            //   // showFirstTimeUserPage(), return lang to learn, native language, username, = return userInfo object
+            //   import("./js/firstTimeUser.js").then((userInfo) => {
+            //     console.log(userInfo, "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+            //   });
+            // }
+
+
+            getUserLanguagesFromHtml(user);
+
+
+
+
+
+            //  create user doc in Firebase - was here
+
+
+
+
           };
+
         };
         userExists();
 

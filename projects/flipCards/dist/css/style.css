@@ -55,7 +55,7 @@ label {
 
 .centerIt {
   display: block;
-  margin: auto;
+  margin: auto !important;
   text-align: center; }
 
 .button {
@@ -67,6 +67,19 @@ label {
   .button:hover {
     background: #f79090;
     cursor: pointer; }
+
+.inline {
+  display: inline; }
+
+#userStatusWrapper {
+  background: #6b8086;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  #userStatusWrapper #signInOutButton {
+    background: #8b8b8b;
+    color: black;
+    border-color: black; }
 
 #container {
   position: relative;
@@ -167,3 +180,17 @@ label {
 
 #cancelImport {
   background: red; }
+
+#firstTimeUser {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #21c4e0;
+  padding: 10px;
+  text-align: left; }
+  #firstTimeUser input[type="radio"],
+  #firstTimeUser label {
+    display: inline-block; }

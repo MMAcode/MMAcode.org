@@ -90,7 +90,7 @@ label {
 
 .centerIt {
   display: block;
-  margin: auto;
+  margin: auto !important;
   text-align: center;
 
   // flex-flow: column;
@@ -99,12 +99,13 @@ label {
 }
 
 .button {
+  
   padding: 1rem;
   margin: 0.2rem 1.5rem;
   background: rgb(247, 199, 199);
   border: 1px solid white;
   text-decoration: none;
- 
+
 
   &:hover {
     background: rgb(247, 144, 144);
@@ -112,8 +113,26 @@ label {
   }
 }
 
+.inline {
+  display: inline;
+}
 
 // **Main
+#userStatusWrapper {
+  background: rgb(107, 128, 134);
+  // display: block;
+  display: flex;
+  align-items: center;justify-content: center;
+
+  // #userStatus {
+  // }
+  #signInOutButton {
+    background: rgb(139, 139, 139);
+    color: black;
+    border-color: black;
+  }
+}
+
 #container {
   position: relative;
   max-width: 500px;
@@ -282,4 +301,27 @@ label {
 
 #cancelImport {
   background: red;
+}
+
+
+#firstTimeUser {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(33, 196, 224);
+  padding: 10px;
+  text-align: left;
+
+
+
+  input[type="radio"],
+  label {
+    display: inline-block;
+    // padding: 15px;
+    // margin: 0 15px;
+  }
+
 }
