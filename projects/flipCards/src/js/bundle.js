@@ -426,8 +426,8 @@ let updateALL = async (e) => {
 // HINTS on p1:   show LETTER on click as 
 let ShowLetterOnClick = () => {
   clickHintCounter++;
-  importPozdrav('Mirecek');
-  importPozdrav('Abi');
+  // importPozdrav('Mirecek');
+  // importPozdrav('Abi');
   console.log('click counter in function:', clickHintCounter);
   let hintWord = wordTwo;
   // console.log('you just clicked on hint');
