@@ -75,7 +75,9 @@ label {
   background: #6b8086;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 5px; }
   #userStatusWrapper #signInOutButton {
     background: #8b8b8b;
     color: black;

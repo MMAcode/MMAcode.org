@@ -99,7 +99,7 @@ label {
 }
 
 .button {
-  
+
   padding: 1rem;
   margin: 0.2rem 1.5rem;
   background: rgb(247, 199, 199);
@@ -120,9 +120,12 @@ label {
 // **Main
 #userStatusWrapper {
   background: rgb(107, 128, 134);
-  // display: block;
   display: flex;
-  align-items: center;justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 5px;
+  // color: white;
 
   // #userStatus {
   // }
