@@ -72,16 +72,39 @@ label {
   display: inline; }
 
 #userStatusWrapper {
-  background: #6b8086;
+  background: #ebfc8d;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px;
-  margin-bottom: 5px; }
+  color: #776f02; }
   #userStatusWrapper #signInOutButton {
     background: #8b8b8b;
     color: black;
     border-color: black; }
+
+#scoreCounter {
+  display: none;
+  background: greenyellow;
+  padding: 5px; }
+
+#pointsCounter {
+  display: flex;
+  flex-direction: column;
+  background: yellow;
+  border: 3px solid #c2c210; }
+  #pointsCounter > p {
+    font-weight: 900;
+    text-decoration: underline solid;
+    background: #c2c210;
+    padding-bottom: 5px; }
+  #pointsCounter #history7days {
+    background: #ffd000;
+    padding: 10px; }
+  #pointsCounter #pointsCounterMain {
+    display: flex; }
+    #pointsCounter #pointsCounterMain * {
+      flex: 1; }
 
 #container {
   position: relative;

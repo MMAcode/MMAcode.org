@@ -1,5 +1,5 @@
 // import { importPozdrav } from './test';
-// import { StopwatchPoints } from './stopwatchPoints';
+import { stopwatchPointsInit, updatePoints, countCards } from './stopwatchPoints';
 
 
 
@@ -25,7 +25,14 @@ let levelIndicator = document.querySelector('#levelIndicator');
 let deleteCardHTML = document.querySelector('#deleteCard');
 let loggedStatus = document.querySelector('#loggedInStatus');
 let scoreHTML = document.querySelector('#scoreCounter');
+
 let score = 0;
+let points = {
+  session: 0,
+  today: 0
+}; //hl. from other file 
+
+// console.log(points);
 
 let clickHintCounter = 0;
 let hintLettersToShow = '';
@@ -41,7 +48,7 @@ let languageSwap = false;  //users who have native language czech
 /////////// F LEVELS - TIMES
 // to bigger time units  -return array
 let now = new Date().getTime();
-console.log('current time: ', now);
+// console.log('current time: ', now);
 
 let toBiggerUnits = (unitsBefore, chunks) => {
   let biggerUnits = Math.floor(unitsBefore / chunks);
@@ -92,8 +99,8 @@ let levelLearned = 10; //if level 10 --> label as learned
 
 
 arrayTimes = [
-  1000 * 10, //sec     L0
-  1000 * 60,
+  1000 * 10,  //sec     L0
+  1000 * 50,
   60000 * 5, //min
   3600000 * 1, //hours
   3600000 * 6,
@@ -103,12 +110,12 @@ arrayTimes = [
   86400000 * 5,
   86400000 * 15  //    L9 adds this much time (first level is updated, then this time is added based on current level)
 ]
-console.log('level 9  adds ', arrayTimes[9], " ms to now time");
+// console.log('level 9  adds ', arrayTimes[9], " ms to now time");
 
 // arrayTimes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-console.log('array of times for levels:');
-console.log(arrayTimes);
+// console.log('array of times for levels:');
+// console.log(arrayTimes);
 arrayTimes.forEach((time) => {
   // console.log(time);
   // timeStampToMessage(time);
@@ -152,11 +159,11 @@ let deleteCard = async () => {
 let updateDue = async data => {
   let now = new Date().getTime();
   dueCount = 0;
-  console.log('L1-1-1: starting "updateDue" in MAIN-ASYNC');
+  // console.log('L1-1-1: starting "updateDue" in MAIN-ASYNC');
   // let dueToUpdate = await cards.where('mainStage', '==', 'learning').where('due', '==', false).where('dueTime', '<', now);
   let dueToUpdate = await cards.collection("cardsLearningNotDue").where('dueTime', '<', now);
   let ddData = await dueToUpdate.get();
-  console.log('cards which are going to have DUE changed to TRUE:');
+  // console.log('cards which are going to have DUE changed to TRUE:');
 
   // this promise is not usefull, it doesn't wait for the updated cards anyway
   // return new Promise((resolve, reject) => {
@@ -200,14 +207,14 @@ let getCardFromDue = async () => {
   else {
     currentCard = dataOrdered.docs[0].data();
     currentCardID = dataOrdered.docs[0].id;
-    let cardMoveHere = await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard).then(() => {
-      cards.collection("cardsLearningDue").doc(currentCardID).delete();
-      // console.log('------- CARD MOVED TO DUE GROUP qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-    });
+    // let cardMoveHere = await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard).then(() => {
+    //   cards.collection("cardsLearningDue").doc(currentCardID).delete();
+    //   // console.log('------- CARD MOVED TO DUE GROUP qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+    // });
 
     // let cardToMove = await cards.collection("cardsLearningDue").
     dueCount = 1;
-    console.log('because DUE card was found, "current card" was updated.', currentCard, "card's ID: ", currentCardID);
+    // console.log('because DUE card was found, "current card" was updated.', currentCard, "card's ID: ", currentCardID);
   }
   return currentCard;
 }
@@ -226,7 +233,9 @@ let getCardFromToLearn = async (cards) => {
     currentCardID = checkIfACardFromToLearn.docs[0].id;
     currentCard.mainStage = 'learning';
     currentCard.lastSeen = now;
-    let cardMoveHere = await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard).then(() => {
+    currentCard.dueTime = now;
+    // let cardMoveHere = await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard).then(() => {
+    let cardMoveHere = await cards.collection("cardsLearningDue").doc(currentCardID).set(currentCard).then(() => {
       cards.collection("cardsToLearn").doc(currentCardID).delete();
       // console.log('------- CARD MOVED TO DUE GROUP qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
     });
@@ -237,15 +246,15 @@ let getCardFromToLearn = async (cards) => {
 
 /////////////////////////////// F-Main async
 let updateDataReturnCard = async () => {
-  console.log('STARTING GET CARD main f.a');
+  // console.log('STARTING GET CARD main f.a');
   let currentCardOrNull = await updateDue();
   // console.log(currentCardOrNull, 'xxxxxxxxxxxxxxxxxxxxx');
   let testIfACard = await getCardFromDue();
   // updateDue().then(getCardFromDue());
 
-  console.log('GetDueCard f. finished, current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
+  // console.log('GetDueCard f. finished, current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
   if (dueCount === 0) {
-    console.log('we will start GetToLEarnCard f. now...');
+    // console.log('we will start GetToLEarnCard f. now...');
     let xXx = await getCardFromToLearn(cards);
     if (toLearnCount > 0) {
       return currentCard;
@@ -276,7 +285,7 @@ let assignWordsAndColours = (currentCard) => {
     wordOne = currentCard.languageNative;
     // wordTwo = currentCard.czWord;
     wordTwo = currentCard.languageToLearn;
-    console.log(wordTwo, 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM');
+    // console.log(wordTwo, 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM');
 
     firstWordHTML.style.color = 'red';
     secondWordHTML.style.color = 'blue';
@@ -314,16 +323,17 @@ let jumpLevels = (level) => {
 
 
 let hintNotUsed = () => {
-  // console.log('checking cheating');
-  // console.log(clickHintCounter);
+  console.log('checking cheating (needs to be 1..499 for cheating to be true');
+  console.log(clickHintCounter);
   if (clickHintCounter > 0 && clickHintCounter < 500) { return false }
   else { return true };
 }
+
 let updateCurrentCard = (e) => {
   console.log('updateCurrenCard F running', currentCard);
   let en = currentCard.enCheck;
   let lev = currentCard.level;
-  console.log('level before:', lev);
+  // console.log('level before:', lev);
   if (e.target.id === 'BtnDown') {
     // if (lev > 1) { score = score - 2; };
     // if (lev === 1) {
@@ -367,7 +377,7 @@ let updateCurrentCard = (e) => {
 
   currentCard.enCheck = en;
   currentCard.level = lev;
-  console.log('level after:', lev);
+  // console.log('level after:', lev);
 
   let now = new Date().getTime();
   currentCard.lastSeen = now;
@@ -389,12 +399,14 @@ let updateCardInFirebase = async () => {
   // await cards.doc(currentCardID).update({
 
   if (currentCard.level != 888) {
+    // console.log('card shall be updated like this: UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU');
+    // console.log(currentCard);
     await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard);
-    // await cards.collection("cardsLearningDue").doc(currentCardID).delete();
+    await cards.collection("cardsLearningDue").doc(currentCardID).delete();
   };
   if (currentCard.level == 888) {
     await cards.collection("cardsLearned").doc(currentCardID).set(currentCard).then(() => {
-      cards.collection("cardsLearningNotDue").doc(currentCardID).delete();
+      cards.collection("cardsLearningDue").doc(currentCardID).delete();
     });
   }
 
@@ -407,6 +419,20 @@ let updateCardInFirebase = async () => {
   //   mainStage: currentCard.mainStage
   // });
   // console.log(' card in FIREBASE updated');
+
+
+
+  console.log('points BEFORE upoading to DB and before adding gained score from last card: 1ppppppppppppppppppppppppppppppppppppppppppppppppp');
+  console.log(points);
+  console.log('adjust by score:', score);
+  updatePoints(score, points, cards)
+    .then(pointsReturned => {
+      points = pointsReturned;
+      score = 0;
+
+      console.log('points returned to MAIN after updated in DB: 2ppppppppppppppppppppppppppppppppppppppppppppppppp');
+      console.log(points);
+    });
 }
 
 
@@ -474,11 +500,11 @@ let showPageOne = async () => {
   // **
   // SPEAKING
   if (!showNativeWordFirst && !languageSwap) {
-    console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
+    // console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
     let cekej = await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
   }
   if (showNativeWordFirst && languageSwap) {
-    console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
+    // console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
     let cekejToo = await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
     // console.log(responsiveVoice.speak(wordOne, responsiveVoiceLanguage));
   }
@@ -486,7 +512,7 @@ let showPageOne = async () => {
   // activating letter hints
   clickHintCounter = 0;
   hintLettersToShow = '';
-  console.log('clickHintCounter: ', clickHintCounter);
+  // console.log('clickHintCounter: ', clickHintCounter);
   secondWordHTML.addEventListener('click', ShowLetterOnClick);
   showLevel();
 
@@ -503,19 +529,19 @@ let showPageTwo = () => {
   // secondWordHTML.removeEventListener('click', e => ResetLettersOnClick());
   // console.log('clickHint listener SHOUND be removed');
   // console.log('current clickhintCouner=', clickHintCounter);
-  clickHintCounter = 1000;
-  console.log(wordTwo, 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+  // clickHintCounter = 1000;
+  // console.log(wordTwo, 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
   secondWordHTML.textContent = wordTwo;
 
   // SPEAKING
   // for english speaking  users (Abi)...
   if (showNativeWordFirst && !languageSwap) {
-    console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
+    // console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
     responsiveVoice.speak(wordTwo, responsiveVoiceLanguage);
   }
   // for czech speaking  users (Me, Dana, Stana)...
   if (!showNativeWordFirst && languageSwap) {
-    console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
+    // console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
     responsiveVoice.speak(wordTwo, responsiveVoiceLanguage);
     // console.log(responsiveVoice.speak(wordOne, responsiveVoiceLanguage));
   }
@@ -532,12 +558,15 @@ let updateScoreUI = () => {
 
 let updateDatabaseTHEN_UI = () => {
   updateScoreUI();
+  // countCards(cards);
+
+
   updateDataReturnCard().then((ans) => {
-    console.log('FINISHING GET CARD main f.');
-    console.log('current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
-    console.log('L1 "updateDataReturnCard" function finished.');
+    // console.log('FINISHING GET CARD main f.');
+    // console.log('current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
+    // console.log('L1 "updateDataReturnCard" function finished.');
     ResetLettersOnClick();
-    console.log('Card got from database:', ans, typeof ans);
+    // console.log('Card got from database:', ans, typeof ans);
     if (typeof ans === 'string') {
       // console.log('string returned from main function');
       nextBt.style.display = 'none';
@@ -558,11 +587,11 @@ let updateDatabaseTHEN_UI = () => {
 
 // F speaking 
 
-let setLanguagesToSpeak = async (user) => {
-  console.log('starting SETTING LANGUAGE TO SPEAK:');
+let setLanguagesToSpeak = async () => {
+  // console.log('starting SETTING LANGUAGE TO SPEAK:');
 
   languageToSpeak = userInfo.langToLearn;
-  console.log('language to speak:', languageToSpeak);
+  // console.log('language to speak:', languageToSpeak);
 
   if (languageToSpeak === 'czech') {
     responsiveVoiceLanguage = 'Czech Female';
@@ -571,8 +600,8 @@ let setLanguagesToSpeak = async (user) => {
   else if (languageToSpeak === 'english') { responsiveVoiceLanguage = 'UK English Female'; }
   else if (languageToSpeak === 'french') { responsiveVoiceLanguage = 'French Female'; }
 
-  console.log('languageSwapp?', languageSwap, '; responsiveVoiceLanguage: ', responsiveVoiceLanguage);
-  console.log('finishing SETTING LANGUAGE TO SPEAK:');
+  // console.log('languageSwapp?', languageSwap, '; responsiveVoiceLanguage: ', responsiveVoiceLanguage);
+  // console.log('finishing SETTING LANGUAGE TO SPEAK:');
   // console.log(userInfo.docs[0].data());
   // languageToSpeak = 
 }
@@ -585,24 +614,33 @@ auth.onAuthStateChanged((user) => {
     userID = user.uid;
     // cards = db.collection(userID);
     cards = db.collection("users").doc(user.email);
+
+
+    // updates the points in DB if day is new, ans sets session score to 0;
+    stopwatchPointsInit(cards).then((pointsReturned) => {
+      points = pointsReturned;
+      // console.log('MAIN POINTS from DB ppppppppppppppppppppppppppppppppppppppppppppppppppppp');
+      // console.log(points);
+      // showPointsInHtml(points, pointsSHTML, pointsTHTML);
+
+      // display points from here after  those are loaded or in UI function when that one is setting all up??
+    });
+
+
+
     // userInfo = await
     cards.collection("about").doc("info").get().then((userDoc) => {
       // loggedStatus.innerHTML = `<p>Enjoy ${user.email}!</p>`
       userInfo = userDoc.data();
       loggedStatus.innerHTML = `<p>Enjoy ${userInfo.username}!</p>`
-      setLanguagesToSpeak(user).then(() => {
+      setLanguagesToSpeak().then(() => {
         updateDatabaseTHEN_UI();
       });
-
     });
 
 
 
-    // StopwatchPoints(cards, userID).then((cardXX) => {
-    //   // console.log('cccccccccccccxxxxxxxxxxxxxxxxxxxxxxxxxxXXXXXXXXXXXXX', cardXX);
-    // });
-  }
-  else { loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>'; }
+  } else { loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>'; }
 });
 
 // console.log('getting to listening to al cards click2');
@@ -613,5 +651,9 @@ deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
 // console.log('getting to listening to al cards click3');
 // showAllCardsHTML.addEventListener('click', e => showALLCards);
+
+
+
+
 
 export { cards, userID };

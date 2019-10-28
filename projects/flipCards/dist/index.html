@@ -288,22 +288,13 @@
             // deleteCardsInUsersCollection("cardsLearningNotDue");
             // deleteCardsInUsersCollection("cardsLearningDue");
             // deleteCardsInUsersCollection("cardsToLearn");
-
-
-
-
-
-
-
-
-
+            // deleteCardsInUsersCollection("cardsLearned");
 
 
 
 
 
             // MOVE all cards from old to new structure
-
             let moveAllCardsToNewStructure = async () => {
 
               let oldCardsC = await db.collection(user.uid).get();
@@ -363,23 +354,32 @@
               //   })
               // }
             }
-
-
-
             // moveAllCardsToNewStructure();
 
             // ///////count cards
-            //  db.collection("users").doc(user.email).collection("cardsToLearn").get().then((data) => {
-            //   console.log("to learn: ", data.docs.length,' cards');
+            // db.collection("users").doc(user.email).collection("cardsToLearn").get().then((data) => {
+            //   console.log("to learn: ", data.docs.length, ' cards');
+            //   data.docs.forEach(doc => {
+            //     console.log(doc.data());
+            //   })
             // });
             // db.collection("users").doc(user.email).collection("cardsLearningDue").get().then((data) => {
-            //   console.log("due: ",data.docs.length,' cards');
+            //   console.log("due: ", data.docs.length, ' cards');
+            //   data.docs.forEach(doc => {
+            //     console.log(doc.data());
+            //   })
             // });
             // db.collection("users").doc(user.email).collection("cardsLearningNotDue").get().then((data) => {
-            //   console.log("not due/waiting: ",data.docs.length,' cards');
+            //   console.log("not due/waiting: ", data.docs.length, ' cards');
+            //   data.docs.forEach(doc => {
+            //     console.log(doc.data());
+            //   })
             // });
             // db.collection("users").doc(user.email).collection("cardsLearned").get().then((data) => {
-            //   console.log("learned: ",data.docs.length,' cards');
+            //   console.log("learned: ", data.docs.length, ' cards');
+            //   // data.docs.forEach(doc => {
+            //   //   console.log(doc.data());
+            //   // })
             // });
 
 

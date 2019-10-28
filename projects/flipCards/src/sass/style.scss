@@ -45,7 +45,9 @@ h6 {
 }
 
 
-p {}
+p {
+  // line-height: 2.9rem;
+}
 
 a {
   // text-decoration: none;
@@ -118,14 +120,16 @@ label {
 }
 
 // **Main
+
+
 #userStatusWrapper {
-  background: rgb(107, 128, 134);
+  background: rgb(235, 252, 141);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px;
-  margin-bottom: 5px;
-  // color: white;
+  // margin-bottom: 5px;
+  color: rgb(119, 111, 2);
 
   // #userStatus {
   // }
@@ -135,6 +139,46 @@ label {
     border-color: black;
   }
 }
+
+#scoreCounter {
+  display: none;
+  background: greenyellow;
+  padding: 5px;
+}
+
+#pointsCounter {
+  display: flex;
+  flex-direction: column;
+  background: yellow;
+  // padding: 5px;
+  border: 3px solid rgb(194, 194, 16);
+
+  >p {
+    font-weight: 900;
+    text-decoration: underline solid;
+    background: rgb(194, 194, 16);
+    padding-bottom: 5px;
+
+  }
+
+  #history7days {
+    background: rgb(255, 208, 0);
+    padding: 10px;
+  }
+
+  #pointsCounterMain {
+    display: flex;
+
+    * {
+      flex: 1;
+    }
+  }
+}
+
+
+
+
+
 
 #container {
   position: relative;
