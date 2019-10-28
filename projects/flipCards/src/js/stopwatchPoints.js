@@ -20,23 +20,31 @@ let pointsSHTML = document.querySelector('#pointsCounterS');
 let pointsTHTML = document.querySelector('#pointsCounterT');
 let history7HTML = document.querySelector('#history7days');
 
+let timeSHTML = document.querySelector('#timeCounterS');
+let timeTHTML = document.querySelector('#timeCounterT');
+let timeHistoryHTML = document.querySelector('#timeHistory7days');
 
 
 
 
 
 
-// returns current points also
+
+// returns current points and time from DB also
 let createUserVariablesInFBifNeeded = async (cards) => {
   // let updatingPoints = null;
   // let updatingPointsHistory = null;
   // let updatingDayToday = null;
   let points = await cards.collection("about").doc("points").get();
   points = points.data();
+
+  let time = await cards.collection("about").doc("time").get();
+  time = time.data();
+
   // console.log(points, 'ppppppppppppppppppppppppppppppppp');
   // console.log('check new variables XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 
-  if (points == undefined) {
+  if (points == undefined || time == undefined) {
     let updatingPoints = cards.collection("about").doc("points").set({
       session: 0,
       today: 0,
@@ -50,17 +58,34 @@ let createUserVariablesInFBifNeeded = async (cards) => {
       startDate: d
     });
 
+    let updatingTime = cards.collection("about").doc("time").set({
+      session: 0,
+      today: 0,
+    });
+    let updatingTimeHistory = cards.collection("about").doc("timeHistory").set({
+      // empty document - ready to be used
+    });
+
     // updatingDayToday = cards.collection("about").doc("dayToday").set({
     //   day: dayToday
     // });
 
-    await Promise.all([updatingPoints, updatingPointsHistory, updateUserInfo]);
+    await Promise.all([updatingPoints, updatingPointsHistory, updateUserInfo, updatingTime, updatingTimeHistory]);
     points = await cards.collection("about").doc("points").get();
     points = points.data();
-    console.log('POINTS created in DB XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-    console.log(points);
+
+    time = await cards.collection("about").doc("time").get();
+    time = time.data();
+    console.log('POINTS and TIME created in DB XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+    // console.log(points);
+    // console.log(time);
+
   }
-  return points;
+  // console.log('POINTS AND TIME IN DB:');
+  // console.log(points);
+  // console.log(time);
+
+  return [points, time];
 }
 
 
@@ -68,8 +93,7 @@ let createUserVariablesInFBifNeeded = async (cards) => {
 
 
 // returns updated points
-let updateDayStuffIfNeeded = async (cards, points) => {
-  points.session = 0;
+let updateDayStuffIfNeeded = async (cards, points, time) => {
 
   // if new day...
   while (daysSince1970Floored > points.lastActiveDay) {
@@ -77,25 +101,43 @@ let updateDayStuffIfNeeded = async (cards, points) => {
     // console.log(daysSince1970Floored); //days to current day
     // console.log(points.daysActive); //last Active day = in DB points
 
-    // get  HISTORY doc
-    let pointsHistory = await cards.collection("about").doc("pointsHistory").get();
+    // get  HISTORY docs
+    let pointsHistory = cards.collection("about").doc("pointsHistory").get();
+    let timeHistory = cards.collection("about").doc("timeHistory").get();
+    pointsHistory = await pointsHistory;
+    timeHistory = await timeHistory;
     pointsHistory = pointsHistory.data();
-    // console.log(pointsHistory);
+    timeHistory = timeHistory.data();
+
+    console.log('ttttttttttttttttttttttttttttttttttttttttttttttttttttttt');
+    console.log('pointsH:', pointsHistory, 'timesH:', timeHistory);
 
 
     // update history doc locally, then in DB
     pointsHistory[points.daysActive] = points.today;
+    timeHistory[points.daysActive] = time.today;
     // console.log('P XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-    await cards.collection("about").doc("pointsHistory").set(pointsHistory);
+    let aa = cards.collection("about").doc("pointsHistory").set(pointsHistory);
+    let bb = cards.collection("about").doc("timeHistory").set(timeHistory);
+    await aa; await bb;
+    console.log('history of both updated in DB');
+
     // console.log(pointsHistory);
+    // update timeHistory and time
 
     // add 1 day to user's "last day" (and keep repeating until you reach today)
     points.lastActiveDay++;
     points.daysActive++;
     points.today = 0;
+    time.today = 0;
+    time.session = 0;
   }
-  await cards.collection("about").doc("points").update(points);
-  return points;
+
+  // updating current points and times in DB
+  let cc = cards.collection("about").doc("points").update(points);
+  let dd = cards.collection("about").doc("time").update(time);
+  await cc; await dd;
+  return [points, time];
 }
 
 
@@ -106,10 +148,11 @@ let showPointsInHtml = (points) => {
   pointsTHTML.innerHTML = `<p>${points.today}</p>`;
 }
 
-
-
-
-
+let showTimeInHTML = (time) => {
+  timeSHTML.innerHTML = `<p>${time.session}</p>`;
+  timeTHTML.innerHTML = `<p>${time.today}</p>`;
+  // timeHistoryHTML =
+}
 
 
 let showHistory = async (cardsPath, points) => {
@@ -154,16 +197,32 @@ let showHistory = async (cardsPath, points) => {
 
 
 let stopwatchPointsInit = async (cardsPath) => {
-  // 
-  let points = await createUserVariablesInFBifNeeded(cardsPath);
+  // let points = await createUserVariablesInFBifNeeded(cardsPath);
+  let array = await createUserVariablesInFBifNeeded(cardsPath);
+  let points = array[0];
+  let time = array[1];
+  // console.log('after CHECKING  USER OBJECTS and returning array and converting array to points and time:');
+  // console.log(points, time);
 
-  points = await updateDayStuffIfNeeded(cardsPath, points);
+  // UPDATE NEW DAY if needed, return current points and time from DB
+  let array2 = await updateDayStuffIfNeeded(cardsPath, points, time);
+  points = array2[0];
+  time = array2[1];
+  // console.log('after UPDATING DAY and returning array and converting array to points and time:');
+  console.log(points, time);
+
+  // sorting time tracking
+  time.session = 0;
+  showTimeInHTML(time);
+
+
+
+
+
   showPointsInHtml(points);
   showHistory(cardsPath, points);
   return points;
 }
-
-
 
 
 let updatePoints = async (score, points, cardsPath) => {
@@ -175,6 +234,43 @@ let updatePoints = async (score, points, cardsPath) => {
   showPointsInHtml(points);
   return points;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let createTimeVariablesInDBIfNeeded = async (cardsPath) => {
+//   let time = await cardsPath.collection("about").doc("time").get();
+//   time = time.data();
+
+//   if (points == undefined) {
+//     let updatingTime = cards.collection("about").doc("time").set({
+//       session: 0,
+//       today: 0,
+//     });
+//     let updatingTimeHistory = cards.collection("about").doc("timeHistory").set({
+//       // empty document - ready to be used
+//     });
+//   }
+// }
+
+let stopWatchInit = async (cardsPath) => {
+  // let timeTracker = await createTimeVariablesInDBIfNeeded(cardsPath);
+  console.log('stop watch init');
+}
+
+
+
+
+
 
 
 
@@ -240,4 +336,4 @@ let countCards = (cardsPath) => {
 
 
 
-export { stopwatchPointsInit, updatePoints, countCards };
+export { stopwatchPointsInit, updatePoints, stopWatchInit, countCards };

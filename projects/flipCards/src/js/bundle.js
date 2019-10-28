@@ -1,5 +1,5 @@
 // import { importPozdrav } from './test';
-import { stopwatchPointsInit, updatePoints, countCards } from './stopwatchPoints';
+import { stopwatchPointsInit, updatePoints, stopWatchInit, countCards } from './stopwatchPoints';
 
 
 
@@ -147,7 +147,7 @@ console.log(oneArray);
 let deleteCard = async () => {
   console.log('ready to delete card');
   console.log(currentCardID);
-  cards.collection("cardsLearningNotDue").doc(currentCardID).delete().then(() => {
+  cards.collection("cardsLearningDue").doc(currentCardID).delete().then(() => {
     console.log('deleted');
     updateDatabaseTHEN_UI();
   });
@@ -616,16 +616,12 @@ auth.onAuthStateChanged((user) => {
     cards = db.collection("users").doc(user.email);
 
 
-    // updates the points in DB if day is new, ans sets session score to 0;
+    // updates the points in/from DB and then in UI (if day is new), ans sets session score to 0;
     stopwatchPointsInit(cards).then((pointsReturned) => {
       points = pointsReturned;
-      // console.log('MAIN POINTS from DB ppppppppppppppppppppppppppppppppppppppppppppppppppppp');
-      // console.log(points);
-      // showPointsInHtml(points, pointsSHTML, pointsTHTML);
-
-      // display points from here after  those are loaded or in UI function when that one is setting all up??
     });
 
+    stopWatchInit(cards);
 
 
     // userInfo = await

@@ -88,23 +88,26 @@ label {
   background: greenyellow;
   padding: 5px; }
 
-#pointsCounter {
+.pointsCounter {
   display: flex;
   flex-direction: column;
   background: yellow;
   border: 3px solid #c2c210; }
-  #pointsCounter > p {
+  .pointsCounter > p {
     font-weight: 900;
     text-decoration: underline solid;
     background: #c2c210;
     padding-bottom: 5px; }
-  #pointsCounter #history7days {
+  .pointsCounter .history7days {
     background: #ffd000;
     padding: 10px; }
-  #pointsCounter #pointsCounterMain {
+  .pointsCounter .pointsCounterMain {
     display: flex; }
-    #pointsCounter #pointsCounterMain * {
+    .pointsCounter .pointsCounterMain * {
       flex: 1; }
+
+#timeCounter {
+  display: none; }
 
 #container {
   position: relative;

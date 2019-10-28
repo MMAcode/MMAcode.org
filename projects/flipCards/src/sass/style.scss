@@ -146,7 +146,7 @@ label {
   padding: 5px;
 }
 
-#pointsCounter {
+.pointsCounter {
   display: flex;
   flex-direction: column;
   background: yellow;
@@ -161,12 +161,12 @@ label {
 
   }
 
-  #history7days {
+  .history7days {
     background: rgb(255, 208, 0);
     padding: 10px;
   }
 
-  #pointsCounterMain {
+  .pointsCounterMain {
     display: flex;
 
     * {
@@ -175,6 +175,9 @@ label {
   }
 }
 
+#timeCounter {
+  display: none;
+}
 
 
 
