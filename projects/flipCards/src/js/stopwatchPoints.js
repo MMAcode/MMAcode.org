@@ -24,6 +24,9 @@ let timeSHTML = document.querySelector('#timeCounterS');
 let timeTHTML = document.querySelector('#timeCounterT');
 let timeHistoryHTML = document.querySelector('#timeHistory7days');
 
+let idleTime = 0;
+
+
 
 
 
@@ -204,6 +207,50 @@ let showHistory = async (cardsPath, points) => {
 
 
 
+
+
+
+
+
+let startTimeTrack = (time, cardsPath) => {
+  idleTime = 0;
+  let timePracticedInSeconds = 0;
+
+  setInterval(() => {  //each second
+    idleTime++;
+    timePracticedInSeconds++;
+    // console.log(idleTime);
+    // console.log(timePracticedInSeconds);
+
+    // keep time practices "paused" until user became active again (by +-1 keeping the seconds the same)
+    if (idleTime > 60) { timePracticedInSeconds--; }
+
+    if (timePracticedInSeconds >= 60) { //needs to be 60 to make 1 minute
+      time.session++;
+      time.today++;
+      cardsPath.collection("about").doc("time").update(time);
+      showTimeInHTML(time);
+      timePracticedInSeconds = 0;
+    }
+  }, 1000)
+}
+
+// called upon any click in practice section
+let resetIdleTime = () => {
+  idleTime = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 let stopwatchPointsInit = async (cardsPath) => {
   // let points = await createUserVariablesInFBifNeeded(cardsPath);
   let array = await createUserVariablesInFBifNeeded(cardsPath);
@@ -219,13 +266,40 @@ let stopwatchPointsInit = async (cardsPath) => {
   console.log('after UPDATING Session (+DAY) and returning array and converting array to points and time:');
   console.log(points, time);
 
-  // sorting time tracking
-  time.session = 0;
   showTimeInHTML(time);
   showPointsInHtml(points);
   showHistory(cardsPath, points);
+
+
+
+
+  // sorting time tracking
+  startTimeTrack(time, cardsPath);
+
+
+
+
+
+
+
+
+
+
   return points;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 let updatePoints = async (score, points, cardsPath) => {
@@ -339,4 +413,4 @@ let countCards = (cardsPath) => {
 
 
 
-export { stopwatchPointsInit, updatePoints, stopWatchInit, countCards };
+export { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, countCards };

@@ -1,5 +1,5 @@
 // import { importPozdrav } from './test';
-import { stopwatchPointsInit, updatePoints, stopWatchInit, countCards } from './stopwatchPoints';
+import { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, countCards } from './stopwatchPoints';
 
 
 
@@ -645,8 +645,6 @@ nextBt.addEventListener('click', e => { showPageTwo(); });
 threeBt.addEventListener('click', ee => { updateALL(ee); })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
-
-
 // refresh page when returned from other tab/app
 document.addEventListener("visibilitychange", function () {
   if (document.visibilityState === 'visible') { window.location.reload(); }
@@ -656,6 +654,17 @@ document.addEventListener("visibilitychange", function () {
 // showAllCardsHTML.addEventListener('click', e => showALLCards);
 
 
+
+
+
+
+
+
+// time tracking idle counter?
+window.addEventListener('click', e => {
+  console.log('you CLICKED');
+  resetIdleTime();
+});
 
 
 
