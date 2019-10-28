@@ -106,9 +106,6 @@ label {
     .pointsCounter .pointsCounterMain * {
       flex: 1; }
 
-#timeCounter {
-  display: none; }
-
 #container {
   position: relative;
   max-width: 500px;

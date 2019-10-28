@@ -645,6 +645,13 @@ nextBt.addEventListener('click', e => { showPageTwo(); });
 threeBt.addEventListener('click', ee => { updateALL(ee); })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
+
+
+// refresh page when returned from other tab/app
+document.addEventListener("visibilitychange", function () {
+  if (document.visibilityState === 'visible') { window.location.reload(); }
+});
+
 // console.log('getting to listening to al cards click3');
 // showAllCardsHTML.addEventListener('click', e => showALLCards);
 

@@ -94,6 +94,9 @@ let createUserVariablesInFBifNeeded = async (cards) => {
 
 // returns updated points
 let updateDayStuffIfNeeded = async (cards, points, time) => {
+  points.session = 0;
+  time.session = 0;
+
 
   // if new day...
   while (daysSince1970Floored > points.lastActiveDay) {
@@ -128,15 +131,20 @@ let updateDayStuffIfNeeded = async (cards, points, time) => {
     // add 1 day to user's "last day" (and keep repeating until you reach today)
     points.lastActiveDay++;
     points.daysActive++;
+
     points.today = 0;
     time.today = 0;
-    time.session = 0;
-  }
 
-  // updating current points and times in DB
+    // updating current points and times in DB
+    let cc = cards.collection("about").doc("points").update(points);
+    let dd = cards.collection("about").doc("time").update(time);
+    await cc; await dd;
+  }
   let cc = cards.collection("about").doc("points").update(points);
   let dd = cards.collection("about").doc("time").update(time);
   await cc; await dd;
+
+
   return [points, time];
 }
 
@@ -151,7 +159,7 @@ let showPointsInHtml = (points) => {
 let showTimeInHTML = (time) => {
   timeSHTML.innerHTML = `<p>${time.session}</p>`;
   timeTHTML.innerHTML = `<p>${time.today}</p>`;
-  // timeHistoryHTML =
+  // timeHistoryHTML = as separate function-  only once a day and during reload
 }
 
 
@@ -201,24 +209,19 @@ let stopwatchPointsInit = async (cardsPath) => {
   let array = await createUserVariablesInFBifNeeded(cardsPath);
   let points = array[0];
   let time = array[1];
-  // console.log('after CHECKING  USER OBJECTS and returning array and converting array to points and time:');
+  // console.log('after CHECKING  USER OBJECTS, getting points and time from DB and returning array and converting array to points and time:');
   // console.log(points, time);
 
-  // UPDATE NEW DAY if needed, return current points and time from DB
+  // UPDATE NEW DAY if needed, update new Session points and time in DB and locally, return current points and time from DB
   let array2 = await updateDayStuffIfNeeded(cardsPath, points, time);
   points = array2[0];
   time = array2[1];
-  // console.log('after UPDATING DAY and returning array and converting array to points and time:');
+  console.log('after UPDATING Session (+DAY) and returning array and converting array to points and time:');
   console.log(points, time);
 
   // sorting time tracking
   time.session = 0;
   showTimeInHTML(time);
-
-
-
-
-
   showPointsInHtml(points);
   showHistory(cardsPath, points);
   return points;
