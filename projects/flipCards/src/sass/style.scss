@@ -163,7 +163,24 @@ label {
 
   .history7days {
     background: rgb(255, 208, 0);
-    padding: 10px;
+    padding: 3px;
+
+
+    span:nth-child(n+1) {
+      display: inline-block;
+      width: 35px;
+      height: 25px;
+      margin: 0 2px;
+      font-size: 1.9rem;
+
+      color: white;
+      background: brown;
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      -ms-border-radius: 100%;
+      -o-border-radius: 100%;
+    }
   }
 
   .pointsCounterMain {

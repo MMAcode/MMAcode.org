@@ -662,7 +662,7 @@ document.addEventListener("visibilitychange", function () {
 
 // time tracking idle counter?
 window.addEventListener('click', e => {
-  console.log('you CLICKED');
+  console.log('you CLICKED-I will reset idle time.');
   resetIdleTime();
 });
 

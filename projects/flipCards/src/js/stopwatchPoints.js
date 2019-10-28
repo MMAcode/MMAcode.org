@@ -22,7 +22,7 @@ let history7HTML = document.querySelector('#history7days');
 
 let timeSHTML = document.querySelector('#timeCounterS');
 let timeTHTML = document.querySelector('#timeCounterT');
-let timeHistoryHTML = document.querySelector('#timeHistory7days');
+let timeHistory7HTML = document.querySelector('#timeHistory7days');
 
 let idleTime = 0;
 
@@ -166,30 +166,53 @@ let showTimeInHTML = (time) => {
 }
 
 
-let showHistory = async (cardsPath, points) => {
+
+
+
+
+
+
+
+
+let showHistory = async (cardsPath, points, time) => {
   // get  HISTORY doc
-  let pointsHistory = await cardsPath.collection("about").doc("pointsHistory").get();
+
+  let pointsHistory = cardsPath.collection("about").doc("pointsHistory").get();
+  let timeHistory = cardsPath.collection("about").doc("timeHistory").get();
+  pointsHistory = await pointsHistory;
+  timeHistory = await timeHistory;
   pointsHistory = pointsHistory.data();
+  timeHistory = timeHistory.data();
+  console.log('points history: ', pointsHistory);
+  console.log('time history: ', timeHistory);
+
 
   let counter = 1;
   let lastDayInHistory = points.daysActive - 1;
   let lastWantedDayInHistory = points.daysActive - 1;
-  let history7Array = [];
-  history7HTML.innerHTML = '<strong>Last 7 days: </strong> ';
+  // let history7Array = [];
+  // let timeHistory7Array = [];
+
+  history7HTML.innerHTML = '<strong>Points: </strong> ';
+  timeHistory7HTML.innerHTML = '<strong>Minutes: </strong> ';
 
   // console.log('scores in history HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH');
   while (counter < 8 && counter <= lastDayInHistory) {
-    history7Array.push(pointsHistory[lastWantedDayInHistory])
+    // history7Array.push(pointsHistory[lastWantedDayInHistory]);
+    // timeHistory7Array.push(timeHistory[lastWantedDayInHistory]);
     // console.log(lastWantedDayInHistory, ' : ', pointsHistory[lastWantedDayInHistory]);
     history7HTML.innerHTML += `<span>${pointsHistory[lastWantedDayInHistory]} </span>`
-
+    timeHistory7HTML.innerHTML += `<span>${timeHistory[lastWantedDayInHistory]}</span>`
 
     // console.log("counter: ", counter);
-    if (counter == 8 || counter == lastDayInHistory) {
-      history7HTML.innerHTML += `<span> </span>`;
-    } else {
-      history7HTML.innerHTML += `<span> - </span>`;
-    }
+    // if (counter == 8 || counter == lastDayInHistory) {
+    //   history7HTML.innerHTML += `<span> </span>`;
+    //   timeHistory7HTML.innerHTML += `<span>m. </span>`;
+
+    // } else {
+    //   history7HTML.innerHTML += `<span> - </span>`;
+    //   timeHistory7HTML.innerHTML += `<span>m. - </span>`;
+    // }
 
     counter++;
     lastWantedDayInHistory--;
@@ -205,6 +228,45 @@ let showHistory = async (cardsPath, points) => {
 
 }
 
+
+// let showHistory = async (cardsPath, points) => {
+//   // get  HISTORY doc
+//   let pointsHistory = await cardsPath.collection("about").doc("pointsHistory").get();
+//   pointsHistory = pointsHistory.data();
+
+//   let counter = 1;
+//   let lastDayInHistory = points.daysActive - 1;
+//   let lastWantedDayInHistory = points.daysActive - 1;
+//   let history7Array = [];
+//   history7HTML.innerHTML = '<strong>Last 7 days: </strong> ';
+
+//   // console.log('scores in history HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH');
+//   while (counter < 8 && counter <= lastDayInHistory) {
+//     history7Array.push(pointsHistory[lastWantedDayInHistory])
+//     // console.log(lastWantedDayInHistory, ' : ', pointsHistory[lastWantedDayInHistory]);
+//     history7HTML.innerHTML += `<span>${pointsHistory[lastWantedDayInHistory]} </span>`
+
+
+//     // console.log("counter: ", counter);
+//     if (counter == 8 || counter == lastDayInHistory) {
+//       history7HTML.innerHTML += `<span> </span>`;
+//     } else {
+//       history7HTML.innerHTML += `<span> - </span>`;
+//     }
+
+//     counter++;
+//     lastWantedDayInHistory--;
+//   }
+//   // console.log('Starting with the most recent day: ', history7Array);
+//   // console.log(history7Array.length);
+
+//   // history7Array.forEach(day => {  //starts with the left = most recent day first
+//   //   // console.log(day, ', ');
+//   //   history7HTML.innerHTML += `<span>${day}, </span>`
+//   // })
+//   // history7HTML.innerHTML += `<span>...</span>`
+
+// }
 
 
 
@@ -268,12 +330,7 @@ let stopwatchPointsInit = async (cardsPath) => {
 
   showTimeInHTML(time);
   showPointsInHtml(points);
-  showHistory(cardsPath, points);
-
-
-
-
-  // sorting time tracking
+  showHistory(cardsPath, points, time);
   startTimeTrack(time, cardsPath);
 
 

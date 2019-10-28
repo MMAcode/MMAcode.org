@@ -100,7 +100,20 @@ label {
     padding-bottom: 5px; }
   .pointsCounter .history7days {
     background: #ffd000;
-    padding: 10px; }
+    padding: 3px; }
+    .pointsCounter .history7days span:nth-child(n+1) {
+      display: inline-block;
+      width: 35px;
+      height: 25px;
+      margin: 0 2px;
+      font-size: 1.9rem;
+      color: white;
+      background: brown;
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      -ms-border-radius: 100%;
+      -o-border-radius: 100%; }
   .pointsCounter .pointsCounterMain {
     display: flex; }
     .pointsCounter .pointsCounterMain * {
