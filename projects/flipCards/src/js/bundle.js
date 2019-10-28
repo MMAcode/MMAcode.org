@@ -647,7 +647,7 @@ deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
 // refresh page when returned from other tab/app
 document.addEventListener("visibilitychange", function () {
-  if (document.visibilityState === 'visible') { window.location.reload(); }
+  if (document.visibilityState === 'visible' && idleTime > 30) { window.location.reload(); }
 });
 
 // console.log('getting to listening to al cards click3');
