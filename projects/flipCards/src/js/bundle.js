@@ -1,5 +1,5 @@
 // import { importPozdrav } from './test';
-import { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, countCards } from './stopwatchPoints';
+import { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, resetAppIfReturnedAfterXseconds, countCards } from './stopwatchPoints';
 
 
 
@@ -346,14 +346,20 @@ let updateCurrentCard = (e) => {
   }
   if (e.target.id === 'BtnStay') {
     // lev = lev > 1 ? lev - 1 : 0;
-    console.log("let's keep the level the same.");
+    if (lev > 1) {
+      lev -= 2;
+      score = score - 2;
+    } else {  //lev 1 or 0...
+      score -= lev;
+      lev = 0;
+    }
   }
 
   // correct Ans
   if (e.target.id === 'BtnUp') {
     if (hintNotUsed()) {
       // console.log('updating level on variable inside programme');
-      console.log('original level:', lev, 'original enCheck (on variable):', en, 'on current card(to double check):', currentCard.enCheck);
+      // console.log('original level:', lev, 'original enCheck (on variable):', en, 'on current card(to double check):', currentCard.enCheck);
 
 
       if (en === true) {
@@ -369,7 +375,7 @@ let updateCurrentCard = (e) => {
 
       if (lev < levelLearned - 1) lev = jumpLevels(lev); // level has to be 2+smaller(8 or smaller) to go into jump consideration
 
-      console.log('updated level(in variable):', lev, 'updated enCheck:', en);
+      // console.log('updated level(in variable):', lev, 'updated enCheck:', en);
     } else {
       alert('STOP CHEATING, I know you used a hint!;-)');
     }
@@ -422,16 +428,16 @@ let updateCardInFirebase = async () => {
 
 
 
-  console.log('points BEFORE upoading to DB and before adding gained score from last card: 1ppppppppppppppppppppppppppppppppppppppppppppppppp');
-  console.log(points);
-  console.log('adjust by score:', score);
+  // console.log('points BEFORE upoading to DB and before adding gained score from last card: 1ppppppppppppppppppppppppppppppppppppppppppppppppp');
+  // console.log(points);
+  // console.log('adjust by score:', score);
   updatePoints(score, points, cards)
     .then(pointsReturned => {
       points = pointsReturned;
       score = 0;
 
-      console.log('points returned to MAIN after updated in DB: 2ppppppppppppppppppppppppppppppppppppppppppppppppp');
-      console.log(points);
+      // console.log('points returned to MAIN after updated in DB: 2ppppppppppppppppppppppppppppppppppppppppppppppppp');
+      // console.log(points);
     });
 }
 
@@ -645,10 +651,10 @@ nextBt.addEventListener('click', e => { showPageTwo(); });
 threeBt.addEventListener('click', ee => { updateALL(ee); })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
-// refresh page when returned from other tab/app
-document.addEventListener("visibilitychange", function () {
-  if (document.visibilityState === 'visible' && idleTime > 30) { window.location.reload(); }
-});
+
+
+resetAppIfReturnedAfterXseconds(4);
+
 
 // console.log('getting to listening to al cards click3');
 // showAllCardsHTML.addEventListener('click', e => showALLCards);
@@ -662,7 +668,7 @@ document.addEventListener("visibilitychange", function () {
 
 // time tracking idle counter?
 window.addEventListener('click', e => {
-  console.log('you CLICKED-I will reset idle time.');
+  // console.log('you CLICKED-I will reset idle time.');
   resetIdleTime();
 });
 

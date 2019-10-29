@@ -183,8 +183,8 @@ let showHistory = async (cardsPath, points, time) => {
   timeHistory = await timeHistory;
   pointsHistory = pointsHistory.data();
   timeHistory = timeHistory.data();
-  console.log('points history: ', pointsHistory);
-  console.log('time history: ', timeHistory);
+  // console.log('points history: ', pointsHistory);
+  // console.log('time history: ', timeHistory);
 
 
   let counter = 1;
@@ -325,8 +325,8 @@ let stopwatchPointsInit = async (cardsPath) => {
   let array2 = await updateDayStuffIfNeeded(cardsPath, points, time);
   points = array2[0];
   time = array2[1];
-  console.log('after UPDATING Session (+DAY) and returning array and converting array to points and time:');
-  console.log(points, time);
+  // console.log('after UPDATING Session (+DAY) and returning array and converting array to points and time:');
+  // console.log(points, time);
 
   showTimeInHTML(time);
   showPointsInHtml(points);
@@ -362,8 +362,8 @@ let stopwatchPointsInit = async (cardsPath) => {
 let updatePoints = async (score, points, cardsPath) => {
   points.session += score;
   points.today += score;
-  console.log('points to upoad to DB  qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-  console.log(points);
+  // console.log('points to upoad to DB  qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+  // console.log(points);
   await cardsPath.collection("about").doc("points").update(points);
   showPointsInHtml(points);
   return points;
@@ -466,8 +466,30 @@ let countCards = (cardsPath) => {
 
 
 
+let resetAppIfReturnedAfterXseconds = (seconds) => {
+  // refresh page when returned from other tab/app
+  let VisibilityTimeOn = 0;
+  let VisibilityTimeOff = 0;
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === 'visible') {
+      VisibilityTimeOn = new Date().getTime() / 1000;
+      // console.log('Visibility on (in s): ', VisibilityTimeOn);
+
+      if ((VisibilityTimeOn - VisibilityTimeOff) > seconds) {
+        // console.log('I will reset  the app now.');
+        window.location.reload();
+      };
+    };
+    if (document.visibilityState === 'hidden') {
+      VisibilityTimeOff = new Date().getTime() / 1000;
+      // console.log('Visibility off (in s): ', VisibilityTimeOff);
+    };
+  });
+
+}
 
 
 
 
-export { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, countCards };
+export { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, resetAppIfReturnedAfterXseconds, countCards };
