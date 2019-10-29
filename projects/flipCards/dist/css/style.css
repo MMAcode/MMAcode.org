@@ -157,31 +157,6 @@ label {
       -moz-border-radius: 20px;
       -ms-border-radius: 20px;
       -o-border-radius: 20px; }
-  #training_wrapper #b_next,
-  #training_wrapper #threeButtons {
-    width: 100%;
-    background-color: #6060dd;
-    padding: 2rem 1rem; }
-    #training_wrapper #b_next:hover,
-    #training_wrapper #threeButtons:hover {
-      cursor: pointer; }
-  #training_wrapper #threeButtons {
-    display: none;
-    padding: 0;
-    align-items: center;
-    justify-content: center; }
-    #training_wrapper #threeButtons * {
-      flex: 1;
-      height: 100%;
-      padding: 2rem 1rem; }
-    #training_wrapper #threeButtons #BtnDown {
-      background-color: red; }
-    #training_wrapper #threeButtons #BtnStay {
-      background-color: #ffe600; }
-    #training_wrapper #threeButtons #BtnUp {
-      background-color: #04e422; }
-  #training_wrapper #deleteCard {
-    display: flex; }
   #training_wrapper #bottonWrapper {
     position: fixed;
     bottom: 0;
@@ -189,6 +164,31 @@ label {
     height: 80px;
     max-width: 500px;
     margin: 0 auto;
+    display: flex; }
+    #training_wrapper #bottonWrapper #b_next,
+    #training_wrapper #bottonWrapper #threeButtons {
+      width: 100%;
+      background-color: #6060dd;
+      padding: 2rem 1rem; }
+      #training_wrapper #bottonWrapper #b_next:hover,
+      #training_wrapper #bottonWrapper #threeButtons:hover {
+        cursor: pointer; }
+    #training_wrapper #bottonWrapper #threeButtons {
+      display: none;
+      padding: 0;
+      align-items: center;
+      justify-content: center; }
+      #training_wrapper #bottonWrapper #threeButtons * {
+        flex: 1;
+        height: 100%;
+        padding: 2rem 1rem; }
+      #training_wrapper #bottonWrapper #threeButtons #BtnDown {
+        background-color: red; }
+      #training_wrapper #bottonWrapper #threeButtons #BtnStay {
+        background-color: #ffe600; }
+      #training_wrapper #bottonWrapper #threeButtons #BtnUp {
+        background-color: #04e422; }
+  #training_wrapper #deleteCard {
     display: flex; }
 
 #googleDrop,

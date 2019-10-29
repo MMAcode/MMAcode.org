@@ -653,7 +653,7 @@ deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
 
 
-resetAppIfReturnedAfterXseconds(60);
+resetAppIfReturnedAfterXseconds(2);
 
 
 // console.log('getting to listening to al cards click3');
@@ -668,10 +668,22 @@ resetAppIfReturnedAfterXseconds(60);
 
 // time tracking idle counter?
 window.addEventListener('click', e => {
-  // console.log('you CLICKED-I will reset idle time.');
+  console.log('you CLICKED-I will reset idle time.');
   resetIdleTime();
 });
 
 
+
+
+// scroll page down
+let scrolDown = async () => {
+  // setTimeout(() => { }, 2000);
+  for (let i = 0; i < 226; i++) {
+    window.scroll(0, i);
+    // console.log(i);
+    await new Promise(resolve => setTimeout(resolve, 3));
+  }
+}
+scrolDown();
 
 export { cards, userID };
