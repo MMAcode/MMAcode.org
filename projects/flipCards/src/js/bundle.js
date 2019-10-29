@@ -676,14 +676,15 @@ window.addEventListener('click', e => {
 
 
 // scroll page down
-let scrolDown = async () => {
-  // setTimeout(() => { }, 2000);
-  for (let i = 0; i < 226; i++) {
-    window.scroll(0, i);
-    // console.log(i);
-    await new Promise(resolve => setTimeout(resolve, 3));
-  }
-}
-scrolDown();
+// let scrolDown = async () => {
+//   // setTimeout(() => { }, 2000);
+//   for (let i = 0; i < 226; i++) {
+// window.scroll(0, i);
+window.scroll(0, 226);
+// console.log(i);
+//     await new Promise(resolve => setTimeout(resolve, 1));
+//   }
+// }
+// scrolDown();
 
 export { cards, userID };
