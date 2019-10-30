@@ -652,7 +652,7 @@ deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
 
 
-resetAppIfReturnedAfterXseconds(3);
+resetAppIfReturnedAfterXseconds(120);
 
 
 // console.log('getting to listening to al cards click3');
