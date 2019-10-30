@@ -681,8 +681,8 @@ window.addEventListener('click', e => {
 //   for (let i = 0; i < 226; i++) {
 // window.scroll(0, i);
 // window.scroll(0, 226);
-// scroll(0, 226);
-scroll(0, 276);
+// scroll(0, 226);  //session score visible
+// scroll(0, 276);  // all score hidden
 // scrollY = 226;
 // console.log(i);
 //     await new Promise(resolve => setTimeout(resolve, 1));

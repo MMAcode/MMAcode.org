@@ -478,8 +478,8 @@ let resetAppIfReturnedAfterXseconds = (seconds) => {
 
       if ((VisibilityTimeOn - VisibilityTimeOff) > seconds) {
         // console.log('I will reset  the app now.');
-        // window.location.reload();
-        window.location.href = window.location.href;
+        window.location.reload();
+        // window.location.href = window.location.href;
       };
     };
     if (document.visibilityState === 'hidden') {
