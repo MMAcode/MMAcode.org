@@ -263,6 +263,7 @@ label {
   }
 
 
+
   #bottonWrapper {
     position: fixed;
     // z-index: 100;
@@ -277,55 +278,56 @@ label {
     // background: red;
 
     display: flex;
+  }
 
 
+  #b_next,
+  #threeButtons {
+    // position: fixed;
+    // display: block;
+    width: 100%;
+    // margin-top: 2rem;
+    background-color: rgb(96, 96, 221);
+    padding: 2rem 1rem;
 
-    #b_next,
-    #threeButtons {
-      // position: fixed;
-      // display: block;
-      width: 100%;
-      // margin-top: 2rem;
-      background-color: rgb(96, 96, 221);
-      padding: 2rem 1rem;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-
-    // #b_next {
-    // display: none;
-    // }
-
-    #threeButtons {
-      display: none;
-      padding: 0;
-      // height: 100%;
-      align-items: center;
-      justify-content: center;
-      // margin-top: 1.5rem;
-
-      * {
-        flex: 1;
-        // flex-grow:1;
-        height: 100%;
-        padding: 2rem 1rem;
-      }
-
-      #BtnDown {
-        background-color: red;
-      }
-
-      #BtnStay {
-        background-color: rgb(255, 230, 0);
-      }
-
-      #BtnUp {
-        background-color: rgb(4, 228, 34);
-      }
+    &:hover {
+      cursor: pointer;
     }
   }
+
+  // #b_next {
+  // display: none;
+  // }
+
+  #threeButtons {
+    display: none;
+    padding: 0;
+    // height: 100%;
+    align-items: center;
+    justify-content: center;
+    // margin-top: 1.5rem;
+
+    * {
+      flex: 1;
+      // flex-grow:1;
+      height: 100%;
+      padding: 2rem 1rem;
+    }
+
+    #BtnDown {
+      background-color: red;
+    }
+
+    #BtnStay {
+      background-color: rgb(255, 230, 0);
+    }
+
+    #BtnUp {
+      background-color: rgb(4, 228, 34);
+    }
+  }
+
+
 
   #deleteCard {
     display: flex;
