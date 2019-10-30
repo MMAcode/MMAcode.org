@@ -653,7 +653,7 @@ deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
 
 
-// resetAppIfReturnedAfterXseconds(60);
+resetAppIfReturnedAfterXseconds(2);
 
 
 // console.log('getting to listening to al cards click3');
@@ -682,7 +682,7 @@ window.addEventListener('click', e => {
 // window.scroll(0, i);
 // window.scroll(0, 226);
 // scroll(0, 226);
-scroll(0, 246);
+scroll(0, 276);
 // scrollY = 226;
 // console.log(i);
 //     await new Promise(resolve => setTimeout(resolve, 1));
