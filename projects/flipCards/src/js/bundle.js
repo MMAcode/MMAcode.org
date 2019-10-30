@@ -646,12 +646,7 @@ auth.onAuthStateChanged((user) => {
 });
 
 // console.log('getting to listening to al cards click2');
-let showClick = document.querySelector('#clickTest');
-nextBt.addEventListener('click', e => {
-  showPageTwo();
-  showClick.innerHTML = '<p>next Btn clicked</p>';
-
-});
+nextBt.addEventListener('click', e => { showPageTwo(); });
 threeBt.addEventListener('click', ee => { updateALL(ee); })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
