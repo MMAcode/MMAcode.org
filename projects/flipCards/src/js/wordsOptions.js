@@ -92,6 +92,8 @@ let activateWordsOptions = () => {
 
     if (buttonParent == speakWordHTML && e.target.className === 'optionsIcon') {
       let responsiveVoiceLanguage = '';
+      console.log('SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
+      console.log(userInOp.langToLearn);
       if (userInOp.langToLearn === 'czech') { responsiveVoiceLanguage = 'Czech Female'; }
       else if (userInOp.langToLearn === 'english') { responsiveVoiceLanguage = 'UK English Female'; }
       else if (userInOp.langToLearn === 'french') { responsiveVoiceLanguage = 'French Female'; }
@@ -119,14 +121,14 @@ let activateUserInOptions = (userDoc, cards) => {
   cardsIoOp = cards;
 }
 
-let refreshOptions = (currentCard, currentCardID, userInfo) => {
+let refreshOptions = (currentCard, currentCardID) => {
   currentCardInOp = currentCard;
   currentCardInOpID = currentCardID;
 
   // google definiton
   let readyLink = '';
-  if (userInfo.langToLearn == 'english') { readyLink = 'https://www.google.com/search?q=' + encodeURI('definition of ') + encodeURI(currentCard.languageToLearn) }
-  else if (userInfo.langToLearn == 'czech') { readyLink = 'https://www.google.com/search?q=' + encodeURI('definition of ') + encodeURI(currentCard.languageToLearn) }
+  if (userInOp.langToLearn == 'english') { readyLink = 'https://www.google.com/search?q=' + encodeURI('definition of ') + encodeURI(currentCard.languageToLearn) }
+  else if (userInOp.langToLearn == 'czech') { readyLink = 'https://www.google.com/search?q=' + encodeURI('definuj ') + encodeURI(currentCard.languageToLearn) }
   else { readyLink = 'https://www.google.com/search?q=' + encodeURI(currentCard.languageToLearn) }
   defGoogleHTMLi.setAttribute('href', readyLink);
   // console.log(defGoogleHTMLi);
