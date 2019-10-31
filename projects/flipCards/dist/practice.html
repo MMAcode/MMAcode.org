@@ -75,8 +75,8 @@
 
 
 
-<br>
-        <h1>Vocabulary Practice</h1>
+        <br>
+        <h1 id="mainTitle">Vocabulary Practice</h1>
         <!-- <div id="language_labels">
           <span> in English </span>
           <span>/</span>
@@ -87,7 +87,7 @@
           <p id="wordTwo">-</p>
         </div>
         <div id="levelIndicator"></div>
-        <br>
+        <!-- <br> -->
 
         <!-- <p>audio icon here</p>
         <audio id="audio" src=""></audio> -->
@@ -95,7 +95,45 @@
         <div id="test"> refresh</div>
         <br> -->
 
+        <div id="options">
+          <div id="speakWord">
+            <div class="optionsIcon">Speak</div>
+            <div class="optionsWindow"></div>
+          </div>
+          <div id="definitionGoogle">
+            <a class="optionsIcon" href="https://www.google.com/search?q=definition+of+furniture" target="_blank">
+              Google Def.</a>
+            <div class="optionsWindow">
+              <!-- <iframe src="https://www.google.com" class="preview"></iframe> -->
+              <!-- <a href="https://www.google.com/search?q=definition+of+furniture" target="_blank">link</!--> -->
+              <div class="closeButton centerIt">close</div>
+            </div>
+          </div>
+          <div id="sentenceExamples">
+            <div class="optionsIcon">Example</div>
+            <div class="optionsWindow"></div>
+          </div>
+          <div id="alternativeTranslations">
+            <div class="optionsIcon">Alternative Tr.</div>
+            <div class="optionsWindow"></div>
+          </div>
+          <div id="changeWords">
+            <div class="optionsIcon">Adjust Word</div>
+            <div class="optionsWindow">
+              <h4> Adjust:</h4>
+              <form action="">
+                <label for="nativeInput">Native word:</label>
+                <input id="nativeWToAdjust" name="nativeInput" type="text" placeholder="original word">
+                <label for="toLearnInput">Word to learn:</label>
+                <input id="wToLearnAdjust" name="toLearnInput" type="text" placeholder="original word">
+                <input type="submit">
+              </form>
+            </div>
+          </div>
 
+        </div>
+
+        <br>
         <button id="deleteCard">Delete Card</button>
         <br><br><br><br><br><br>
 
@@ -139,6 +177,9 @@
   <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
   <!-- < script src = "https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js" ></script > -->
 
   <!-- < !--TODO : Add SDKs for Firebase products that you want to use

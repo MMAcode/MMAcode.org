@@ -137,6 +137,8 @@ label {
 #training_wrapper {
   position: relative;
   height: 100%; }
+  #training_wrapper #mainTitle:hover {
+    cursor: pointer; }
   #training_wrapper #language_labels span:nth-child(1) {
     color: red; }
   #training_wrapper #language_labels span:nth-child(3) {
@@ -157,6 +159,64 @@ label {
       -moz-border-radius: 20px;
       -ms-border-radius: 20px;
       -o-border-radius: 20px; }
+  #training_wrapper #options {
+    display: none;
+    align-items: center;
+    justify-content: center; }
+    #training_wrapper #options .optionsIcon {
+      background: white;
+      display: none;
+      padding: 3px 8px;
+      margin: 3px;
+      border: 2px solid blue;
+      color: blue;
+      text-decoration: none;
+      box-shadow: 3px 3px 3px 0px grey;
+      border-radius: 15px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      -ms-border-radius: 15px;
+      -o-border-radius: 15px; }
+      #training_wrapper #options .optionsIcon:hover {
+        cursor: pointer; }
+    #training_wrapper #options .optionsWindow {
+      display: none; }
+    #training_wrapper #options #definitionGoogle .optionsIcon,
+    #training_wrapper #options #changeWords .optionsIcon,
+    #training_wrapper #options #speakWord .optionsIcon {
+      display: inline-block; }
+    #training_wrapper #options #definitionGoogle .optionsWindow,
+    #training_wrapper #options #changeWords .optionsWindow {
+      z-index: 100;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      border: 2px solid black; }
+      #training_wrapper #options #definitionGoogle .optionsWindow h1,
+      #training_wrapper #options #definitionGoogle .optionsWindow h2,
+      #training_wrapper #options #definitionGoogle .optionsWindow h3,
+      #training_wrapper #options #definitionGoogle .optionsWindow h4,
+      #training_wrapper #options #definitionGoogle .optionsWindow h5,
+      #training_wrapper #options #changeWords .optionsWindow h1,
+      #training_wrapper #options #changeWords .optionsWindow h2,
+      #training_wrapper #options #changeWords .optionsWindow h3,
+      #training_wrapper #options #changeWords .optionsWindow h4,
+      #training_wrapper #options #changeWords .optionsWindow h5 {
+        color: purple; }
+      #training_wrapper #options #definitionGoogle .optionsWindow .closeButton,
+      #training_wrapper #options #changeWords .optionsWindow .closeButton {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 10vh;
+        background: black;
+        color: white; }
+        #training_wrapper #options #definitionGoogle .optionsWindow .closeButton:hover,
+        #training_wrapper #options #changeWords .optionsWindow .closeButton:hover {
+          cursor: pointer; }
   #training_wrapper #bottonWrapper {
     position: fixed;
     bottom: 0;

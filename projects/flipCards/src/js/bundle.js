@@ -1,6 +1,8 @@
 // import { importPozdrav } from './test';
 import { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, resetAppIfReturnedAfterXseconds, countCards } from './stopwatchPoints';
 
+import './wordsOptions';
+import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions } from './wordsOptions';
 
 
 let dueCount = 0;
@@ -25,6 +27,7 @@ let levelIndicator = document.querySelector('#levelIndicator');
 let deleteCardHTML = document.querySelector('#deleteCard');
 let loggedStatus = document.querySelector('#loggedInStatus');
 let scoreHTML = document.querySelector('#scoreCounter');
+let mainTitleHTML = document.querySelector('#mainTitle');
 
 let score = 0;
 let points = {
@@ -271,6 +274,8 @@ let assignWordsAndColours = (currentCard) => {
   // console.log('1.2.1.1 assign words');
   // console.log(currentCard.enCheck);
   let en = currentCard.enCheck;
+  refreshOptions(currentCard, currentCardID, userInfo);
+
   if (en) {
     // wordOne = currentCard.czWord;
     wordOne = currentCard.languageToLearn;
@@ -346,12 +351,12 @@ let updateCurrentCard = (e) => {
   }
   if (e.target.id === 'BtnStay') {
     // lev = lev > 1 ? lev - 1 : 0;
-    if (lev > 1) {
+    if (lev > 2) {
       lev -= 2;
       score = score - 2;
     } else {  //lev 1 or 0...
-      score -= lev;
-      lev = 0;
+      score -= lev - 1;
+      lev -= lev - 1;  //L2-1 ->L1; L1-0 ->L1
     }
   }
 
@@ -553,6 +558,7 @@ let showPageTwo = () => {
   }
 
   showThreeButtons();
+  showOptions();
 }
 
 let updateScoreUI = () => {
@@ -564,6 +570,7 @@ let updateScoreUI = () => {
 
 let updateDatabaseTHEN_UI = () => {
   updateScoreUI();
+  hideOptions();
   // countCards(cards);
 
 
@@ -634,12 +641,12 @@ auth.onAuthStateChanged((user) => {
     cards.collection("about").doc("info").get().then((userDoc) => {
       // loggedStatus.innerHTML = `<p>Enjoy ${user.email}!</p>`
       userInfo = userDoc.data();
+      activateUserInOptions(userInfo, cards);
       loggedStatus.innerHTML = `<p>Enjoy ${userInfo.username}!</p>`
       setLanguagesToSpeak().then(() => {
         updateDatabaseTHEN_UI();
       });
     });
-
 
 
   } else { loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>'; }
@@ -650,6 +657,9 @@ nextBt.addEventListener('click', e => { showPageTwo(); });
 threeBt.addEventListener('click', ee => { updateALL(ee); })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
+nextBt.addEventListener('touchmove', e => { e.preventDefault(); });
+threeBt.addEventListener('touchmove', e => { e.preventDefault(); });
+secondWordHTML.addEventListener('touchmove', e => { e.preventDefault(); });
 
 
 resetAppIfReturnedAfterXseconds(120);
@@ -667,26 +677,17 @@ resetAppIfReturnedAfterXseconds(120);
 
 // time tracking idle counter?
 window.addEventListener('click', e => {
-  console.log('you CLICKED-I will reset idle time.');
+  // console.log('you CLICKED-I will reset idle time.');
   resetIdleTime();
 });
 
+// hiding score
+scroll(0, 276);  // to hide ALL score
+// ho hide score when title clicked
+mainTitleHTML.addEventListener('click', e => { scroll(0, 276) });
 
+activateWordsOptions.js;
+activateWordsOptions();
 
-
-// scroll page down
-// let scrolDown = async () => {
-//   // setTimeout(() => { }, 2000);
-//   for (let i = 0; i < 226; i++) {
-// window.scroll(0, i);
-// window.scroll(0, 226);
-// scroll(0, 226);  //session score visible
-scroll(0, 276);  // all score hidden
-// scrollY = 226;
-// console.log(i);
-//     await new Promise(resolve => setTimeout(resolve, 1));
-//   }
-// }
-// scrolDown();
 
 export { cards, userID };
