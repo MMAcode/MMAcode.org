@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let a = [1, 5, 2, 1, 4, 0];
+
+    let countCircles = (A) => {
+      let contactsCounter = 0;
+      let borderOfThisCircleRight = 0;
+      let borderOfNeighbourLeft = 0;
+
+      for (circleNumber = 0; circleNumber < A.length - 1; circleNumber++) {
+        borderOfThisCircleRight = circleNumber + A[circleNumber];
+        for (i = circleNumber + 1; i < A.length; i++) {
+          borderOfNeighbourLeft = i - A[i];
+          if (borderOfThisCircleRight >= borderOfNeighbourLeft) {
+            contactsCounter++;
+            // if (contactsCounter > 10000000) {
+            //   return -1;
+            // }
+          }
+        }
+      }
+      return contactsCounter;
+    }
+
+
+    let ans = countCircles(a);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

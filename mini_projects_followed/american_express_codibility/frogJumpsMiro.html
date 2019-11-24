@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let returnJumps = (start, finish, jump) => {
+      let distance = finish - start;
+      let jumps = distance / jump;
+      console.log(jumps);
+      let jumpsRounded = Math.ceil(jumps);
+      console.log(jumpsRounded);
+      return jumpsRounded;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    let a = [2, 1100, 3, 1, 101, 1100, 3, 101, 3, 1];
+    let n = 1041;
+    let ans = returnJumps(1, 100, 7);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

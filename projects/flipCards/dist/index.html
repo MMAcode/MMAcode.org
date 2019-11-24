@@ -275,16 +275,19 @@
 
 
 
-            ////////// delete all cards in a given collection
-            // let deleteCardsInUsersCollection = (colName) => {
-            //   db.collection("users").doc(user.email).collection(colName).get().then((data) => {
-            //     data.docs.forEach(doc => {
-            //       // console.log(doc.id);
-            //       db.collection("users").doc(user.email).collection(colName).doc(doc.id)
-            //         .delete();
-            //     })
-            //   });
-            // }
+            ////// delete all cards in a given collection
+            let deleteCardsInUsersCollection = (colName) => {
+              let pathXX = db.collection("users").doc(user.email);
+              // let pathXX = db.collection("guests").doc("guest1");
+
+              pathXX.collection(colName).get().then((data) => {
+                data.docs.forEach(doc => {
+                  console.log(doc.id);
+                  pathXX.collection(colName).doc(doc.id)
+                    .delete();
+                })
+              });
+            }
             // deleteCardsInUsersCollection("cardsLearningNotDue");
             // deleteCardsInUsersCollection("cardsLearningDue");
             // deleteCardsInUsersCollection("cardsToLearn");
@@ -294,67 +297,26 @@
 
 
 
-            // MOVE all cards from old to new structure
+            ////// Copy all To Learn cards from current user to guest
             let moveAllCardsToNewStructure = async () => {
 
-              let oldCardsC = await db.collection(user.uid).get();
-              let newCardsD = db.collection("users").doc(user.email);
+              // let oldCardsC = await db.collection("users").doc(user.email).collection("cardsToLearn").get();
+              let oldCardsC = await db.collection("guests").doc("guestDefault").collection("cardsToLearn").get();
+              let newCardsD = db.collection("guests").doc("guest1");
 
-              console.log(oldCardsC, '--------------------------------------------');
-              let i = 1;
               oldCardsC.docs.forEach(doc => {
-                // console.log(doc.data());
-                console.log(i);
-                i++;
-
-
-
-                if (doc.data().mainStage == "to learn") {
-                  newCardsD.collection("cardsToLearn").add(doc.data()).then(() => {
-                    db.collection(user.uid).doc(doc.id).delete();
-                  });
-                };
-
-                if (doc.data().due == false && doc.data().mainStage == "learning") {
-                  newCardsD.collection("cardsLearningNotDue").add(doc.data()).then(() => {
-                    db.collection(user.uid).doc(doc.id).delete();
-                  });
-                };
-                if (doc.data().due == true && doc.data().mainStage == "learning") {
-                  newCardsD.collection("cardsLearningDue").add(doc.data()).then(() => {
-                    db.collection(user.uid).doc(doc.id).delete();
-                  });
-                };
-                if (doc.data().mainStage == "learned") {
-                  newCardsD.collection("cardsLearned").add(doc.data()).then(() => {
-                    db.collection(user.uid).doc(doc.id).delete();
-                  });
-                };
+                newCardsD.collection("cardsToLearn").add(doc.data());
+                ////then delete old
+                // then(() => {
+                //     db.collection(user.uid).doc(doc.id).delete();
+                //   });
               });
-
-
-
-
-
-
-
-
-
-
-
-              // F copy collection and contained cards exactly - with levels etc
-              // let copyCollection = async (user) => {
-              //   const cards = db.collection('FlipCards');
-              //   // const userID = user.uid;
-              //   let userCol = db.collection(user.uid);
-              //   let origCol = await cards.get();
-              //   origCol.docs.forEach(doc => {
-              //     // console.log(doc.data());
-              //     userCol.add(doc.data());
-              //   })
-              // }
             }
             // moveAllCardsToNewStructure();
+
+
+
+
 
             // ///////count cards
             // db.collection("users").doc(user.email).collection("cardsToLearn").get().then((data) => {

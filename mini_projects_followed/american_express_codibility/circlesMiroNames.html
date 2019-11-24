@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let a = [1, 5, 2, 1, 4, 0];
+
+    let countCircles = (array) => {
+      let contactsCounter = 0;
+
+
+
+      let countTouchingFollowers = (arrayX, circleNumberX) => {
+        let contactsCounterX = 0;
+        let borderOfThisCircleRight = circleNumberX + arrayX[circleNumberX];
+        // console.log('border of circle', circleNumberX, ' is: ', borderOfThisCircleRight);
+        console.log('this circles right border is', borderOfThisCircleRight);
+        // pro kazdeho nadchazejiciho souseda, dokud tam je nejaky...
+        for (i = circleNumberX + 1; i < arrayX.length; i++) {
+          let borderOfNeighbourLeft = i - arrayX[i];
+          console.log('comared circles left border is...', borderOfNeighbourLeft);
+          if (borderOfThisCircleRight >= borderOfNeighbourLeft) {
+            contactsCounterX++;
+          }
+        }
+
+        return contactsCounterX;
+      }
+
+
+
+
+      // for each circle...
+      for (circleNumber = 0; circleNumber < array.length; circleNumber++) {
+        // console.log(circleNumber);
+        let circleRadius = array[circleNumber];
+        // console.log(circleRadius);
+        // console.log('circle', circleNumber, ' has radius', circleRadius);
+
+        //if there is circle after this one...
+        if (circleNumber < array.length - 1) {
+          // check if NEXT circles are in contact; return how many circles are in contact
+          contactsCounter += countTouchingFollowers(array, circleNumber);
+        } else {
+          console.log('time to finish');
+          console.log(contactsCounter);
+          return contactsCounter;
+        }
+      }
+    }
+
+
+    let ans = countCircles(a);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

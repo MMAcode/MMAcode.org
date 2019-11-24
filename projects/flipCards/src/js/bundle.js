@@ -1,5 +1,5 @@
 // import { importPozdrav } from './test';
-import { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, resetAppIfReturnedAfterXseconds, countCards } from './stopwatchPoints';
+import { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, resetAppIfReturnedAfterXseconds, countCards, daysSince1970Floored } from './stopwatchPoints';
 
 import './wordsOptions';
 import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions } from './wordsOptions';
@@ -622,10 +622,9 @@ let setLanguagesToSpeak = async () => {
 
 //////////////////////////////// MAIN
 // console.log('getting to listening to al cards click1');
-auth.onAuthStateChanged((user) => {
+auth.onAuthStateChanged(async (user) => {
   if (user) {
     userID = user.uid;
-    // cards = db.collection(userID);
     cards = db.collection("users").doc(user.email);
 
 
@@ -649,7 +648,87 @@ auth.onAuthStateChanged((user) => {
     });
 
 
-  } else { loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>'; }
+  } else {
+    loggedStatus.innerHTML = '<p>Stranger Enjoy!</p>';
+
+    let formatGuestCards = async () => {
+      console.log('XXXXXXXXXXXXXX formating  guest cards');
+
+      ////// guest cards in guest1 are deleted, then new are created (in guest1) from guestDefault
+      //F. delete original cards
+      let deleteCardsInCollection = async (colName) => {
+        let pathXX = db.collection("guests").doc("guest1");
+        pathXX.collection(colName).get().then((data) => {
+          data.docs.forEach(doc => {
+            console.log('deleting card...');
+            pathXX.collection(colName).doc(doc.id)
+              .delete();
+          })
+        });
+      }
+
+      //F. create new cards for guest1
+      let copyCards = async (coll) => {
+        // let oldCardsC = await db.collection("guests").doc("guestDefault").collection("cardsToLearn").get();
+        let oldCardsC = await db.collection("guests").doc("guestDefault").collection(coll).get();
+        let newCardsD = db.collection("guests").doc("guest1");
+        oldCardsC.docs.forEach(doc => {
+          newCardsD.collection(coll).add(doc.data());
+          console.log('creating card...');
+        });
+      }
+      let copyUserData = async (coll) => {
+        // let oldCardsC = await db.collection("guests").doc("guestDefault").collection("cardsToLearn").get();
+        let oldCardsC = await db.collection("guests").doc("guestDefault").collection(coll).get();
+        let newCardsD = db.collection("guests").doc("guest1");
+        oldCardsC.docs.forEach(doc => {
+          newCardsD.collection(coll).doc(doc.id).set(doc.data());
+          console.log('creating card...');
+        });
+      }
+
+      // !!!! await Promise.all here seem not working, but in general it seems all working anyway so i will not change it...
+      console.log('starting deleting original cards...');
+      await Promise.all([deleteCardsInCollection("cardsLearningNotDue"), deleteCardsInCollection("cardsLearningDue"), deleteCardsInCollection("cardsToLearn"), deleteCardsInCollection("cardsLearned"), deleteCardsInCollection("about")]);
+      console.log("cards in guest 1 hopefully deleted.");
+
+      await copyCards("cardsToLearn");
+      await copyUserData("about");
+      console.log("new cards in guest1 created.");
+
+      await db.collection("guests").doc("guest1").collection("about").doc("points").update({
+        lastActiveDay: daysSince1970Floored
+      });
+    }
+
+    await formatGuestCards();
+    console.log('more stuff happening...');
+
+    // userID = user.uid;  - asi ani neni potreba
+    cards = db.collection("guests").doc("guest1");
+
+
+    // updates the points in/from DB and then in UI (if day is new), ans sets session score to 0;
+    stopwatchPointsInit(cards).then((pointsReturned) => {
+      points = pointsReturned;
+    });
+    stopWatchInit(cards);
+
+
+    // loggedStatus.innerHTML = `<p>Enjoy ${user.email}!</p>`
+    userInfo = {
+      langNative: "english",
+      langToLearn: "czech",
+    };
+    activateUserInOptions(userInfo, cards);
+    // loggedStatus.innerHTML = `<p>Enjoy ${userInfo.username}!</p>`
+    setLanguagesToSpeak().then(() => {
+      updateDatabaseTHEN_UI();
+    });
+
+
+
+  }
 });
 
 // console.log('getting to listening to al cards click2');

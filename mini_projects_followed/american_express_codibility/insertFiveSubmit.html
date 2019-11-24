@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let addFive = (N) => {
+      let numberString = String(N);
+      let returnedString = '';
+      let numberToReturn = N;
+      let numberAdjusted = false;
+
+
+      let addFiveBeforePosition = (string, position) => {
+        let newString = '';
+        for (i = 0; i < string.length; i++) {
+          if (i == position) {
+            newString = newString + '5';
+            newString = newString + numberString[i];
+          } else {
+            newString = newString + numberString[i];
+          }
+        }
+        return newString;
+      }
+
+      if (N >= 0) {
+        for (i = 0; i < numberString.length; i++) {
+          if (numberString[i] < 6) {
+            returnedString = addFiveBeforePosition(numberString, i);
+            numberToReturn = Number(returnedString);
+            numberAdjusted = true;
+            return numberToReturn;
+          }
+        }
+        if (numberAdjusted == false) {
+          numberString = numberString + '5';
+          numberToReturn = Number(numberString);
+          return numberToReturn;
+        }
+
+
+      } else {
+        numberString = String(N * (-1));
+        for (i = 0; i < numberString.length; i++) {
+          if (numberString[i] > 5) {
+            returnedString = addFiveBeforePosition(numberString, i);
+            numberToReturn = Number(returnedString) * (-1);
+            numberAdjusted = true;
+            return numberToReturn;
+          }
+        }
+        if (numberAdjusted == false) {
+          numberString = numberString + '5';
+          numberToReturn = Number(numberString) * (-1);
+          return numberToReturn;
+        }
+
+      }
+
+
+
+
+      // return 7;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    let a = [1, 5, -7, -704, 7001, -7001];
+    let n = -64;
+    let ans = addFive(n);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

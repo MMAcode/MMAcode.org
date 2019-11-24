@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let addFive = (X, Y) => {
+      let counter = 0;
+
+      for (i = 0; i < X.length; i++) {
+        for (di = 0; di < X.length; di++) {
+          if (X[i] == Y[di]) {
+            counter++;
+          }
+        }
+
+      }
+
+      return counter;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    // let a = [2];
+    let a = [];
+    let b = [];
+    let n = 1;
+    let ans = addFive(a, b);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

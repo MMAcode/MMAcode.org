@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let productOfThree = (A) => {
+      let sortedA = A.sort((a, b) => a - b);
+      console.log(sortedA);
+      let x = sortedA.length - 1;
+      let resultPositive = sortedA[x] * sortedA[x - 1] * sortedA[x - 2];
+      let resultNegative = sortedA[0] * sortedA[1] * sortedA[x];
+      console.log('res +:', resultPositive);
+      console.log('res -:', resultNegative);
+      if (resultNegative > resultPositive) {
+        return resultNegative;
+      } else {
+        return resultPositive;
+      }
+
+      // return 3;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    // let a = [2];
+    let a = [3, 2, -5];
+    let n = 1;
+    let ans = productOfThree(a);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

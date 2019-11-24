@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let nestedBrackets = (S) => {
+      let A = S.split('');
+      let somethingDeleted = false;
+      if (A.length == 0) {
+        return 1;
+      } else if (A.length < 2) {
+        return 0;
+      }
+      let runThroughArray = (array) => {
+        for (let i = 0; i < array.length; i++) {
+          if ((array[i] == "(" && array[i + 1] == "]") || (array[i] == "(" && array[i + 1] == "}") ||
+            (array[i] == "[" && array[i + 1] == ")") || (array[i] == "(" && array[i + 1] == "}") ||
+            (array[i] == "{" && array[i + 1] == ")") || (array[i] == "(" && array[i + 1] == "]")
+          ) {
+            return 0;
+          }
+
+          while ((array[i] == "(" && array[i + 1] == ")") || (array[i] == "[" && array[i + 1] == "]") || (array[
+              i] == "{" && array[i + 1] == "}")) {
+            array.splice(i, 2);
+            console.log(array);
+            somethingDeleted = true;
+            if (array.length == 0) {
+              return 1;
+            } else if (array.length < 2) {
+              return 0;
+            }
+          }
+          if (somethingDeleted) {
+            i -= 2;
+            somethingDeleted = false;
+          }
+        }
+        return 0;
+      }
+
+      return runThroughArray(A);
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    // let a = [2];
+    let a = [1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0];
+    let n = 1;
+    // let s = '([({[]})][[][({()}{}{()})]]({}){})';
+    let s = '(((((((((((((((())))))))))))))))';
+
+    let ans = nestedBrackets(s);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

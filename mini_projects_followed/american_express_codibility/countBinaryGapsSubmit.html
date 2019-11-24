@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let findBiggestGap = (N) => {
+      let binaryGap = 0;
+      let maxBinaryGap = 0;
+      let inBinary = N.toString(2);
+      let startCounting = false;
+      for (i = 0; i < inBinary.length; i++) {
+        if (inBinary[i] == 1) {
+          startCounting = true;
+        }
+        if (inBinary[i] == 1 && startCounting == true) {
+          if (binaryGap > maxBinaryGap) {
+            maxBinaryGap = binaryGap;
+          }
+          binaryGap = 0;
+        }
+        if (inBinary[i] == 0 && startCounting == true) {
+          binaryGap++;
+        }
+        if ((i == inBinary.length - 1) && startCounting == true) {
+          if (inBinary[i] == 1) {
+            if (binaryGap > maxBinaryGap) {
+              maxBinaryGap = binaryGap;
+            }
+            return maxBinaryGap;
+          } else {
+            return maxBinaryGap;
+          }
+        }
+      }
+    }
+
+
+
+
+
+    console.log('Returned value:');
+    console.log(findBiggestGap(14148722));
+    console.log(findBiggestGap(101));
+    console.log(findBiggestGap(150));
+  </script>
+
+</body>
+
+</html>

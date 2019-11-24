@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let addFive = (A) => {
+      let finalCounter = 0;
+      let currentCounter = 0;
+      let currentNumber = 0;
+      let sortedA = A.sort((a, b) => a - b);
+      for (i = 0; i < sortedA.length; i++) {
+        currentNumber = sortedA[i];
+        currentCounter = 1;
+        i++;
+        while (currentNumber == sortedA[i]) {
+          currentCounter++;
+          i++;
+        }
+        i--;
+        if (currentNumber == currentCounter) {
+          finalCounter = currentCounter;
+        }
+      }
+      return finalCounter;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    let a = [2, 704, 7001, 5, 5, 5, 5, 7001];
+    // let n = -64;
+    let ans = addFive(a);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

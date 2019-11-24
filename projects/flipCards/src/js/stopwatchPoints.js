@@ -493,4 +493,4 @@ let resetAppIfReturnedAfterXseconds = (seconds) => {
 
 
 
-export { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, resetAppIfReturnedAfterXseconds, countCards };
+export { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, resetAppIfReturnedAfterXseconds, countCards, daysSince1970Floored };

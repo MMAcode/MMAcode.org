@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let adjustIfNeeded = (number) => {
+      // console.log(number);
+      numberString = String(number);
+      // finalNumber = number;
+      // console.log(numberString);
+
+      // console.log(numberString.length);
+      // console.log(numberString[0]);
+
+      for (i = 0; i < numberString.length; i++) {
+        if (numberString[i] == 6) {
+          // console.log('ahoj');
+          // console.log(i);
+          // console.log(numberString[i]);
+          // numberString[i] = '9';
+
+          let newString = '';
+          for (ii = 0; ii < numberString.length; ii++) {
+            if (ii == i) {
+              newString = newString + '9';
+            } else {
+              newString = newString + numberString[ii];
+            }
+          }
+          // console.log(newString);
+
+          // console.log(numberString);
+          return Number(newString);
+        }
+      }
+      return number;
+
+      // return 8;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    let a = [1, 5, -7, -704, 7001, -7001];
+    let n = 9966;
+    let ans = adjustIfNeeded(n);
+    console.log('Returned value:');
+    console.log(ans);
+    console.log('more');
+    console.log('9966', adjustIfNeeded(9966));
+    console.log('9', adjustIfNeeded(9));
+    console.log('999699', adjustIfNeeded(999699));
+    console.log(adjustIfNeeded(699669));
+    console.log(adjustIfNeeded(9999));
+    console.log(adjustIfNeeded(99996));
+    console.log(adjustIfNeeded(6));
+  </script>
+
+</body>
+
+</html>

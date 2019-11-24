@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let findInteger = (number) => {
+      let binaryGap = 0;
+      let maxBinaryGap = 0;
+      let inBinary = number.toString(2);
+      let startCounting = false;
+      console.log(inBinary);
+      // console.log(inBinary[2]);
+      console.log('length: ', inBinary.length);
+
+      for (i = 0; i < inBinary.length; i++) { //runs for each digit once
+
+        if (inBinary[i] == 1) {
+          startCounting = true;
+        }
+
+        // if current gap count finished. Adjust maxG if right and reset counting
+        if (inBinary[i] == 1 && startCounting == true) {
+          console.log('current gap counted length: ', binaryGap);
+          if (binaryGap > maxBinaryGap) {
+            maxBinaryGap = binaryGap;
+          }
+          binaryGap = 0;
+        }
+
+        if (inBinary[i] == 0 && startCounting == true) {
+          binaryGap++;
+        }
+
+        // if last digit and counting
+        if ((i == inBinary.length - 1) && startCounting == true) {
+          // console.log('checking last digit on position', i + 1);
+          // console.log(maxBinaryGap);
+          if (inBinary[i] == 1) {
+            if (binaryGap > maxBinaryGap) {
+              maxBinaryGap = binaryGap;
+            }
+            return maxBinaryGap;
+          } else {
+            return maxBinaryGap;
+          }
+        }
+      }
+      // return binaryGap;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    let a = [1, 5, 2, 4, -2, 3, 3, 7];
+    let n = 1041;
+    // let ans = findInteger(n);
+    console.log('Returned value:');
+    // console.log(ans);
+    console.log(findInteger(12341));
+    console.log(findInteger(101));
+    console.log(findInteger(1));
+  </script>
+
+</body>
+
+</html>

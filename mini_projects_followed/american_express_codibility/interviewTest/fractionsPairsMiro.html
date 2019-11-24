@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let fractionPairs = (X, Y) => {
+      let pairsCounter = 0;
+      console.log(X);
+      console.log(Y);
+
+      // remove fr>=1  and simplify rest
+      for (i = 0; i < X.length; i++) { //=for each element...
+        // console.log('in for loop i is now', i);
+
+        // remove fr>=1
+        if (X[i] >= Y[i]) {
+          // console.log('deleting positioin', i);
+          // remove items
+          X.splice(i, 1);
+          Y.splice(i, 1);
+          //adjust counter
+          i--;
+        } else {
+          // simplify fractions
+          // find gcd
+          let R;
+          let rX = X[i];
+          let rY = Y[i];
+          while ((rY % rX) > 0) {
+            R = rY % rX;
+            rY = rX;
+            rX = R;
+          } // rX is now the gcd
+
+          // simplify
+          X[i] /= rX;
+          Y[i] /= rX;
+        }
+      }
+      console.log('');
+      console.log('after simplifying:');
+      console.log(X);
+      console.log(Y);
+
+
+      //make new 2D array and it's copy for sorting
+      let XY = [];
+      for (XYi = 0; XYi < X.length; XYi++) {
+        XY[XYi] = [X[XYi], Y[XYi]];
+      }
+      // console.log('array XY: ', XY);
+      let XY2 = [...XY];
+
+
+      //reorder fractions (based on common denominators)
+      XY2.sort((s, f) => s[1] - f[1]);
+      console.log('array XY2 = sorted: ', XY2);
+
+
+
+
+      // for each denominator group... set first and last position
+      let cdPositionEnd = -1;
+      while (cdPositionEnd < XY2.length - 2) {
+        let cdPositionStart = cdPositionEnd + 1;
+        let pos = cdPositionStart;
+        let currentDenominator = XY2[pos][1];
+        console.log('pos:', pos);
+
+        // find last position of current denominator
+        while (pos < XY2.length && XY2[pos][1] == currentDenominator) {
+          pos++;
+          console.log(pos);
+        }
+        cdPositionEnd = pos - 1;
+        console.log('Current denominator: ', currentDenominator);
+        console.log('Current denominator position start: ', cdPositionStart);
+        console.log('Current denominator position end: ', cdPositionEnd);
+
+
+        // .take each numerator (from left to right)...
+        for (cdPositionStart; cdPositionStart <= cdPositionEnd; cdPositionStart++) {
+          let currentNumerator = XY2[cdPositionStart][0];
+
+          // ..if any numerator ahead adds up  to denominator, add 1 to fractionPair;
+          let check = cdPositionStart + 1;
+          for (check; check <= cdPositionEnd; check++) {
+            if (currentDenominator == (currentNumerator + XY2[check][0])) {
+              console.log('-pair which adds up to 1 found:');
+              console.log('-positions:', cdPositionStart, check);
+              console.log('-denominator', currentDenominator);
+              console.log('-numerators', currentNumerator, XY2[check][0]);
+              pairsCounter++;
+              console.log('-current number of fraction pairs adding to 1: ', pairsCounter);
+            }
+          };
+
+
+        };
+
+
+
+        // ..if fractionPair>1000000000000 stop
+      }
+
+
+
+
+
+
+
+      // END
+      console.log('');
+      console.log('on the end:');
+      // console.log(X);
+      console.log(XY2);
+      return pairsCounter;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    // let a = [2];
+    let a = [4, 2, 6, 2, 3, 5, 5, 12, 3, 4, 1, 1, 1, 1, 2, 2];
+    let b = [5, 5, 10, 2, 6, 4, 10, 1, 2, 3, 2, 2, 2, 3, 3, 6];
+    let c = [];
+    let d = [];
+    for (mi = 0; mi < 100; mi++) {
+      c[mi] = 1;
+      d[mi] = 2;
+    }
+    // let b = [6,5,4,3,2,1];
+    // let n = 1;
+    let ans = fractionPairs(c, d);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

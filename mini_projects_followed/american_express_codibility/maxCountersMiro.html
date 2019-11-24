@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let addFive = (N, A) => {
+      let counters = [];
+      // create counters
+      for (i = 0; i < N; i++) {
+        counters.push(0);
+      }
+      // console.log(counters);
+
+      // adjust counters
+      for (i = 0; i < A.length; i++) {
+        if (A[i] < N + 1) {
+          console.log(A[i]);
+          counters[A[i] - 1]++;
+        }
+
+        if (A[i] == N + 1) {
+          // order from biggest to smallest
+          let countersCheck = counters.sort((a, b) => b - a);
+          console.log(countersCheck);
+          let biggest = countersCheck[0];
+          for (ii = 0; ii < N; ii++) {
+            counters[ii] = biggest;
+          }
+          console.log(counters);
+        }
+
+      }
+      console.log(counters);
+
+      return counters;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    let a = [2];
+    // let a = [1, 5, 7, 2, 3, 3, 2, 3,7, 3];
+    let n = 1;
+    let ans = addFive(n, a);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

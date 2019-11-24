@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let addFive = (N, A) => {
+      // go through each element of an array...
+      let currentStartingPosition = 0;
+      let addToAll = 0;
+
+      let findMostCommon = array => {
+        let arrayFromSmallest = array.sort((a, b) => a - b);
+        let mostCommon = 0;
+        let currentCounter = 0;
+        let currentNumber = arrayFromSmallest[0];
+        for (ii = 0; ii < arrayFromSmallest.length; ii++) {
+          if (arrayFromSmallest[ii] == currentNumber) {
+            currentCounter++;
+          } else {
+            if (currentCounter > mostCommon) {
+              mostCommon = currentCounter;
+            }
+            currentCounter = 1;
+            currentNumber = arrayFromSmallest[ii];
+          }
+        }
+        // console.log('most common - outcome: ', mostCommon);
+        return mostCommon;
+      }
+
+
+
+      for (i = 0; i < A.length; i++) {
+        // console.log(i);
+
+        if (A[i] == N + 1) {
+          // console.log('ss', i);
+          // console.log('range to get most common', currentStartingPosition, i + 1);
+          let arrayChunk = A.slice(currentStartingPosition, i + 1)
+          // console.log('arrayChunk', arrayChunk);
+          addToAll += findMostCommon(arrayChunk);
+          console.log('addToAll: ', addToAll);
+          currentStartingPosition = i + 1;
+          console.log('currentStartingPosition: ', currentStartingPosition);
+        }
+        // console.log(i);
+      }
+
+
+      let counters = [];
+      // create counters
+      for (i = 0; i < N; i++) {
+        counters.push(addToAll);
+      }
+
+      if (currentStartingPosition < A.length) { //if there are any values left in array...
+        for (i = currentStartingPosition; i < A.length; i++) {
+          counters[A[i] - 1]++;
+        }
+      }
+      // console.log(counters);
+      return counters;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    // let a = [2];
+    let a = [1, 5, 7, 2, 3, 3, 2];
+    let n = 6;
+    let ans = addFive(n, a);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>

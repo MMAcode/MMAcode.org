@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  ahoj
+
+
+  <script>
+    let addFive = (number) => {
+      let numberString = String(number);
+      let returnedString = '';
+      let numberToReturn = number;
+      let numberAdjusted = false;
+
+
+      let addFiveBeforePosition = (string, position) => {
+        let newString = '';
+        for (i = 0; i < string.length; i++) {
+          if (i == position) {
+            newString = newString + '5';
+            newString = newString + numberString[i];
+          } else {
+            newString = newString + numberString[i];
+          }
+        }
+        return newString;
+      }
+
+
+      // pozitivni hodnoty
+      if (number >= 0) {
+        console.log('+');
+        for (i = 0; i < numberString.length; i++) {
+          console.log(i);
+          if (numberString[i] < 6) {
+            returnedString = addFiveBeforePosition(numberString, i);
+            console.log('returned string: ', returnedString);
+            numberToReturn = Number(returnedString);
+            numberAdjusted = true;
+            return numberToReturn;
+          }
+        }
+        if (numberAdjusted == false) {
+          console.log('number not changed yet');
+          numberString = numberString + '5';
+          console.log(numberString);
+          numberToReturn = Number(numberString);
+          return numberToReturn;
+        }
+
+
+        // -
+      } else {
+        numberString = String(number * (-1));
+        console.log('-');
+        console.log(numberString);
+
+        for (i = 0; i < numberString.length; i++) {
+          // console.log(i);
+          if (numberString[i] > 5) {
+            returnedString = addFiveBeforePosition(numberString, i);
+            console.log('returned string: ', returnedString);
+            numberToReturn = Number(returnedString) * (-1);
+            numberAdjusted = true;
+            return numberToReturn;
+          }
+        }
+        if (numberAdjusted == false) {
+          console.log('number not changed yet');
+          numberString = numberString + '5';
+          console.log(numberString);
+          numberToReturn = Number(numberString) * (-1);
+          return numberToReturn;
+        }
+
+      }
+
+
+
+
+      // return 7;
+    }
+
+
+
+
+
+    // let longA = [];
+    // for (i = 102; i < 201; i++) {
+    //   longA.push(i);
+    // }
+    // for (i = 0; i < 101; i++) {
+    //   longA.push(i);
+    // }
+    // console.log(longA);
+
+
+    let a = [1, 5, -7, -704, 7001, -7001];
+    let n = -64;
+    let ans = addFive(n);
+    console.log('Returned value:');
+    console.log(ans);
+  </script>
+
+</body>
+
+</html>
