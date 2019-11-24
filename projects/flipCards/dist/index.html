@@ -235,9 +235,11 @@
 
     let changeButtonToSignOut = () => {
       signButton.innerHTML = '<span>Log out.</span>';
+      signButton.removeAttribute("href");
+      // signButton.setAttribute("href", "");
       signButton.addEventListener('click', () => {
         auth.signOut();
-        status.innerHTML = `<p>xx User logged out.</p>`;
+        // status.innerHTML = `<p>xx User logged out.</p>`;
         signButton.innerHTML = '<a href="signIn.html">Sign-in</a>';
       })
     }
@@ -301,7 +303,8 @@
             let moveAllCardsToNewStructure = async () => {
 
               // let oldCardsC = await db.collection("users").doc(user.email).collection("cardsToLearn").get();
-              let oldCardsC = await db.collection("guests").doc("guestDefault").collection("cardsToLearn").get();
+              let oldCardsC = await db.collection("guests").doc("guestDefault").collection("cardsToLearn")
+                .get();
               let newCardsD = db.collection("guests").doc("guest1");
 
               oldCardsC.docs.forEach(doc => {
@@ -399,7 +402,7 @@
         importBtnXX.style.display = 'none';
         console.log('no-one is logged in');
         console.log(user);
-        status.innerHTML = '<p>xx No User logged in.</p>';
+        status.innerHTML = '<p>Hi Stranger!</p>';
       }
     });
   </script>
