@@ -244,6 +244,8 @@ label {
       // float: left;
       margin: 10px 10px 20px 10px;
       color: rgb(238, 255, 0);
+      // background-color: red;
+
       // font-size: 2rem;
       max-width: 50px;
       min-height: 50px;
@@ -251,6 +253,9 @@ label {
       &:hover {
         cursor: pointer;
       }
+
+     
+      
     }
 
     .invisibleWindow {

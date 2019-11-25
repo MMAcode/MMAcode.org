@@ -836,7 +836,7 @@ window.addEventListener('click', e => {
 });
 
 // hiding score
-let scrollAmount = 330;
+let scrollAmount = 350;
 scroll(0, scrollAmount);  // to hide ALL score
 // ho hide score when title clicked
 mainTitleHTML.addEventListener('click', e => { scroll(0, scrollAmount) });
