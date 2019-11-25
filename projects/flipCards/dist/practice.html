@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" type="image/x-icon" href="img/book.svg">
   <title></title>
 </head>
 
@@ -19,11 +20,8 @@
           <p id="loggedInStatus"></p>
           <a href="index.html">Main Menu</a>
         </div>
+
         <div id="scoreCounter"></div>
-
-
-
-
         <div id="pointsCounter" class="pointsCounter">
           <p>Last 7 days</p>
           <div id="history7days" class="history7days">Points</div>
@@ -75,7 +73,101 @@
 
 
 
-        <br>
+        <div id="mainIcons">
+          <div id="help">
+            <div class="visibleIcon">
+              <img src="img/informationBest.png" class="mainIcon">
+            </div>
+            <div class="invisibleWindow">
+              <h1>HELP</h1>
+              <h4>Video-návody Česky:</h4>
+              <a href="https://www.youtube.com/watch?v=uayzjl2hW68&feature=youtu.be"> > Přihlášení a používání (3.5
+                min.)</a>
+              <a href="https://www.youtube.com/watch?v=xFNTusBz4cU&feature=youtu.be">> Uložení ikonky (zástupce) na
+                plochu
+                mobilu pro snadný a rychlý přístup do aplikace.</a>
+              <br><br>
+              <p>in English...</p>
+
+              <h2>Core Functionality</h2>
+              <h4>Import Vocabulary </h4>
+              <p>Words to learn can be uploaded 1 by 1 or in batch mode from an EXCEL file. (Detailed steps within the
+                app
+                itself. Start by using "+" button.)
+
+                <h6>If you are using Google Translate... </h6>
+                On desktop PC (not phone) you can export all your favourite (starred) words from google translate to an
+                excel file. Then
+                import this file in here.
+              </p>
+              <h4>Levels (0..10):</h4>
+              <p>Each word starts in level 0. If words is remembered, level is improved. If word is forgotten, level is
+                lowered. Each level represents TIME GAP. Bigger gap = longer time until the word will be shown again.
+                <br> When level 10 is reached, word is considered "learned" and will not be shown again. (You remembered
+                the
+                word even after more than 7 days of not seeing the word.) </p>
+              <h4>3 buttons on the botton: rating your knowledge</h4>
+              <p>Red button: Sets the level back to 0.</p>
+              <p>Yellow button: Lowers the level by 2 (usually, only in level1,2,3 it lovers less)</p>
+              <p>Green button: Improves the level. (Usually by 0.5, but other factors will infulence that too.)</p>
+
+              <h2>Extras</h2>
+              <h4>Letters as Hints</h4>
+              <p>Tap on 3 dots (...) to see first letters of the word you are trying to remember.</p>
+              <h4>Points & Time</h4>
+              <p>You can see how much you improved and how much time you spent learning in: 1) current session; 2)
+                Today;
+                3) This week</p>
+              <h6>Points (=Improvement tracker)</h6>
+              <p>App is tracking your progress. Points correspond with changes in words' levels. Forgetting words can
+                get
+                you negative score. Getting 10 points corresponds with learning 1 word perfectly.</p>
+              <h6>Time</h6>
+              <p>When you are active, app measures your time. Try to learn at least 5 minutes every day.</p>
+              <h4>Extra Buttons</h4>
+              <h6>Speak</h6>
+              <p>Speaks the word/phrase.</p>
+              <h6>Google def.</h6>
+              <p>Opens new window with word's definition, sentence examples and synonyms.</p>
+              <h6>Adjust word</h6>
+              <p>Here you can amend or delete word.</p>
+
+              <h2>Extra extra</h2>
+              <h4>Title - center the app</h4>
+              <p>Tap on the title to center the app - to hide distractions like points and time trackers.</p>
+              <h1>Contact the Developer</h1>
+              <p class="centerIt">miroslav.makarov@gmail.com</p>
+              <br><br><br><br><br>
+
+              <div class="closeButton centerIt">- close -</div>
+            </div>
+          </div>
+
+          <div id="addVocabulary">
+            <div class="visibleIcon">
+              <img src="img/plusPNG.png" alt="">
+            </div>
+            <div class="invisibleWindow">
+              <h4> Add new word to learn:</h4>
+              <form id="formNewWord" action="">
+                <label for="nativeInput">Native word:</label>
+                <input name="nativeInput" type="text">
+                <label for="toLearnInput">Word to learn:</label>
+                <input name="toLearnInput" type="text">
+                <input type="submit">
+              </form>
+              <br>
+              <p class="centerIt">or</p>
+              <a class="centerIt" id="importBtn" href="importFile_video.html">Import from Excel.</a>
+              <div class="closeButton centerIt">- close -</div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
         <h1 id="mainTitle">Vocabulary Practice</h1>
         <!-- <div id="language_labels">
           <span> in English </span>
@@ -105,8 +197,8 @@
               Google Def.</a>
             <div class="optionsWindow">
               <!-- <iframe src="https://www.google.com" class="preview"></iframe> -->
-              <!-- <a href="https://www.google.com/search?q=definition+of+furniture" target="_blank">link</!--> -->
-              <div class="closeButton centerIt">close</div>
+              <!-- <a href="https://www.google.com/search?q=definition+of+furniture" target="_blank">link</!-->
+              <!-- <div class="closeButton centerIt">close</div> -->
             </div>
           </div>
           <div id="sentenceExamples">
@@ -120,21 +212,25 @@
           <div id="changeWords">
             <div class="optionsIcon">Adjust Word</div>
             <div class="optionsWindow">
+              <div class="closeButton centerIt">- Return without changes -</div>
               <h4> Adjust:</h4>
-              <form action="">
+              <form id="formAdjustWord" action="">
                 <label for="nativeInput">Native word:</label>
                 <input id="nativeWToAdjust" name="nativeInput" type="text" placeholder="original word">
                 <label for="toLearnInput">Word to learn:</label>
                 <input id="wToLearnAdjust" name="toLearnInput" type="text" placeholder="original word">
-                <input type="submit">
+                <br>
+                <input type="submit" value="Save changes">
               </form>
+              <br>
+              <button id="deleteCard">Delete Card</button>
             </div>
           </div>
 
         </div>
 
         <br>
-        <button id="deleteCard">Delete Card</button>
+
         <br><br><br><br><br><br>
 
       </div>
@@ -183,7 +279,7 @@
   <!-- < script src = "https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js" ></script > -->
 
   <!-- < !--TODO : Add SDKs for Firebase products that you want to use
-https://firebase.google.com/docs/web/setup#config-web-app --> -->
+https://firebase.google.com/docs/web/setup#config-web-app -->
 
   <script>
     // Your web app's Firebase configuration

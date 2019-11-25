@@ -137,6 +137,81 @@ label {
 #training_wrapper {
   position: relative;
   height: 100%; }
+  #training_wrapper #mainIcons {
+    display: flex;
+    justify-content: space-between; }
+  #training_wrapper #help .visibleIcon,
+  #training_wrapper #addVocabulary .visibleIcon {
+    margin: 10px 10px 20px 10px;
+    color: #eeff00;
+    max-width: 50px;
+    min-height: 50px; }
+    #training_wrapper #help .visibleIcon:hover,
+    #training_wrapper #addVocabulary .visibleIcon:hover {
+      cursor: pointer; }
+  #training_wrapper #help .invisibleWindow,
+  #training_wrapper #addVocabulary .invisibleWindow {
+    position: absolute;
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 150%;
+    height: auto;
+    background-color: black;
+    z-index: 10000;
+    text-align: left;
+    color: yellow;
+    padding: 5px; }
+    #training_wrapper #help .invisibleWindow p,
+    #training_wrapper #addVocabulary .invisibleWindow p {
+      padding: 5px; }
+    #training_wrapper #help .invisibleWindow a,
+    #training_wrapper #addVocabulary .invisibleWindow a {
+      color: greenyellow;
+      line-height: 1.3;
+      padding: 10px; }
+    #training_wrapper #help .invisibleWindow h1,
+    #training_wrapper #help .invisibleWindow h2,
+    #training_wrapper #addVocabulary .invisibleWindow h1,
+    #training_wrapper #addVocabulary .invisibleWindow h2 {
+      text-align: center;
+      margin-top: 40px; }
+    #training_wrapper #help .invisibleWindow h1,
+    #training_wrapper #addVocabulary .invisibleWindow h1 {
+      color: #0099ff; }
+    #training_wrapper #help .invisibleWindow h2,
+    #training_wrapper #addVocabulary .invisibleWindow h2 {
+      text-decoration: solid underline white; }
+    #training_wrapper #help .invisibleWindow h3,
+    #training_wrapper #help .invisibleWindow h4,
+    #training_wrapper #help .invisibleWindow h5,
+    #training_wrapper #addVocabulary .invisibleWindow h3,
+    #training_wrapper #addVocabulary .invisibleWindow h4,
+    #training_wrapper #addVocabulary .invisibleWindow h5 {
+      text-align: left;
+      margin-top: 30px; }
+    #training_wrapper #help .invisibleWindow h6,
+    #training_wrapper #addVocabulary .invisibleWindow h6 {
+      margin-top: 20px; }
+    #training_wrapper #help .invisibleWindow .closeButton,
+    #training_wrapper #addVocabulary .invisibleWindow .closeButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10vh;
+      background: #5a5a5a;
+      color: white; }
+      #training_wrapper #help .invisibleWindow .closeButton:hover,
+      #training_wrapper #addVocabulary .invisibleWindow .closeButton:hover {
+        cursor: pointer; }
+  #training_wrapper #mainTitle {
+    display: inline-block;
+    padding-bottom: 30px; }
   #training_wrapper #mainTitle:hover {
     cursor: pointer; }
   #training_wrapper #language_labels span:nth-child(1) {
@@ -159,6 +234,8 @@ label {
       -moz-border-radius: 20px;
       -ms-border-radius: 20px;
       -o-border-radius: 20px; }
+  #training_wrapper #levelIndicator {
+    color: lightgray; }
   #training_wrapper #options {
     display: none;
     align-items: center;
@@ -208,12 +285,16 @@ label {
         color: purple; }
       #training_wrapper #options #definitionGoogle .optionsWindow .closeButton,
       #training_wrapper #options #changeWords .optionsWindow .closeButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: fixed;
         bottom: 0;
         width: 100%;
         height: 10vh;
-        background: black;
-        color: white; }
+        background: #fbff02;
+        color: black;
+        font-size: 20px; }
         #training_wrapper #options #definitionGoogle .optionsWindow .closeButton:hover,
         #training_wrapper #options #changeWords .optionsWindow .closeButton:hover {
           cursor: pointer; }
@@ -292,3 +373,33 @@ label {
   #firstTimeUser input[type="radio"],
   #firstTimeUser label {
     display: inline-block; }
+
+#alertForSec {
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  -webkit-transform: translate(50%, -50%);
+  -moz-transform: translate(50%, -50%);
+  -ms-transform: translate(50%, -50%);
+  -o-transform: translate(50%, -50%);
+  background-color: red !important;
+  z-index: 1000000;
+  animation: fadeAway 1s forwards ease-in-out;
+  -webkit-animation: fadeAway 1s forwards ease-in-out; }
+
+@keyframes fadeAway {
+  70% {
+    opacity: 1;
+    transform: translate(50%, -50%);
+    -webkit-transform: translate(50%, -50%);
+    -moz-transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%);
+    -o-transform: translate(50%, -50%); }
+  100% {
+    transform: translate(50%, -200%);
+    -webkit-transform: translate(50%, -200%);
+    -moz-transform: translate(50%, -200%);
+    -ms-transform: translate(50%, -200%);
+    -o-transform: translate(50%, -200%);
+    opacity: 0; } }

@@ -1,3 +1,5 @@
+import { alertUserForSec } from "./bundle";
+
 let optionsHTML = document.querySelector('#options');
 
 // GOOGLE DEF.
@@ -47,6 +49,7 @@ let activateWordsOptions = () => {
       // }
     }
 
+    //changing the word/phrase
     if (buttonParent == changeWordsHTML && e.target.className === 'optionsIcon') {
       console.log('change word action fired');
       // adjustCurrentWord();
@@ -62,7 +65,7 @@ let activateWordsOptions = () => {
 
 
 
-      let formToAdjust = document.querySelector('form');
+      let formToAdjust = document.querySelector('#formAdjustWord');
       formToAdjust.addEventListener('submit', e => {
         e.preventDefault();
         let nativeIn = formToAdjust.nativeInput.value;
@@ -77,15 +80,22 @@ let activateWordsOptions = () => {
         db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).update({
           languageNative: nativeIn,
           languageToLearn: toLearnIn
-        }).then(() => {
+        }).then(async () => {
           console.log('Flip-card adjusted');
+          alertUserForSec("Flip-card adjusted", 0.8);
+          await new Promise(resolve => setTimeout(resolve, 800));
+
+          // reset form  -  HAS TO BE HERE or
+          formToAdjust.reset();
+          window.location.reload();
         }).catch(err => {
           console.log(err);
           console.log('I could NOT adjust the card.');
+          // reset form
+          formToAdjust.reset();
+          window.location.reload();
         });
-        // reset form
-        formToAdjust.reset();
-        window.location.reload();
+
       })
     }
 
@@ -125,7 +135,7 @@ let refreshOptions = (currentCard, currentCardID) => {
   currentCardInOp = currentCard;
   currentCardInOpID = currentCardID;
 
-  // google definiton
+  // google definition
   let readyLink = '';
   if (userInOp.langToLearn == 'english') { readyLink = 'https://www.google.com/search?q=' + encodeURI('definition of ') + encodeURI(currentCard.languageToLearn) }
   else if (userInOp.langToLearn == 'czech') { readyLink = 'https://www.google.com/search?q=' + encodeURI('definuj ') + encodeURI(currentCard.languageToLearn) }

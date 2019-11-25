@@ -28,6 +28,8 @@ let deleteCardHTML = document.querySelector('#deleteCard');
 let loggedStatus = document.querySelector('#loggedInStatus');
 let scoreHTML = document.querySelector('#scoreCounter');
 let mainTitleHTML = document.querySelector('#mainTitle');
+let closeWindowS = document.querySelectorAll('.closeButton');
+let showWindowS = document.querySelectorAll('.visibleIcon');
 
 let score = 0;
 let points = {
@@ -148,10 +150,10 @@ console.log(oneArray);
 ////////////////////////////// F SET UP
 // F delete card
 let deleteCard = async () => {
-  console.log('ready to delete card');
-  console.log(currentCardID);
+  // console.log('ready to delete card');
+  // console.log(currentCardID);
   cards.collection("cardsLearningDue").doc(currentCardID).delete().then(() => {
-    console.log('deleted');
+    // console.log('deleted');
     updateDatabaseTHEN_UI();
   });
 }
@@ -382,7 +384,8 @@ let updateCurrentCard = (e) => {
 
       // console.log('updated level(in variable):', lev, 'updated enCheck:', en);
     } else {
-      alert('STOP CHEATING, I know you used a hint!;-)');
+      // alert('STOP CHEATING, I know you used a hint!;-)');
+      alertUserForSec('CHEATING! You used a hint!', 1.5);
     }
   }
 
@@ -400,7 +403,8 @@ let updateCurrentCard = (e) => {
     // currentCard.mainStage = 'learned';
     // console.log('card labeled learned');
     // console.log(currentCard);
-    alert('Congrats -this card was added to "learned" pile.');
+    // alert('Congrats -this card was added to "learned" pile.');
+    alertUserForSec('Congrats - this card was added to "learned" pile.', 2);
   }
 }
 
@@ -483,8 +487,8 @@ let ResetLettersOnClick = () => {
   hintLettersToShow = '';
 }
 let showLevel = () => {
-  if (currentCard.enCheck === false) { levelIndicator.innerHTML = `L. ${currentCard.level}a` }
-  else { levelIndicator.innerHTML = `L. ${currentCard.level}b` }
+  if (currentCard.enCheck === false) { levelIndicator.innerHTML = `level ${currentCard.level}-A` }
+  else { levelIndicator.innerHTML = `level ${currentCard.level}-B` }
   // console.log(currentCard.enCheck);
 }
 
@@ -619,11 +623,66 @@ let setLanguagesToSpeak = async () => {
   // languageToSpeak = 
 }
 
+//////Add new words to learn
+let activateNEwCardListener = (user) => {
+  let form = document.querySelector('#formNewWord');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let nativeInput = form.nativeInput.value;
+    let toLearnInput = form.toLearnInput.value;
+
+    // add new object into firebase
+
+    const newCard = {
+      languageNative: nativeInput,
+      languageToLearn: toLearnInput,
+      mainStage: 'to learn',
+      enCheck: false,
+      czCheck: false,
+      level: 0,
+      dueTime: 8888888888888,
+      due: false,
+      lastSeen: 8888888888888
+    };
+
+    // db.collection(user.uid).add(newCard).then(() => {
+    //  new-DB-structure
+    db.collection("users").doc(user.email).collection("cardsToLearn").add(newCard).then(() => {
+      console.log('Flip-card added');
+      alertUserForSec("Flip-card added", 1);
+
+
+
+
+
+    }).catch(err => {
+      console.log(err);
+      console.log('I could NOT add object into the database.');
+    });
+    // reset form
+    form.reset();
+  })
+}
+
+// short alert
+let alertUserForSec = (text, durationInSec) => {
+  let alertForSec = document.createElement('div');
+  alertForSec.textContent = text;
+  alertForSec.id = "alertForSec";
+  alertForSec.classList.add("flyingAlert");
+  alertForSec.style.animationDuration = durationInSec + "s";
+  let hook = document.querySelector("#words");
+  hook.append(alertForSec);
+
+  console.log('alert');
+}
+
 
 //////////////////////////////// MAIN
 // console.log('getting to listening to al cards click1');
 auth.onAuthStateChanged(async (user) => {
   if (user) {
+    activateNEwCardListener(user); //to listen to cards which user could later create
     userID = user.uid;
     cards = db.collection("users").doc(user.email);
 
@@ -736,9 +795,25 @@ nextBt.addEventListener('click', e => { showPageTwo(); });
 threeBt.addEventListener('click', ee => { updateALL(ee); })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
+// prevent scrolling on certain buttons
 nextBt.addEventListener('touchmove', e => { e.preventDefault(); });
 threeBt.addEventListener('touchmove', e => { e.preventDefault(); });
 secondWordHTML.addEventListener('touchmove', e => { e.preventDefault(); });
+
+//show and close windows (Help section) on click
+for (const sw of showWindowS) {
+  sw.addEventListener('click', eX => {
+    eX.target.parentElement.nextElementSibling.style.display = "block";
+    scroll(0, 0);
+  });
+};
+for (const bb of closeWindowS) {
+  bb.addEventListener('click', eee => {
+    eee.target.parentElement.style.display = "none";
+    // scroll(0, scrollAmount);
+  });
+};
+
 
 
 resetAppIfReturnedAfterXseconds(120);
@@ -761,12 +836,15 @@ window.addEventListener('click', e => {
 });
 
 // hiding score
-scroll(0, 276);  // to hide ALL score
+let scrollAmount = 330;
+scroll(0, scrollAmount);  // to hide ALL score
 // ho hide score when title clicked
-mainTitleHTML.addEventListener('click', e => { scroll(0, 276) });
+mainTitleHTML.addEventListener('click', e => { scroll(0, scrollAmount) });
 
 activateWordsOptions.js;
 activateWordsOptions();
 
+// alertUserForSec('Congrats - you learned this card.', 2);
 
-export { cards, userID };
+
+export { cards, userID, alertUserForSec };
