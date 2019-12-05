@@ -630,6 +630,9 @@ let activateNEwCardListener = (user) => {
     e.preventDefault();
     let nativeInput = form.nativeInput.value;
     let toLearnInput = form.toLearnInput.value;
+    let checkBoxCurrentPile = form.newWordCheckBox.checked; //will be true or false
+
+
 
     // add new object into firebase
 
@@ -647,20 +650,39 @@ let activateNEwCardListener = (user) => {
 
     // db.collection(user.uid).add(newCard).then(() => {
     //  new-DB-structure
-    db.collection("users").doc(user.email).collection("cardsToLearn").add(newCard).then(() => {
-      console.log('Flip-card added');
-      alertUserForSec("Flip-card added", 1);
+
+    if (checkBoxCurrentPile == false) {
+
+      db.collection("users").doc(user.email).collection("cardsToLearn").add(newCard).then(() => {
+        console.log('Flip-card added');
+        alertUserForSec("Flip-card added", 1);
+      }).catch(err => {
+        console.log(err);
+        console.log('I could NOT add object into the database.');
+      });
+    } else if (checkBoxCurrentPile == true) {
+      let now = new Date().getTime();
 
 
 
+      newCard.mainStage = "learning";
+      newCard.lastSeen = now;
+      newCard.dueTime = now + 10000; //after 10 seconds
 
+      console.log('current  new card:', newCard);
 
-    }).catch(err => {
-      console.log(err);
-      console.log('I could NOT add object into the database.');
-    });
+      db.collection("users").doc(user.email).collection("cardsLearningNotDue").add(newCard).then(() => {
+        console.log('Flip-card added');
+        alertUserForSec("Flip-card added", 1);
+      }).catch(err => {
+        console.log(err);
+        console.log('I could NOT add object into the database.');
+      });
+    }
+
     // reset form
     form.reset();
+    document.querySelector("#formNewWord_NativeInput").focus();
   })
 }
 
@@ -805,6 +827,12 @@ for (const sw of showWindowS) {
   sw.addEventListener('click', eX => {
     eX.target.parentElement.nextElementSibling.style.display = "block";
     scroll(0, 0);
+    // console.log('selected element:', eX.target.parentElement.parentElement.id);
+    if (eX.target.parentElement.parentElement.id == "addVocabulary") {
+      // console.log('add voc clicked');
+      document.querySelector("#formNewWord_NativeInput").focus();
+
+    };
   });
 };
 for (const bb of closeWindowS) {

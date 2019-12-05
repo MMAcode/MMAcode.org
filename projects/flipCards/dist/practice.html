@@ -154,14 +154,20 @@
               <h4> Add new word to learn:</h4>
               <form id="formNewWord" action="">
                 <label for="nativeInput">Native word:</label>
-                <input name="nativeInput" type="text">
+                <input id="formNewWord_NativeInput" name="nativeInput" type="text">
                 <label for="toLearnInput">Word to learn:</label>
                 <input name="toLearnInput" type="text">
+                <br>
+                <input name="newWordCheckBox" type="checkbox" class="inline" checked>
+                <label for="newWordCheckBox" class="inline">Add card into the current pile. </label>
+                <br><br>
                 <input type="submit">
+                <br>
               </form>
               <br>
               <p class="centerIt">or</p>
-              <a class="centerIt" id="importBtn" href="importFile_video.html">Import from Excel.</a>
+              <a class="centerIt button" id="importBtn" href="importFile_video.html">Import vocabulary from Excel
+                file.</a>
               <div class="closeButton centerIt">- close -</div>
             </div>
           </div>
@@ -197,7 +203,7 @@
           </div>
           <div id="definitionGoogle">
             <a class="optionsIcon" href="https://www.google.com/search?q=definition+of+furniture" target="_blank">
-              Google Def.</a>
+              Google Translate</a>
             <div class="optionsWindow">
               <!-- <iframe src="https://www.google.com" class="preview"></iframe> -->
               <!-- <a href="https://www.google.com/search?q=definition+of+furniture" target="_blank">link</!-->
@@ -226,7 +232,7 @@
                 <input type="submit" value="Save changes">
               </form>
               <br>
-              <button id="deleteCard">Delete Card</button>
+              <button id="deleteCard" class="centerIt button">Delete Card</button>
             </div>
           </div>
 

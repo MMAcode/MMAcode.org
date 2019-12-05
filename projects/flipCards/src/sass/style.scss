@@ -254,8 +254,8 @@ label {
         cursor: pointer;
       }
 
-     
-      
+
+
     }
 
     .invisibleWindow {
@@ -281,7 +281,7 @@ label {
       }
 
       a {
-        color: greenyellow;
+        // color: greenyellow;
         line-height: 1.3;
         padding: 10px;
       }
@@ -331,6 +331,15 @@ label {
           cursor: pointer;
         }
 
+      }
+
+      #formNewWord {
+        margin-left: 10px;
+        margin-right: 10px;
+
+        input[type="text"] {
+          width: 100%;
+        }
       }
 
     }
@@ -426,6 +435,13 @@ label {
 
     .optionsWindow {
       display: none;
+      padding: 10px;
+
+      input[type="text"] {
+        width: 100%;
+      }      
+
+      
     }
 
 

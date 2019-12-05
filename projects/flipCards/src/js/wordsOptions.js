@@ -56,6 +56,7 @@ let activateWordsOptions = () => {
       // console.log(currentCardInOp, currentCardInOpID);
       console.log(changeWordsHTMLf);
       let nativeWord = document.querySelector('#nativeWToAdjust')
+
       let toLearnWord = document.querySelector('#wToLearnAdjust')
 
       nativeWord.setAttribute('value', currentCardInOp.languageNative);
@@ -136,11 +137,21 @@ let refreshOptions = (currentCard, currentCardID) => {
   currentCardInOpID = currentCardID;
 
   // google definition
+
+  // let readyLink = '';
+  // if (userInOp.langToLearn == 'english') { readyLink = 'https://www.google.com/search?q=' + encodeURI('definition of ') + encodeURI(currentCard.languageToLearn) }
+  // else if (userInOp.langToLearn == 'czech') { readyLink = 'https://www.google.com/search?q=' + encodeURI('definuj ') + encodeURI(currentCard.languageToLearn) }
+  // else { readyLink = 'https://www.google.com/search?q=' + encodeURI(currentCard.languageToLearn) }
+  // defGoogleHTMLi.setAttribute('href', readyLink);
+
   let readyLink = '';
-  if (userInOp.langToLearn == 'english') { readyLink = 'https://www.google.com/search?q=' + encodeURI('definition of ') + encodeURI(currentCard.languageToLearn) }
-  else if (userInOp.langToLearn == 'czech') { readyLink = 'https://www.google.com/search?q=' + encodeURI('definuj ') + encodeURI(currentCard.languageToLearn) }
+
+  if (userInOp.langToLearn == 'english') { readyLink = 'https://translate.google.com/?hl=cs#view=home&op=translate&sl=en&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
+  else if (userInOp.langToLearn == 'czech') { readyLink = 'https://translate.google.com/?hl=en#view=home&op=translate&sl=cs&tl=en&text=' + encodeURI(currentCard.languageToLearn) }
   else { readyLink = 'https://www.google.com/search?q=' + encodeURI(currentCard.languageToLearn) }
   defGoogleHTMLi.setAttribute('href', readyLink);
+
+
   // console.log(defGoogleHTMLi);
   // console.log(userInfo);
 }

@@ -168,7 +168,6 @@ label {
       padding: 5px; }
     #training_wrapper #help .invisibleWindow a,
     #training_wrapper #addVocabulary .invisibleWindow a {
-      color: greenyellow;
       line-height: 1.3;
       padding: 10px; }
     #training_wrapper #help .invisibleWindow h1,
@@ -209,6 +208,13 @@ label {
       #training_wrapper #help .invisibleWindow .closeButton:hover,
       #training_wrapper #addVocabulary .invisibleWindow .closeButton:hover {
         cursor: pointer; }
+    #training_wrapper #help .invisibleWindow #formNewWord,
+    #training_wrapper #addVocabulary .invisibleWindow #formNewWord {
+      margin-left: 10px;
+      margin-right: 10px; }
+      #training_wrapper #help .invisibleWindow #formNewWord input[type="text"],
+      #training_wrapper #addVocabulary .invisibleWindow #formNewWord input[type="text"] {
+        width: 100%; }
   #training_wrapper #mainTitle {
     display: inline-block;
     padding-bottom: 30px; }
@@ -257,7 +263,10 @@ label {
       #training_wrapper #options .optionsIcon:hover {
         cursor: pointer; }
     #training_wrapper #options .optionsWindow {
-      display: none; }
+      display: none;
+      padding: 10px; }
+      #training_wrapper #options .optionsWindow input[type="text"] {
+        width: 100%; }
     #training_wrapper #options #definitionGoogle .optionsIcon,
     #training_wrapper #options #changeWords .optionsIcon,
     #training_wrapper #options #speakWord .optionsIcon {
