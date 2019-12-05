@@ -682,7 +682,7 @@ let activateNEwCardListener = (user) => {
 
     // reset form
     form.reset();
-    document.querySelector("#formNewWord_NativeInput").focus();
+    // document.querySelector("#formNewWord_NativeInput").focus();
   })
 }
 
