@@ -20,6 +20,8 @@ let wordTwo = '';
 const refresh = document.querySelector('#test');
 const nextBt = document.querySelector('#b_next');
 const threeBt = document.querySelector('#threeButtons');
+let wordsHTML = document.querySelectorAll('#words *')
+let wordsBackground = "normal";
 let firstWordHTML = document.querySelector('#wordOne');
 let secondWordHTML = document.querySelector('#wordTwo');
 let levelIndicator = document.querySelector('#levelIndicator');
@@ -152,8 +154,10 @@ console.log(oneArray);
 let deleteCard = async () => {
   // console.log('ready to delete card');
   // console.log(currentCardID);
+
   cards.collection("cardsLearningDue").doc(currentCardID).delete().then(() => {
     // console.log('deleted');
+    document.querySelector('#changeWords .optionsWindow').style.display = 'none';
     updateDatabaseTHEN_UI();
   });
 }
@@ -231,7 +235,7 @@ let getCardFromToLearn = async (cards) => {
   // console.log('L1-1-4 STARTING getting ToLEARN card.');
   // let checkIfACardFromToLearn = await cards.where('mainStage', '==', 'to learn').limit(1).get();
   let checkIfACardFromToLearn = await cards.collection("cardsToLearn").limit(1).get();
-  if (checkIfACardFromToLearn.docs.length == 0) { console.log('no TO LEARN card right NOW.'); toLearnCount = 0; }
+  if (checkIfACardFromToLearn.docs.length == 0) { console.log('no card "TO LEARN" right NOW.'); toLearnCount = 0; }
   else {
     let now = new Date().getTime();
     currentCard = checkIfACardFromToLearn.docs[0].data();
@@ -244,6 +248,7 @@ let getCardFromToLearn = async (cards) => {
       cards.collection("cardsToLearn").doc(currentCardID).delete();
       // console.log('------- CARD MOVED TO DUE GROUP qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
     });
+    wordsBackground = "new";
     toLearnCount = 1;
     console.log('because TO LEARN card was found, "current card" was updated.', currentCard, "card's ID: ", currentCardID);
   }
@@ -251,12 +256,12 @@ let getCardFromToLearn = async (cards) => {
 
 /////////////////////////////// F-Main async
 let updateDataReturnCard = async () => {
+  wordsBackground = "normal"; //updating info about if current word is from TO LEARN pile
   // console.log('STARTING GET CARD main f.a');
   let currentCardOrNull = await updateDue();
   // console.log(currentCardOrNull, 'xxxxxxxxxxxxxxxxxxxxx');
   let testIfACard = await getCardFromDue();
   // updateDue().then(getCardFromDue());
-
   // console.log('GetDueCard f. finished, current dueCount: ', dueCount, 'toLearnCount: ', toLearnCount);
   if (dueCount === 0) {
     // console.log('we will start GetToLEarnCard f. now...');
@@ -332,7 +337,7 @@ let jumpLevels = (level) => {
 let hintNotUsed = () => {
   console.log('checking cheating (needs to be 1..499 for cheating to be true');
   console.log(clickHintCounter);
-  if (clickHintCounter > 0 && clickHintCounter < 500) { return false }
+  if (clickHintCounter > 1 && clickHintCounter < 500) { return false }
   else { return true };
 }
 
@@ -341,6 +346,7 @@ let updateCurrentCard = (e) => {
   let en = currentCard.enCheck;
   let lev = currentCard.level;
   // console.log('level before:', lev);
+  let origScore = score;
   if (e.target.id === 'BtnDown') {
     // if (lev > 1) { score = score - 2; };
     // if (lev === 1) {
@@ -353,13 +359,17 @@ let updateCurrentCard = (e) => {
   }
   if (e.target.id === 'BtnStay') {
     // lev = lev > 1 ? lev - 1 : 0;
-    if (lev > 2) {
-      lev -= 2;
-      score = score - 2;
-    } else {  //lev 1 or 0...
-      score -= lev - 1;
-      lev -= lev - 1;  //L2-1 ->L1; L1-0 ->L1
-    }
+
+    // if (lev > 2) {
+    //   lev -= 2;
+    //   score = score - 2;
+    // } else {  //lev 1 or 0...
+    //   score -= lev - 1;
+    //   lev -= lev - 1;  //L2-1 ->L1; L1-0 ->L1
+    // }
+
+    score = score - Math.floor(lev / 2);
+    lev = Math.ceil(lev / 2);
   }
 
   // correct Ans
@@ -385,9 +395,12 @@ let updateCurrentCard = (e) => {
       // console.log('updated level(in variable):', lev, 'updated enCheck:', en);
     } else {
       // alert('STOP CHEATING, I know you used a hint!;-)');
-      alertUserForSec('CHEATING! You used a hint!', 1.5);
+      alertUserForSec('CHEATING!', 1.5);
     }
   }
+  let scoreChange = '';
+  if (score > origScore) { scoreChange = '+' };
+  alertUserForSec(`${scoreChange} ${score - origScore}`, 0.3);
 
   currentCard.enCheck = en;
   currentCard.level = lev;
@@ -397,6 +410,7 @@ let updateCurrentCard = (e) => {
   currentCard.lastSeen = now;
   currentCard.due = false;
 
+  // card learned/not learned:
   if (lev < levelLearned) { currentCard.dueTime = now + arrayTimes[lev]; }
   else if (lev = levelLearned) {
     currentCard.level = 888;
@@ -404,7 +418,7 @@ let updateCurrentCard = (e) => {
     // console.log('card labeled learned');
     // console.log(currentCard);
     // alert('Congrats -this card was added to "learned" pile.');
-    alertUserForSec('Congrats - this card was added to "learned" pile.', 2);
+    alertUserForSec('Congrats! - Card learned.', 2);
   }
 }
 
@@ -588,13 +602,33 @@ let updateDatabaseTHEN_UI = () => {
       // console.log('string returned from main function');
       nextBt.style.display = 'none';
       threeBt.style.display = 'none';
+      firstWordHTML.innerHTML = '-';
+      secondWordHTML.innerHTML = '-';
       // alert('You are out of cards to learn./some may be waiting/. Add/Make new cards to learn.');
-      if (window.confirm('You are out of cards to learn./some may be waiting/. Add/Make new cards to learn.')) {
-        window.location.href = 'index.html';
+      if (window.alert('You are out of cards to learn./some may be waiting/. Add/Make new cards to learn.')) {
+        // window.location.href = 'index.html';
       };
       // window.open(/index.html);
     }
+    console.log(currentCard);
+
+
     if (typeof ans === 'object') {
+      if (wordsBackground == "new") {
+        wordsHTML.forEach(element => {
+          element.style.backgroundColor = 'rgb(255, 230, 0)';
+          alertUserForSec("New Card", 1);
+        })
+      } else if (currentCard.level == 9 && currentCard.enCheck == true) {
+        wordsHTML.forEach(element => {
+          element.style.backgroundColor = 'lightgreen';
+          alertUserForSec("1 step from learned:", 1.4);
+        })
+      } else {
+        wordsHTML.forEach(element => {
+          element.style.backgroundColor = 'white';
+        })
+      }
       showPageOne();
     }
     // console.log('"updateDatabaseTHEN_UI" JUST FINISHING!!!!!!!!!!!!!!!!!!');
@@ -652,28 +686,22 @@ let activateNEwCardListener = (user) => {
     //  new-DB-structure
 
     if (checkBoxCurrentPile == false) {
-
       db.collection("users").doc(user.email).collection("cardsToLearn").add(newCard).then(() => {
-        console.log('Flip-card added');
-        alertUserForSec("Flip-card added", 1);
+        console.log('Added');
+        alertUserForSec("Added", 1);
       }).catch(err => {
         console.log(err);
         console.log('I could NOT add object into the database.');
       });
     } else if (checkBoxCurrentPile == true) {
       let now = new Date().getTime();
-
-
-
       newCard.mainStage = "learning";
       newCard.lastSeen = now;
       newCard.dueTime = now + 10000; //after 10 seconds
-
       console.log('current  new card:', newCard);
-
       db.collection("users").doc(user.email).collection("cardsLearningNotDue").add(newCard).then(() => {
         console.log('Flip-card added');
-        alertUserForSec("Flip-card added", 1);
+        alertUserForSec("Added", 1);
       }).catch(err => {
         console.log(err);
         console.log('I could NOT add object into the database.');
@@ -838,6 +866,7 @@ for (const sw of showWindowS) {
 for (const bb of closeWindowS) {
   bb.addEventListener('click', eee => {
     eee.target.parentElement.style.display = "none";
+    window.location.reload();
     // scroll(0, scrollAmount);
   });
 };
@@ -873,6 +902,7 @@ activateWordsOptions.js;
 activateWordsOptions();
 
 // alertUserForSec('Congrats - you learned this card.', 2);
+
 
 
 export { cards, userID, alertUserForSec };

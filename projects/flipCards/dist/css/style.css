@@ -241,11 +241,13 @@ label {
       -ms-border-radius: 20px;
       -o-border-radius: 20px; }
   #training_wrapper #levelIndicator {
-    color: lightgray; }
+    color: lightgray;
+    display: none; }
   #training_wrapper #options {
     display: none;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    margin-top: 10px; }
     #training_wrapper #options .optionsIcon {
       background: white;
       display: none;
@@ -307,6 +309,14 @@ label {
         #training_wrapper #options #definitionGoogle .optionsWindow .closeButton:hover,
         #training_wrapper #options #changeWords .optionsWindow .closeButton:hover {
           cursor: pointer; }
+      #training_wrapper #options #definitionGoogle .optionsWindow #formAdjustWord,
+      #training_wrapper #options #changeWords .optionsWindow #formAdjustWord {
+        line-height: 1.3;
+        padding: 5px 10px;
+        background-color: #b8b8ee; }
+  #training_wrapper #connection {
+    display: none;
+    margin-top: 10px; }
   #training_wrapper #bottonWrapper {
     position: fixed;
     bottom: 0;

@@ -55,12 +55,14 @@ let activateWordsOptions = () => {
       // adjustCurrentWord();
       // console.log(currentCardInOp, currentCardInOpID);
       console.log(changeWordsHTMLf);
-      let nativeWord = document.querySelector('#nativeWToAdjust')
-
-      let toLearnWord = document.querySelector('#wToLearnAdjust')
-
+      let nativeWord = document.querySelector('#nativeWToAdjust');
+      let toLearnWord = document.querySelector('#wToLearnAdjust');
+      let connectionHTML = document.querySelector('#connectionInput');
       nativeWord.setAttribute('value', currentCardInOp.languageNative);
       toLearnWord.setAttribute('value', currentCardInOp.languageToLearn);
+      if (currentCardInOp.connection != undefined) {
+        connectionHTML.setAttribute('value', currentCardInOp.connection);
+      }
       // console.log(nativeWord, toLearnWord);
       changeWordsHTMLf.style.display = 'block';
 
@@ -71,6 +73,7 @@ let activateWordsOptions = () => {
         e.preventDefault();
         let nativeIn = formToAdjust.nativeInput.value;
         let toLearnIn = formToAdjust.toLearnInput.value;
+        let connect = formToAdjust.connectionInput.value;
         // currentCardInOp.languageNative = nativeInput;
         // currentCardInOp.languageToLearn = toLearnInput;
         // console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
@@ -80,10 +83,11 @@ let activateWordsOptions = () => {
 
         db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).update({
           languageNative: nativeIn,
-          languageToLearn: toLearnIn
+          languageToLearn: toLearnIn,
+          connection: connect
         }).then(async () => {
-          console.log('Flip-card adjusted');
-          alertUserForSec("Flip-card adjusted", 0.8);
+          // console.log('Flip-card adjusted');
+          alertUserForSec("Adjusted", 0.8);
           await new Promise(resolve => setTimeout(resolve, 800));
 
           // reset form  -  HAS TO BE HERE or
@@ -159,10 +163,20 @@ let refreshOptions = (currentCard, currentCardID) => {
 
 let showOptions = () => {
   optionsHTML.style.display = 'flex';
+  document.querySelector('#connection').style.display = 'block';
+
+  // connection:
+  if (currentCardInOp.connection == undefined) {
+    document.querySelector('#connection').style.display = 'none';
+  } else {
+    document.querySelector('#connectionP').innerHTML = `<p>${currentCardInOp.connection}</p>`;
+  }
+
 }
 
 let hideOptions = () => {
   optionsHTML.style.display = 'none';
+  document.querySelector('#connection').style.display = 'none';
 }
 
 export { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions };
