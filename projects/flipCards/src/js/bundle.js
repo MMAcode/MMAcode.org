@@ -602,6 +602,11 @@ let showPageTwo = () => {
   if (currentCard.connection != undefined && currentCard.connection != '') {
     remindConnectTextHTML.classList.remove('hide');
   };
+  // hide connection reminder
+  remindButtonHTML.classList.add('hide');
+  remindTextHTML.classList.add('hide');
+
+
 
   secondWordHTML.textContent = wordTwo;
 
