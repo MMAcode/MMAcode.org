@@ -596,7 +596,7 @@ let showPageTwo = () => {
   // console.log('clickHint listener SHOUND be removed');
   // console.log('current clickhintCouner=', clickHintCounter);
   // clickHintCounter = 1000;
-  // console.log(wordTwo, 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+  console.log(wordTwo, 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 
   //show connection text if exists
   if (currentCard.connection != undefined && currentCard.connection != '') {
