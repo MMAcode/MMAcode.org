@@ -189,9 +189,19 @@
           <p id="wordOne">-</p>
           <p id="wordTwo">-</p>
         </div>
-        <div id="levelIndicator"></div>
-        <!-- <br> -->
 
+        <div id="hints">
+          <div id="hintConnectionReminder" class="hintButton button hide">Remind Connection</div>
+          <p class="hide" id="hintConnectionReminderText">reminder text</p>
+          <div id="hintConnection" class="hintButton button hide">Connection </div>
+          <p class="hide" id="hintConnectionText">connection text</p>
+
+
+        </div>
+
+
+        <div id="levelIndicator"></div> <!-- set to invisible -->
+        <!-- <br> -->
         <!-- <p>audio icon here</p>
         <audio id="audio" src=""></audio> -->
         <!-- 
@@ -232,19 +242,27 @@
                 <label for="toLearnInput">Word to learn:</label>
                 <input id="wToLearnAdjust" name="toLearnInput" type="text" placeholder="original word">
 
-                <label for="connectionInput">Connection:</label>
-                <input id="connectionInput" name="connectionInput" type="text">
+                <div class="bgDark pm mtb">
+                  <label for="connectionInput">Connection:</label>
+                  <input id="connectionInput" name="connectionInput" type="text">
 
+                  <label for="remindConnectionA">Connection Reminder (when "Native language" shown):</label>
+                  <input id="remindConnectionA" name="remindConnectionA" type="text">
+
+                  <label for="remindConnectionB">Connection Reminder (when "Language to learn" shown):</label>
+                  <input id="remindConnectionB" name="remindConnectionB" type="text">
+                </div>
                 <br>
-                <input type="submit" value="Save changes">
+                <input type="submit" value="Save changes" class="centerIt button">
               </form>
               <br>
-              <button id="deleteCard" class="centerIt button">Delete Card</button>
+              <button id="deleteCard" class="button mm">Delete Card</button>
+              <br><br><br><br><br>
             </div>
           </div>
         </div>
 
-        <div id="connection">
+        <div id="connection" class="hide">
           <h6>Connection (Spojka):</h6>
           <p id="connectionP"></p>
         </div>
@@ -266,9 +284,13 @@
           <div id="BtnStay">
             :|
           </div>
+          <div id="BtnSlow">
+            slow
+          </div>
           <div id="BtnUp">
             :)
           </div>
+
         </div>
       </div>
 

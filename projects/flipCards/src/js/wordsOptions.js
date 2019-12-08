@@ -52,17 +52,29 @@ let activateWordsOptions = () => {
     //changing the word/phrase
     if (buttonParent == changeWordsHTML && e.target.className === 'optionsIcon') {
       console.log('change word action fired');
+      scroll(0, 0);
       // adjustCurrentWord();
       // console.log(currentCardInOp, currentCardInOpID);
       console.log(changeWordsHTMLf);
       let nativeWord = document.querySelector('#nativeWToAdjust');
       let toLearnWord = document.querySelector('#wToLearnAdjust');
       let connectionHTML = document.querySelector('#connectionInput');
+      let cReminderAHTML = document.querySelector('#remindConnectionA');
+      let cReminderBHTML = document.querySelector('#remindConnectionB');
+
+      // show current values of the card:
       nativeWord.setAttribute('value', currentCardInOp.languageNative);
       toLearnWord.setAttribute('value', currentCardInOp.languageToLearn);
       if (currentCardInOp.connection != undefined) {
         connectionHTML.setAttribute('value', currentCardInOp.connection);
       }
+      if (currentCardInOp.cReminderNativeShown != undefined) {
+        cReminderAHTML.setAttribute('value', currentCardInOp.cReminderNativeShown);
+      }
+      if (currentCardInOp.cReminderToLearnShown != undefined) {
+        cReminderBHTML.setAttribute('value', currentCardInOp.cReminderToLearnShown);
+      }
+
       // console.log(nativeWord, toLearnWord);
       changeWordsHTMLf.style.display = 'block';
 
@@ -74,6 +86,8 @@ let activateWordsOptions = () => {
         let nativeIn = formToAdjust.nativeInput.value;
         let toLearnIn = formToAdjust.toLearnInput.value;
         let connect = formToAdjust.connectionInput.value;
+        let cRemindA = formToAdjust.remindConnectionA.value;
+        let cRemindB = formToAdjust.remindConnectionB.value;
         // currentCardInOp.languageNative = nativeInput;
         // currentCardInOp.languageToLearn = toLearnInput;
         // console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
@@ -84,7 +98,9 @@ let activateWordsOptions = () => {
         db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).update({
           languageNative: nativeIn,
           languageToLearn: toLearnIn,
-          connection: connect
+          connection: connect,
+          cReminderNativeShown: cRemindA,
+          cReminderToLearnShown: cRemindB
         }).then(async () => {
           // console.log('Flip-card adjusted');
           alertUserForSec("Adjusted", 0.8);
@@ -163,20 +179,20 @@ let refreshOptions = (currentCard, currentCardID) => {
 
 let showOptions = () => {
   optionsHTML.style.display = 'flex';
-  document.querySelector('#connection').style.display = 'block';
+  // document.querySelector('#connection').style.display = 'block';
 
   // connection:
-  if (currentCardInOp.connection == undefined) {
-    document.querySelector('#connection').style.display = 'none';
-  } else {
-    document.querySelector('#connectionP').innerHTML = `<p>${currentCardInOp.connection}</p>`;
-  }
+  // if (currentCardInOp.connection == undefined) {
+  //   document.querySelector('#connection').style.display = 'none';
+  // } else {
+  //   document.querySelector('#connectionP').innerHTML = `<p>${currentCardInOp.connection}</p>`;
+  // }
 
 }
 
 let hideOptions = () => {
   optionsHTML.style.display = 'none';
-  document.querySelector('#connection').style.display = 'none';
+  // document.querySelector('#connection').style.display = 'none';
 }
 
 export { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions };

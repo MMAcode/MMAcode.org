@@ -59,17 +59,42 @@ label {
   text-align: center; }
 
 .button {
+  display: inline-block;
   padding: 1rem;
-  margin: 0.2rem 1.5rem;
+  margin: 1.6rem 1.5rem;
   background: #f7c7c7;
   border: 1px solid white;
-  text-decoration: none; }
+  text-decoration: none;
+  box-shadow: 3px 3px 3px 0px grey;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px; }
   .button:hover {
     background: #f79090;
     cursor: pointer; }
 
 .inline {
   display: inline; }
+
+.bgDark {
+  background-color: blue; }
+
+.mtm {
+  margin-top: 10px; }
+
+.mtb {
+  margin-top: 30px; }
+
+.mm {
+  margin: 10px; }
+
+.pm {
+  padding: 10px; }
+
+.hide {
+  display: none; }
 
 #userStatusWrapper {
   background: #ebfc8d;
@@ -124,7 +149,7 @@ label {
   max-width: 500px;
   margin: 0 auto;
   text-align: center;
-  min-height: 140vh;
+  min-height: 170vh;
   background-color: #b8b8ee; }
   #container h1 {
     padding: 1rem 1rem; }
@@ -145,7 +170,13 @@ label {
     margin: 10px 10px 20px 10px;
     color: #eeff00;
     max-width: 50px;
-    min-height: 50px; }
+    min-height: 50px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    box-shadow: 3px 3px 3px 0px grey; }
     #training_wrapper #help .visibleIcon:hover,
     #training_wrapper #addVocabulary .visibleIcon:hover {
       cursor: pointer; }
@@ -156,7 +187,7 @@ label {
     left: 0;
     top: 0;
     width: 100%;
-    min-height: 150%;
+    min-height: 170vh;
     height: auto;
     background-color: black;
     z-index: 10000;
@@ -266,7 +297,8 @@ label {
         cursor: pointer; }
     #training_wrapper #options .optionsWindow {
       display: none;
-      padding: 10px; }
+      height: 170vh;
+      overflow: scroll; }
       #training_wrapper #options .optionsWindow input[type="text"] {
         width: 100%; }
     #training_wrapper #options #definitionGoogle .optionsIcon,
@@ -276,11 +308,10 @@ label {
     #training_wrapper #options #definitionGoogle .optionsWindow,
     #training_wrapper #options #changeWords .optionsWindow {
       z-index: 100;
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
       background: white;
       border: 2px solid black; }
       #training_wrapper #options #definitionGoogle .optionsWindow h1,
@@ -336,6 +367,8 @@ label {
   #training_wrapper #threeButtons {
     display: none;
     padding: 0;
+    height: 100%;
+    flex-flow: wrap;
     align-items: center;
     justify-content: center; }
     #training_wrapper #threeButtons * {

@@ -33,6 +33,16 @@ let mainTitleHTML = document.querySelector('#mainTitle');
 let closeWindowS = document.querySelectorAll('.closeButton');
 let showWindowS = document.querySelectorAll('.visibleIcon');
 
+let remindConnectButtonHTML = document.querySelector('#hintConnection');
+// remindConnectButtonHTML.classList.remove('hide');
+let remindConnectTextHTML = document.querySelector('#hintConnection + *');
+// remindConnectTextHTML.classList.remove('hide');
+let remindButtonHTML = document.querySelector('#hintConnectionReminder');
+// remindButtonHTML.classList.remove('hide');
+let remindTextHTML = document.querySelector('#hintConnectionReminder + *');
+// remindTextHTML.classList.remove('hide');
+
+
 let score = 0;
 let points = {
   session: 0,
@@ -398,9 +408,11 @@ let updateCurrentCard = (e) => {
       alertUserForSec('CHEATING!', 1.5);
     }
   }
-  let scoreChange = '';
-  if (score > origScore) { scoreChange = '+' };
-  alertUserForSec(`${scoreChange} ${score - origScore}`, 0.3);
+
+  ////show score change:
+  // let scoreChange = '';
+  // if (score > origScore) { scoreChange = '+' };
+  // alertUserForSec(`${scoreChange} ${score - origScore}`, 0.3);
 
   currentCard.enCheck = en;
   currentCard.level = lev;
@@ -545,6 +557,31 @@ let showPageOne = async () => {
   secondWordHTML.addEventListener('click', ShowLetterOnClick);
   showLevel();
 
+  //hide hint buttons and text by default
+  remindConnectButtonHTML.classList.add('hide');
+  remindButtonHTML.classList.add('hide');
+  remindConnectTextHTML.classList.add('hide');
+  remindTextHTML.classList.add('hide');
+
+  /////assign texts and show appropriate button
+  //assign connection text
+  if (currentCard.connection != undefined && currentCard.connection != '') {
+    remindConnectTextHTML.innerHTML = currentCard.connection;
+  }
+  //showing appropriate button
+  if (currentCard.languageNative == wordOne && currentCard.cReminderNativeShown != undefined && currentCard.cReminderNativeShown != '') {
+    //add text
+    remindTextHTML.innerHTML = currentCard.cReminderNativeShown;
+    //show button
+    remindButtonHTML.classList.remove('hide');
+  } else if (currentCard.cReminderToLearnShown != undefined && currentCard.cReminderToLearnShown != '') {
+    //add text
+    remindTextHTML.innerHTML = currentCard.cReminderToLearnShown;
+    //show button
+    remindButtonHTML.classList.remove('hide');
+  } else if (currentCard.connection != undefined && currentCard.connection != '') {
+    remindConnectButtonHTML.classList.remove('hide');
+  };
 
 
   // **
@@ -560,6 +597,12 @@ let showPageTwo = () => {
   // console.log('current clickhintCouner=', clickHintCounter);
   // clickHintCounter = 1000;
   // console.log(wordTwo, 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+
+  //show connection text if exists
+  if (currentCard.connection != undefined && currentCard.connection != '') {
+    remindConnectTextHTML.classList.remove('hide');
+  };
+
   secondWordHTML.textContent = wordTwo;
 
   // SPEAKING
@@ -697,7 +740,7 @@ let activateNEwCardListener = (user) => {
       let now = new Date().getTime();
       newCard.mainStage = "learning";
       newCard.lastSeen = now;
-      newCard.dueTime = now + 10000; //after 10 seconds
+      newCard.dueTime = now; //if +10 000 = after 10 seconds
       console.log('current  new card:', newCard);
       db.collection("users").doc(user.email).collection("cardsLearningNotDue").add(newCard).then(() => {
         console.log('Flip-card added');
@@ -871,6 +914,14 @@ for (const bb of closeWindowS) {
   });
 };
 
+//listen to hints buttons clicks - revela text and next buttons
+remindConnectButtonHTML.addEventListener('click', e => {
+  remindConnectTextHTML.classList.remove('hide');
+});
+remindButtonHTML.addEventListener('click', e => {
+  remindTextHTML.classList.remove('hide');
+  remindConnectButtonHTML.classList.remove('hide');
+});
 
 
 resetAppIfReturnedAfterXseconds(120);
