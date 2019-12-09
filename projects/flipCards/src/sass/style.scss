@@ -114,6 +114,7 @@ label {
     background: rgb(247, 144, 144);
     cursor: pointer;
   }
+
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -316,7 +317,7 @@ label {
       width: 100%;
       min-height: 170vh;
       height: auto;
-      background-color: black;
+      background-color: rgb(211, 158, 158);
       z-index: 10000;
       text-align: left;
       color: yellow;
@@ -444,6 +445,9 @@ label {
     }
   }
 
+  // #hints .button {
+  //   // background-color: rgba(255, 255, 255, 0);
+  // }
 
   #levelIndicator {
     color: lightgray;
@@ -538,7 +542,8 @@ label {
         // left: 0;
         width: 100%;
         height: 10vh;
-        background: rgb(251, 255, 2);
+        background: rgb(90, 90, 90);
+        ;
         color: rgb(0, 0, 0);
         font-size: 20px;
 

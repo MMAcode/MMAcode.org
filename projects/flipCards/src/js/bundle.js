@@ -522,7 +522,7 @@ let showLevel = () => {
 // not activated
 
 
-
+let preventScroll = e => { e.preventDefault(); }
 
 // PAGES
 let showPageOne = async () => {
@@ -537,6 +537,9 @@ let showPageOne = async () => {
   secondWordHTML.textContent = '...';
   nextBt.style.display = 'block';
   threeBt.style.display = 'none';
+
+  // prevent scrolling on second word:
+  secondWordHTML.addEventListener('touchmove', preventScroll);
 
   // **
   // SPEAKING
@@ -596,6 +599,11 @@ let showPageTwo = () => {
   // console.log('clickHint listener SHOUND be removed');
   // console.log('current clickhintCouner=', clickHintCounter);
   // clickHintCounter = 1000;
+
+  //activate scrolling and remove tapping on second word
+  secondWordHTML.removeEventListener('touchmove', preventScroll);
+  secondWordHTML.removeEventListener('click', ShowLetterOnClick);
+
   console.log(wordTwo, 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 
   //show connection text if exists
@@ -665,13 +673,13 @@ let updateDatabaseTHEN_UI = () => {
       if (wordsBackground == "new") {
         wordsHTML.forEach(element => {
           element.style.backgroundColor = 'rgb(255, 230, 0)';
-          alertUserForSec("New Card", 1);
-        })
+        });
+        alertUserForSec("New Card", 1);
       } else if (currentCard.level == 9 && currentCard.enCheck == true) {
         wordsHTML.forEach(element => {
           element.style.backgroundColor = 'lightgreen';
-          alertUserForSec("1 step from learned:", 1.4);
-        })
+        });
+        alertUserForSec("1 step from learned:", 1.4);
       } else {
         wordsHTML.forEach(element => {
           element.style.backgroundColor = 'white';
@@ -763,7 +771,7 @@ let activateNEwCardListener = (user) => {
 }
 
 // short alert
-let alertUserForSec = (text, durationInSec) => {
+let alertUserForSec = async (text, durationInSec) => {
   let alertForSec = document.createElement('div');
   alertForSec.textContent = text;
   alertForSec.id = "alertForSec";
@@ -771,8 +779,9 @@ let alertUserForSec = (text, durationInSec) => {
   alertForSec.style.animationDuration = durationInSec + "s";
   let hook = document.querySelector("#words");
   hook.append(alertForSec);
-
-  console.log('alert');
+  await new Promise(resolve => setTimeout(resolve, durationInSec * 1000));
+  // console.log('XXXXXXXXXXX alert pop up');
+  document.querySelector("#alertForSec").remove();
 }
 
 
@@ -896,7 +905,7 @@ deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 // prevent scrolling on certain buttons
 nextBt.addEventListener('touchmove', e => { e.preventDefault(); });
 threeBt.addEventListener('touchmove', e => { e.preventDefault(); });
-secondWordHTML.addEventListener('touchmove', e => { e.preventDefault(); });
+// secondWordHTML.addEventListener('touchmove', e => { e.preventDefault(); });
 
 //show and close windows (Help section) on click
 for (const sw of showWindowS) {
