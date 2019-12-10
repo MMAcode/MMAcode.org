@@ -191,9 +191,9 @@
         </div>
 
         <div id="hints">
-          <div id="hintConnectionReminder" class="hintButton button hide">Remind Connection</div>
+          <div id="hintConnectionReminder" class="hintButton button hide">Connection Reminder:</div>
           <p class="hide" id="hintConnectionReminderText">reminder text</p>
-          <div id="hintConnection" class="hintButton button hide">Connection </div>
+          <div id="hintConnection" class="hintButton button hide">Connection: </div>
           <p class="hide" id="hintConnectionText">connection text</p>
 
 
@@ -234,7 +234,7 @@
           <div id="changeWords">
             <div class="optionsIcon">Adjust Word</div>
             <div class="optionsWindow">
-              <div class="closeButton centerIt button">- Return without changes -</div>
+              <!-- <div class="closeButton centerIt button">- Return without changes -</div> -->
               <h4> Adjust:</h4>
               <form id="formAdjustWord" action="">
                 <label for="nativeInput">Native word:</label>
@@ -252,8 +252,29 @@
                   <label for="remindConnectionB">Reminder when <br> "Language to learn" shown:</label>
                   <input id="remindConnectionB" name="remindConnectionB" type="text">
                 </div>
+                <div id="pospone">
+                  <h3>pospone</h3>
+                  <div class="flexwrapper">
+                    <div>
+                      <input type="radio" id="minutes" name="pospone" value="m">
+                      <label for="5 minutes">5 minutes</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="hours" name="pospone" value="h">
+                      <label for="5 minutes">5 hours</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="days" name="pospone" value="d">
+                      <label for="hours">5 days</label>
+                    </div>
+                  </div>
+                </div>
+
                 <br>
-                <input type="submit" value="Save changes" class="centerIt button">
+                <div class="pairedButton">
+                  <input type="submit" value="SAVE changes" class="button centerIt">
+                  <div class="closeButton centerIt button">CANCEL changes</div>
+                </div>
               </form>
               <br>
               <button id="deleteCard" class="button mm">Delete Card</button>

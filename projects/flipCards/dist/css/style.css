@@ -66,13 +66,26 @@ label {
   border: 1px solid white;
   text-decoration: none;
   box-shadow: 3px 3px 3px 0px grey;
+  font-family: Arial, Helvetica, sans-serif;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px; }
   .button:hover {
-    background: #f79090;
+    cursor: pointer; }
+
+.pairedButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8vh;
+  color: white; }
+  .pairedButton:hover {
     cursor: pointer; }
 
 .inline {
@@ -301,6 +314,24 @@ label {
       overflow: scroll; }
       #training_wrapper #options .optionsWindow input[type="text"] {
         width: 100%; }
+      #training_wrapper #options .optionsWindow #pospone {
+        padding-top: 10px; }
+        #training_wrapper #options .optionsWindow #pospone input,
+        #training_wrapper #options .optionsWindow #pospone label {
+          display: inline;
+          padding: 0; }
+        #training_wrapper #options .optionsWindow #pospone div {
+          padding: 0 10px; }
+        #training_wrapper #options .optionsWindow #pospone .flexWrapper {
+          padding: 5px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center; }
+          #training_wrapper #options .optionsWindow #pospone .flexWrapper * {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center; }
     #training_wrapper #options #definitionGoogle .optionsIcon,
     #training_wrapper #options #changeWords .optionsIcon,
     #training_wrapper #options #speakWord .optionsIcon {
@@ -327,16 +358,8 @@ label {
         color: purple; }
       #training_wrapper #options #definitionGoogle .optionsWindow .closeButton,
       #training_wrapper #options #changeWords .optionsWindow .closeButton {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 10vh;
-        background: #5a5a5a;
-        color: black;
-        font-size: 20px; }
+        line-height: normal;
+        color: black; }
         #training_wrapper #options #definitionGoogle .optionsWindow .closeButton:hover,
         #training_wrapper #options #changeWords .optionsWindow .closeButton:hover {
           cursor: pointer; }
@@ -455,3 +478,10 @@ label {
     -ms-transform: translate(50%, -200%);
     -o-transform: translate(50%, -200%);
     opacity: 0; } }
+
+#hints {
+  color: #0404be; }
+  #hints p {
+    color: #0404be;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif; }

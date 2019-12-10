@@ -31,6 +31,9 @@ let loggedStatus = document.querySelector('#loggedInStatus');
 let scoreHTML = document.querySelector('#scoreCounter');
 let mainTitleHTML = document.querySelector('#mainTitle');
 let closeWindowS = document.querySelectorAll('.closeButton');
+// let xcc = document.querySelectorAll('.closeButton2')[0];
+// console.log(closeWindowS);
+
 let showWindowS = document.querySelectorAll('.visibleIcon');
 
 let remindConnectButtonHTML = document.querySelector('#hintConnection');
@@ -367,7 +370,7 @@ let updateCurrentCard = (e) => {
     // alert(`score lowered by ${lev}, lev going down to 0.`);
     lev = 0;
   }
-  if (e.target.id === 'BtnStay') {
+  else if (e.target.id === 'BtnStay') {
     // lev = lev > 1 ? lev - 1 : 0;
 
     // if (lev > 2) {
@@ -383,7 +386,7 @@ let updateCurrentCard = (e) => {
   }
 
   // correct Ans
-  if (e.target.id === 'BtnUp') {
+  else if (e.target.id === 'BtnUp') {
     if (hintNotUsed()) {
       // console.log('updating level on variable inside programme');
       // console.log('original level:', lev, 'original enCheck (on variable):', en, 'on current card(to double check):', currentCard.enCheck);
@@ -407,6 +410,10 @@ let updateCurrentCard = (e) => {
       // alert('STOP CHEATING, I know you used a hint!;-)');
       alertUserForSec('CHEATING!', 1.5);
     }
+  }
+  else {
+    //="slow" button pushed
+    en = !en;
   }
 
   ////show score change:
@@ -608,6 +615,7 @@ let showPageTwo = () => {
 
   //show connection text if exists
   if (currentCard.connection != undefined && currentCard.connection != '') {
+    remindConnectButtonHTML.classList.remove('hide');
     remindConnectTextHTML.classList.remove('hide');
   };
   // hide connection reminder
@@ -922,9 +930,14 @@ for (const sw of showWindowS) {
 };
 for (const bb of closeWindowS) {
   bb.addEventListener('click', eee => {
-    eee.target.parentElement.style.display = "none";
+    // alertUserForSec(eee.target.parentElement.parentElement.id, 2);
+    if (eee.target.parentElement.classList.contains('pairedButton') && eee.target.parentElement.parentElement.id == 'formAdjustWord') {
+      eee.target.parentElement.parentElement.parentElement.style.display = "none";
+    } else {
+      eee.target.parentElement.style.display = "none";
+    }
     window.location.reload();
-    // scroll(0, scrollAmount);
+    scroll(0, scrollAmount);
   });
 };
 
@@ -970,4 +983,4 @@ activateWordsOptions();
 
 
 
-export { cards, userID, alertUserForSec };
+export { cards, userID, alertUserForSec, scrollAmount, updateDatabaseTHEN_UI };

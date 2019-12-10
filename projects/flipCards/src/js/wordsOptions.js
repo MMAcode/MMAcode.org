@@ -1,4 +1,4 @@
-import { alertUserForSec } from "./bundle";
+import { alertUserForSec, scrollAmount, updateDatabaseTHEN_UI } from "./bundle";
 
 let optionsHTML = document.querySelector('#options');
 
@@ -88,6 +88,12 @@ let activateWordsOptions = () => {
         let connect = formToAdjust.connectionInput.value;
         let cRemindA = formToAdjust.remindConnectionA.value;
         let cRemindB = formToAdjust.remindConnectionB.value;
+
+        let posponeCard = formToAdjust.pospone.value;
+        alertUserForSec(posponeCard, 1);
+        console.log('X', posponeCard, 'X');
+
+
         // currentCardInOp.languageNative = nativeInput;
         // currentCardInOp.languageToLearn = toLearnInput;
         // console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
@@ -95,28 +101,74 @@ let activateWordsOptions = () => {
         // console.log(currentCardInOp);
         // console.log(currentCardInOpID);
 
-        db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).update({
-          languageNative: nativeIn,
-          languageToLearn: toLearnIn,
-          connection: connect,
-          cReminderNativeShown: cRemindA,
-          cReminderToLearnShown: cRemindB
-        }).then(async () => {
-          // console.log('Flip-card adjusted');
-          alertUserForSec("Adjusted", 0.8);
-          await new Promise(resolve => setTimeout(resolve, 800));
+        if (posponeCard == '') {
+          db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).update({
+            languageNative: nativeIn,
+            languageToLearn: toLearnIn,
+            connection: connect,
+            cReminderNativeShown: cRemindA,
+            cReminderToLearnShown: cRemindB
+          }).then(async () => {
+            // console.log('Flip-card adjusted');
+            alertUserForSec("Adjusted", 0.8);
+            await new Promise(resolve => setTimeout(resolve, 800));
 
-          // reset form  -  HAS TO BE HERE or
-          formToAdjust.reset();
-          window.location.reload();
-        }).catch(err => {
-          console.log(err);
-          console.log('I could NOT adjust the card.');
-          // reset form
-          formToAdjust.reset();
-          window.location.reload();
-        });
+            // reset form  -  HAS TO BE HERE or
+            formToAdjust.reset();
+            document.querySelector('#changeWords .optionsWindow').style.display = 'none';
+            // updateDatabaseTHEN_UI();
+            window.location.reload();
+            scroll(0, scrollAmount);  // to hide ALL scores
+          }).catch(err => {
+            console.log(err, 'I could NOT adjust the card.');
+            // reset form
+            // formToAdjust.reset();
+            // window.location.reload();
+          });
 
+        } else {
+
+
+          //=if POSPONE was set...
+          currentCardInOp.dueTime = new Date().getTime();
+          if (posponeCard = 'm') {
+            currentCardInOp.dueTime += 1000 * 60 * 5;
+          } else if (posponeCard = 'h') {
+            currentCardInOp.dueTime += 1000 * 60 * 60 * 5;
+          } else if (posponeCard = 'd') {
+            currentCardInOp.dueTime += 1000 * 60 * 60 * 24 * 5;
+          };
+          currentCardInOp.languageNative = nativeIn;
+          currentCardInOp.languageToLearn = toLearnIn;
+          currentCardInOp.connection = connect;
+          currentCardInOp.cReminderNativeShown = cRemindA;
+          currentCardInOp.cReminderToLearnShown = cRemindB;
+          currentCardInOp.lastSeen = new Date().getTime();
+          currentCardInOp.dueTime = currentCardInOp.dueTime;
+
+          db.collection("users").doc(userInOp.userEmail).collection("cardsLearningNotDue").doc(currentCardInOpID).set(currentCardInOp)
+            .then(async () => {
+              console.log('dddddddddddddddd  going to delete card in original');
+              db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).delete();
+            })
+            .then(async () => {
+              // console.log('Flip-card adjusted');
+              alertUserForSec("Adjusted", 0.8);
+              await new Promise(resolve => setTimeout(resolve, 800));
+
+              // reset form  -  HAS TO BE HERE or
+              formToAdjust.reset();
+              document.querySelector('#changeWords .optionsWindow').style.display = 'none';
+              // updateDatabaseTHEN_UI();  - can't be used or it would cause inner loop of more and more cycles within each other
+              window.location.reload();
+              scroll(0, scrollAmount);  // to hide ALL scores
+            }).catch(err => {
+              console.log(err, 'I could NOT adjust the card.');
+              // reset form
+              // formToAdjust.reset();
+              // window.location.reload();
+            });
+        }
       })
     }
 
@@ -166,8 +218,8 @@ let refreshOptions = (currentCard, currentCardID) => {
 
   let readyLink = '';
 
-  if (userInOp.langToLearn == 'english') { readyLink = 'https://translate.google.com/?hl=cs#view=home&op=translate&sl=en&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
-  else if (userInOp.langToLearn == 'czech') { readyLink = 'https://translate.google.com/?hl=en#view=home&op=translate&sl=cs&tl=en&text=' + encodeURI(currentCard.languageToLearn) }
+  if (userInOp.langToLearn == 'english') { readyLink = 'https://translate.google.co.uk/?hl=cs#view=home&op=translate&sl=en&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
+  else if (userInOp.langToLearn == 'czech') { readyLink = 'https://translate.google.co.uk/?hl=en#view=home&op=translate&sl=cs&tl=en&text=' + encodeURI(currentCard.languageToLearn) }
   else { readyLink = 'https://www.google.com/search?q=' + encodeURI(currentCard.languageToLearn) }
   defGoogleHTMLi.setAttribute('href', readyLink);
 
