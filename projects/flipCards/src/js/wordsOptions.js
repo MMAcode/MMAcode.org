@@ -131,11 +131,11 @@ let activateWordsOptions = () => {
 
           //=if POSPONE was set...
           currentCardInOp.dueTime = new Date().getTime();
-          if (posponeCard = 'm') {
+          if (posponeCard === 'm') {
             currentCardInOp.dueTime += 1000 * 60 * 5;
-          } else if (posponeCard = 'h') {
+          } else if (posponeCard === 'h') {
             currentCardInOp.dueTime += 1000 * 60 * 60 * 5;
-          } else if (posponeCard = 'd') {
+          } else if (posponeCard === 'd') {
             currentCardInOp.dueTime += 1000 * 60 * 60 * 24 * 5;
           };
           currentCardInOp.languageNative = nativeIn;
@@ -148,7 +148,7 @@ let activateWordsOptions = () => {
 
           db.collection("users").doc(userInOp.userEmail).collection("cardsLearningNotDue").doc(currentCardInOpID).set(currentCardInOp)
             .then(async () => {
-              console.log('dddddddddddddddd  going to delete card in original');
+              // console.log('dddddddddddddddd  going to delete card in original');
               db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).delete();
             })
             .then(async () => {
@@ -160,7 +160,7 @@ let activateWordsOptions = () => {
               formToAdjust.reset();
               document.querySelector('#changeWords .optionsWindow').style.display = 'none';
               // updateDatabaseTHEN_UI();  - can't be used or it would cause inner loop of more and more cycles within each other
-              window.location.reload();
+              // window.location.reload();
               scroll(0, scrollAmount);  // to hide ALL scores
             }).catch(err => {
               console.log(err, 'I could NOT adjust the card.');
