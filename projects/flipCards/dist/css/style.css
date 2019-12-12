@@ -75,6 +75,31 @@ label {
   .button:hover {
     cursor: pointer; }
 
+.hintButton {
+  background-color: #f5f5aa;
+  text-decoration: solid underline green;
+  border: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-radius: 100% 100% 0 0;
+  -webkit-border-radius: 100% 100% 0 0;
+  -moz-border-radius: 100% 100% 0 0;
+  -ms-border-radius: 100% 100% 0 0;
+  -o-border-radius: 100% 100% 0 0;
+  box-shadow: 3px -3px 3px 0px grey;
+  -moz-text-decoration-style: solid; }
+
+.hintText {
+  text-decoration: none;
+  display: block;
+  margin-top: 0;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px; }
+
 .pairedButton {
   display: flex;
   align-items: center;
@@ -129,15 +154,24 @@ label {
 .pointsCounter {
   display: flex;
   flex-direction: column;
-  background: yellow;
-  border: 3px solid #c2c210; }
+  background: yellow; }
   .pointsCounter > p {
     font-weight: 900;
     text-decoration: underline solid;
-    background: #c2c210;
+    background: linear-gradient(90deg, #feff00 0%, #f9b700 50%, #feff00 100%);
     padding-bottom: 5px; }
+  .pointsCounter .history7days,
+  .pointsCounter .timeHistory7days {
+    text-align: left; }
+    .pointsCounter .history7days strong,
+    .pointsCounter .timeHistory7days strong {
+      display: inline-block;
+      text-align: right;
+      width: 80px; }
+    .pointsCounter .history7days > span,
+    .pointsCounter .timeHistory7days > span {
+      text-align: center; }
   .pointsCounter .history7days {
-    background: #ffd000;
     padding: 3px; }
     .pointsCounter .history7days span:nth-child(n+1) {
       display: inline-block;
@@ -145,13 +179,12 @@ label {
       height: 25px;
       margin: 0 2px;
       font-size: 1.9rem;
-      color: white;
-      background: brown;
-      border-radius: 100%;
-      -webkit-border-radius: 100%;
-      -moz-border-radius: 100%;
-      -ms-border-radius: 100%;
-      -o-border-radius: 100%; }
+      background: rgba(255, 166, 0, 0.534);
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      -webkit-border-radius: 5px; }
   .pointsCounter .pointsCounterMain {
     display: flex; }
     .pointsCounter .pointsCounterMain * {
@@ -163,7 +196,8 @@ label {
   margin: 0 auto;
   text-align: center;
   min-height: 170vh;
-  background-color: #b8b8ee; }
+  background: #85852d;
+  background: linear-gradient(180deg, #feff00 10%, #0093f9 80%); }
   #container h1 {
     padding: 1rem 1rem; }
   #container #newWord_container {
@@ -173,8 +207,7 @@ label {
     padding: 5vmin; }
 
 #training_wrapper {
-  position: relative;
-  height: 100%; }
+  position: relative; }
   #training_wrapper #mainIcons {
     display: flex;
     justify-content: space-between; }
@@ -382,11 +415,12 @@ label {
   #training_wrapper #b_next,
   #training_wrapper #threeButtons {
     width: 100%;
-    background-color: #6060dd;
     padding: 2rem 1rem; }
     #training_wrapper #b_next:hover,
     #training_wrapper #threeButtons:hover {
       cursor: pointer; }
+  #training_wrapper #b_next {
+    background-color: yellow; }
   #training_wrapper #threeButtons {
     display: none;
     padding: 0;
@@ -397,11 +431,20 @@ label {
     #training_wrapper #threeButtons * {
       flex: 1;
       height: 100%;
-      padding: 2rem 1rem; }
+      padding: 2rem 1rem;
+      margin: 2px;
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+      box-shadow: 3px 3px 3px 0px grey; }
     #training_wrapper #threeButtons #BtnDown {
       background-color: red; }
     #training_wrapper #threeButtons #BtnStay {
       background-color: #ffe600; }
+    #training_wrapper #threeButtons #BtnSlow {
+      background-color: #6060dd; }
     #training_wrapper #threeButtons #BtnUp {
       background-color: #04e422; }
   #training_wrapper #deleteCard {

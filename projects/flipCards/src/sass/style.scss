@@ -1,6 +1,10 @@
 // ** variables
 $cBg:rgb(184, 184, 238);
+$cPointsFrame: orange;
+$cPointsFrame: linear-gradient(90deg, rgba(254, 255, 0, 1) 0%, rgba(249, 183, 0, 1) 50%, rgba(254, 255, 0, 1) 100%);
+// $cPointsFrame: linear-gradient(90deg, rgba(254, 255, 0, 1) 5%, rgba(249, 183, 0, 1) 40%, rgba(249, 188, 0, 1) 60%, rgba(254, 255, 0, 1) 95%);
 $cBg_NewCard:rgb(154, 154, 247);
+$cBg_3buttons:rgba(0, 147, 249, 1);
 $defaultFontSize:20px;
 
 /**
@@ -123,12 +127,39 @@ label {
 }
 
 .hintButton {
-  // background-color: green;
-  // display: inline-block;
-  // width: 30px;
-  // margin: 0 auto;
-  // margin-top: 10px;
+  background-color: rgb(245, 245, 170);
+  //display: inline-block;
+  //width: 30px;
+  //margin: 0 auto;
+  //margin-top: 10px;
+  //border-top-left-radius: 0;
+  //border-bottom-left-radius: 0;
+  //border-bottom-right-radius: 0;
+  //display: inline-block;
+  //margin: 0 auto;
+  text-decoration: solid underline green;
+  border: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-radius: 100% 100% 0 0;
+  -webkit-border-radius: 100% 100% 0 0;
+  -moz-border-radius: 100% 100% 0 0;
+  -ms-border-radius: 100% 100% 0 0;
+  -o-border-radius: 100% 100% 0 0;
+  box-shadow: 3px -3px 3px 0px grey;
+  -moz-text-decoration-style: solid;
+}
 
+.hintText {
+  text-decoration: none;
+  display: block;
+  margin-top: 0;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 .pairedButton {
@@ -217,18 +248,34 @@ label {
   flex-direction: column;
   background: yellow;
   // padding: 5px;
-  border: 3px solid rgb(194, 194, 16);
+  // border: 3px solid $cPointsFrame;
 
   >p {
     font-weight: 900;
     text-decoration: underline solid;
-    background: rgb(194, 194, 16);
+    background: $cPointsFrame;
     padding-bottom: 5px;
 
   }
 
+  .history7days,
+  .timeHistory7days {
+    text-align: left;
+
+    strong {
+      display: inline-block;
+      text-align: right;
+      width: 80px;
+    }
+
+    &>span {
+      text-align: center;
+      // width: 30px;
+    }
+  }
+
   .history7days {
-    background: rgb(255, 208, 0);
+    // background: rgb(255, 208, 0);
     padding: 3px;
 
 
@@ -238,14 +285,16 @@ label {
       height: 25px;
       margin: 0 2px;
       font-size: 1.9rem;
-
-      color: white;
-      background: brown;
-      border-radius: 100%;
-      -webkit-border-radius: 100%;
-      -moz-border-radius: 100%;
-      -ms-border-radius: 100%;
-      -o-border-radius: 100%;
+      // color: white;
+      // background: rgba(194, 194, 16, 0.555);
+      // background: rgba(255, 76, 6, 0.555);
+      background: rgba(255, 166, 0, 0.534);
+      // border: 1px solid white;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      -webkit-border-radius: 5px;
     }
   }
 
@@ -273,7 +322,13 @@ label {
 
   text-align: center;
   min-height: 170vh;
-  background-color: $cBg;
+  // background-color: $cBg;
+  // background: linear-gradient(0deg, rgba(0, 147, 249, 1) 13%, rgba(255, 0, 0, 1) 99%);
+  // background: linear-gradient(0deg, rgba(0, 147, 249, 1) 13%, rgba(254, 255, 0, 1) 99%);
+  background: rgb(133, 133, 45);
+  background: linear-gradient(180deg, rgba(254, 255, 0, 1) 10%, rgba(0, 147, 249, 1) 80%);
+
+
 
   h1 {
     padding: 1rem 1rem;
@@ -290,7 +345,8 @@ label {
 
 #training_wrapper {
   position: relative;
-  height: 100%;
+  // height: 100%;
+
 
 
   #mainIcons {
@@ -651,17 +707,22 @@ label {
     // display: block;
     width: 100%;
     // margin-top: 2rem;
-    background-color: rgb(96, 96, 221);
+    // background-color: rgb(96, 96, 221);
+    // background-color: greenyellow;
+    // background-color: $cBg_3buttons;
+
     padding: 2rem 1rem;
+    // border-top: 2px solid $cBg_3buttons;
+
 
     &:hover {
       cursor: pointer;
     }
   }
 
-  // #b_next {
-  // display: none;
-  // }
+  #b_next {
+    background-color: yellow;
+  }
 
   #threeButtons {
     display: none;
@@ -674,10 +735,20 @@ label {
 
     * {
       flex: 1;
-      // flex-grow:1;
+      //flex-grow:1;
       height: 100%;
       padding: 2rem 1rem;
-      // min-width: 50%;
+
+      // border: 2px solid $cBg_3buttons;
+      margin: 2px;
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+      //min-width: 50%;
+
+      box-shadow: 3px 3px 3px 0px grey;
     }
 
     #BtnDown {
@@ -688,9 +759,15 @@ label {
       background-color: rgb(255, 230, 0);
     }
 
+    #BtnSlow {
+      background-color: rgb(96, 96, 221);
+    }
+
     #BtnUp {
       background-color: rgb(4, 228, 34);
     }
+
+
   }
 
 

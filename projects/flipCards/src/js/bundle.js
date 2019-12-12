@@ -413,7 +413,8 @@ let updateCurrentCard = (e) => {
   }
   else {
     //="slow" button pushed
-    en = !en;
+    // en = !en;
+    if (lev > 0) { lev--; score--; }
   }
 
   ////show score change:

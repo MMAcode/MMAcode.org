@@ -107,7 +107,8 @@ let activateWordsOptions = () => {
             languageToLearn: toLearnIn,
             connection: connect,
             cReminderNativeShown: cRemindA,
-            cReminderToLearnShown: cRemindB
+            cReminderToLearnShown: cRemindB,
+            dueTime: new Date().getTime() + 1000 * 60 * 1 //show in 1 min
           }).then(async () => {
             // console.log('Flip-card adjusted');
             alertUserForSec("Adjusted", 0.8);
@@ -160,7 +161,7 @@ let activateWordsOptions = () => {
               formToAdjust.reset();
               document.querySelector('#changeWords .optionsWindow').style.display = 'none';
               // updateDatabaseTHEN_UI();  - can't be used or it would cause inner loop of more and more cycles within each other
-              // window.location.reload();
+              window.location.reload();
               scroll(0, scrollAmount);  // to hide ALL scores
             }).catch(err => {
               console.log(err, 'I could NOT adjust the card.');
