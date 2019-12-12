@@ -77,7 +77,8 @@ label {
 
 .hintButton {
   background-color: #f5f5aa;
-  text-decoration: solid underline green;
+  text-decoration: solid underline #0404be;
+  font-weight: bold;
   border: none;
   margin-bottom: 0;
   padding-bottom: 0;
@@ -91,6 +92,7 @@ label {
 
 .hintText {
   text-decoration: none;
+  font-weight: normal;
   display: block;
   margin-top: 0;
   padding: 10px;
@@ -326,12 +328,13 @@ label {
     justify-content: center;
     margin-top: 10px; }
     #training_wrapper #options .optionsIcon {
-      background: white;
       display: none;
       padding: 3px 8px;
       margin: 3px;
-      border: 2px solid blue;
+      margin-top: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.301);
       color: blue;
+      color: white;
       text-decoration: none;
       box-shadow: 3px 3px 3px 0px grey;
       border-radius: 15px;
@@ -420,7 +423,8 @@ label {
     #training_wrapper #threeButtons:hover {
       cursor: pointer; }
   #training_wrapper #b_next {
-    background-color: yellow; }
+    background-color: yellow;
+    background-color: #977005; }
   #training_wrapper #threeButtons {
     display: none;
     padding: 0;
@@ -438,7 +442,9 @@ label {
       -moz-border-radius: 10px;
       -ms-border-radius: 10px;
       -o-border-radius: 10px;
-      box-shadow: 3px 3px 3px 0px grey; }
+      box-shadow: 3px 3px 3px 0px grey;
+      opacity: 0.9;
+      border: 2px solid rgba(255, 255, 255, 0.459); }
     #training_wrapper #threeButtons #BtnDown {
       background-color: red; }
     #training_wrapper #threeButtons #BtnStay {
