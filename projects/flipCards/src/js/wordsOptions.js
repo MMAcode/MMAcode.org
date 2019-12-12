@@ -90,8 +90,8 @@ let activateWordsOptions = () => {
         let cRemindB = formToAdjust.remindConnectionB.value;
 
         let posponeCard = formToAdjust.pospone.value;
-        alertUserForSec(posponeCard, 1);
-        console.log('X', posponeCard, 'X');
+        // alertUserForSec(posponeCard, 1);
+        // console.log('X', posponeCard, 'X');
 
 
         // currentCardInOp.languageNative = nativeInput;
@@ -101,15 +101,62 @@ let activateWordsOptions = () => {
         // console.log(currentCardInOp);
         // console.log(currentCardInOpID);
 
-        if (posponeCard == '') {
-          db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).update({
-            languageNative: nativeIn,
-            languageToLearn: toLearnIn,
-            connection: connect,
-            cReminderNativeShown: cRemindA,
-            cReminderToLearnShown: cRemindB,
-            dueTime: new Date().getTime() + 1000 * 60 * 1 //show in 1 min
-          }).then(async () => {
+        // if (posponeCard == '')
+        // {
+        //   db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).update({
+        //     languageNative: nativeIn,
+        //     languageToLearn: toLearnIn,
+        //     connection: connect,
+        //     cReminderNativeShown: cRemindA,
+        //     cReminderToLearnShown: cRemindB,
+        //     dueTime: new Date().getTime() + 1000 * 60 * 1 //show in 1 min
+        //   }).then(async () => {
+        //     // console.log('Flip-card adjusted');
+        //     alertUserForSec("Adjusted", 0.8);
+        //     await new Promise(resolve => setTimeout(resolve, 800));
+
+        //     // reset form  -  HAS TO BE HERE or
+        //     formToAdjust.reset();
+        //     document.querySelector('#changeWords .optionsWindow').style.display = 'none';
+        //     // updateDatabaseTHEN_UI();
+        //     window.location.reload();
+        //     scroll(0, scrollAmount);  // to hide ALL scores
+        //   }).catch(err => {
+        //     console.log(err, 'I could NOT adjust the card.');
+        //     // reset form
+        //     // formToAdjust.reset();
+        //     // window.location.reload();
+        //   });
+        // }
+
+
+        let nowAdjust = new Date().getTime();
+        currentCardInOp.dueTime = nowAdjust + 1000 * 60 * 1 //show in 1 min
+        // if pospone set...
+        if (posponeCard === 'm') {
+          currentCardInOp.dueTime += 1000 * 60 * 5;
+        } else if (posponeCard === 'h') {
+          currentCardInOp.dueTime += 1000 * 60 * 60 * 5;
+        } else if (posponeCard === 'd') {
+          currentCardInOp.dueTime += 1000 * 60 * 60 * 24 * 5;
+        };
+
+        currentCardInOp.lastSeen = nowAdjust;
+
+        currentCardInOp.languageNative = nativeIn;
+        currentCardInOp.languageToLearn = toLearnIn;
+        currentCardInOp.connection = connect;
+        currentCardInOp.cReminderNativeShown = cRemindA;
+        currentCardInOp.cReminderToLearnShown = cRemindB;
+
+
+
+        db.collection("users").doc(userInOp.userEmail).collection("cardsLearningNotDue").doc(currentCardInOpID).set(currentCardInOp)
+          .then(async () => {
+            // console.log('dddddddddddddddd  going to delete card in original');
+            db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).delete();
+          })
+          .then(async () => {
             // console.log('Flip-card adjusted');
             alertUserForSec("Adjusted", 0.8);
             await new Promise(resolve => setTimeout(resolve, 800));
@@ -117,9 +164,10 @@ let activateWordsOptions = () => {
             // reset form  -  HAS TO BE HERE or
             formToAdjust.reset();
             document.querySelector('#changeWords .optionsWindow').style.display = 'none';
-            // updateDatabaseTHEN_UI();
+            // updateDatabaseTHEN_UI();  //- can't be used or it would cause inner loop of more and more cycles within each other
             window.location.reload();
             scroll(0, scrollAmount);  // to hide ALL scores
+            console.log('AAAAAAAAAAAAAAAAAAAA adjusted');
           }).catch(err => {
             console.log(err, 'I could NOT adjust the card.');
             // reset form
@@ -127,49 +175,6 @@ let activateWordsOptions = () => {
             // window.location.reload();
           });
 
-        } else {
-
-
-          //=if POSPONE was set...
-          currentCardInOp.dueTime = new Date().getTime();
-          if (posponeCard === 'm') {
-            currentCardInOp.dueTime += 1000 * 60 * 5;
-          } else if (posponeCard === 'h') {
-            currentCardInOp.dueTime += 1000 * 60 * 60 * 5;
-          } else if (posponeCard === 'd') {
-            currentCardInOp.dueTime += 1000 * 60 * 60 * 24 * 5;
-          };
-          currentCardInOp.languageNative = nativeIn;
-          currentCardInOp.languageToLearn = toLearnIn;
-          currentCardInOp.connection = connect;
-          currentCardInOp.cReminderNativeShown = cRemindA;
-          currentCardInOp.cReminderToLearnShown = cRemindB;
-          currentCardInOp.lastSeen = new Date().getTime();
-          currentCardInOp.dueTime = currentCardInOp.dueTime;
-
-          db.collection("users").doc(userInOp.userEmail).collection("cardsLearningNotDue").doc(currentCardInOpID).set(currentCardInOp)
-            .then(async () => {
-              // console.log('dddddddddddddddd  going to delete card in original');
-              db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).delete();
-            })
-            .then(async () => {
-              // console.log('Flip-card adjusted');
-              alertUserForSec("Adjusted", 0.8);
-              await new Promise(resolve => setTimeout(resolve, 800));
-
-              // reset form  -  HAS TO BE HERE or
-              formToAdjust.reset();
-              document.querySelector('#changeWords .optionsWindow').style.display = 'none';
-              // updateDatabaseTHEN_UI();  - can't be used or it would cause inner loop of more and more cycles within each other
-              window.location.reload();
-              scroll(0, scrollAmount);  // to hide ALL scores
-            }).catch(err => {
-              console.log(err, 'I could NOT adjust the card.');
-              // reset form
-              // formToAdjust.reset();
-              // window.location.reload();
-            });
-        }
       })
     }
 

@@ -5,6 +5,30 @@ import './wordsOptions';
 import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions } from './wordsOptions';
 
 
+//mic
+// navigator.permissions.query({ name: 'microphone' })
+//   .then((permissionObj) => {
+//     console.log('MMMMMMMMMMMMMMMMMMMMMMic report');
+//     console.log(permissionObj.state);
+//     console.log('MMMMMMMMMMMMMMMMic end');
+//   })
+//   .catch((error) => {
+//     console.log('Got error :', error);
+//   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let dueCount = 0;
 let toLearnCount = 0;
 // const cards = db.collection('FlipCards');
@@ -170,8 +194,12 @@ let deleteCard = async () => {
 
   cards.collection("cardsLearningDue").doc(currentCardID).delete().then(() => {
     // console.log('deleted');
+    alertUserForSec("Deleted", 0.8);
     document.querySelector('#changeWords .optionsWindow').style.display = 'none';
+
+    // await new Promise(resolve => setTimeout(resolve, 800));
     updateDatabaseTHEN_UI();
+    scroll(0, scrollAmount);
   });
 }
 
