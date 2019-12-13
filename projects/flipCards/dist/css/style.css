@@ -495,10 +495,10 @@ label {
       background-color: #04e422; }
     #training_wrapper #threeButtons #adjustOption,
     #training_wrapper #improveChallengeButtons #adjustOption {
-      background-color: #04e422; }
+      background-color: #6d04e4; }
     #training_wrapper #threeButtons #moveOnOption,
     #training_wrapper #improveChallengeButtons #moveOnOption {
-      background-color: red; }
+      background-color: #ff0077; }
   #training_wrapper #deleteCard {
     display: flex; }
 
