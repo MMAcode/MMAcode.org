@@ -521,7 +521,12 @@ let updateALL = async (e) => {
   updateCurrentCard(e);
   await updateCardInFirebase();
   // console.log('GOING TO UPDATE DATABASE AGAIN...');
-  updateDatabaseTHEN_UI();
+  if (e.target.id === 'BtnDown' || e.target.id === 'BtnStay') {
+    document.querySelector('#improveChallengeButtons').style.display = "flex";
+    document.querySelector('#threeButtons').style.display = 'none';
+  } else {
+    updateDatabaseTHEN_UI();
+  }
 }
 
 
@@ -970,7 +975,7 @@ for (const bb of closeWindowS) {
   });
 };
 
-//listen to hints buttons clicks - revela text and next buttons
+//listen to hints buttons clicks - reveal text and next buttons
 remindConnectButtonHTML.addEventListener('click', e => {
   remindConnectTextHTML.classList.remove('hide');
 });
@@ -978,6 +983,16 @@ remindButtonHTML.addEventListener('click', e => {
   remindTextHTML.classList.remove('hide');
   remindConnectButtonHTML.classList.remove('hide');
 });
+
+//listen to buttons after  4 evaluating buttons
+/// adjust button sorted in "wordsOptions" package as it needs functions from there
+document.querySelector('#moveOnOption').addEventListener('click', e => {
+  document.querySelector('#improveChallengeButtons').style.display = "none";
+  updateDatabaseTHEN_UI();
+})
+
+
+
 
 
 resetAppIfReturnedAfterXseconds(120);
@@ -1008,7 +1023,39 @@ mainTitleHTML.addEventListener('click', e => { scroll(0, scrollAmount) });
 activateWordsOptions.js;
 activateWordsOptions();
 
+
+// //////// center button - text reminder
 // alertUserForSec('Congrats - you learned this card.', 2);
+let opacityMiro = 0;
+window.addEventListener('scroll', function (e) {
+  let centerOffset = Math.abs(window.pageYOffset - scrollAmount);
+  if (centerOffset > 25) {
+    opacityMiro = 0 + (centerOffset - 25) / 100;
+    if (opacityMiro > 1) { opacityMiro = 1 };
+  } else { opacityMiro = 0 };
+  document.querySelector('#tapToCenter').style.opacity = opacityMiro;
+  // console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOO offset ', centerOffset);
+  // console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOO ', opacityMiro);
+
+  //sort + button
+  let yOffset = window.pageYOffset - scrollAmount;
+  console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOO ', yOffset);
+  if (yOffset > -75) {
+    this.document.querySelector('#addVocabulary .visibleIcon').style.position = 'fixed';
+    this.document.querySelector('#addVocabulary .visibleIcon').style.right = '0';
+    this.document.querySelector('#addVocabulary .visibleIcon').style.top = '50px';
+    this.document.querySelector('#addVocabulary .visibleIcon').style.opacity = '0.3';
+  } else {
+    this.document.querySelector('#addVocabulary .visibleIcon').style.position = 'relative';
+    this.document.querySelector('#addVocabulary .visibleIcon').style.right = '0';
+    this.document.querySelector('#addVocabulary .visibleIcon').style.top = '0';
+    this.document.querySelector('#addVocabulary .visibleIcon').style.opacity = '1';
+
+
+  }
+
+});
+
 
 
 

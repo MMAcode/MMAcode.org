@@ -86,8 +86,7 @@ label {
   -moz-border-radius: 100% 100% 0 0;
   -ms-border-radius: 100% 100% 0 0;
   -o-border-radius: 100% 100% 0 0;
-  box-shadow: 3px -3px 3px 0px grey;
-  -moz-text-decoration-style: solid; }
+  box-shadow: 3px -3px 3px 0px grey; }
 
 .hintText {
   text-decoration: none;
@@ -103,14 +102,21 @@ label {
 
 .pairedButton {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-evenly;
   position: fixed;
-  bottom: 0;
-  left: 0;
+  max-width: 476px;
+  margin: 0 auto;
+  bottom: 5px;
+  right: 50%;
   width: 100%;
   height: 8vh;
-  color: white; }
+  color: white;
+  transform: translateX(50%);
+  -webkit-transform: translateX(50%);
+  -moz-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  -o-transform: translateX(50%); }
   .pairedButton:hover {
     cursor: pointer; }
 
@@ -216,14 +222,20 @@ label {
   #training_wrapper #addVocabulary .visibleIcon {
     margin: 10px 10px 20px 10px;
     color: #eeff00;
-    max-width: 50px;
-    min-height: 50px;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
     border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
     -o-border-radius: 100%;
-    box-shadow: 3px 3px 3px 0px grey; }
+    box-shadow: 3px 3px 3px 0px grey;
+    transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out; }
     #training_wrapper #help .visibleIcon:hover,
     #training_wrapper #addVocabulary .visibleIcon:hover {
       cursor: pointer; }
@@ -293,9 +305,26 @@ label {
       #training_wrapper #help .invisibleWindow #formNewWord input[type="text"],
       #training_wrapper #addVocabulary .invisibleWindow #formNewWord input[type="text"] {
         width: 100%; }
+  #training_wrapper #addVocabulary .visibleIcon {
+    position: fixed;
+    right: 0;
+    top: 50px; }
   #training_wrapper #mainTitle {
     display: inline-block;
-    padding-bottom: 30px; }
+    position: relative;
+    padding-bottom: 30px;
+    color: rgba(255, 255, 255, 0.39); }
+    #training_wrapper #mainTitle #tapToCenter {
+      position: absolute;
+      top: 43%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      -webkit-transform: translate(50%, -50%);
+      -moz-transform: translate(50%, -50%);
+      -ms-transform: translate(50%, -50%);
+      -o-transform: translate(50%, -50%);
+      font-size: 1.3rem;
+      color: #fd7171; }
   #training_wrapper #mainTitle:hover {
     cursor: pointer; }
   #training_wrapper #language_labels span:nth-child(1) {
@@ -415,23 +444,27 @@ label {
     margin: 0 auto;
     display: flex; }
   #training_wrapper #b_next,
-  #training_wrapper #threeButtons {
+  #training_wrapper #threeButtons,
+  #training_wrapper #improveChallengeButtons {
     width: 100%;
     padding: 2rem 1rem; }
     #training_wrapper #b_next:hover,
-    #training_wrapper #threeButtons:hover {
+    #training_wrapper #threeButtons:hover,
+    #training_wrapper #improveChallengeButtons:hover {
       cursor: pointer; }
   #training_wrapper #b_next {
     background-color: yellow;
     background-color: #977005; }
-  #training_wrapper #threeButtons {
+  #training_wrapper #threeButtons,
+  #training_wrapper #improveChallengeButtons {
     display: none;
     padding: 0;
     height: 100%;
     flex-flow: wrap;
     align-items: center;
     justify-content: center; }
-    #training_wrapper #threeButtons * {
+    #training_wrapper #threeButtons *,
+    #training_wrapper #improveChallengeButtons * {
       flex: 1;
       height: 100%;
       padding: 2rem 1rem;
@@ -444,14 +477,24 @@ label {
       box-shadow: 3px 3px 3px 0px grey;
       opacity: 0.9;
       border: 2px solid rgba(255, 255, 255, 0.459); }
-    #training_wrapper #threeButtons #BtnDown {
+    #training_wrapper #threeButtons #BtnDown,
+    #training_wrapper #improveChallengeButtons #BtnDown {
       background-color: red; }
-    #training_wrapper #threeButtons #BtnStay {
+    #training_wrapper #threeButtons #BtnStay,
+    #training_wrapper #improveChallengeButtons #BtnStay {
       background-color: #ffe600; }
-    #training_wrapper #threeButtons #BtnSlow {
+    #training_wrapper #threeButtons #BtnSlow,
+    #training_wrapper #improveChallengeButtons #BtnSlow {
       background-color: #6060dd; }
-    #training_wrapper #threeButtons #BtnUp {
+    #training_wrapper #threeButtons #BtnUp,
+    #training_wrapper #improveChallengeButtons #BtnUp {
       background-color: #04e422; }
+    #training_wrapper #threeButtons #adjustOption,
+    #training_wrapper #improveChallengeButtons #adjustOption {
+      background-color: #04e422; }
+    #training_wrapper #threeButtons #moveOnOption,
+    #training_wrapper #improveChallengeButtons #moveOnOption {
+      background-color: red; }
   #training_wrapper #deleteCard {
     display: flex; }
 

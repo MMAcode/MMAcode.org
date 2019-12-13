@@ -50,9 +50,6 @@ h6 {
 }
 
 
-p {
-  // line-height: 2.9rem;
-}
 
 a {
   // text-decoration: none;
@@ -140,6 +137,8 @@ label {
   //display: inline-block;
   //margin: 0 auto;
   text-decoration: solid underline #0404be;
+
+
   // font-weight: bold;
   border: none;
   // margin-top: 0;
@@ -151,7 +150,7 @@ label {
   -ms-border-radius: 100% 100% 0 0;
   -o-border-radius: 100% 100% 0 0;
   box-shadow: 3px -3px 3px 0px grey;
-  -moz-text-decoration-style: solid;
+
 }
 
 .hintText {
@@ -168,22 +167,31 @@ label {
 }
 
 .pairedButton {
-  // background-color: greenyellow;
+  //background-color: greenyellow;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-evenly;
   position: fixed;
-  bottom: 0;
-  left: 0;
+  max-width: 476px;
+  margin: 0 auto;
+  bottom: 5px;
+  right: 50%;
+
   width: 100%;
   height: 8vh;
-  // background: rgb(90, 90, 90);
+  //background: rgb(90, 90, 90);
   color: white;
 
-  // border: 2px solid black;
+  //border: 2px solid black;
   &:hover {
     cursor: pointer;
   }
+
+  transform: translateX(50%);
+  -webkit-transform: translateX(50%);
+  -moz-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  -o-transform: translateX(50%);
 }
 
 
@@ -312,9 +320,6 @@ label {
   }
 }
 
-#timeCounter {
-  // display: none;
-}
 
 
 
@@ -374,8 +379,9 @@ label {
       // background-color: red;
 
       //font-size: 2rem;
-      max-width: 50px;
-      min-height: 50px;
+      width: 50px;
+      height: 50px;
+      z-index: 100;
 
       &:hover {
         cursor: pointer;
@@ -386,8 +392,12 @@ label {
       -moz-border-radius: 100%;
       -ms-border-radius: 100%;
       -o-border-radius: 100%;
-
       box-shadow: 3px 3px 3px 0px grey;
+      transition:all 0.5s ease-out;
+      -webkit-transition:all 0.5s ease-out;
+      -moz-transition:all 0.5s ease-out;
+      -ms-transition:all 0.5s ease-out;
+      -o-transition:all 0.5s ease-out;
     }
 
     .invisibleWindow {
@@ -419,8 +429,7 @@ label {
       }
 
       h1,
-      h2,
-        {
+      h2 {
         text-align: center;
         margin-top: 40px;
       }
@@ -475,15 +484,49 @@ label {
       }
 
     }
+
   }
 
+  #addVocabulary .visibleIcon{
+    position: fixed;
+    right: 0;
+    top: 50px;
+    // display: block;
+  }
 
   #mainTitle {
     // clear: left;
     display: inline-block;
+    position: relative;
     // margin: 0 auto;
     // display: inline;
     padding-bottom: 30px;
+    color: rgba(255, 255, 255, 0.39);
+    // z-index: 2;
+
+    // text-shadow: 2px 2px 2px rgb(250, 181, 181);
+
+    // $shadeMM: rgb(0, 102, 255);
+    // $shadeSize: 1px;
+    // text-shadow: $shadeSize*(-1) 0 $shadeMM, 0 $shadeSize $shadeMM, $shadeSize 0 $shadeMM, 0 $shadeSize*(-1) $shadeMM;
+
+    #tapToCenter {
+      position: absolute;
+      // display: block;
+      // width: 100%;
+      top: 43%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      -webkit-transform: translate(50%, -50%);
+      -moz-transform: translate(50%, -50%);
+      -ms-transform: translate(50%, -50%);
+      -o-transform: translate(50%, -50%);
+      font-size: 1.3rem;
+      color: rgb(253, 113, 113);
+
+
+
+    }
 
   }
 
@@ -543,9 +586,6 @@ label {
     margin-top: 10px;
 
 
-    * {
-      // display: none;
-    }
 
     .optionsIcon {
       // background: white;
@@ -671,6 +711,7 @@ label {
         line-height: 1.3;
         padding: 5px 10px;
         background-color: $cBg;
+        // position: relative;
       }
 
 
@@ -711,7 +752,8 @@ label {
 
 
   #b_next,
-  #threeButtons {
+  #threeButtons,
+  #improveChallengeButtons {
     // position: fixed;
     // display: block;
     width: 100%;
@@ -734,7 +776,8 @@ label {
     background-color: rgb(151, 112, 5);
   }
 
-  #threeButtons {
+  #threeButtons,
+  #improveChallengeButtons {
     display: none;
     padding: 0;
     height: 100%;
@@ -779,7 +822,13 @@ label {
       background-color: rgb(4, 228, 34);
     }
 
+    #adjustOption {
+      background-color: rgb(4, 228, 34);
+    }
 
+    #moveOnOption {
+      background-color: red;
+    }
   }
 
 
@@ -790,9 +839,6 @@ label {
     // justify-content: flex-start;
   }
 
-  #trainingBody {
-    // height: 80vh;
-  }
 
 
 
@@ -901,7 +947,7 @@ label {
   }
 }
 
-.mainIcon {}
+
 
 #hints {
   color: rgb(4, 4, 190);

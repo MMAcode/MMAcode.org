@@ -49,8 +49,9 @@ let activateWordsOptions = () => {
       // }
     }
 
+
     //changing the word/phrase
-    if (buttonParent == changeWordsHTML && e.target.className === 'optionsIcon') {
+    if ((buttonParent == changeWordsHTML && e.target.className === 'optionsIcon') || (e.target.id == 'adjustOption')) {
       console.log('change word action fired');
       scroll(0, 0);
       // adjustCurrentWord();
@@ -101,33 +102,7 @@ let activateWordsOptions = () => {
         // console.log(currentCardInOp);
         // console.log(currentCardInOpID);
 
-        // if (posponeCard == '')
-        // {
-        //   db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).update({
-        //     languageNative: nativeIn,
-        //     languageToLearn: toLearnIn,
-        //     connection: connect,
-        //     cReminderNativeShown: cRemindA,
-        //     cReminderToLearnShown: cRemindB,
-        //     dueTime: new Date().getTime() + 1000 * 60 * 1 //show in 1 min
-        //   }).then(async () => {
-        //     // console.log('Flip-card adjusted');
-        //     alertUserForSec("Adjusted", 0.8);
-        //     await new Promise(resolve => setTimeout(resolve, 800));
 
-        //     // reset form  -  HAS TO BE HERE or
-        //     formToAdjust.reset();
-        //     document.querySelector('#changeWords .optionsWindow').style.display = 'none';
-        //     // updateDatabaseTHEN_UI();
-        //     window.location.reload();
-        //     scroll(0, scrollAmount);  // to hide ALL scores
-        //   }).catch(err => {
-        //     console.log(err, 'I could NOT adjust the card.');
-        //     // reset form
-        //     // formToAdjust.reset();
-        //     // window.location.reload();
-        //   });
-        // }
 
 
         let nowAdjust = new Date().getTime();
@@ -200,6 +175,15 @@ let activateWordsOptions = () => {
   }
 
   optionsHTML.addEventListener('click', optionsActions);
+
+  //adjust option button after 4 evaluating buttons
+  document.querySelector('#adjustOption').addEventListener('click', e => {
+    optionsActions(e);
+
+    document.querySelector('#changeWords .optionsWindow').style.display = 'block';
+    scroll(0, 0);
+    document.querySelector('#improveChallengeButtons').style.display = "none";
+  });
 }
 
 
