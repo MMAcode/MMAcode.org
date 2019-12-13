@@ -1043,16 +1043,22 @@ window.addEventListener('scroll', function (e) {
   if (yOffset > -75) {
     this.document.querySelector('#addVocabulary .visibleIcon').style.position = 'fixed';
     this.document.querySelector('#addVocabulary .visibleIcon').style.right = '0';
-    this.document.querySelector('#addVocabulary .visibleIcon').style.top = '50px';
+    this.document.querySelector('#addVocabulary .visibleIcon').style.top = '0';
     this.document.querySelector('#addVocabulary .visibleIcon').style.opacity = '0.3';
+
+    this.document.querySelector('#mainTitle').style.opacity = '0';
+
   } else {
     this.document.querySelector('#addVocabulary .visibleIcon').style.position = 'relative';
     this.document.querySelector('#addVocabulary .visibleIcon').style.right = '0';
     this.document.querySelector('#addVocabulary .visibleIcon').style.top = '0';
     this.document.querySelector('#addVocabulary .visibleIcon').style.opacity = '1';
 
+    this.document.querySelector('#mainTitle').style.opacity = '1';
 
   }
+
+
 
 });
 

@@ -487,28 +487,32 @@ label {
 
   }
 
-  #addVocabulary .visibleIcon{
+  #addVocabulary .visibleIcon {
     position: fixed;
     right: 0;
-    top: 50px;
+    top: 0;
     // display: block;
   }
 
   #mainTitle {
-    // clear: left;
+    //clear: left;
+    transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
     display: inline-block;
     position: relative;
-    // margin: 0 auto;
-    // display: inline;
+    //margin: 0 auto;
+    //display: inline;
     padding-bottom: 30px;
-    color: rgba(255, 255, 255, 0.39);
-    // z-index: 2;
+    //color: rgba(255, 255, 255, 0.39);
+    //z-index: 2;
+    //text-shadow: 2px 2px 2px rgb(250, 181, 181);
+    //$shadeMM: rgb(0, 102, 255);
+    //$shadeSize: 1px;
+    //text-shadow: $shadeSize*(-1) 0 $shadeMM, 0 $shadeSize $shadeMM, $shadeSize 0 $shadeMM, 0 $shadeSize*(-1) $shadeMM;
 
-    // text-shadow: 2px 2px 2px rgb(250, 181, 181);
-
-    // $shadeMM: rgb(0, 102, 255);
-    // $shadeSize: 1px;
-    // text-shadow: $shadeSize*(-1) 0 $shadeMM, 0 $shadeSize $shadeMM, $shadeSize 0 $shadeMM, 0 $shadeSize*(-1) $shadeMM;
 
     #tapToCenter {
       position: absolute;
