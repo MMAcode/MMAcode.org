@@ -310,7 +310,7 @@ label {
     right: 0;
     top: 0; }
   #training_wrapper #mainTitle {
-    opacity: 1;
+    opacity: 0;
     display: inline-block;
     position: relative;
     padding-bottom: 30px;
