@@ -1054,8 +1054,8 @@ window.addEventListener('scroll', function (e) {
 
   } else {
     document.querySelector('#addVocabulary .visibleIcon').style.position = 'relative';
-    document.querySelector('#addVocabulary .visibleIcon').style.right = '0';
-    document.querySelector('#addVocabulary .visibleIcon').style.top = '0';
+    document.querySelector('#addVocabulary .visibleIcon').style.right = 'auto';
+    document.querySelector('#addVocabulary .visibleIcon').style.top = 'auto';
     document.querySelector('#addVocabulary .visibleIcon').style.opacity = '1';
 
     document.querySelector('#mainTitle').style.opacity = '1';

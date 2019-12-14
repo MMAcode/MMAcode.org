@@ -307,13 +307,14 @@ label {
         width: 100%; }
   #training_wrapper #addVocabulary .visibleIcon {
     position: fixed;
-    right: 0;
-    top: 0; }
+    right: auto;
+    top: auto; }
   #training_wrapper #mainTitle {
     opacity: 0;
     display: inline-block;
     position: relative;
     padding-bottom: 30px;
+    color: rgba(228, 11, 11, 0.979);
     transition: opacity 0.5s;
     -webkit-transition: opacity 0.5s;
     -moz-transition: opacity 0.5s;

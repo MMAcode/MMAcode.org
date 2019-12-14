@@ -490,21 +490,27 @@ label {
 
   #addVocabulary .visibleIcon {
     position: fixed;
-    right: 0;
-    top: 0;
+    right: auto;
+    top: auto;
     // display: block;
   }
 
   #mainTitle {
     //clear: left;
     opacity: 0;
-
     display: inline-block;
     position: relative;
     //margin: 0 auto;
     //display: inline;
     padding-bottom: 30px;
-    //color: rgba(255, 255, 255, 0.39);
+    color: rgba(228, 11, 11, 0.979);
+    // border-radius: 30px;
+    // -webkit-border-radius: 30px;
+    // -moz-border-radius: 30px;
+    // -ms-border-radius: 30px;
+    // -o-border-radius: 30px;
+    // border: 1px dotted red;
+
     //z-index: 2;
     //text-shadow: 2px 2px 2px rgb(250, 181, 181);
     //$shadeMM: rgb(0, 102, 255);
