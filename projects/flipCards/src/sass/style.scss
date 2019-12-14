@@ -33,6 +33,7 @@ html {
 body {
   font-size: $defaultFontSize;
   line-height: $defaultFontSize * 1, 5;
+  // max-width: 500px;
 }
 
 
@@ -496,11 +497,8 @@ label {
 
   #mainTitle {
     //clear: left;
-    transition: opacity 0.5s;
-    -webkit-transition: opacity 0.5s;
-    -moz-transition: opacity 0.5s;
-    -ms-transition: opacity 0.5s;
-    -o-transition: opacity 0.5s;
+    opacity: 1;
+
     display: inline-block;
     position: relative;
     //margin: 0 auto;
@@ -512,7 +510,11 @@ label {
     //$shadeMM: rgb(0, 102, 255);
     //$shadeSize: 1px;
     //text-shadow: $shadeSize*(-1) 0 $shadeMM, 0 $shadeSize $shadeMM, $shadeSize 0 $shadeMM, 0 $shadeSize*(-1) $shadeMM;
-
+    transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
 
     #tapToCenter {
       position: absolute;

@@ -1039,22 +1039,26 @@ window.addEventListener('scroll', function (e) {
 
   //sort + button
   let yOffset = window.pageYOffset - scrollAmount;
-  console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOO ', yOffset);
+  let bodyWidth = document.querySelector('body').offsetWidth;
+  let containerWidth = document.querySelector('#container').offsetWidth;
   if (yOffset > -75) {
-    this.document.querySelector('#addVocabulary .visibleIcon').style.position = 'fixed';
-    this.document.querySelector('#addVocabulary .visibleIcon').style.right = '0';
-    this.document.querySelector('#addVocabulary .visibleIcon').style.top = '0';
-    this.document.querySelector('#addVocabulary .visibleIcon').style.opacity = '0.3';
+    document.querySelector('#addVocabulary .visibleIcon').style.position = 'fixed';
+    let movePlusToLeft = 0;
 
-    this.document.querySelector('#mainTitle').style.opacity = '0';
+    if (bodyWidth > containerWidth) { movePlusToLeft = (bodyWidth - 500) / 2; }
+    document.querySelector('#addVocabulary .visibleIcon').style.right = `${movePlusToLeft}px`;
+    document.querySelector('#addVocabulary .visibleIcon').style.top = '0';
+    document.querySelector('#addVocabulary .visibleIcon').style.opacity = '0.3';
+
+    document.querySelector('#mainTitle').style.opacity = '0';
 
   } else {
-    this.document.querySelector('#addVocabulary .visibleIcon').style.position = 'relative';
-    this.document.querySelector('#addVocabulary .visibleIcon').style.right = '0';
-    this.document.querySelector('#addVocabulary .visibleIcon').style.top = '0';
-    this.document.querySelector('#addVocabulary .visibleIcon').style.opacity = '1';
+    document.querySelector('#addVocabulary .visibleIcon').style.position = 'relative';
+    document.querySelector('#addVocabulary .visibleIcon').style.right = '0';
+    document.querySelector('#addVocabulary .visibleIcon').style.top = '0';
+    document.querySelector('#addVocabulary .visibleIcon').style.opacity = '1';
 
-    this.document.querySelector('#mainTitle').style.opacity = '1';
+    document.querySelector('#mainTitle').style.opacity = '1';
 
   }
 
