@@ -362,6 +362,7 @@ label {
 
   #mainIcons {
     // background-color: red;
+    position: relative;
     display: flex;
     justify-content: space-between;
 
@@ -490,8 +491,8 @@ label {
 
   #addVocabulary .visibleIcon {
     position: fixed;
-    right: auto;
-    top: auto;
+    right: 0;
+    top: 0;
     // display: block;
   }
 
@@ -503,7 +504,7 @@ label {
     //margin: 0 auto;
     //display: inline;
     padding-bottom: 30px;
-    color: rgba(228, 11, 11, 0.979);
+    color: rgba(72, 228, 11, 0.979);
     // border-radius: 30px;
     // -webkit-border-radius: 30px;
     // -moz-border-radius: 30px;
@@ -523,6 +524,14 @@ label {
     -o-transition: opacity 0.5s;
 
     #tapToCenter {
+      border-radius: 30px;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      -ms-border-radius: 30px;
+      -o-border-radius: 30px;
+      border: 1px dotted red;
+      padding: 0 5px;
+
       position: absolute;
       // display: block;
       // width: 100%;

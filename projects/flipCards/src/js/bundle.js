@@ -1026,17 +1026,8 @@ activateWordsOptions();
 
 // //////// center button - text reminder
 // alertUserForSec('Congrats - you learned this card.', 2);
-let opacityMiro = 0;
-window.addEventListener('scroll', function (e) {
-  let centerOffset = Math.abs(window.pageYOffset - scrollAmount);
-  if (centerOffset > 25) {
-    opacityMiro = 0 + (centerOffset - 25) / 100;
-    if (opacityMiro > 1) { opacityMiro = 1 };
-  } else { opacityMiro = 0 };
-  document.querySelector('#tapToCenter').style.opacity = opacityMiro;
-  // console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOO offset ', centerOffset);
-  // console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOO ', opacityMiro);
 
+window.addEventListener('scroll', function (e) {
   //sort + button
   let yOffset = window.pageYOffset - scrollAmount;
   let bodyWidth = document.querySelector('body').offsetWidth;
@@ -1044,26 +1035,32 @@ window.addEventListener('scroll', function (e) {
   if (yOffset > -75) {
     document.querySelector('#addVocabulary .visibleIcon').style.position = 'fixed';
     let movePlusToLeft = 0;
-
-    if (bodyWidth > containerWidth) { movePlusToLeft = (bodyWidth - 500) / 2; }
-    document.querySelector('#addVocabulary .visibleIcon').style.right = `${movePlusToLeft}px`;
     document.querySelector('#addVocabulary .visibleIcon').style.top = '0';
     document.querySelector('#addVocabulary .visibleIcon').style.opacity = '0.3';
-
-    document.querySelector('#mainTitle').style.opacity = '0';
-
+    if (bodyWidth > containerWidth) { movePlusToLeft = (bodyWidth - 500) / 2; }
+    document.querySelector('#addVocabulary .visibleIcon').style.right = `${movePlusToLeft}px`;
   } else {
-    document.querySelector('#addVocabulary .visibleIcon').style.position = 'relative';
-    document.querySelector('#addVocabulary .visibleIcon').style.right = 'auto';
-    document.querySelector('#addVocabulary .visibleIcon').style.top = 'auto';
+    document.querySelector('#addVocabulary .visibleIcon').style.position = 'absolute';
+    document.querySelector('#addVocabulary .visibleIcon').style.right = '0';
+    document.querySelector('#addVocabulary .visibleIcon').style.top = '0';
     document.querySelector('#addVocabulary .visibleIcon').style.opacity = '1';
-
-    document.querySelector('#mainTitle').style.opacity = '1';
-
   }
 
+  //title opacity
+  if (yOffset > -35) { document.querySelector('#mainTitle').style.opacity = '0'; }
+  else { document.querySelector('#mainTitle').style.opacity = '1'; }
 
+  // tapToCenter button opacity
+  let centerOffset = Math.abs(window.pageYOffset - scrollAmount);
+  let centerButtonOpacityMiro = 0;
+  if (centerOffset > 75) {
+    centerButtonOpacityMiro = 0 + (centerOffset - 25) / 200;
+    if (centerButtonOpacityMiro > 1) { centerButtonOpacityMiro = 1 };
+  } else { centerButtonOpacityMiro = 0 };
+  document.querySelector('#tapToCenter').style.opacity = centerButtonOpacityMiro;
 
+  // console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOO offset ', centerOffset);
+  // console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOO ', centerButtonOpacityMiro);
 });
 
 
