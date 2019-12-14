@@ -18,17 +18,6 @@ import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activat
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 let dueCount = 0;
 let toLearnCount = 0;
 // const cards = db.collection('FlipCards');
@@ -523,18 +512,19 @@ let updateALL = async (e) => {
   updateCurrentCard(e);
   await updateCardInFirebase();
   // console.log('GOING TO UPDATE DATABASE AGAIN...');
-  if (e.target.id === 'BtnDown' || e.target.id === 'BtnStay') {
-    document.querySelector('#improveChallengeButtons').style.display = "flex";
-    document.querySelector('#threeButtons').style.display = 'none';
-  } else {
-    updateDatabaseTHEN_UI();
-  }
+  // if (e.target.id === 'BtnDown' || e.target.id === 'BtnStay') {
+  //   document.querySelector('#improveChallengeButtons').style.display = "flex";
+  //   document.querySelector('#threeButtons').style.display = 'none';
+  // } 
+  updateDatabaseTHEN_UI();
+
 }
 
-let setEvaluateButtonsOpacity = (oUp, oSlow, oStay) => {
-  document.querySelector('#BtnUp').style.opacity = oUp;
-  document.querySelector('#BtnSlow').style.opacity = oSlow;
-  document.querySelector('#BtnStay').style.opacity = oStay;
+let setEvaluateButtonsOpacity = (oDown, oStay, oSlow, oUp) => {
+  if (oDown < 2) { document.querySelector('#BtnDown').style.opacity = oDown; }
+  if (oStay < 2) { document.querySelector('#BtnStay').style.opacity = oStay; }
+  if (oSlow < 2) { document.querySelector('#BtnSlow').style.opacity = oSlow; }
+  if (oUp < 2) { document.querySelector('#BtnUp').style.opacity = oUp; }
 }
 
 // HINTS on p1:   show LETTER on click as 
@@ -556,10 +546,10 @@ let ShowLetterOnClick = () => {
 
   if (clickHintCounter > 1) {
     // evaluateButtonOpacity = 0.3;
-    setEvaluateButtonsOpacity(0.3, 0.3, 1);
+    setEvaluateButtonsOpacity(0.9, 0.9, 0.3, 0.3);
 
     if (clickHintCounter >= wordTwo.length - 1) {
-      setEvaluateButtonsOpacity(0.3, 0.3, 0.3);
+      setEvaluateButtonsOpacity(0.9, 0.3, 0.3, 0.3);
     }
   }
 }
@@ -593,7 +583,7 @@ let showPageOne = async () => {
   secondWordHTML.textContent = '...';
   nextBt.style.display = 'block';
   threeBt.style.display = 'none';
-  setEvaluateButtonsOpacity(1, 1, 1);
+  setEvaluateButtonsOpacity(0.9, 0.9, 0.9, 0.9);
 
   // prevent scrolling on second word:
   secondWordHTML.addEventListener('touchmove', preventScroll);
@@ -730,7 +720,7 @@ let updateDatabaseTHEN_UI = () => {
     if (typeof ans === 'object') {
       if (wordsBackground == "new") {
         wordsHTML.forEach(element => {
-          element.style.backgroundColor = 'rgb(255, 230, 0)';
+          element.style.backgroundColor = 'white';
         });
         alertUserForSec("New Card", 1);
       } else if (currentCard.level == 9 && currentCard.enCheck == true) {
@@ -740,7 +730,7 @@ let updateDatabaseTHEN_UI = () => {
         alertUserForSec("1 step from learned:", 1.4);
       } else {
         wordsHTML.forEach(element => {
-          element.style.backgroundColor = 'white';
+          element.style.backgroundColor = 'rgb(255, 230, 0)';
         })
       }
       showPageOne();
@@ -833,7 +823,7 @@ let alertUserForSec = async (text, durationInSec) => {
   let alertForSec = document.createElement('div');
   alertForSec.textContent = text;
   alertForSec.id = "alertForSec";
-  alertForSec.classList.add("flyingAlert");
+  // alertForSec.classList.add("flyingAlert");
   alertForSec.style.animationDuration = durationInSec + "s";
   let hook = document.querySelector("#words");
   hook.append(alertForSec);
@@ -955,10 +945,13 @@ auth.onAuthStateChanged(async (user) => {
   }
 });
 
+
 // console.log('getting to listening to al cards click2');
 nextBt.addEventListener('click', e => { showPageTwo(); });
 threeBt.addEventListener('click', ee => {
-  if (ee.target.style.opacity < 1) { alertUserForSec('CHEATING!', 0.5); }
+  //watch for cheating
+  if (ee.target.style.opacity < 0.5) { alertUserForSec(`Sneaky...`, 0.5) }
+
   updateALL(ee);
 })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
@@ -997,18 +990,20 @@ for (const bb of closeWindowS) {
 //listen to hints buttons clicks - reveal text and next buttons
 remindConnectButtonHTML.addEventListener('click', e => {
   remindConnectTextHTML.classList.remove('hide');
+  setEvaluateButtonsOpacity(2, 2, 0.3, 0.3);
 });
 remindButtonHTML.addEventListener('click', e => {
   remindTextHTML.classList.remove('hide');
   remindConnectButtonHTML.classList.remove('hide');
+  setEvaluateButtonsOpacity(2, 2, 0.3, 0.3);
 });
 
 //listen to buttons after  4 evaluating buttons
 /// adjust button sorted in "wordsOptions" package as it needs functions from there
-document.querySelector('#moveOnOption').addEventListener('click', e => {
-  document.querySelector('#improveChallengeButtons').style.display = "none";
-  updateDatabaseTHEN_UI();
-})
+// document.querySelector('#moveOnOption').addEventListener('click', e => {
+//   document.querySelector('#improveChallengeButtons').style.display = "none";
+//   updateDatabaseTHEN_UI();
+// })
 
 
 
@@ -1035,7 +1030,9 @@ window.addEventListener('click', e => {
 
 // hiding score
 let scrollAmount = 350;
-scroll(0, scrollAmount);  // to hide ALL score
+let offsetTop = document.querySelector('#mainTitle').offsetTop;
+scrollAmount = offsetTop;
+scroll(0, scrollAmount);  // to hide scores on the beginning
 // ho hide score when title clicked
 mainTitleHTML.addEventListener('click', e => { scroll(0, scrollAmount) });
 
@@ -1046,7 +1043,13 @@ activateWordsOptions();
 // //////// center button - text reminder
 // alertUserForSec('Congrats - you learned this card.', 2);
 
+
+
 window.addEventListener('scroll', function (e) {
+
+  // console.log('CurentCard in bundle.js on scroll CCCCCCCCCCCCCCCCCC', currentCard);
+
+  
   //sort + button
   let yOffset = window.pageYOffset - scrollAmount;
   let bodyWidth = document.querySelector('body').offsetWidth;
@@ -1085,4 +1088,4 @@ window.addEventListener('scroll', function (e) {
 
 
 
-export { cards, userID, alertUserForSec, scrollAmount, updateDatabaseTHEN_UI };
+export { cards, userID, alertUserForSec, scrollAmount };

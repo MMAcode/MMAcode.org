@@ -5,6 +5,9 @@ $cPointsFrame: linear-gradient(90deg, rgba(254, 255, 0, 1) 0%, rgba(249, 183, 0,
 // $cPointsFrame: linear-gradient(90deg, rgba(254, 255, 0, 1) 5%, rgba(249, 183, 0, 1) 40%, rgba(249, 188, 0, 1) 60%, rgba(254, 255, 0, 1) 95%);
 $cBg_NewCard:rgb(154, 154, 247);
 $cBg_3buttons:rgba(0, 147, 249, 1);
+// $cBg_connectionsButtons: rgb(255, 245, 160);
+$cBg_connectionsButtons: rgb(243, 229, 183);
+
 $defaultFontSize:20px;
 
 /**
@@ -125,7 +128,8 @@ label {
 }
 
 .hintButton {
-  background-color: rgb(245, 245, 170);
+  background-color:$cBg_connectionsButtons;
+
   // background: linear-gradient(180deg, rgba(255, 255, 255, 1) 5%, rgba(254, 255, 0, 1) 95%);
   // background-color: white;
   //display: inline-block;
@@ -504,7 +508,7 @@ label {
     //margin: 0 auto;
     //display: inline;
     padding-bottom: 30px;
-    color: rgba(72, 228, 11, 0.979);
+    color: rgb(255, 255, 255);
     // border-radius: 30px;
     // -webkit-border-radius: 30px;
     // -moz-border-radius: 30px;
@@ -579,7 +583,7 @@ label {
     * {
       padding: 1rem 3rem;
       font-size: 4rem;
-      background-color: white;
+      background-color: rgb(255, 230, 0);
       font-weight: 700;
       margin-bottom: 1px;
 
@@ -809,6 +813,7 @@ label {
 
     * {
       flex: 1;
+      opacity: 1;
       //flex-grow:1;
       height: 100%;
       padding: 2rem 1rem;
@@ -941,6 +946,8 @@ label {
   -o-transform: translate(50%, -50%);
   background-color: red !important;
   z-index: 1000000;
+  text-align: center;
+
   animation: fadeAway 1s forwards ease-in-out;
   -webkit-animation: fadeAway 1s forwards ease-in-out;
 }

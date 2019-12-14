@@ -474,7 +474,7 @@ let resetAppIfReturnedAfterXseconds = (seconds) => {
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === 'visible') {
       VisibilityTimeOn = new Date().getTime() / 1000;
-      // console.log('Visibility on (in s): ', VisibilityTimeOn);
+      console.log('Visibility on (in s): ', VisibilityTimeOn);
 
       if ((VisibilityTimeOn - VisibilityTimeOff) > seconds) {
         // console.log('I will reset  the app now.');
@@ -484,7 +484,7 @@ let resetAppIfReturnedAfterXseconds = (seconds) => {
     };
     if (document.visibilityState === 'hidden') {
       VisibilityTimeOff = new Date().getTime() / 1000;
-      // console.log('Visibility off (in s): ', VisibilityTimeOff);
+      console.log('Visibility off (in s): ', VisibilityTimeOff);
     };
   });
 

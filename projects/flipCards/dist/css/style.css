@@ -76,7 +76,7 @@ label {
     cursor: pointer; }
 
 .hintButton {
-  background-color: #f5f5aa;
+  background-color: #f3e5b7;
   text-decoration: solid underline #0404be;
   border: none;
   margin-bottom: 0;
@@ -314,7 +314,7 @@ label {
     display: inline-block;
     position: relative;
     padding-bottom: 30px;
-    color: rgba(72, 228, 11, 0.979);
+    color: white;
     transition: opacity 0.5s;
     -webkit-transition: opacity 0.5s;
     -moz-transition: opacity 0.5s;
@@ -352,7 +352,7 @@ label {
     #training_wrapper #words * {
       padding: 1rem 3rem;
       font-size: 4rem;
-      background-color: white;
+      background-color: #ffe600;
       font-weight: 700;
       margin-bottom: 1px;
       border-radius: 20px;
@@ -479,6 +479,7 @@ label {
     #training_wrapper #threeButtons *,
     #training_wrapper #improveChallengeButtons * {
       flex: 1;
+      opacity: 1;
       height: 100%;
       padding: 2rem 1rem;
       margin: 2px;
@@ -567,6 +568,7 @@ label {
   -o-transform: translate(50%, -50%);
   background-color: red !important;
   z-index: 1000000;
+  text-align: center;
   animation: fadeAway 1s forwards ease-in-out;
   -webkit-animation: fadeAway 1s forwards ease-in-out; }
 
