@@ -155,7 +155,7 @@
             </div>
             <div class="invisibleWindow">
               <h4> Add new word to learn:</h4>
-              <form id="formNewWord" action="">
+              <form id="formNewWord" action="" autocomplete="off">
                 <label for="nativeInput">Native word:</label>
                 <input id="formNewWord_NativeInput" name="nativeInput" type="text">
                 <label for="toLearnInput">Word to learn:</label>
@@ -195,9 +195,9 @@
 
         <div id="hints">
           <div id="hintConnectionReminder" class="hintButton button hide">Connection Reminder</div>
-          <p class="hide hintButton button hintText" id="hintConnectionReminderText">reminder text</p>
+          <p id="hintConnectionReminderText" class="hide hintButton button hintText">reminder text</p>
           <div id="hintConnection" class="hintButton button hide">Connection </div>
-          <p class="hide hintButton button hintText" id="hintConnectionText">connection text</p>
+          <p id="hintConnectionText" class="hide hintButton button hintText">connection text</p>
 
 
         </div>
@@ -239,7 +239,7 @@
             <div class="optionsWindow">
               <!-- <div class="closeButton centerIt button">- Return without changes -</div> -->
               <h4> Adjust:</h4>
-              <form id="formAdjustWord" action="">
+              <form id="formAdjustWord" action="" autocomplete="off">
                 <label for="nativeInput">Native word:</label>
                 <input id="nativeWToAdjust" name="nativeInput" type="text" placeholder="original word">
                 <label for="toLearnInput">Word to learn:</label>

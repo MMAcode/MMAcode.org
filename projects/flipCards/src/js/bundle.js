@@ -41,6 +41,7 @@ let currentCard = {};
 let currentCardID = null;
 let wordOne = '';
 let wordTwo = '';
+let evaluateButtonOpacity = 1;
 const refresh = document.querySelector('#test');
 const nextBt = document.querySelector('#b_next');
 const threeBt = document.querySelector('#threeButtons');
@@ -55,6 +56,7 @@ let loggedStatus = document.querySelector('#loggedInStatus');
 let scoreHTML = document.querySelector('#scoreCounter');
 let mainTitleHTML = document.querySelector('#mainTitle');
 let closeWindowS = document.querySelectorAll('.closeButton');
+let helpUsed = false;
 // let xcc = document.querySelectorAll('.closeButton2')[0];
 // console.log(closeWindowS);
 
@@ -436,7 +438,7 @@ let updateCurrentCard = (e) => {
       // console.log('updated level(in variable):', lev, 'updated enCheck:', en);
     } else {
       // alert('STOP CHEATING, I know you used a hint!;-)');
-      alertUserForSec('CHEATING!', 1.5);
+      // alertUserForSec('CHEATING!', 1.5);
     }
   }
   else {
@@ -529,7 +531,11 @@ let updateALL = async (e) => {
   }
 }
 
-
+let setEvaluateButtonsOpacity = (oUp, oSlow, oStay) => {
+  document.querySelector('#BtnUp').style.opacity = oUp;
+  document.querySelector('#BtnSlow').style.opacity = oSlow;
+  document.querySelector('#BtnStay').style.opacity = oStay;
+}
 
 // HINTS on p1:   show LETTER on click as 
 let ShowLetterOnClick = () => {
@@ -547,6 +553,15 @@ let ShowLetterOnClick = () => {
     secondWordHTML.textContent = wordTwo;
   }
   // console.log('hintLettersToShow:', hintLettersToShow);
+
+  if (clickHintCounter > 1) {
+    // evaluateButtonOpacity = 0.3;
+    setEvaluateButtonsOpacity(0.3, 0.3, 1);
+
+    if (clickHintCounter >= wordTwo.length - 1) {
+      setEvaluateButtonsOpacity(0.3, 0.3, 0.3);
+    }
+  }
 }
 
 let ResetLettersOnClick = () => {
@@ -578,6 +593,7 @@ let showPageOne = async () => {
   secondWordHTML.textContent = '...';
   nextBt.style.display = 'block';
   threeBt.style.display = 'none';
+  setEvaluateButtonsOpacity(1, 1, 1);
 
   // prevent scrolling on second word:
   secondWordHTML.addEventListener('touchmove', preventScroll);
@@ -941,7 +957,10 @@ auth.onAuthStateChanged(async (user) => {
 
 // console.log('getting to listening to al cards click2');
 nextBt.addEventListener('click', e => { showPageTwo(); });
-threeBt.addEventListener('click', ee => { updateALL(ee); })
+threeBt.addEventListener('click', ee => {
+  if (ee.target.style.opacity < 1) { alertUserForSec('CHEATING!', 0.5); }
+  updateALL(ee);
+})
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
 
 // prevent scrolling on certain buttons
@@ -949,7 +968,7 @@ nextBt.addEventListener('touchmove', e => { e.preventDefault(); });
 threeBt.addEventListener('touchmove', e => { e.preventDefault(); });
 // secondWordHTML.addEventListener('touchmove', e => { e.preventDefault(); });
 
-//show and close windows (Help section) on click
+//show and close windows (Help section and Add new word) on click
 for (const sw of showWindowS) {
   sw.addEventListener('click', eX => {
     eX.target.parentElement.nextElementSibling.style.display = "block";
