@@ -1049,7 +1049,7 @@ window.addEventListener('scroll', function (e) {
 
   // console.log('CurentCard in bundle.js on scroll CCCCCCCCCCCCCCCCCC', currentCard);
 
-  
+
   //sort + button
   let yOffset = window.pageYOffset - scrollAmount;
   let bodyWidth = document.querySelector('body').offsetWidth;
