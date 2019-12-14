@@ -124,7 +124,7 @@ label {
   display: inline; }
 
 .bgDark {
-  background-color: blue; }
+  background-color: #8d8df8; }
 
 .mtm {
   margin-top: 10px; }
@@ -501,7 +501,10 @@ label {
     #training_wrapper #improveChallengeButtons #moveOnOption {
       background-color: #ff0077; }
   #training_wrapper #deleteCard {
-    display: flex; }
+    position: fixed;
+    margin: 5px;
+    top: 0;
+    left: 0; }
 
 #googleDrop,
 #normalDrop {

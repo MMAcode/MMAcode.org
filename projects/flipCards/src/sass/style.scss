@@ -203,7 +203,7 @@ label {
 
 
 .bgDark {
-  background-color: blue;
+  background-color: rgb(141, 141, 248);
 }
 
 .mtm {
@@ -840,7 +840,11 @@ label {
 
 
   #deleteCard {
-    display: flex;
+    // display: flex;
+    position: fixed;
+    margin: 5px;
+    top: 0;
+    left: 0;
     // text-align: left;
     // justify-content: flex-start;
   }
