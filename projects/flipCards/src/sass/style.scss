@@ -9,6 +9,7 @@ $cBg_3buttons:rgba(0, 147, 249, 1);
 $cBg_connectionsButtons: rgb(243, 229, 183);
 
 $defaultFontSize:20px;
+$letterBoxSize:90px;
 
 /**
 *
@@ -128,7 +129,7 @@ label {
 }
 
 .hintButton {
-  background-color:$cBg_connectionsButtons;
+  background-color: $cBg_connectionsButtons;
 
   // background: linear-gradient(180deg, rgba(255, 255, 255, 1) 5%, rgba(254, 255, 0, 1) 95%);
   // background-color: white;
@@ -359,7 +360,7 @@ label {
 
 
 #training_wrapper {
-  position: relative;
+  // position: relative;
   // height: 100%;
 
 
@@ -407,20 +408,21 @@ label {
     }
 
     .invisibleWindow {
-      // position: fixed;
-      position: absolute;
+      position: fixed;
+      // position: absolute;  //not working as main2 icons need to be set to relative for floating + button to work
       display: none;
       left: 0;
       top: 0;
       width: 100%;
-      min-height: 170vh;
-      height: auto;
+      height: 100%;
+      // height: auto;
+      // min-height: 100%;
       background-color: rgb(211, 158, 158);
       z-index: 10000;
       text-align: left;
       color: yellow;
       padding: 5px;
-      // overflow: auto;
+      overflow: scroll;
 
       p {
         padding: 5px;
@@ -573,6 +575,7 @@ label {
   }
 
   #words {
+    position: relative;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -580,10 +583,10 @@ label {
 
 
 
-    * {
+    >p {
       padding: 1rem 3rem;
       font-size: 4rem;
-      background-color: rgb(255, 230, 0);
+      // background-color: rgb(255, 230, 0);
       font-weight: 700;
       margin-bottom: 1px;
 
@@ -988,5 +991,66 @@ label {
     color: rgb(4, 4, 190);
     font-size: 2rem;
     font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+
+
+
+#showLettersWrapper {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  // border: 2px solid black;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  box-shadow: 3px 0px 3px 0px grey;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+
+
+#puzzleWrapper {
+  display: flex;
+  // flex-flow: column;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  // background-color: yellow;
+
+  >* {
+    margin: 1px;
+    height: $letterBoxSize;
+    width: $letterBoxSize;
+    font-size: 3.3rem;
+    color: red;
+    // background-color: black;
+
+
+    >* {
+      color: white;
+      background-color: orange;
+      height: $letterBoxSize*2/3;
+      width: $letterBoxSize*2/3;
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      -ms-border-radius: 100%;
+      -o-border-radius: 100%;
+      // border:1px solid blue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      // line-height: 3rem;
+    }
   }
 }

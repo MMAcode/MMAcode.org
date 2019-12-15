@@ -30,7 +30,14 @@ let currentCard = {};
 let currentCardID = null;
 let wordOne = '';
 let wordTwo = '';
+let wShuffledNumbers = [];
 let evaluateButtonOpacity = 1;
+
+let lettersBubblesActive = false;
+let maxNumberOfBubbleLetters = 0;
+let numberOfLettersShownNow = 0;
+let wordTwoLettersShown = '';
+
 const refresh = document.querySelector('#test');
 const nextBt = document.querySelector('#b_next');
 const threeBt = document.querySelector('#threeButtons');
@@ -70,13 +77,249 @@ let points = {
 // console.log(points);
 
 let clickHintCounter = 0;
-let hintLettersToShow = '';
+
 
 let languageToSpeak = '';
 let responsiveVoiceLanguage = '';
 let showNativeWordFirst = true;
 // let languageSwap = true;  //users who have native language czech
 let languageSwap = false;  //users who have native language czech
+
+//////////////F other
+
+
+
+
+
+
+
+
+
+
+//F prepare word to work with
+let getWordToWorkWith = word => {
+  let wL = word.length;
+  let wUse = '';
+  let spaceCounter = 0;
+  for (let i = 0; i < wL; i++) {
+    if (word[i] === ',' || word[i] === ';' || word[i] === "\(" || word[i] === '{') {
+      break;
+    } else {
+      if (word[i] === ' ') { spaceCounter++; };
+      if (spaceCounter > 1) { break; }
+      else {
+        wUse += `${word[i]}`;
+      }
+    }
+  }
+  return wUse;
+}
+
+//////letter puzzle
+let letterPuzzle = word => {
+  console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+
+  //F prepare word to work with
+  let getWordToWorkWith = word => {
+    let wL = word.length;
+    let wUse = '';
+    let spaceCounter = 0;
+    for (let i = 0; i < wL; i++) {
+      if (word[i] === ',' || word[i] === ';' || word[i] === "\(" || word[i] === '{') {
+        break;
+      } else {
+        if (word[i] === ' ') { spaceCounter++; };
+        if (spaceCounter > 1) { break; }
+        else {
+          wUse += `${word[i]}`;
+        }
+      }
+    }
+    return wUse;
+  }
+
+  // making new element-wrapper
+  let makeNewDivElement = (text, /*durationInSec,*/ newDivElID, appendToThisElID, inOrAfter) => {
+    let newElement = document.createElement('div');
+    newElement.textContent = text;
+    newElement.id = newDivElID;
+    // newElement.classList.add("flyingAlert");
+    // newElement.style.animationDuration = durationInSec + "s";
+    let hook = document.querySelector(`#${appendToThisElID}`);
+    hook.insertAdjacentElement(inOrAfter, newElement);
+    // await new Promise(resolve => setTimeout(resolve, durationInSec * 1000));
+    // console.log('XXXXXXXXXXX alert pop up');
+
+    // document.querySelector("#newDivElID").remove();
+  }
+
+  //make letter elements in html
+  let createElementsInWrapper = word => {
+    for (let i = 1; i <= word.length; i++) {
+      // console.log(word[i - 1]);
+      makeNewDivElement('', `wrapper${i}`, 'puzzleWrapper', 'beforeend');
+      makeNewDivElement(word[i - 1], `letter${i}`, `wrapper${i}`, 'beforeend');
+      let randomMarginLeft = Math.round(Math.random() * 30);
+      let randomMarginTop = Math.round(Math.random() * 30);
+      document.querySelector(`#${`letter${i}`}`).style.marginLeft = `${randomMarginLeft}px`;
+      document.querySelector(`#${`letter${i}`}`).style.marginTop = `${randomMarginTop}px`;
+    }
+
+  }
+
+  //shuffle array
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  //check letter clicked
+  let checkLetterClicked = e => {
+    let letterToClick = wAsArray[numberOfLettersShownNow];
+    console.log('first letter to be clicked:', letterToClick);
+
+    //if letter clicked
+    if (e.target.id.includes('letter') == true) {
+      // number = id[id.length - 1];
+      let letterClicked = e.target.innerHTML;
+      console.log('letter clicked:', letterClicked);
+
+      // check if correct letter clicked
+      if (letterClicked === letterToClick) {
+        // remove this letter and show it in main window
+
+        //add letter in html
+        if (numberOfLettersShownNow + 1 < wAsArray.length) {
+          wordTwoLettersShown += letterClicked;
+          document.querySelector('#wordTwo').textContent = wordTwoLettersShown + '...';
+        } else
+          if (numberOfLettersShownNow + 1 === wAsArray.length) {
+            console.log('GGGGGGGGGGGGGGGGGGG');
+            wordTwoLettersShown += letterClicked;
+
+            if (wAsArray.length < word.length) {
+              document.querySelector('#wordTwo').textContent = wordTwoLettersShown + '...';
+            } else {
+              document.querySelector('#wordTwo').textContent = wordTwoLettersShown;
+            }
+
+            document.querySelector('#puzzleWrapper').remove();
+            lettersBubblesActive = false;
+          }
+        e.target.remove();
+        // letterNumberToBeTyped++;
+        numberOfLettersShownNow++;
+        console.log('number of letters shown:', numberOfLettersShownNow);
+        console.log('array length:', wAsArray.length);
+
+
+
+      } else {
+        //make letter red for a sec.
+      }
+
+
+
+
+    } else {
+      console.log('sth else clicked');
+    }
+
+    // console.log(number);
+    // console.log(wAsArray);
+    // console.log(wShuffled);
+  }
+
+
+
+  //////////// MAIN
+  let wUse = getWordToWorkWith(word);
+  maxNumberOfBubbleLetters = wUse.length;
+
+  ////making an array(s)
+  let wAsArray = wUse.split('');
+  let wNumberedArray = [];
+
+  //remove first letters if used already
+  // wAsArray.splice(0, numberOfLettersShownNow);
+
+  // make doubled array template;
+  let nr = 1;
+  wAsArray.forEach(element => {
+    wNumberedArray[nr - 1] = [nr, element];
+    nr++;
+  });
+
+  let shuffledNumberedArray = [...wNumberedArray];
+  shuffle(shuffledNumberedArray);
+  wShuffledNumbers = [];
+  let wShuffled = [];
+  // let wShorer = [];
+  // let nrArray = [];
+  shuffledNumberedArray.forEach(el => {
+    wShuffledNumbers.push('');
+  })
+  let counterX = 1;
+  shuffledNumberedArray.forEach(el => {
+    wShuffled.push(el[1]);
+    wShuffledNumbers[el[0] - 1] = counterX;
+    // nrArray[counterX - 1] = el[0];
+    counterX++;
+  })
+  console.log('- ID: "letterX" to delete,in order----', wShuffledNumbers);
+  // console.log('-----------------------', shuffledNumberedArray);
+
+
+  // console.log('vvvvvvv-----------------', wShuffled);
+  // for (let i = numberOfLettersShownNow; i >=1 ; i--){
+  // if (wShuffledNumbers[])
+  // }
+
+
+
+  // copyMayBeShorterIfHintsUsed.splice(0, numberOfLettersShownNow);
+  // console.log('vvvvvvv-----------------', copyMayBeShorterIfHintsUsed);
+
+  makeNewDivElement('', 'puzzleWrapper', 'words', 'afterend');
+  createElementsInWrapper(wShuffled); //id's: letter1 ...
+
+  //remove used hint elements
+  for (let i = 1; i <= numberOfLettersShownNow; i++) {
+    console.log('#############', i);
+    document.querySelector(`#letter${wShuffledNumbers[i - 1]}`).remove();
+  }
+
+  // let letterNumberToBeTyped = 1;
+  // let lettersToShow = '';
+
+  //set up listener
+
+  document.querySelector('#puzzleWrapper').addEventListener('click', checkLetterClicked);
+
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -337,7 +580,11 @@ let assignWordsAndColours = (currentCard) => {
   }
   // console.log('1.2.1.1 word 1 is:', wordOne);
   // console.log('1.2.1.1 word 2 is:', wordTwo);
+
+  maxNumberOfBubbleLetters = getWordToWorkWith(wordTwo).length;
+
 }
+
 
 
 let showThreeButtons = () => {
@@ -530,33 +777,42 @@ let setEvaluateButtonsOpacity = (oDown, oStay, oSlow, oUp) => {
 // HINTS on p1:   show LETTER on click as 
 let ShowLetterOnClick = () => {
   clickHintCounter++;
-  // importPozdrav('Mirecek');
-  // importPozdrav('Abi');
-  console.log('click counter in function:', clickHintCounter);
-  let hintWord = wordTwo;
+
+
+
   // console.log('you just clicked on hint');
-  if (clickHintCounter < wordTwo.length) {
-    hintLettersToShow += wordTwo[clickHintCounter - 1];
-    secondWordHTML.textContent = hintLettersToShow + '...';
+  if (numberOfLettersShownNow + 1 < wordTwo.length) {
+    wordTwoLettersShown += wordTwo[numberOfLettersShownNow];
+    secondWordHTML.textContent = wordTwoLettersShown + '...';
   }
-  if (clickHintCounter === wordTwo.length) {
+  if (numberOfLettersShownNow - 1 === wordTwo.length) {
     secondWordHTML.textContent = wordTwo;
   }
-  // console.log('hintLettersToShow:', hintLettersToShow);
 
   if (clickHintCounter > 1) {
-    // evaluateButtonOpacity = 0.3;
     setEvaluateButtonsOpacity(0.9, 0.9, 0.3, 0.3);
 
     if (clickHintCounter >= wordTwo.length - 1) {
       setEvaluateButtonsOpacity(0.9, 0.3, 0.3, 0.3);
     }
   }
+
+
+  if (lettersBubblesActive === true && numberOfLettersShownNow < maxNumberOfBubbleLetters) {
+    document.querySelector(`#letter${wShuffledNumbers[numberOfLettersShownNow]}`).remove();
+  }
+  numberOfLettersShownNow++;
+  console.log('hint counter in function:', clickHintCounter);
+  console.log('shown letters counter in function:', numberOfLettersShownNow);
+
+  if (numberOfLettersShownNow >= maxNumberOfBubbleLetters) {
+    document.querySelector('#showLettersWrapper').style.display = 'none';
+  }
 }
 
 let ResetLettersOnClick = () => {
   clickHintCounter = 0;
-  hintLettersToShow = '';
+  wordTwoLettersShown = '';
 }
 let showLevel = () => {
   if (currentCard.enCheck === false) { levelIndicator.innerHTML = `level ${currentCard.level}-A` }
@@ -587,6 +843,7 @@ let showPageOne = async () => {
 
   // prevent scrolling on second word:
   secondWordHTML.addEventListener('touchmove', preventScroll);
+  document.querySelector('#showLettersWrapper').style.display = 'flex';
 
   // **
   // SPEAKING
@@ -602,7 +859,7 @@ let showPageOne = async () => {
 
   // activating letter hints
   clickHintCounter = 0;
-  hintLettersToShow = '';
+  wordTwoLettersShown = '';
   // console.log('clickHintCounter: ', clickHintCounter);
   secondWordHTML.addEventListener('click', ShowLetterOnClick);
   showLevel();
@@ -694,7 +951,8 @@ let updateDatabaseTHEN_UI = () => {
   updateScoreUI();
   hideOptions();
   // countCards(cards);
-
+  numberOfLettersShownNow = 0;
+  wordTwoLettersShown = '';
 
   updateDataReturnCard().then((ans) => {
     // console.log('FINISHING GET CARD main f.');
@@ -947,11 +1205,18 @@ auth.onAuthStateChanged(async (user) => {
 
 
 // console.log('getting to listening to al cards click2');
-nextBt.addEventListener('click', e => { showPageTwo(); });
+nextBt.addEventListener('click', e => {
+  showPageTwo();
+  if (lettersBubblesActive === true) {
+    document.querySelector('#puzzleWrapper').remove();
+  }
+  document.querySelector('#showLettersWrapper').style.display = 'none';
+  lettersBubblesActive = false;
+});
 threeBt.addEventListener('click', ee => {
   //watch for cheating
-  if (ee.target.style.opacity < 0.5) { alertUserForSec(`Sneaky...`, 0.5) }
-
+  if (ee.target.style.opacity < 0.5) { alertUserForSec(`You sneaky one...`, 0.5) }
+  // document.querySelector('#puzzleWrapper').remove();
   updateALL(ee);
 })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })
@@ -981,8 +1246,8 @@ for (const bb of closeWindowS) {
       eee.target.parentElement.parentElement.parentElement.style.display = "none";
     } else {
       eee.target.parentElement.style.display = "none";
+      window.location.reload();
     }
-    window.location.reload();
     scroll(0, scrollAmount);
   });
 };
@@ -1005,7 +1270,14 @@ remindButtonHTML.addEventListener('click', e => {
 //   updateDatabaseTHEN_UI();
 // })
 
-
+//listen to show letters button
+let once = true;
+document.querySelector('#showLettersWrapper').addEventListener('click', e => {
+  letterPuzzle(wordTwo);
+  lettersBubblesActive = true;
+  setEvaluateButtonsOpacity(2, 2, 2, 0.3);
+  document.querySelector('#showLettersWrapper').style.display = 'none';
+});
 
 
 
@@ -1084,6 +1356,21 @@ window.addEventListener('scroll', function (e) {
   // console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOO offset ', centerOffset);
   // console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOO ', centerButtonOpacityMiro);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

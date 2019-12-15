@@ -212,308 +212,322 @@ label {
     background-color: #9a9af7;
     padding: 5vmin; }
 
-#training_wrapper {
-  position: relative; }
-  #training_wrapper #mainIcons {
-    position: relative;
-    display: flex;
-    justify-content: space-between; }
-  #training_wrapper #help .visibleIcon,
-  #training_wrapper #addVocabulary .visibleIcon {
-    margin: 10px 10px 20px 10px;
-    color: #eeff00;
-    width: 50px;
-    height: 50px;
-    z-index: 100;
-    border-radius: 100%;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    -ms-border-radius: 100%;
-    -o-border-radius: 100%;
-    box-shadow: 3px 3px 3px 0px grey;
-    transition: all 0.5s ease-out;
-    -webkit-transition: all 0.5s ease-out;
-    -moz-transition: all 0.5s ease-out;
-    -ms-transition: all 0.5s ease-out;
-    -o-transition: all 0.5s ease-out; }
-    #training_wrapper #help .visibleIcon:hover,
-    #training_wrapper #addVocabulary .visibleIcon:hover {
-      cursor: pointer; }
-  #training_wrapper #help .invisibleWindow,
-  #training_wrapper #addVocabulary .invisibleWindow {
-    position: absolute;
-    display: none;
-    left: 0;
-    top: 0;
-    width: 100%;
-    min-height: 170vh;
-    height: auto;
-    background-color: #d39e9e;
-    z-index: 10000;
-    text-align: left;
-    color: yellow;
-    padding: 5px; }
-    #training_wrapper #help .invisibleWindow p,
-    #training_wrapper #addVocabulary .invisibleWindow p {
-      padding: 5px; }
-    #training_wrapper #help .invisibleWindow a,
-    #training_wrapper #addVocabulary .invisibleWindow a {
-      line-height: 1.3;
-      padding: 10px; }
-    #training_wrapper #help .invisibleWindow h1,
-    #training_wrapper #help .invisibleWindow h2,
-    #training_wrapper #addVocabulary .invisibleWindow h1,
-    #training_wrapper #addVocabulary .invisibleWindow h2 {
-      text-align: center;
-      margin-top: 40px; }
-    #training_wrapper #help .invisibleWindow h1,
-    #training_wrapper #addVocabulary .invisibleWindow h1 {
-      color: #0099ff; }
-    #training_wrapper #help .invisibleWindow h2,
-    #training_wrapper #addVocabulary .invisibleWindow h2 {
-      text-decoration: solid underline white; }
-    #training_wrapper #help .invisibleWindow h3,
-    #training_wrapper #help .invisibleWindow h4,
-    #training_wrapper #help .invisibleWindow h5,
-    #training_wrapper #addVocabulary .invisibleWindow h3,
-    #training_wrapper #addVocabulary .invisibleWindow h4,
-    #training_wrapper #addVocabulary .invisibleWindow h5 {
-      text-align: left;
-      margin-top: 30px; }
-    #training_wrapper #help .invisibleWindow h6,
-    #training_wrapper #addVocabulary .invisibleWindow h6 {
-      margin-top: 20px; }
-    #training_wrapper #help .invisibleWindow .closeButton,
-    #training_wrapper #addVocabulary .invisibleWindow .closeButton {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 10vh;
-      background: #5a5a5a;
-      color: white; }
-      #training_wrapper #help .invisibleWindow .closeButton:hover,
-      #training_wrapper #addVocabulary .invisibleWindow .closeButton:hover {
-        cursor: pointer; }
-    #training_wrapper #help .invisibleWindow #formNewWord,
-    #training_wrapper #addVocabulary .invisibleWindow #formNewWord {
-      margin-left: 10px;
-      margin-right: 10px; }
-      #training_wrapper #help .invisibleWindow #formNewWord input[type="text"],
-      #training_wrapper #addVocabulary .invisibleWindow #formNewWord input[type="text"] {
-        width: 100%; }
-  #training_wrapper #addVocabulary .visibleIcon {
-    position: fixed;
-    right: 0;
-    top: 0; }
-  #training_wrapper #mainTitle {
-    opacity: 0;
-    display: inline-block;
-    position: relative;
-    padding-bottom: 30px;
-    color: white;
-    transition: opacity 0.5s;
-    -webkit-transition: opacity 0.5s;
-    -moz-transition: opacity 0.5s;
-    -ms-transition: opacity 0.5s;
-    -o-transition: opacity 0.5s; }
-    #training_wrapper #mainTitle #tapToCenter {
-      border-radius: 30px;
-      -webkit-border-radius: 30px;
-      -moz-border-radius: 30px;
-      -ms-border-radius: 30px;
-      -o-border-radius: 30px;
-      border: 1px dotted red;
-      padding: 0 5px;
-      position: absolute;
-      top: 43%;
-      right: 50%;
-      transform: translate(50%, -50%);
-      -webkit-transform: translate(50%, -50%);
-      -moz-transform: translate(50%, -50%);
-      -ms-transform: translate(50%, -50%);
-      -o-transform: translate(50%, -50%);
-      font-size: 1.3rem;
-      color: #fd7171; }
-  #training_wrapper #mainTitle:hover {
+#training_wrapper #mainIcons {
+  position: relative;
+  display: flex;
+  justify-content: space-between; }
+
+#training_wrapper #help .visibleIcon,
+#training_wrapper #addVocabulary .visibleIcon {
+  margin: 10px 10px 20px 10px;
+  color: #eeff00;
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  box-shadow: 3px 3px 3px 0px grey;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out; }
+  #training_wrapper #help .visibleIcon:hover,
+  #training_wrapper #addVocabulary .visibleIcon:hover {
     cursor: pointer; }
-  #training_wrapper #language_labels span:nth-child(1) {
-    color: red; }
-  #training_wrapper #language_labels span:nth-child(3) {
-    color: blue; }
-  #training_wrapper #words {
+
+#training_wrapper #help .invisibleWindow,
+#training_wrapper #addVocabulary .invisibleWindow {
+  position: fixed;
+  display: none;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d39e9e;
+  z-index: 10000;
+  text-align: left;
+  color: yellow;
+  padding: 5px;
+  overflow: scroll; }
+  #training_wrapper #help .invisibleWindow p,
+  #training_wrapper #addVocabulary .invisibleWindow p {
+    padding: 5px; }
+  #training_wrapper #help .invisibleWindow a,
+  #training_wrapper #addVocabulary .invisibleWindow a {
+    line-height: 1.3;
+    padding: 10px; }
+  #training_wrapper #help .invisibleWindow h1,
+  #training_wrapper #help .invisibleWindow h2,
+  #training_wrapper #addVocabulary .invisibleWindow h1,
+  #training_wrapper #addVocabulary .invisibleWindow h2 {
+    text-align: center;
+    margin-top: 40px; }
+  #training_wrapper #help .invisibleWindow h1,
+  #training_wrapper #addVocabulary .invisibleWindow h1 {
+    color: #0099ff; }
+  #training_wrapper #help .invisibleWindow h2,
+  #training_wrapper #addVocabulary .invisibleWindow h2 {
+    text-decoration: solid underline white; }
+  #training_wrapper #help .invisibleWindow h3,
+  #training_wrapper #help .invisibleWindow h4,
+  #training_wrapper #help .invisibleWindow h5,
+  #training_wrapper #addVocabulary .invisibleWindow h3,
+  #training_wrapper #addVocabulary .invisibleWindow h4,
+  #training_wrapper #addVocabulary .invisibleWindow h5 {
+    text-align: left;
+    margin-top: 30px; }
+  #training_wrapper #help .invisibleWindow h6,
+  #training_wrapper #addVocabulary .invisibleWindow h6 {
+    margin-top: 20px; }
+  #training_wrapper #help .invisibleWindow .closeButton,
+  #training_wrapper #addVocabulary .invisibleWindow .closeButton {
     display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center; }
-    #training_wrapper #words * {
-      padding: 1rem 3rem;
-      font-size: 4rem;
-      background-color: #ffe600;
-      font-weight: 700;
-      margin-bottom: 1px;
-      border-radius: 20px;
-      -webkit-border-radius: 20px;
-      -moz-border-radius: 20px;
-      -ms-border-radius: 20px;
-      -o-border-radius: 20px; }
-  #training_wrapper #levelIndicator {
-    color: lightgray;
-    display: none; }
-  #training_wrapper #options {
-    display: none;
     align-items: center;
     justify-content: center;
-    margin-top: 10px; }
-    #training_wrapper #options .optionsIcon {
-      display: none;
-      padding: 3px 8px;
-      margin: 3px;
-      margin-top: 20px;
-      border: 2px solid rgba(255, 255, 255, 0.301);
-      color: blue;
-      color: white;
-      text-decoration: none;
-      box-shadow: 3px 3px 3px 0px grey;
-      border-radius: 15px;
-      -webkit-border-radius: 15px;
-      -moz-border-radius: 15px;
-      -ms-border-radius: 15px;
-      -o-border-radius: 15px; }
-      #training_wrapper #options .optionsIcon:hover {
-        cursor: pointer; }
-    #training_wrapper #options .optionsWindow {
-      display: none;
-      height: 170vh;
-      overflow: scroll; }
-      #training_wrapper #options .optionsWindow input[type="text"] {
-        width: 100%; }
-      #training_wrapper #options .optionsWindow #pospone {
-        padding-top: 10px; }
-        #training_wrapper #options .optionsWindow #pospone input,
-        #training_wrapper #options .optionsWindow #pospone label {
-          display: inline;
-          padding: 0; }
-        #training_wrapper #options .optionsWindow #pospone div {
-          padding: 0 10px; }
-        #training_wrapper #options .optionsWindow #pospone .flexWrapper {
-          padding: 5px 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center; }
-          #training_wrapper #options .optionsWindow #pospone .flexWrapper * {
-            display: flex;
-            flex-flow: column;
-            align-items: center;
-            justify-content: center; }
-    #training_wrapper #options #definitionGoogle .optionsIcon,
-    #training_wrapper #options #changeWords .optionsIcon,
-    #training_wrapper #options #speakWord .optionsIcon {
-      display: inline-block; }
-    #training_wrapper #options #definitionGoogle .optionsWindow,
-    #training_wrapper #options #changeWords .optionsWindow {
-      z-index: 100;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: white;
-      border: 2px solid black; }
-      #training_wrapper #options #definitionGoogle .optionsWindow h1,
-      #training_wrapper #options #definitionGoogle .optionsWindow h2,
-      #training_wrapper #options #definitionGoogle .optionsWindow h3,
-      #training_wrapper #options #definitionGoogle .optionsWindow h4,
-      #training_wrapper #options #definitionGoogle .optionsWindow h5,
-      #training_wrapper #options #changeWords .optionsWindow h1,
-      #training_wrapper #options #changeWords .optionsWindow h2,
-      #training_wrapper #options #changeWords .optionsWindow h3,
-      #training_wrapper #options #changeWords .optionsWindow h4,
-      #training_wrapper #options #changeWords .optionsWindow h5 {
-        color: purple; }
-      #training_wrapper #options #definitionGoogle .optionsWindow .closeButton,
-      #training_wrapper #options #changeWords .optionsWindow .closeButton {
-        line-height: normal;
-        color: black; }
-        #training_wrapper #options #definitionGoogle .optionsWindow .closeButton:hover,
-        #training_wrapper #options #changeWords .optionsWindow .closeButton:hover {
-          cursor: pointer; }
-      #training_wrapper #options #definitionGoogle .optionsWindow #formAdjustWord,
-      #training_wrapper #options #changeWords .optionsWindow #formAdjustWord {
-        line-height: 1.3;
-        padding: 5px 10px;
-        background-color: #b8b8ee; }
-  #training_wrapper #connection {
-    display: none;
-    margin-top: 10px; }
-  #training_wrapper #bottonWrapper {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
-    height: 80px;
-    max-width: 500px;
-    margin: 0 auto;
-    display: flex; }
-  #training_wrapper #b_next,
-  #training_wrapper #threeButtons,
-  #training_wrapper #improveChallengeButtons {
-    width: 100%;
-    padding: 2rem 1rem; }
-    #training_wrapper #b_next:hover,
-    #training_wrapper #threeButtons:hover,
-    #training_wrapper #improveChallengeButtons:hover {
+    height: 10vh;
+    background: #5a5a5a;
+    color: white; }
+    #training_wrapper #help .invisibleWindow .closeButton:hover,
+    #training_wrapper #addVocabulary .invisibleWindow .closeButton:hover {
       cursor: pointer; }
-  #training_wrapper #b_next {
-    background-color: yellow;
-    background-color: #977005; }
-  #training_wrapper #threeButtons,
-  #training_wrapper #improveChallengeButtons {
+  #training_wrapper #help .invisibleWindow #formNewWord,
+  #training_wrapper #addVocabulary .invisibleWindow #formNewWord {
+    margin-left: 10px;
+    margin-right: 10px; }
+    #training_wrapper #help .invisibleWindow #formNewWord input[type="text"],
+    #training_wrapper #addVocabulary .invisibleWindow #formNewWord input[type="text"] {
+      width: 100%; }
+
+#training_wrapper #addVocabulary .visibleIcon {
+  position: fixed;
+  right: 0;
+  top: 0; }
+
+#training_wrapper #mainTitle {
+  opacity: 0;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 30px;
+  color: white;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -ms-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s; }
+  #training_wrapper #mainTitle #tapToCenter {
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border: 1px dotted red;
+    padding: 0 5px;
+    position: absolute;
+    top: 43%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    -webkit-transform: translate(50%, -50%);
+    -moz-transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%);
+    -o-transform: translate(50%, -50%);
+    font-size: 1.3rem;
+    color: #fd7171; }
+
+#training_wrapper #mainTitle:hover {
+  cursor: pointer; }
+
+#training_wrapper #language_labels span:nth-child(1) {
+  color: red; }
+
+#training_wrapper #language_labels span:nth-child(3) {
+  color: blue; }
+
+#training_wrapper #words {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center; }
+  #training_wrapper #words > p {
+    padding: 1rem 3rem;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px; }
+
+#training_wrapper #levelIndicator {
+  color: lightgray;
+  display: none; }
+
+#training_wrapper #options {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px; }
+  #training_wrapper #options .optionsIcon {
     display: none;
-    padding: 0;
-    height: 100%;
-    flex-flow: wrap;
-    align-items: center;
-    justify-content: center; }
-    #training_wrapper #threeButtons *,
-    #training_wrapper #improveChallengeButtons * {
-      flex: 1;
-      opacity: 1;
-      height: 100%;
-      padding: 2rem 1rem;
-      margin: 2px;
-      border-radius: 10px;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      -ms-border-radius: 10px;
-      -o-border-radius: 10px;
-      box-shadow: 3px 3px 3px 0px grey;
-      opacity: 0.9;
-      border: 2px solid rgba(255, 255, 255, 0.459); }
-    #training_wrapper #threeButtons #BtnDown,
-    #training_wrapper #improveChallengeButtons #BtnDown {
-      background-color: red; }
-    #training_wrapper #threeButtons #BtnStay,
-    #training_wrapper #improveChallengeButtons #BtnStay {
-      background-color: #ffe600; }
-    #training_wrapper #threeButtons #BtnSlow,
-    #training_wrapper #improveChallengeButtons #BtnSlow {
-      background-color: #6060dd; }
-    #training_wrapper #threeButtons #BtnUp,
-    #training_wrapper #improveChallengeButtons #BtnUp {
-      background-color: #04e422; }
-    #training_wrapper #threeButtons #adjustOption,
-    #training_wrapper #improveChallengeButtons #adjustOption {
-      background-color: #6d04e4; }
-    #training_wrapper #threeButtons #moveOnOption,
-    #training_wrapper #improveChallengeButtons #moveOnOption {
-      background-color: #ff0077; }
-  #training_wrapper #deleteCard {
-    position: fixed;
-    margin: 5px;
+    padding: 3px 8px;
+    margin: 3px;
+    margin-top: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.301);
+    color: blue;
+    color: white;
+    text-decoration: none;
+    box-shadow: 3px 3px 3px 0px grey;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px; }
+    #training_wrapper #options .optionsIcon:hover {
+      cursor: pointer; }
+  #training_wrapper #options .optionsWindow {
+    display: none;
+    height: 170vh;
+    overflow: scroll; }
+    #training_wrapper #options .optionsWindow input[type="text"] {
+      width: 100%; }
+    #training_wrapper #options .optionsWindow #pospone {
+      padding-top: 10px; }
+      #training_wrapper #options .optionsWindow #pospone input,
+      #training_wrapper #options .optionsWindow #pospone label {
+        display: inline;
+        padding: 0; }
+      #training_wrapper #options .optionsWindow #pospone div {
+        padding: 0 10px; }
+      #training_wrapper #options .optionsWindow #pospone .flexWrapper {
+        padding: 5px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        #training_wrapper #options .optionsWindow #pospone .flexWrapper * {
+          display: flex;
+          flex-flow: column;
+          align-items: center;
+          justify-content: center; }
+  #training_wrapper #options #definitionGoogle .optionsIcon,
+  #training_wrapper #options #changeWords .optionsIcon,
+  #training_wrapper #options #speakWord .optionsIcon {
+    display: inline-block; }
+  #training_wrapper #options #definitionGoogle .optionsWindow,
+  #training_wrapper #options #changeWords .optionsWindow {
+    z-index: 100;
+    position: absolute;
     top: 0;
-    left: 0; }
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 2px solid black; }
+    #training_wrapper #options #definitionGoogle .optionsWindow h1,
+    #training_wrapper #options #definitionGoogle .optionsWindow h2,
+    #training_wrapper #options #definitionGoogle .optionsWindow h3,
+    #training_wrapper #options #definitionGoogle .optionsWindow h4,
+    #training_wrapper #options #definitionGoogle .optionsWindow h5,
+    #training_wrapper #options #changeWords .optionsWindow h1,
+    #training_wrapper #options #changeWords .optionsWindow h2,
+    #training_wrapper #options #changeWords .optionsWindow h3,
+    #training_wrapper #options #changeWords .optionsWindow h4,
+    #training_wrapper #options #changeWords .optionsWindow h5 {
+      color: purple; }
+    #training_wrapper #options #definitionGoogle .optionsWindow .closeButton,
+    #training_wrapper #options #changeWords .optionsWindow .closeButton {
+      line-height: normal;
+      color: black; }
+      #training_wrapper #options #definitionGoogle .optionsWindow .closeButton:hover,
+      #training_wrapper #options #changeWords .optionsWindow .closeButton:hover {
+        cursor: pointer; }
+    #training_wrapper #options #definitionGoogle .optionsWindow #formAdjustWord,
+    #training_wrapper #options #changeWords .optionsWindow #formAdjustWord {
+      line-height: 1.3;
+      padding: 5px 10px;
+      background-color: #b8b8ee; }
+
+#training_wrapper #connection {
+  display: none;
+  margin-top: 10px; }
+
+#training_wrapper #bottonWrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex; }
+
+#training_wrapper #b_next,
+#training_wrapper #threeButtons,
+#training_wrapper #improveChallengeButtons {
+  width: 100%;
+  padding: 2rem 1rem; }
+  #training_wrapper #b_next:hover,
+  #training_wrapper #threeButtons:hover,
+  #training_wrapper #improveChallengeButtons:hover {
+    cursor: pointer; }
+
+#training_wrapper #b_next {
+  background-color: yellow;
+  background-color: #977005; }
+
+#training_wrapper #threeButtons,
+#training_wrapper #improveChallengeButtons {
+  display: none;
+  padding: 0;
+  height: 100%;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: center; }
+  #training_wrapper #threeButtons *,
+  #training_wrapper #improveChallengeButtons * {
+    flex: 1;
+    opacity: 1;
+    height: 100%;
+    padding: 2rem 1rem;
+    margin: 2px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    box-shadow: 3px 3px 3px 0px grey;
+    opacity: 0.9;
+    border: 2px solid rgba(255, 255, 255, 0.459); }
+  #training_wrapper #threeButtons #BtnDown,
+  #training_wrapper #improveChallengeButtons #BtnDown {
+    background-color: red; }
+  #training_wrapper #threeButtons #BtnStay,
+  #training_wrapper #improveChallengeButtons #BtnStay {
+    background-color: #ffe600; }
+  #training_wrapper #threeButtons #BtnSlow,
+  #training_wrapper #improveChallengeButtons #BtnSlow {
+    background-color: #6060dd; }
+  #training_wrapper #threeButtons #BtnUp,
+  #training_wrapper #improveChallengeButtons #BtnUp {
+    background-color: #04e422; }
+  #training_wrapper #threeButtons #adjustOption,
+  #training_wrapper #improveChallengeButtons #adjustOption {
+    background-color: #6d04e4; }
+  #training_wrapper #threeButtons #moveOnOption,
+  #training_wrapper #improveChallengeButtons #moveOnOption {
+    background-color: #ff0077; }
+
+#training_wrapper #deleteCard {
+  position: fixed;
+  margin: 5px;
+  top: 0;
+  left: 0; }
 
 #googleDrop,
 #normalDrop {
@@ -594,3 +608,47 @@ label {
     color: #0404be;
     font-size: 2rem;
     font-family: Arial, Helvetica, sans-serif; }
+
+#showLettersWrapper {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  box-shadow: 3px 0px 3px 0px grey;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%; }
+
+#puzzleWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center; }
+  #puzzleWrapper > * {
+    margin: 1px;
+    height: 90px;
+    width: 90px;
+    font-size: 3.3rem;
+    color: red; }
+    #puzzleWrapper > * > * {
+      color: white;
+      background-color: orange;
+      height: 60px;
+      width: 60px;
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      -ms-border-radius: 100%;
+      -o-border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800; }
