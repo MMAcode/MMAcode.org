@@ -2,7 +2,7 @@
 import { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, resetAppIfReturnedAfterXseconds, countCards, daysSince1970Floored } from './stopwatchPoints';
 
 import './wordsOptions';
-import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions } from './wordsOptions';
+import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions, getPosponeTime } from './wordsOptions';
 
 
 //mic
@@ -38,6 +38,8 @@ let maxNumberOfBubbleLetters = 0;
 let numberOfLettersShownNow = 0;
 let wordTwoLettersShown = '';
 
+// let posponeAdjusted = false;
+
 const refresh = document.querySelector('#test');
 const nextBt = document.querySelector('#b_next');
 const threeBt = document.querySelector('#threeButtons');
@@ -60,11 +62,11 @@ let showWindowS = document.querySelectorAll('.visibleIcon');
 
 let remindConnectButtonHTML = document.querySelector('#hintConnection');
 // remindConnectButtonHTML.classList.remove('hide');
-let remindConnectTextHTML = document.querySelector('#hintConnection + *');
+let remindConnectTextHTML = document.querySelector('#hintConnectionText');
 // remindConnectTextHTML.classList.remove('hide');
 let remindButtonHTML = document.querySelector('#hintConnectionReminder');
 // remindButtonHTML.classList.remove('hide');
-let remindTextHTML = document.querySelector('#hintConnectionReminder + *');
+let remindTextHTML = document.querySelector('#hintConnectionReminderText');
 // remindTextHTML.classList.remove('hide');
 
 
@@ -364,7 +366,7 @@ let arrayTimes = [];
 let timeCounter = 1000;
 // let timeCounter = 10000;
 let oneArray = [];
-let levelLearned = 10; //if level 10 --> label as learned
+let levelLearned = 11; //if level 11 --> label as learned
 
 // for (let i = 1; i < levelLearned; i++) {
 //   arrayTimes.push(timeCounter);
@@ -386,7 +388,8 @@ arrayTimes = [
   3600000 * 22,
   86400000 * 2, //days
   86400000 * 5,
-  86400000 * 15  //    L9 adds this much time (first level is updated, then this time is added based on current level)
+  86400000 * 15,  //    L9 adds this much time (first level is updated, then this time is added based on current level)
+  86400000 * 45,
 ]
 // console.log('level 9  adds ', arrayTimes[9], " ms to now time");
 
@@ -697,8 +700,15 @@ let updateCurrentCard = (e) => {
   currentCard.due = false;
 
   // card learned/not learned:
-  if (lev < levelLearned) { currentCard.dueTime = now + arrayTimes[lev]; }
-  else if (lev = levelLearned) {
+  if (lev < levelLearned) {
+    let posponedTime = getPosponeTime();
+    currentCard.dueTime = now + posponedTime + arrayTimes[lev];
+    if (posponedTime > 0) {
+      alertUserForSec('Card posponed.', 1);
+    }
+
+  }
+  else if (lev == levelLearned) {
     currentCard.level = 888;
     // currentCard.mainStage = 'learned';
     // console.log('card labeled learned');
@@ -840,6 +850,7 @@ let showPageOne = async () => {
   nextBt.style.display = 'block';
   threeBt.style.display = 'none';
   setEvaluateButtonsOpacity(0.9, 0.9, 0.9, 0.9);
+  // posponeAdjusted = false;
 
   // prevent scrolling on second word:
   secondWordHTML.addEventListener('touchmove', preventScroll);
@@ -988,7 +999,8 @@ let updateDatabaseTHEN_UI = () => {
         alertUserForSec("1 step from learned:", 1.4);
       } else {
         wordsHTML.forEach(element => {
-          element.style.backgroundColor = 'rgb(255, 230, 0)';
+          // element.style.backgroundColor = 'rgb(255, 230, 0)';
+          element.style.backgroundColor = 'rgb(252, 240, 188)';
         })
       }
       showPageOne();
@@ -1078,8 +1090,9 @@ let activateNEwCardListener = (user) => {
 
 // short alert
 let alertUserForSec = async (text, durationInSec) => {
-  let alertForSec = document.createElement('div');
-  alertForSec.textContent = text;
+  let alertForSec = document.createElement('p');
+  // alertForSec.textContent = text;
+  alertForSec.innerHTML = text;
   alertForSec.id = "alertForSec";
   // alertForSec.classList.add("flyingAlert");
   alertForSec.style.animationDuration = durationInSec + "s";
@@ -1301,9 +1314,9 @@ window.addEventListener('click', e => {
 });
 
 // hiding score
-let scrollAmount = 350;
+let scrollAmount = 450;
 let offsetTop = document.querySelector('#mainTitle').offsetTop;
-scrollAmount = offsetTop;
+// scrollAmount = offsetTop;
 scroll(0, scrollAmount);  // to hide scores on the beginning
 // ho hide score when title clicked
 mainTitleHTML.addEventListener('click', e => { scroll(0, scrollAmount) });
@@ -1323,7 +1336,8 @@ window.addEventListener('scroll', function (e) {
 
 
   //sort + button
-  let yOffset = window.pageYOffset - scrollAmount;
+  // let yOffset = window.pageYOffset - scrollAmount;
+  let yOffset = window.pageYOffset - offsetTop;
   let bodyWidth = document.querySelector('body').offsetWidth;
   let containerWidth = document.querySelector('#container').offsetWidth;
   if (yOffset > -75) {
@@ -1345,7 +1359,8 @@ window.addEventListener('scroll', function (e) {
   else { document.querySelector('#mainTitle').style.opacity = '1'; }
 
   // tapToCenter button opacity
-  let centerOffset = Math.abs(window.pageYOffset - scrollAmount);
+  // let centerOffset = Math.abs(window.pageYOffset - scrollAmount);
+  let centerOffset = Math.abs(window.pageYOffset - offsetTop);
   let centerButtonOpacityMiro = 0;
   if (centerOffset > 75) {
     centerButtonOpacityMiro = 0 + (centerOffset - 25) / 200;
@@ -1375,4 +1390,4 @@ window.addEventListener('scroll', function (e) {
 
 
 
-export { cards, userID, alertUserForSec, scrollAmount };
+export { cards, userID, alertUserForSec, scrollAmount, wordOne };

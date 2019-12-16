@@ -1,5 +1,6 @@
-import { alertUserForSec, scrollAmount } from "./bundle";
+import { alertUserForSec, scrollAmount, wordOne } from "./bundle";
 
+// alertUserForSec('ahoj', 2);
 let optionsHTML = document.querySelector('#options');
 let adjustedCardToReturn = undefined;
 
@@ -21,6 +22,8 @@ let currentCardInOp = null;
 let currentCardInOpID = null;
 let userInOp = null;
 let cardsIoOp = null;
+
+let posponeAdjusted = 0;
 
 let speakWordHTML = document.querySelector('#speakWord');
 // let speakWordHTMLb = speakWordHTML.querySelector('.optionsIcon');
@@ -197,15 +200,22 @@ let adjustForm = e => {
 
 
   let nowAdjust = new Date().getTime();
-  currentCardInOp.dueTime = nowAdjust + 1000 * 60 * 1 //show in 1 min
+  // currentCardInOp.dueTime = nowAdjust + 1000 * 60 * 1 //show in 1 min
   // if pospone set...
+  posponeAdjusted = 0;
   if (posponeCard === 'm') {
-    currentCardInOp.dueTime += 1000 * 60 * 5;
+    // currentCardInOp.dueTime += 1000 * 60 * 5;
+    posponeAdjusted = 1000 * 60 * 5;
+
   } else if (posponeCard === 'h') {
-    currentCardInOp.dueTime += 1000 * 60 * 60 * 5;
+    // currentCardInOp.dueTime += 1000 * 60 * 60 * 5;
+    posponeAdjusted = 1000 * 60 * 60 * 5;
+
   } else if (posponeCard === 'd') {
-    currentCardInOp.dueTime += 1000 * 60 * 60 * 24 * 5;
-  };
+    // currentCardInOp.dueTime += 1000 * 60 * 60 * 24 * 5;
+    posponeAdjusted = 1000 * 60 * 60 * 24 * 5;
+
+  } else { posponeAdjusted = 0; }
 
   currentCardInOp.lastSeen = nowAdjust;
 
@@ -218,7 +228,7 @@ let adjustForm = e => {
   adjustedCardToReturn = currentCardInOp;
   console.log('adjusted card in OPTIONS CCCCCCCCCCCCCCC', currentCardInOp);
   console.log('Flip-card adjusted');
-  alertUserForSec("Done", 0.8);
+  alertUserForSec("<p>Evaluate card <br> to SAVE changes</p>", 1);
   // reset form - HAS TO BE HERE or
 
 
@@ -231,8 +241,19 @@ let adjustForm = e => {
   //show connection text if exists
   if (currentCardInOp.connection != undefined && currentCardInOp.connection != '') {
     document.querySelector('#hintConnection').classList.remove('hide');
-    document.querySelector('#hintConnection + *').classList.remove('hide');
+    document.querySelector('#hintConnectionText').innerHTML = currentCardInOp.connection;
+    document.querySelector('#hintConnectionText').classList.remove('hide');
+
   };
+
+
+  // update connection reminder html NOT needed  (but which one to show? ? ?)
+  //   if (currentCard.languageNative == wordOne && currentCardInOp.cReminderNativeShown != undefined && currentCardInOp.cReminderNativeShown != '') {
+  //     document.querySelector('#hintConnectionText').innerHTML = currentCardInOp.connection;
+  // }
+  //   if (currentCardInOp.cReminderToLearnShown != undefined && currentCardInOp.cReminderToLearnShown != '') {
+  // }
+
   // // hide connection reminder
   document.querySelector('#hintConnectionReminder').classList.add('hide');
   document.querySelector('#hintConnectionReminder + *').classList.add('hide');
@@ -272,7 +293,14 @@ let adjustForm = e => {
 
 }
 
+let getPosponeTime = () => {
+  let sendTime = posponeAdjusted;
+  posponeAdjusted = 0;
+  console.log('PPPPPPPPPPPPPPPPPPPPPP', sendTime);
+  return sendTime;
+}
+
 let formToAdjust = document.querySelector('#formAdjustWord');
 formToAdjust.addEventListener('submit', adjustForm);
 
-export { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions };
+export { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions, getPosponeTime };

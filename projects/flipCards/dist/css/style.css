@@ -496,11 +496,11 @@ label {
     height: 100%;
     padding: 2rem 1rem;
     margin: 2px;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
+    border-radius: 100% 100% 10px 10px;
+    -webkit-border-radius: 100% 100% 10px 10px;
+    -moz-border-radius: 100% 100% 10px 10px;
+    -ms-border-radius: 100% 100% 10px 10px;
+    -o-border-radius: 100% 100% 10px 10px;
     box-shadow: 3px 3px 3px 0px grey;
     opacity: 0.9;
     border: 2px solid rgba(255, 255, 255, 0.459); }
