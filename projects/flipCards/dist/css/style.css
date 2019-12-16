@@ -478,8 +478,13 @@ label {
     cursor: pointer; }
 
 #training_wrapper #b_next {
-  background-color: yellow;
-  background-color: #977005; }
+  background-color: #977005;
+  border-top: 1px solid #fffb00;
+  border-radius: 50% 50% 0 0;
+  -webkit-border-radius: 50% 50% 0 0;
+  -moz-border-radius: 50% 50% 0 0;
+  -ms-border-radius: 50% 50% 0 0;
+  -o-border-radius: 50% 50% 0 0; }
 
 #training_wrapper #threeButtons,
 #training_wrapper #improveChallengeButtons {
@@ -509,10 +514,10 @@ label {
     background-color: red; }
   #training_wrapper #threeButtons #BtnStay,
   #training_wrapper #improveChallengeButtons #BtnStay {
-    background-color: #ffe600; }
+    background-color: orange; }
   #training_wrapper #threeButtons #BtnSlow,
   #training_wrapper #improveChallengeButtons #BtnSlow {
-    background-color: #6060dd; }
+    background-color: yellow; }
   #training_wrapper #threeButtons #BtnUp,
   #training_wrapper #improveChallengeButtons #BtnUp {
     background-color: #04e422; }
