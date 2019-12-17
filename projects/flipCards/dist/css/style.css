@@ -479,7 +479,7 @@ label {
 
 #training_wrapper #b_next {
   background-color: #977005;
-  border-top: 1px solid #fffb00;
+  border-top: 3px solid #fffb00;
   border-radius: 50% 50% 0 0;
   -webkit-border-radius: 50% 50% 0 0;
   -moz-border-radius: 50% 50% 0 0;
@@ -497,7 +497,8 @@ label {
   #training_wrapper #threeButtons *,
   #training_wrapper #improveChallengeButtons * {
     flex: 1;
-    opacity: 1;
+    opacity: 0.9;
+    flex-grow: 1;
     height: 100%;
     padding: 2rem 1rem;
     margin: 2px;
@@ -507,8 +508,7 @@ label {
     -ms-border-radius: 100% 100% 10px 10px;
     -o-border-radius: 100% 100% 10px 10px;
     box-shadow: 3px 3px 3px 0px grey;
-    opacity: 0.9;
-    border: 2px solid rgba(255, 255, 255, 0.459); }
+    border-top: none; }
   #training_wrapper #threeButtons #BtnDown,
   #training_wrapper #improveChallengeButtons #BtnDown {
     background-color: red; }
@@ -520,7 +520,7 @@ label {
     background-color: yellow; }
   #training_wrapper #threeButtons #BtnUp,
   #training_wrapper #improveChallengeButtons #BtnUp {
-    background-color: #04e422; }
+    background-color: #008f13; }
   #training_wrapper #threeButtons #adjustOption,
   #training_wrapper #improveChallengeButtons #adjustOption {
     background-color: #6d04e4; }
@@ -668,7 +668,8 @@ label {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800; }
+      font-weight: 800;
+      transition: all 0.3s; }
       #puzzleWrapper > * > *:active {
         background-color: red;
         /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff9d00+59,e5e5e5+70 */
@@ -682,3 +683,19 @@ label {
         /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9d00', endColorstr='#e5e5e5', GradientType=1);
         /* IE6-9 fallback on horizontal gradient */ }
+
+#takeTimeReminder {
+  opacity: 0;
+  color: rgba(250, 243, 220, 0.301);
+  margin-top: 20px;
+  transition: opacity 2s; }
+
+#saveChangesAlert {
+  display: none;
+  position: fixed;
+  bottom: 90px;
+  left: 0;
+  width: 100%;
+  font-weight: 800; }
+  #saveChangesAlert * {
+    color: black; }

@@ -710,7 +710,7 @@ let updateCurrentCard = (e) => {
   }
   else if (lev == levelLearned) {
     // currentCard.level = 888;
-    
+
     // currentCard.mainStage = 'learned';
     // console.log('card labeled learned');
     // console.log(currentCard);
@@ -796,7 +796,7 @@ let ShowLetterOnClick = () => {
     wordTwoLettersShown += wordTwo[numberOfLettersShownNow];
     secondWordHTML.textContent = wordTwoLettersShown + '...';
   }
-  if (numberOfLettersShownNow - 1 === wordTwo.length) {
+  if (numberOfLettersShownNow + 1 === wordTwo.length) {
     secondWordHTML.textContent = wordTwo;
   }
 
@@ -844,6 +844,7 @@ let showPageOne = async () => {
   // speak the word if Language-to-learn displayed
   // responsiveVoice.speak("hello world");
   //   https://responsivevoice.org/api/
+
 
   assignWordsAndColours(currentCard);  // which word to speak first also decided here
   firstWordHTML.textContent = wordOne;
@@ -930,6 +931,7 @@ let showPageTwo = () => {
   // hide connection reminder
   remindButtonHTML.classList.add('hide');
   remindTextHTML.classList.add('hide');
+  document.querySelector('#takeTimeReminder').style.opacity = "1";
 
 
 
@@ -1231,6 +1233,9 @@ threeBt.addEventListener('click', ee => {
   //watch for cheating
   if (ee.target.style.opacity < 0.5) { alertUserForSec(`You sneaky one...`, 0.5) }
   // document.querySelector('#puzzleWrapper').remove();
+  document.querySelector('#takeTimeReminder').style.opacity = "0";
+  document.querySelector('#threeButtons').style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  document.querySelector('#saveChangesAlert').style.display = 'none';
   updateALL(ee);
 })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })

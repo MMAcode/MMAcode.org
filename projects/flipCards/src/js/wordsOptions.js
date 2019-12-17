@@ -263,6 +263,10 @@ let adjustForm = e => {
   scroll(0, scrollAmount);  // to hide ALL scores
   formToAdjust.reset();
 
+  document.querySelector('#threeButtons').style.backgroundColor = 'rgba(0, 0, 0, 1)';
+  document.querySelector('#saveChangesAlert').style.display = 'block';
+
+
   //     console.log('AAAAAAAAAAAAAAAAAAAA adjusted');
 
 
