@@ -1120,11 +1120,15 @@ label {
 
 #takeTimeReminder {
   opacity: 0;
-  color: rgba(250, 243, 220, 0.301);
   // background-color: red;
 
-  margin-top: 20px;
+  margin-top: 80px;
   transition: opacity 2s;
+
+  * {
+    color: rgba(255, 255, 255, 0.37);
+
+  }
 }
 
 #saveChangesAlert {
