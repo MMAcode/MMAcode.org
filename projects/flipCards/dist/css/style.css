@@ -684,13 +684,6 @@ label {
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9d00', endColorstr='#e5e5e5', GradientType=1);
         /* IE6-9 fallback on horizontal gradient */ }
 
-#takeTimeReminder {
-  opacity: 0;
-  margin-top: 80px;
-  transition: opacity 2s; }
-  #takeTimeReminder * {
-    color: rgba(255, 255, 255, 0.37); }
-
 #saveChangesAlert {
   display: none;
   position: fixed;

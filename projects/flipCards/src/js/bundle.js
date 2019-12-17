@@ -931,7 +931,7 @@ let showPageTwo = () => {
   // hide connection reminder
   remindButtonHTML.classList.add('hide');
   remindTextHTML.classList.add('hide');
-  document.querySelector('#takeTimeReminder').style.opacity = "1";
+  // document.querySelector('#takeTimeReminder').style.opacity = "1";
 
 
 
@@ -1233,7 +1233,7 @@ threeBt.addEventListener('click', ee => {
   //watch for cheating
   if (ee.target.style.opacity < 0.5) { alertUserForSec(`You sneaky one...`, 0.5) }
   // document.querySelector('#puzzleWrapper').remove();
-  document.querySelector('#takeTimeReminder').style.opacity = "0";
+  // document.querySelector('#takeTimeReminder').style.opacity = "0";
   document.querySelector('#threeButtons').style.backgroundColor = 'rgba(0, 0, 0, 0)';
   document.querySelector('#saveChangesAlert').style.display = 'none';
   updateALL(ee);

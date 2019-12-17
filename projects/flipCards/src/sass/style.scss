@@ -1118,18 +1118,25 @@ label {
   }
 }
 
-#takeTimeReminder {
-  opacity: 0;
-  // background-color: red;
+// #takeTimeReminder {
+//   opacity: 0;
+//   // background-color: red;
 
-  margin-top: 80px;
-  transition: opacity 2s;
+//   margin-top: 80px;
+//   // transition: opacity 0.3s;
 
-  * {
-    color: rgba(255, 255, 255, 0.37);
+//   * {
+//     color: rgba(255, 255, 255, 0.37);
+//     animation: fadeAway 1s forwards 2s;
+//   }
+// }
 
-  }
-}
+// @keyframes fadeAway {
+//   100% {
+//     opacity: 0;
+//     // color: red;
+//   }
+// }
 
 #saveChangesAlert {
   display: none;
