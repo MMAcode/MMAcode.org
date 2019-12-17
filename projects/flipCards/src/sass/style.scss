@@ -959,6 +959,7 @@ label {
   position: fixed;
   top: 50%;
   right: 50%;
+  margin: 5px;
   transform: translate(50%, -50%);
   -webkit-transform: translate(50%, -50%);
   -moz-transform: translate(50%, -50%);
@@ -1055,6 +1056,20 @@ label {
     >* {
       color: white;
       background-color: orange;
+
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff9d00+59,e5e5e5+70 */
+      background: rgb(255, 157, 0);
+      /* Old browsers */
+      background: -moz-radial-gradient(center, ellipse cover, rgba(255, 157, 0, 1) 59%, rgba(229, 229, 229, 1) 70%);
+      /* FF3.6-15 */
+      background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 157, 0, 1) 59%, rgba(229, 229, 229, 1) 70%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: radial-gradient(ellipse at center, rgba(255, 157, 0, 1) 59%, rgb(255, 238, 0) 70%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9d00', endColorstr='#e5e5e5', GradientType=1);
+      /* IE6-9 fallback on horizontal gradient */
+
+
       height: $letterBoxSize*2/3;
       width: $letterBoxSize*2/3;
       border-radius: 100%;
@@ -1062,12 +1077,29 @@ label {
       -moz-border-radius: 100%;
       -ms-border-radius: 100%;
       -o-border-radius: 100%;
-      // border:1px solid blue;
+      //border:1px solid blue;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      // line-height: 3rem;
+      // transition: all 0.3s;
+
+      //line-height: 3rem;
+      &:active {
+        background-color: red;
+
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff9d00+59,e5e5e5+70 */
+        background: rgb(255, 157, 0);
+        /* Old browsers */
+        background: -moz-radial-gradient(center, ellipse cover, rgba(255, 157, 0, 1) 59%, rgba(229, 229, 229, 1) 70%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 157, 0, 1) 59%, rgba(229, 229, 229, 1) 70%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center, rgba(255, 157, 0, 0) 59%, rgb(255, 251, 0) 70%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9d00', endColorstr='#e5e5e5', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+      }
     }
   }
 }

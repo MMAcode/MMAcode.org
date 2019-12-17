@@ -709,7 +709,8 @@ let updateCurrentCard = (e) => {
 
   }
   else if (lev == levelLearned) {
-    currentCard.level = 888;
+    // currentCard.level = 888;
+    
     // currentCard.mainStage = 'learned';
     // console.log('card labeled learned');
     // console.log(currentCard);
@@ -723,13 +724,13 @@ let updateCardInFirebase = async () => {
   // console.log(currentCard);
   // await cards.doc(currentCardID).update({
 
-  if (currentCard.level != 888) {
+  if (currentCard.level != levelLearned) {
     // console.log('card shall be updated like this: UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU');
     // console.log(currentCard);
     await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard);
     await cards.collection("cardsLearningDue").doc(currentCardID).delete();
   };
-  if (currentCard.level == 888) {
+  if (currentCard.level == levelLearned) {
     await cards.collection("cardsLearned").doc(currentCardID).set(currentCard).then(() => {
       cards.collection("cardsLearningDue").doc(currentCardID).delete();
     });
@@ -1314,7 +1315,7 @@ window.addEventListener('click', e => {
 });
 
 // hiding score
-let scrollAmount = 450;
+let scrollAmount = 430;
 let offsetTop = document.querySelector('#mainTitle').offsetTop;
 // scrollAmount = offsetTop;
 scroll(0, scrollAmount);  // to hide scores on the beginning

@@ -72,13 +72,13 @@ let activateWordsOptions = () => {
       toLearnWord.setAttribute('value', currentCardInOp.languageToLearn);
       if (currentCardInOp.connection != undefined) {
         connectionHTML.setAttribute('value', currentCardInOp.connection);
-      }
+      } else { connectionHTML.setAttribute('value', ''); }
       if (currentCardInOp.cReminderNativeShown != undefined) {
         cReminderAHTML.setAttribute('value', currentCardInOp.cReminderNativeShown);
-      }
+      } else { cReminderAHTML.setAttribute('value', ''); }
       if (currentCardInOp.cReminderToLearnShown != undefined) {
         cReminderBHTML.setAttribute('value', currentCardInOp.cReminderToLearnShown);
-      }
+      } else { cReminderBHTML.setAttribute('value', ''); }
 
       // console.log(nativeWord, toLearnWord);
       changeWordsHTMLf.style.display = 'block';
@@ -228,7 +228,7 @@ let adjustForm = e => {
   adjustedCardToReturn = currentCardInOp;
   console.log('adjusted card in OPTIONS CCCCCCCCCCCCCCC', currentCardInOp);
   console.log('Flip-card adjusted');
-  alertUserForSec("<p>Evaluate card <br> to SAVE changes</p>", 1);
+  alertUserForSec("<p>Evaluate card <br> to SAVE changes</p>", 1.5);
   // reset form - HAS TO BE HERE or
 
 
