@@ -803,9 +803,9 @@ let ShowLetterOnClick = () => {
   if (clickHintCounter > 1) {
     setEvaluateButtonsOpacity(0.9, 0.9, 0.3, 0.3);
 
-    if (clickHintCounter >= wordTwo.length - 1) {
-      setEvaluateButtonsOpacity(0.9, 0.3, 0.3, 0.3);
-    }
+    // if (clickHintCounter >= wordTwo.length - 1) {
+    //   setEvaluateButtonsOpacity(0.9, 0.3, 0.3, 0.3);
+    // }
   }
 
 
