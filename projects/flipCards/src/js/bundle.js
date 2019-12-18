@@ -384,7 +384,7 @@ arrayTimes = [
   60000 * 5, //min
   3600000 * 1, //hours
   3600000 * 6,
-  3600000 * 22,
+  3600000 * 22,  //L5
   3600000 * 22,
   86400000 * 2, //days
   86400000 * 5,
@@ -849,9 +849,12 @@ let showPageOne = async () => {
   assignWordsAndColours(currentCard);  // which word to speak first also decided here
   firstWordHTML.textContent = wordOne;
   secondWordHTML.textContent = '...';
+  setEvaluateButtonsOpacity(0.9, 0.9, 0.9, 0.9);
   nextBt.style.display = 'block';
   threeBt.style.display = 'none';
-  setEvaluateButtonsOpacity(0.9, 0.9, 0.9, 0.9);
+  document.querySelector('#BtnDown').style.display = 'block';
+  document.querySelector('#BtnSlow').style.display = 'block';
+
   // posponeAdjusted = false;
 
   // prevent scrolling on second word:
@@ -869,6 +872,16 @@ let showPageOne = async () => {
     let cekejToo = await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
     // console.log(responsiveVoice.speak(wordOne, responsiveVoiceLanguage));
   }
+
+  //hide one of the evaluating buttons
+  if (currentCard.level < 4) {
+    document.querySelector('#BtnSlow').style.display = 'none';
+  } else {
+    document.querySelector('#BtnDown').style.display = 'none';
+  }
+
+
+
 
   // activating letter hints
   clickHintCounter = 0;
@@ -995,7 +1008,7 @@ let updateDatabaseTHEN_UI = () => {
           element.style.backgroundColor = 'white';
         });
         alertUserForSec("New Card", 1);
-      } else if (currentCard.level == 9 && currentCard.enCheck == true) {
+      } else if (currentCard.level == levelLearned - 1 && currentCard.enCheck == true) {
         wordsHTML.forEach(element => {
           element.style.backgroundColor = 'lightgreen';
         });
@@ -1236,6 +1249,8 @@ threeBt.addEventListener('click', ee => {
   // document.querySelector('#takeTimeReminder').style.opacity = "0";
   document.querySelector('#threeButtons').style.backgroundColor = 'rgba(0, 0, 0, 0)';
   document.querySelector('#saveChangesAlert').style.display = 'none';
+  // threeBt.style.display = 'none';
+
   updateALL(ee);
 })
 deleteCardHTML.addEventListener('click', e => { deleteCard(e); })

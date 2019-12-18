@@ -493,7 +493,8 @@ label {
   height: 100%;
   flex-flow: wrap;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  transition: all 1s; }
   #training_wrapper #threeButtons *,
   #training_wrapper #improveChallengeButtons * {
     flex: 1;
@@ -501,13 +502,12 @@ label {
     flex-grow: 1;
     height: 100%;
     padding: 2rem 1rem;
-    margin: 2px;
+    margin: 1px;
     border-radius: 100% 100% 10px 10px;
     -webkit-border-radius: 100% 100% 10px 10px;
     -moz-border-radius: 100% 100% 10px 10px;
     -ms-border-radius: 100% 100% 10px 10px;
     -o-border-radius: 100% 100% 10px 10px;
-    box-shadow: 3px 3px 3px 0px grey;
     border-top: none; }
   #training_wrapper #threeButtons #BtnDown,
   #training_wrapper #improveChallengeButtons #BtnDown {
