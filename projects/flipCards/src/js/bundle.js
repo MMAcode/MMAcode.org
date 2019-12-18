@@ -205,6 +205,7 @@ let letterPuzzle = word => {
               document.querySelector('#wordTwo').textContent = wordTwoLettersShown + '...';
             } else {
               document.querySelector('#wordTwo').textContent = wordTwoLettersShown;
+              showPageTwo();
             }
 
             document.querySelector('#puzzleWrapper').remove();
@@ -789,17 +790,6 @@ let setEvaluateButtonsOpacity = (oDown, oStay, oSlow, oUp) => {
 let ShowLetterOnClick = () => {
   clickHintCounter++;
 
-
-
-  // console.log('you just clicked on hint');
-  if (numberOfLettersShownNow + 1 < wordTwo.length) {
-    wordTwoLettersShown += wordTwo[numberOfLettersShownNow];
-    secondWordHTML.textContent = wordTwoLettersShown + '...';
-  }
-  if (numberOfLettersShownNow + 1 === wordTwo.length) {
-    secondWordHTML.textContent = wordTwo;
-  }
-
   if (clickHintCounter > 1) {
     setEvaluateButtonsOpacity(0.9, 0.9, 0.3, 0.3);
 
@@ -808,10 +798,20 @@ let ShowLetterOnClick = () => {
     // }
   }
 
-
   if (lettersBubblesActive === true && numberOfLettersShownNow < maxNumberOfBubbleLetters) {
     document.querySelector(`#letter${wShuffledNumbers[numberOfLettersShownNow]}`).remove();
   }
+
+  // console.log('you just clicked on hint');
+  if (numberOfLettersShownNow + 1 < wordTwo.length) {
+    wordTwoLettersShown += wordTwo[numberOfLettersShownNow];
+    secondWordHTML.textContent = wordTwoLettersShown + '...';
+  }
+  if (numberOfLettersShownNow + 1 === wordTwo.length) {
+    secondWordHTML.textContent = wordTwo;
+    showPageTwo();
+  }
+
   numberOfLettersShownNow++;
   console.log('hint counter in function:', clickHintCounter);
   console.log('shown letters counter in function:', numberOfLettersShownNow);
@@ -929,6 +929,12 @@ let showPageTwo = () => {
   // console.log('clickHint listener SHOUND be removed');
   // console.log('current clickhintCouner=', clickHintCounter);
   // clickHintCounter = 1000;
+
+  //sort bubble letters
+  if (lettersBubblesActive === true) { document.querySelector('#puzzleWrapper').remove(); }
+  document.querySelector('#showLettersWrapper').style.display = 'none';
+  lettersBubblesActive = false;
+
 
   //activate scrolling and remove tapping on second word
   secondWordHTML.removeEventListener('touchmove', preventScroll);
@@ -1236,11 +1242,7 @@ auth.onAuthStateChanged(async (user) => {
 // console.log('getting to listening to al cards click2');
 nextBt.addEventListener('click', e => {
   showPageTwo();
-  if (lettersBubblesActive === true) {
-    document.querySelector('#puzzleWrapper').remove();
-  }
-  document.querySelector('#showLettersWrapper').style.display = 'none';
-  lettersBubblesActive = false;
+
 });
 threeBt.addEventListener('click', ee => {
   //watch for cheating
