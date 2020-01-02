@@ -1046,6 +1046,9 @@ let setLanguagesToSpeak = async () => {
   }
   else if (languageToSpeak === 'english') { responsiveVoiceLanguage = 'UK English Female'; }
   else if (languageToSpeak === 'french') { responsiveVoiceLanguage = 'French Female'; }
+  else if (languageToSpeak === 'german') {responsiveVoiceLanguage = 'Deutsch Female';
+
+  }
 
   // console.log('languageSwapp?', languageSwap, '; responsiveVoiceLanguage: ', responsiveVoiceLanguage);
   // console.log('finishing SETTING LANGUAGE TO SPEAK:');

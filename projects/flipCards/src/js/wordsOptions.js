@@ -95,6 +95,7 @@ let activateWordsOptions = () => {
       if (userInOp.langToLearn === 'czech') { responsiveVoiceLanguage = 'Czech Female'; }
       else if (userInOp.langToLearn === 'english') { responsiveVoiceLanguage = 'UK English Female'; }
       else if (userInOp.langToLearn === 'french') { responsiveVoiceLanguage = 'French Female'; }
+      else if (userInOp.langToLearn === 'german') { responsiveVoiceLanguage = 'Deutsch Female'; }
 
       let speak = async () => {
         await responsiveVoice.speak(currentCardInOp.languageToLearn, responsiveVoiceLanguage);
@@ -142,8 +143,11 @@ let refreshOptions = (currentCard, currentCardID) => {
 
   let readyLink = '';
 
+  // in these translations I am assuming that one of the languagess is allways czech!!
   if (userInOp.langToLearn == 'english') { readyLink = 'https://translate.google.co.uk/?hl=cs#view=home&op=translate&sl=en&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
   else if (userInOp.langToLearn == 'czech') { readyLink = 'https://translate.google.co.uk/?hl=en#view=home&op=translate&sl=cs&tl=en&text=' + encodeURI(currentCard.languageToLearn) }
+  else if (userInOp.langToLearn == 'german') { readyLink = 'https://translate.google.co.uk/?hl=cs#view=home&op=translate&sl=de&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
+  else if (userInOp.langToLearn == 'french') { readyLink = 'https://translate.google.co.uk/?hl=cs#view=home&op=translate&sl=fr&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
   else { readyLink = 'https://www.google.com/search?q=' + encodeURI(currentCard.languageToLearn) }
   defGoogleHTMLi.setAttribute('href', readyLink);
 
