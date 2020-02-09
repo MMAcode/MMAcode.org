@@ -216,7 +216,8 @@ label {
   position: relative;
   display: flex; }
 
-#training_wrapper #help .visibleIcon, #training_wrapper #pilesInfo .visibleIcon,
+#training_wrapper #help .visibleIcon,
+#training_wrapper #pilesInfo .visibleIcon,
 #training_wrapper #addVocabulary .visibleIcon {
   margin: 10px 10px 20px 10px;
   color: #eeff00;
@@ -234,11 +235,13 @@ label {
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out; }
-  #training_wrapper #help .visibleIcon:hover, #training_wrapper #pilesInfo .visibleIcon:hover,
+  #training_wrapper #help .visibleIcon:hover,
+  #training_wrapper #pilesInfo .visibleIcon:hover,
   #training_wrapper #addVocabulary .visibleIcon:hover {
     cursor: pointer; }
 
-#training_wrapper #help .invisibleWindow, #training_wrapper #pilesInfo .invisibleWindow,
+#training_wrapper #help .invisibleWindow,
+#training_wrapper #pilesInfo .invisibleWindow,
 #training_wrapper #addVocabulary .invisibleWindow {
   position: fixed;
   display: none;
@@ -252,29 +255,35 @@ label {
   color: yellow;
   padding: 5px;
   overflow: scroll; }
-  #training_wrapper #help .invisibleWindow p, #training_wrapper #pilesInfo .invisibleWindow p,
+  #training_wrapper #help .invisibleWindow p,
+  #training_wrapper #pilesInfo .invisibleWindow p,
   #training_wrapper #addVocabulary .invisibleWindow p {
     padding: 5px; }
-  #training_wrapper #help .invisibleWindow a, #training_wrapper #pilesInfo .invisibleWindow a,
+  #training_wrapper #help .invisibleWindow a,
+  #training_wrapper #pilesInfo .invisibleWindow a,
   #training_wrapper #addVocabulary .invisibleWindow a {
     line-height: 1.3;
     padding: 10px; }
   #training_wrapper #help .invisibleWindow h1,
-  #training_wrapper #help .invisibleWindow h2, #training_wrapper #pilesInfo .invisibleWindow h1,
+  #training_wrapper #help .invisibleWindow h2,
+  #training_wrapper #pilesInfo .invisibleWindow h1,
   #training_wrapper #pilesInfo .invisibleWindow h2,
   #training_wrapper #addVocabulary .invisibleWindow h1,
   #training_wrapper #addVocabulary .invisibleWindow h2 {
     text-align: center;
     margin-top: 40px; }
-  #training_wrapper #help .invisibleWindow h1, #training_wrapper #pilesInfo .invisibleWindow h1,
+  #training_wrapper #help .invisibleWindow h1,
+  #training_wrapper #pilesInfo .invisibleWindow h1,
   #training_wrapper #addVocabulary .invisibleWindow h1 {
     color: #0099ff; }
-  #training_wrapper #help .invisibleWindow h2, #training_wrapper #pilesInfo .invisibleWindow h2,
+  #training_wrapper #help .invisibleWindow h2,
+  #training_wrapper #pilesInfo .invisibleWindow h2,
   #training_wrapper #addVocabulary .invisibleWindow h2 {
     text-decoration: solid underline white; }
   #training_wrapper #help .invisibleWindow h3,
   #training_wrapper #help .invisibleWindow h4,
-  #training_wrapper #help .invisibleWindow h5, #training_wrapper #pilesInfo .invisibleWindow h3,
+  #training_wrapper #help .invisibleWindow h5,
+  #training_wrapper #pilesInfo .invisibleWindow h3,
   #training_wrapper #pilesInfo .invisibleWindow h4,
   #training_wrapper #pilesInfo .invisibleWindow h5,
   #training_wrapper #addVocabulary .invisibleWindow h3,
@@ -282,10 +291,12 @@ label {
   #training_wrapper #addVocabulary .invisibleWindow h5 {
     text-align: left;
     margin-top: 30px; }
-  #training_wrapper #help .invisibleWindow h6, #training_wrapper #pilesInfo .invisibleWindow h6,
+  #training_wrapper #help .invisibleWindow h6,
+  #training_wrapper #pilesInfo .invisibleWindow h6,
   #training_wrapper #addVocabulary .invisibleWindow h6 {
     margin-top: 20px; }
-  #training_wrapper #help .invisibleWindow .closeButton, #training_wrapper #pilesInfo .invisibleWindow .closeButton,
+  #training_wrapper #help .invisibleWindow .closeButton,
+  #training_wrapper #pilesInfo .invisibleWindow .closeButton,
   #training_wrapper #addVocabulary .invisibleWindow .closeButton {
     display: flex;
     align-items: center;
@@ -297,14 +308,17 @@ label {
     height: 10vh;
     background: #5a5a5a;
     color: white; }
-    #training_wrapper #help .invisibleWindow .closeButton:hover, #training_wrapper #pilesInfo .invisibleWindow .closeButton:hover,
+    #training_wrapper #help .invisibleWindow .closeButton:hover,
+    #training_wrapper #pilesInfo .invisibleWindow .closeButton:hover,
     #training_wrapper #addVocabulary .invisibleWindow .closeButton:hover {
       cursor: pointer; }
-  #training_wrapper #help .invisibleWindow #formNewWord, #training_wrapper #pilesInfo .invisibleWindow #formNewWord,
+  #training_wrapper #help .invisibleWindow #formNewWord,
+  #training_wrapper #pilesInfo .invisibleWindow #formNewWord,
   #training_wrapper #addVocabulary .invisibleWindow #formNewWord {
     margin-left: 10px;
     margin-right: 10px; }
-    #training_wrapper #help .invisibleWindow #formNewWord input[type="text"], #training_wrapper #pilesInfo .invisibleWindow #formNewWord input[type="text"],
+    #training_wrapper #help .invisibleWindow #formNewWord input[type="text"],
+    #training_wrapper #pilesInfo .invisibleWindow #formNewWord input[type="text"],
     #training_wrapper #addVocabulary .invisibleWindow #formNewWord input[type="text"] {
       width: 100%; }
 
@@ -695,3 +709,20 @@ label {
   font-weight: 800; }
   #saveChangesAlert * {
     color: black; }
+
+#pilesInfo .invisibleWindow {
+  -webkit-overflow-scrolling: touch; }
+  #pilesInfo .invisibleWindow * {
+    -webkit-overflow-scrolling: touch; }
+  #pilesInfo .invisibleWindow #pileLearned .showHideCards button {
+    background-color: rgba(0, 255, 255, 0.116);
+    border: 1px solid rgba(0, 0, 0, 0.404);
+    color: rgba(167, 0, 0, 0.712);
+    border-radius: 0  10px 10px 0;
+    font-size: small;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    transition: transform 0.3s; }
+    #pilesInfo .invisibleWindow #pileLearned .showHideCards button:hover {
+      transform: scale(1.2); }

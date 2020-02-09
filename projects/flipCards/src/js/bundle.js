@@ -1326,6 +1326,8 @@ document.querySelector('#showLettersWrapper').addEventListener('click', e => {
 
 /////info about cards' PILES
 //adds cards info to HTML
+// let learnedCardsAvailableToChange = [];
+
 let printCardsPileToHTML = (ID, cardsArray) => {
 
   const newCardCountForHTML = document.createElement('div');
@@ -1333,8 +1335,8 @@ let printCardsPileToHTML = (ID, cardsArray) => {
   document.querySelector(`${ID} .showHideCards`).append(newCardCountForHTML);
 
   cardsArray.forEach(card => {
-    let cardInfoNumbers = `${(new Date(card.lastSeen)).getDay() + 1}/${(new Date(card.lastSeen)).getMonth() + 1} L.${card.level} `;
-    let cardInfoText = `${card.languageNative}`;
+    let cardInfoNumbers = `${(new Date(card.lastSeen)).getDate()}/${(new Date(card.lastSeen)).getMonth() + 1} L.${card.level} `;
+    let cardInfoText = `${card.languageNative} `;
 
     const newCardForHTML = document.createElement('div');
     const newCardForHTMLc1 = document.createElement('span');
@@ -1346,22 +1348,63 @@ let printCardsPileToHTML = (ID, cardsArray) => {
 
     newCardForHTML.append(newCardForHTMLc1);
     newCardForHTML.append(newCardForHTMLc2);
+
+    // if (ID === '#pileLearned') {
+    //   learnedCardsAvailableToChange = cardsArray;
+    //   newCardForHTMLc2.addEventListener('click', (e) => {
+    //     // console.log(e)
+    //     e.target.innerHTML = `${card.id}`;
+    //   })
+    // }
+
     document.querySelector(`${ID} .showHideCards`).append(newCardForHTML);
     document.querySelector(`${ID} button`).setAttribute("style", "display:none");
     // e.target.setAttribute("style", "display:none");
+
+
+    // if card from learned pile...
+    if (ID === '#pileLearned') {
+      const newButtonForHTML = document.createElement('button');
+      newButtonForHTML.innerHTML = "Learn again";
+      newButtonForHTML.setAttribute("id", `${card.DBid}`);
+
+      newCardForHTML.append(newButtonForHTML);
+    }
   })
 }
+
 // get cards from DB
 let getAndReturnDataAboutPile = async (pileNameInDB) => {
   let cardsByLastSeenAr = [];
   let cardsByLastSeen = await cards.collection(pileNameInDB).orderBy('lastSeen', "desc").get();
-  cardsByLastSeen.docs.forEach(doc => cardsByLastSeenAr.push(doc.data()));
+  // cardsByLastSeen.docs.forEach(doc => cardsByLastSeenAr.push({doc.id, ...doc.data() }));
+  cardsByLastSeen.docs.forEach(doc => cardsByLastSeenAr.push({ DBid: doc.id, ...doc.data() }));
+  // console.log(cardsByLastSeenAr[0]);
   return cardsByLastSeenAr;
 };
 
 document.querySelector('#pileLearned button').addEventListener("click", async () => {
   printCardsPileToHTML('#pileLearned', await getAndReturnDataAboutPile("cardsLearned"));
 });
+////spec. for learned pile - listen to MOVE buttons
+document.querySelector('#pileLearned .showHideCards').addEventListener("click", async (e) => {
+
+  if (e.target.tagName == 'BUTTON' && e.target.id) {
+    let cardToMove = await cards.collection("cardsLearned").doc(`${e.target.id}`).get();
+    cardToMove = cardToMove.data();
+    cardToMove.level = 5;
+    cards.collection("cardsLearningNotDue").doc(e.target.id).set(cardToMove);
+    cards.collection("cardsLearned").doc(e.target.id).delete();
+
+    const buttonReplacementForHTML = document.createElement('span');
+    buttonReplacementForHTML.innerHTML = "  Element moved to current pile.";
+    e.target.insertAdjacentElement('afterend', buttonReplacementForHTML);
+    e.target.remove();
+  }
+});
+
+
+
 document.querySelector('#pileDue button').addEventListener("click", async () => {
   printCardsPileToHTML('#pileDue', await getAndReturnDataAboutPile("cardsLearningDue"));
 });
@@ -1371,6 +1414,8 @@ document.querySelector('#pileNotDue button').addEventListener("click", async () 
 document.querySelector('#pileToLearn button').addEventListener("click", async () => {
   printCardsPileToHTML('#pileToLearn', await getAndReturnDataAboutPile("cardsToLearn"));
 });
+
+
 
 
 
