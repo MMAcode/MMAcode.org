@@ -369,11 +369,11 @@ label {
     // background-color: red;
     position: relative;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
 
   }
 
-  #help,
+  #help,#pilesInfo,
   #addVocabulary {
 
     .visibleIcon {
@@ -405,6 +405,12 @@ label {
       -moz-transition:all 0.5s ease-out;
       -ms-transition:all 0.5s ease-out;
       -o-transition:all 0.5s ease-out;
+
+      // .mainIcon{
+      //   width: 50px;
+      //   height: 50px;
+      //   z-index: 100;
+      // }
     }
 
     .invisibleWindow {
@@ -1152,4 +1158,10 @@ label {
   * {
     color: black;
   }
+}
+
+
+
+#pilesInfo .invisibleWindow {
+//  display: block !important;
 }

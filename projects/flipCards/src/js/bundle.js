@@ -1046,7 +1046,8 @@ let setLanguagesToSpeak = async () => {
   }
   else if (languageToSpeak === 'english') { responsiveVoiceLanguage = 'UK English Female'; }
   else if (languageToSpeak === 'french') { responsiveVoiceLanguage = 'French Female'; }
-  else if (languageToSpeak === 'german') {responsiveVoiceLanguage = 'Deutsch Female';
+  else if (languageToSpeak === 'german') {
+    responsiveVoiceLanguage = 'Deutsch Female';
 
   }
 
@@ -1317,6 +1318,60 @@ document.querySelector('#showLettersWrapper').addEventListener('click', e => {
   setEvaluateButtonsOpacity(2, 2, 2, 0.3);
   document.querySelector('#showLettersWrapper').style.display = 'none';
 });
+
+
+
+
+
+
+/////info about cards' PILES
+//adds cards info to HTML
+let printCardsPileToHTML = (ID, cardsArray) => {
+
+  const newCardCountForHTML = document.createElement('div');
+  newCardCountForHTML.innerHTML = `${cardsArray.length} cards in this pile.`;
+  document.querySelector(`${ID} .showHideCards`).append(newCardCountForHTML);
+
+  cardsArray.forEach(card => {
+    let cardInfoNumbers = `${(new Date(card.lastSeen)).getDay() + 1}/${(new Date(card.lastSeen)).getMonth() + 1} L.${card.level} `;
+    let cardInfoText = `${card.languageNative}`;
+
+    const newCardForHTML = document.createElement('div');
+    const newCardForHTMLc1 = document.createElement('span');
+    const newCardForHTMLc2 = document.createElement('span');
+
+    newCardForHTMLc1.innerHTML = cardInfoNumbers;
+    newCardForHTMLc2.innerHTML = cardInfoText;
+    newCardForHTMLc2.setAttribute("style", "color: black;");
+
+    newCardForHTML.append(newCardForHTMLc1);
+    newCardForHTML.append(newCardForHTMLc2);
+    document.querySelector(`${ID} .showHideCards`).append(newCardForHTML);
+    document.querySelector(`${ID} button`).setAttribute("style", "display:none");
+    // e.target.setAttribute("style", "display:none");
+  })
+}
+// get cards from DB
+let getAndReturnDataAboutPile = async (pileNameInDB) => {
+  let cardsByLastSeenAr = [];
+  let cardsByLastSeen = await cards.collection(pileNameInDB).orderBy('lastSeen', "desc").get();
+  cardsByLastSeen.docs.forEach(doc => cardsByLastSeenAr.push(doc.data()));
+  return cardsByLastSeenAr;
+};
+
+document.querySelector('#pileLearned button').addEventListener("click", async () => {
+  printCardsPileToHTML('#pileLearned', await getAndReturnDataAboutPile("cardsLearned"));
+});
+document.querySelector('#pileDue button').addEventListener("click", async () => {
+  printCardsPileToHTML('#pileDue', await getAndReturnDataAboutPile("cardsLearningDue"));
+});
+document.querySelector('#pileNotDue button').addEventListener("click", async () => {
+  printCardsPileToHTML('#pileNotDue', await getAndReturnDataAboutPile("cardsLearningNotDue"));
+});
+document.querySelector('#pileToLearn button').addEventListener("click", async () => {
+  printCardsPileToHTML('#pileToLearn', await getAndReturnDataAboutPile("cardsToLearn"));
+});
+
 
 
 
