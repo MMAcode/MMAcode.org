@@ -228,6 +228,7 @@ let adjustForm = e => {
   currentCardInOp.connection = connect;
   currentCardInOp.cReminderNativeShown = cRemindA;
   currentCardInOp.cReminderToLearnShown = cRemindB;
+  currentCardInOp.translationChecked = true;
 
   adjustedCardToReturn = currentCardInOp;
   console.log('adjusted card in OPTIONS CCCCCCCCCCCCCCC', currentCardInOp);
@@ -250,14 +251,6 @@ let adjustForm = e => {
 
   };
 
-
-  // update connection reminder html NOT needed  (but which one to show? ? ?)
-  //   if (currentCard.languageNative == wordOne && currentCardInOp.cReminderNativeShown != undefined && currentCardInOp.cReminderNativeShown != '') {
-  //     document.querySelector('#hintConnectionText').innerHTML = currentCardInOp.connection;
-  // }
-  //   if (currentCardInOp.cReminderToLearnShown != undefined && currentCardInOp.cReminderToLearnShown != '') {
-  // }
-
   // // hide connection reminder
   document.querySelector('#hintConnectionReminder').classList.add('hide');
   document.querySelector('#hintConnectionReminder + *').classList.add('hide');
@@ -269,36 +262,6 @@ let adjustForm = e => {
 
   document.querySelector('#threeButtons').style.backgroundColor = 'rgba(0, 0, 0, 1)';
   document.querySelector('#saveChangesAlert').style.display = 'block';
-
-
-  //     console.log('AAAAAAAAAAAAAAAAAAAA adjusted');
-
-
-
-  // db.collection("users").doc(userInOp.userEmail).collection("cardsLearningNotDue").doc(currentCardInOpID).set(currentCardInOp)
-  //   .then(async () => {
-  //     // console.log('dddddddddddddddd  going to delete card in original');
-  //     db.collection("users").doc(userInOp.userEmail).collection("cardsLearningDue").doc(currentCardInOpID).delete();
-  //   })
-  //   .then(async () => {
-  //     // console.log('Flip-card adjusted');
-  //     alertUserForSec("Adjusted", 0.8);
-  //     await new Promise(resolve => setTimeout(resolve, 800));
-
-  //     // reset form  -  HAS TO BE HERE or
-  //     formToAdjust.reset();
-  //     document.querySelector('#changeWords .optionsWindow').style.display = 'none';
-  //     // updateDatabaseTHEN_UI();  //- can't be used or it would cause inner loop of more and more cycles within each other
-  //     window.location.reload();
-  //     scroll(0, scrollAmount);  // to hide ALL scores
-  //     console.log('AAAAAAAAAAAAAAAAAAAA adjusted');
-  //   }).catch(err => {
-  //     console.log(err, 'I could NOT adjust the card.');
-  //     // reset form
-  //     // formToAdjust.reset();
-  //     // window.location.reload();
-  //   });
-
 }
 
 let getPosponeTime = () => {

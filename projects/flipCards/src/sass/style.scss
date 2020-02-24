@@ -703,7 +703,7 @@ label {
     #definitionGoogle .optionsWindow,
     #changeWords .optionsWindow {
       // display: none;
-      z-index: 100;
+      z-index: 10000;
       // display: block;
       position: absolute;
       top: 0;

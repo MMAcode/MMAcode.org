@@ -55,6 +55,7 @@ let scoreHTML = document.querySelector('#scoreCounter');
 let mainTitleHTML = document.querySelector('#mainTitle');
 let closeWindowS = document.querySelectorAll('.closeButton');
 let helpUsed = false;
+let updateThisHTMLIdAfterUpdate = null;
 // let xcc = document.querySelectorAll('.closeButton2')[0];
 // console.log(closeWindowS);
 
@@ -768,8 +769,21 @@ let updateALL = async (e) => {
   // console.log('this was clicked:');
   // console.log(e.target.parentNode.id);
 
+  //update html element in decks of words  -adjusted word
+  if (updateThisHTMLIdAfterUpdate != null) {
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXX")
+    console.log(currentCard)
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXX")
+
+    document.querySelector(`#${updateThisHTMLIdAfterUpdate}adjust`).previousElementSibling.innerHTML = currentCard.languageToLearn;
+    document.querySelector(`#${updateThisHTMLIdAfterUpdate}adjust`).previousElementSibling.previousElementSibling.innerHTML = currentCard.languageNative;
+    updateThisHTMLIdAfterUpdate = null;
+  }
+
   updateCurrentCard(e);
   await updateCardInFirebase();
+
+
   // console.log('GOING TO UPDATE DATABASE AGAIN...');
   // if (e.target.id === 'BtnDown' || e.target.id === 'BtnStay') {
   //   document.querySelector('#improveChallengeButtons').style.display = "flex";
@@ -1286,7 +1300,7 @@ for (const bb of closeWindowS) {
       eee.target.parentElement.parentElement.parentElement.style.display = "none";
     } else {
       eee.target.parentElement.style.display = "none";
-      window.location.reload();
+      // window.location.reload();
     }
     scroll(0, scrollAmount);
   });
@@ -1370,6 +1384,35 @@ let printCardsPileToHTML = (ID, cardsArray) => {
 
       newCardForHTML.append(newButtonForHTML);
     }
+
+    if (ID === '#pileNotDue') {
+
+
+      //show translation text
+      const newSpanForHTML = document.createElement('span');
+      let cardInfoTextTranslation = `${card.languageToLearn} `;
+      newSpanForHTML.innerHTML = cardInfoTextTranslation;
+      newSpanForHTML.setAttribute("style", "color: brown;");
+      newCardForHTML.append(newSpanForHTML);
+
+      //add button for adjusting translations
+      const newButtonForHTMLTranslationAdjustment = document.createElement('button');
+      newButtonForHTMLTranslationAdjustment.innerHTML = "Adjust";
+      newButtonForHTMLTranslationAdjustment.setAttribute("id", `${card.DBid}adjust`);
+      newCardForHTML.append(newButtonForHTMLTranslationAdjustment);
+
+      if (!card.translationChecked) {
+        //new line
+        const newLineForHTML = document.createElement('br');
+        newCardForHTML.append(newLineForHTML);
+
+        //add button for marking checked translations
+        const newButtonForHTMLTranslationCheck = document.createElement('button');
+        newButtonForHTMLTranslationCheck.innerHTML = "Translation Ok";
+        newButtonForHTMLTranslationCheck.setAttribute("id", `${card.DBid}`);
+        newCardForHTML.append(newButtonForHTMLTranslationCheck);
+      }
+    }
   })
 }
 
@@ -1403,6 +1446,82 @@ document.querySelector('#pileLearned .showHideCards').addEventListener("click", 
   }
 });
 
+
+
+
+////spec. for 2 learning piles - listen to CHECK TRANSLATION buttons
+document.querySelector('#pileNotDue .showHideCards').addEventListener("click", async (e) => {
+
+  if (e.target.tagName == 'BUTTON' && e.target.id) {
+    let idHelp = e.target.id;
+    let ending = idHelp.slice(-6);
+    if (ending != "adjust") { // button "Translate ok" clicked; button which has id withOUT DB doc id extended with "adjust" text on the end
+      let cardToAdjust = await cards.collection("cardsLearningNotDue").doc(`${e.target.id}`).get();
+      cardToAdjust = cardToAdjust.data();
+      // cardToAdjust.level = 5;
+      cardToAdjust.translationChecked = true;
+      cards.collection("cardsLearningNotDue").doc(e.target.id).set(cardToAdjust);
+      // cards.collection("cardsLearned").doc(e.target.id).delete();
+
+      const buttonReplacementForHTML = document.createElement('span');
+      buttonReplacementForHTML.innerHTML = "Card marked as checked.";
+      e.target.insertAdjacentElement('afterend', buttonReplacementForHTML);
+      e.target.remove();
+    }
+
+
+    else {
+      //button "adjust was clicked"; button which has html id with 'DB doc id extended with "adjust" text on the end'
+      let hideInfoPiles = document.querySelector('#pilesInfo .invisibleWindow');
+      hideInfoPiles.style.display = "none";
+      scroll(0, scrollAmount);
+
+      console.log("XXXXXXXXXYYYYYYbutton adjust was clicked");
+
+
+      let changeWordsHTML = document.querySelector('#changeWords');
+      let changeWordsHTMLf = changeWordsHTML.querySelector('.optionsWindow');
+
+      scroll(0, 0);
+      // adjustCurrentWord();
+      // console.log(currentCardInOp, currentCardInOpID);
+      // console.log(changeWordsHTMLf);
+      let DbID = idHelp.slice(0, idHelp.length - 6); //removing "adjust" text from the HTML ID to get doc from DB
+
+      let cardToAdjust = await cards.collection("cardsLearningNotDue").doc(`${DbID}`).get();
+      cardToAdjust = cardToAdjust.data();
+
+      currentCard = cardToAdjust;
+      currentCardID = DbID;
+
+      let nativeWord = document.querySelector('#nativeWToAdjust');
+      let toLearnWord = document.querySelector('#wToLearnAdjust');
+      let connectionHTML = document.querySelector('#connectionInput');
+      let cReminderAHTML = document.querySelector('#remindConnectionA');
+      let cReminderBHTML = document.querySelector('#remindConnectionB');
+
+      // show current values of the card:
+      nativeWord.setAttribute('value', currentCard.languageNative);
+      toLearnWord.setAttribute('value', currentCard.languageToLearn);
+      if (currentCard.connection != undefined) {
+        connectionHTML.setAttribute('value', currentCard.connection);
+      } else { connectionHTML.setAttribute('value', ''); }
+      if (currentCard.cReminderNativeShown != undefined) {
+        cReminderAHTML.setAttribute('value', currentCard.cReminderNativeShown);
+      } else { cReminderAHTML.setAttribute('value', ''); }
+      if (currentCard.cReminderToLearnShown != undefined) {
+        cReminderBHTML.setAttribute('value', currentCard.cReminderToLearnShown);
+      } else { cReminderBHTML.setAttribute('value', ''); }
+
+      // console.log(nativeWord, toLearnWord);
+      refreshOptions(currentCard, currentCardID, userInfo);
+      showPageTwo();
+      changeWordsHTMLf.style.display = 'block';
+      console.log("XXXXXXXXXYYYYYYbutton adjust was clicked - block should be shown");
+      updateThisHTMLIdAfterUpdate = DbID;
+    }
+  }
+});
 
 
 document.querySelector('#pileDue button').addEventListener("click", async () => {

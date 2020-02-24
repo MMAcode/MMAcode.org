@@ -439,7 +439,7 @@ label {
     display: inline-block; }
   #training_wrapper #options #definitionGoogle .optionsWindow,
   #training_wrapper #options #changeWords .optionsWindow {
-    z-index: 100;
+    z-index: 10000;
     position: absolute;
     top: 0;
     left: 0;
