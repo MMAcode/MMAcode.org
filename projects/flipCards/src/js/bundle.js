@@ -38,6 +38,7 @@ let maxNumberOfBubbleLetters = 0;
 let numberOfLettersShownNow = 0;
 let wordTwoLettersShown = '';
 
+
 // let posponeAdjusted = false;
 
 const refresh = document.querySelector('#test');
@@ -1385,7 +1386,7 @@ let printCardsPileToHTML = (ID, cardsArray) => {
       newCardForHTML.append(newButtonForHTML);
     }
 
-    if (ID === '#pileNotDue') {
+    if (ID === '#pileNotDue' || ID === "#pileDue") {
 
 
       //show translation text
@@ -1398,7 +1399,7 @@ let printCardsPileToHTML = (ID, cardsArray) => {
       //add button for adjusting translations
       const newButtonForHTMLTranslationAdjustment = document.createElement('button');
       newButtonForHTMLTranslationAdjustment.innerHTML = "Adjust";
-      newButtonForHTMLTranslationAdjustment.setAttribute("id", `${card.DBid}adjust`);
+      newButtonForHTMLTranslationAdjustment.setAttribute("id", `ID${card.DBid}adjust`);
       newCardForHTML.append(newButtonForHTMLTranslationAdjustment);
 
       if (!card.translationChecked) {
@@ -1409,7 +1410,7 @@ let printCardsPileToHTML = (ID, cardsArray) => {
         //add button for marking checked translations
         const newButtonForHTMLTranslationCheck = document.createElement('button');
         newButtonForHTMLTranslationCheck.innerHTML = "Translation Ok";
-        newButtonForHTMLTranslationCheck.setAttribute("id", `${card.DBid}`);
+        newButtonForHTMLTranslationCheck.setAttribute("id", `ID${card.DBid}`);
         newCardForHTML.append(newButtonForHTMLTranslationCheck);
       }
     }
@@ -1451,16 +1452,20 @@ document.querySelector('#pileLearned .showHideCards').addEventListener("click", 
 
 ////spec. for 2 learning piles - listen to CHECK TRANSLATION buttons
 document.querySelector('#pileNotDue .showHideCards').addEventListener("click", async (e) => {
-
   if (e.target.tagName == 'BUTTON' && e.target.id) {
     let idHelp = e.target.id;
-    let ending = idHelp.slice(-6);
+    idHelp = idHelp.substring(2);  // remove letters 'ID' from the beginning
+    let ending = idHelp.slice(-6); // returns last 6 letters from the string
     if (ending != "adjust") { // button "Translate ok" clicked; button which has id withOUT DB doc id extended with "adjust" text on the end
-      let cardToAdjust = await cards.collection("cardsLearningNotDue").doc(`${e.target.id}`).get();
-      cardToAdjust = cardToAdjust.data();
-      // cardToAdjust.level = 5;
-      cardToAdjust.translationChecked = true;
-      cards.collection("cardsLearningNotDue").doc(e.target.id).set(cardToAdjust);
+
+      // let cardToAdjust = await cards.collection("cardsLearningNotDue").doc(`${idHelp}`).get();
+      // cardToAdjust = cardToAdjust.data();
+      // // cardToAdjust.level = 5;
+      // cardToAdjust.translationChecked = true;
+      // cards.collection("cardsLearningNotDue").doc(idHelp).set(cardToAdjust);
+
+      await cards.collection("cardsLearningNotDue").doc(`${idHelp}`).update({ translationChecked: true });
+
       // cards.collection("cardsLearned").doc(e.target.id).delete();
 
       const buttonReplacementForHTML = document.createElement('span');
@@ -1518,11 +1523,68 @@ document.querySelector('#pileNotDue .showHideCards').addEventListener("click", a
       showPageTwo();
       changeWordsHTMLf.style.display = 'block';
       console.log("XXXXXXXXXYYYYYYbutton adjust was clicked - block should be shown");
-      updateThisHTMLIdAfterUpdate = DbID;
+      updateThisHTMLIdAfterUpdate = "ID" + DbID;
     }
   }
 });
+document.querySelector('#pileDue .showHideCards').addEventListener("click", async (e) => {
+  if (e.target.tagName == 'BUTTON' && e.target.id) {
+    let idHelp = e.target.id;
+    idHelp = idHelp.substring(2);  // remove letters 'ID' from the beginning
+    let ending = idHelp.slice(-6); // returns last 6 letters from the string
+    if (ending != "adjust") { // button "Translate ok" clicked; button which has id withOUT DB doc id extended with "adjust" text on the end
+      await cards.collection("cardsLearningDue").doc(`${idHelp}`).update({ translationChecked: true });
+      //update info about "doc" in html pile
+      const buttonReplacementForHTML = document.createElement('span');
+      buttonReplacementForHTML.innerHTML = "Card marked as checked.";
+      e.target.insertAdjacentElement('afterend', buttonReplacementForHTML);
+      e.target.remove();
+    }
+    else {
+      //button "adjust was clicked"; button which has html id with 'DB doc id extended with "adjust" text on the end'
+      let hideInfoPiles = document.querySelector('#pilesInfo .invisibleWindow');
+      hideInfoPiles.style.display = "none"; //to hide first page of the app and jump to 'update word' section, i think
+      // scroll(0, scrollAmount);
+      // console.log("XXXXXXXXXYYYYYYbutton adjust was clicked");
+      let changeWordsHTML = document.querySelector('#changeWords');
+      let changeWordsHTMLf = changeWordsHTML.querySelector('.optionsWindow');
+      scroll(0, 0);
+      let DbID = idHelp.slice(0, idHelp.length - 6); //removing "adjust" text from the HTML ID to get doc from DB
+      let cardToAdjust = await cards.collection("cardsLearningDue").doc(`${DbID}`).get();
+      cardToAdjust = cardToAdjust.data();
+      currentCard = cardToAdjust;
+      currentCardID = DbID;
+      let nativeWord = document.querySelector('#nativeWToAdjust');
+      let toLearnWord = document.querySelector('#wToLearnAdjust');
+      let connectionHTML = document.querySelector('#connectionInput');
+      let cReminderAHTML = document.querySelector('#remindConnectionA');
+      let cReminderBHTML = document.querySelector('#remindConnectionB');
+      // show current values of the card:
+      nativeWord.setAttribute('value', currentCard.languageNative);
+      toLearnWord.setAttribute('value', currentCard.languageToLearn);
+      if (currentCard.connection != undefined) {
+        connectionHTML.setAttribute('value', currentCard.connection);
+      } else { connectionHTML.setAttribute('value', ''); }
+      if (currentCard.cReminderNativeShown != undefined) {
+        cReminderAHTML.setAttribute('value', currentCard.cReminderNativeShown);
+      } else { cReminderAHTML.setAttribute('value', ''); }
+      if (currentCard.cReminderToLearnShown != undefined) {
+        cReminderBHTML.setAttribute('value', currentCard.cReminderToLearnShown);
+      } else { cReminderBHTML.setAttribute('value', ''); }
 
+      // console.log(nativeWord, toLearnWord);
+      refreshOptions(currentCard, currentCardID, userInfo);
+      showPageTwo();
+      changeWordsHTMLf.style.display = 'block';
+      console.log("XXXXXXXXXYYYYYYbutton adjust was clicked - block should be shown");
+      updateThisHTMLIdAfterUpdate = "ID" + DbID;
+
+      
+      e.target.parentElement.remove(); //remove card from html Due pile (as it is in not due pile now)
+      updateThisHTMLIdAfterUpdate = null; //has to be null to prevent updating html element which is not there
+    }
+  }
+});
 
 document.querySelector('#pileDue button').addEventListener("click", async () => {
   printCardsPileToHTML('#pileDue', await getAndReturnDataAboutPile("cardsLearningDue"));
