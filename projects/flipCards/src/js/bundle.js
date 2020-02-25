@@ -37,6 +37,7 @@ let lettersBubblesActive = false;
 let maxNumberOfBubbleLetters = 0;
 let numberOfLettersShownNow = 0;
 let wordTwoLettersShown = '';
+let cardCollectionName = null;
 
 
 // let posponeAdjusted = false;
@@ -429,9 +430,9 @@ console.log(oneArray);
 ////////////////////////////// F SET UP
 // F delete card
 let deleteCard = async () => {
-  // console.log('ready to delete card');
-  // console.log(currentCardID);
-
+  console.log('ready to delete card');
+  console.log(currentCardID);
+  await cards.collection("cardsLearningNotDue").doc(currentCardID).delete(); //deleting in both piles in case action was initialized through adjusting cards in one of the 2 packs
   cards.collection("cardsLearningDue").doc(currentCardID).delete().then(() => {
     // console.log('deleted');
     alertUserForSec("Deleted", 0.8);
@@ -509,29 +510,46 @@ let getCardFromDue = async () => {
   return currentCard;
 }
 
+let moveCardFromPileToLEarningPile = async (card1, colToRemoveFrom) => {
+  console.log("1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
+  let now = new Date().getTime();
+  currentCard = card1.docs[0].data();
+  console.log(currentCard);
+  currentCardID = card1.docs[0].id;
+  currentCard.mainStage = 'learning';
+  currentCard.lastSeen = now;
+  currentCard.dueTime = now;
+  // let cardMoveHere = await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard).then(() => {
+  let cardMoveHere = await cards.collection("cardsLearningDue").doc(currentCardID).set(currentCard).then(() => {
+    cards.collection(colToRemoveFrom).doc(currentCardID).delete();
+    // console.log('------- CARD MOVED TO DUE GROUP qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+  });
+  wordsBackground = "new";
+  toLearnCount = 1;
+  console.log('because TO LEARN card was found, "current card" was updated.', currentCard, "card's ID: ", currentCardID);
+}
 
-// get "to learn" card
+// get "to learn" card - first try NEXT pile, then toLearn pile
 let getCardFromToLearn = async (cards) => {
   // console.log('L1-1-4 STARTING getting ToLEARN card.');
   // let checkIfACardFromToLearn = await cards.where('mainStage', '==', 'to learn').limit(1).get();
-  let checkIfACardFromToLearn = await cards.collection("cardsToLearn").limit(1).get();
-  if (checkIfACardFromToLearn.docs.length == 0) { console.log('no card "TO LEARN" right NOW.'); toLearnCount = 0; }
-  else {
-    let now = new Date().getTime();
-    currentCard = checkIfACardFromToLearn.docs[0].data();
-    currentCardID = checkIfACardFromToLearn.docs[0].id;
-    currentCard.mainStage = 'learning';
-    currentCard.lastSeen = now;
-    currentCard.dueTime = now;
-    // let cardMoveHere = await cards.collection("cardsLearningNotDue").doc(currentCardID).set(currentCard).then(() => {
-    let cardMoveHere = await cards.collection("cardsLearningDue").doc(currentCardID).set(currentCard).then(() => {
-      cards.collection("cardsToLearn").doc(currentCardID).delete();
-      // console.log('------- CARD MOVED TO DUE GROUP qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-    });
-    wordsBackground = "new";
-    toLearnCount = 1;
-    console.log('because TO LEARN card was found, "current card" was updated.', currentCard, "card's ID: ", currentCardID);
+
+  let checkIfACardFromToLearn = await cards.collection("cardsToLearnNext").limit(1).get();
+  if (checkIfACardFromToLearn.docs.length == 0) {
+    console.log("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    checkIfACardFromToLearn = await cards.collection("cardsToLearn").limit(1).get();
+    if (checkIfACardFromToLearn.docs.length == 0) { console.log('no card "TO LEARN" right NOW.'); toLearnCount = 0; }
+    else {
+      //remove also card from toLearn (not next)
+      await moveCardFromPileToLEarningPile(checkIfACardFromToLearn, "cardsToLearn");
+    }
+
+  }
+  else { //remove also card from toLearnNext
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    console.log("ahoj")
+    await moveCardFromPileToLEarningPile(checkIfACardFromToLearn, "cardsToLearnNext");
   }
 }
 
@@ -1079,8 +1097,11 @@ let activateNEwCardListener = (user) => {
     e.preventDefault();
     let nativeInput = form.nativeInput.value;
     let toLearnInput = form.toLearnInput.value;
-    let checkBoxCurrentPile = form.newWordCheckBox.checked; //will be true or false
 
+    let checkBoxCurrentPile = form.querySelector('input[name="collection"]:checked').value;
+    // console.log(checkBoxCurrentPile)
+
+    // let checkBoxTraslationChecked = form.newWordTranslationCheckBox.checked;
 
 
     // add new object into firebase
@@ -1094,34 +1115,71 @@ let activateNEwCardListener = (user) => {
       level: 0,
       dueTime: 8888888888888,
       due: false,
-      lastSeen: 8888888888888
+      lastSeen: 8888888888888,
+      translationChecked: form.newWordTranslationCheckBox.checked
     };
 
     // db.collection(user.uid).add(newCard).then(() => {
     //  new-DB-structure
 
-    if (checkBoxCurrentPile == false) {
+    if (checkBoxCurrentPile == "LATER") {
       db.collection("users").doc(user.email).collection("cardsToLearn").add(newCard).then(() => {
         console.log('Added');
-        alertUserForSec("Added", 1);
+        alertUserForSec("Added to 'Later'.", 1);
       }).catch(err => {
         console.log(err);
         console.log('I could NOT add object into the database.');
       });
-    } else if (checkBoxCurrentPile == true) {
+    } else if (checkBoxCurrentPile == "NEXT") {
+      db.collection("users").doc(user.email).collection("cardsToLearnNext").add(newCard).then(() => {
+        console.log('Added TO NEXT COLL');
+        alertUserForSec("Added to 'Next'.", 1);
+      }).catch(err => {
+        console.log(err);
+        console.log('I could NOT add object into the database.');
+      });
+    } else if (checkBoxCurrentPile == "NOW") {
       let now = new Date().getTime();
       newCard.mainStage = "learning";
       newCard.lastSeen = now;
       newCard.dueTime = now; //if +10 000 = after 10 seconds
-      console.log('current  new card:', newCard);
+      // console.log('current  new card:', newCard);
       db.collection("users").doc(user.email).collection("cardsLearningNotDue").add(newCard).then(() => {
         console.log('Flip-card added');
-        alertUserForSec("Added", 1);
+        alertUserForSec("Added to 'Now'.", 1);
       }).catch(err => {
         console.log(err);
         console.log('I could NOT add object into the database.');
       });
     }
+
+
+
+
+
+
+    // if (checkBoxCurrentPile == false) {
+    //   db.collection("users").doc(user.email).collection("cardsToLearn").add(newCard).then(() => {
+    //     console.log('Added');
+    //     alertUserForSec("Added", 1);
+    //   }).catch(err => {
+    //     console.log(err);
+    //     console.log('I could NOT add object into the database.');
+    //   });
+    // } else if (checkBoxCurrentPile == true) {
+    //   let now = new Date().getTime();
+    //   newCard.mainStage = "learning";
+    //   newCard.lastSeen = now;
+    //   newCard.dueTime = now; //if +10 000 = after 10 seconds
+    //   console.log('current  new card:', newCard);
+    //   db.collection("users").doc(user.email).collection("cardsLearningNotDue").add(newCard).then(() => {
+    //     console.log('Flip-card added');
+    //     alertUserForSec("Added", 1);
+    //   }).catch(err => {
+    //     console.log(err);
+    //     console.log('I could NOT add object into the database.');
+    //   });
+    // }
 
     // reset form
     form.reset();
@@ -1402,7 +1460,7 @@ let printCardsPileToHTML = (ID, cardsArray) => {
       newButtonForHTMLTranslationAdjustment.setAttribute("id", `ID${card.DBid}adjust`);
       newCardForHTML.append(newButtonForHTMLTranslationAdjustment);
 
-      if (!card.translationChecked) {
+      if (!card.translationChecked || card.translationChecked!=true) {
         //new line
         const newLineForHTML = document.createElement('br');
         newCardForHTML.append(newLineForHTML);
@@ -1579,7 +1637,7 @@ document.querySelector('#pileDue .showHideCards').addEventListener("click", asyn
       console.log("XXXXXXXXXYYYYYYbutton adjust was clicked - block should be shown");
       updateThisHTMLIdAfterUpdate = "ID" + DbID;
 
-      
+
       e.target.parentElement.remove(); //remove card from html Due pile (as it is in not due pile now)
       updateThisHTMLIdAfterUpdate = null; //has to be null to prevent updating html element which is not there
     }
