@@ -1,0 +1,1027 @@
+/**
+*
+*
+*
+*
+*
+*
+*
+ */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 20px;
+  line-height: 20px, 5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+}
+
+a {
+  display: inline-block;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  font-size: 20px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+label,
+input {
+  display: block;
+  font-size: 20px !important;
+  padding-bottom: 0.3rem;
+}
+
+label {
+  padding-top: 1rem;
+}
+
+.centerIt {
+  display: block;
+  margin: auto !important;
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 1rem;
+  margin: 1.6rem 1.5rem;
+  background: #f7c7c7;
+  border: 1px solid white;
+  text-decoration: none;
+  -webkit-box-shadow: 3px 3px 3px 0px grey;
+          box-shadow: 3px 3px 3px 0px grey;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.hintButton {
+  background-color: #f3e5b7;
+  -webkit-text-decoration: solid underline #0404be;
+          text-decoration: solid underline #0404be;
+  border: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-radius: 100% 100% 0 0;
+  -webkit-border-radius: 100% 100% 0 0;
+  -moz-border-radius: 100% 100% 0 0;
+  -ms-border-radius: 100% 100% 0 0;
+  -o-border-radius: 100% 100% 0 0;
+  -webkit-box-shadow: 3px -3px 3px 0px grey;
+          box-shadow: 3px -3px 3px 0px grey;
+}
+
+.hintText {
+  text-decoration: none;
+  font-weight: normal;
+  display: block;
+  margin-top: 0;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.pairedButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  position: fixed;
+  max-width: 476px;
+  margin: 0 auto;
+  bottom: 5px;
+  right: 50%;
+  width: 100%;
+  height: 8vh;
+  color: white;
+  transform: translateX(50%);
+  -webkit-transform: translateX(50%);
+  -moz-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  -o-transform: translateX(50%);
+}
+
+.pairedButton:hover {
+  cursor: pointer;
+}
+
+.inline {
+  display: inline;
+}
+
+.bgDark {
+  background-color: #8d8df8;
+}
+
+.mtm {
+  margin-top: 10px;
+}
+
+.mtb {
+  margin-top: 30px;
+}
+
+.mm {
+  margin: 10px;
+}
+
+.pm {
+  padding: 10px;
+}
+
+.hide {
+  display: none;
+}
+
+#userStatusWrapper {
+  background: #ebfc8d;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+  color: #776f02;
+}
+
+#userStatusWrapper #signInOutButton {
+  background: #8b8b8b;
+  color: black;
+  border-color: black;
+}
+
+#scoreCounter {
+  display: none;
+  background: greenyellow;
+  padding: 5px;
+}
+
+.pointsCounter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: yellow;
+}
+
+.pointsCounter > p {
+  font-weight: 900;
+  -webkit-text-decoration: underline solid;
+          text-decoration: underline solid;
+  background: -webkit-gradient(linear, left top, right top, from(#feff00), color-stop(50%, #f9b700), to(#feff00));
+  background: linear-gradient(90deg, #feff00 0%, #f9b700 50%, #feff00 100%);
+  padding-bottom: 5px;
+}
+
+.pointsCounter .history7days,
+.pointsCounter .timeHistory7days {
+  text-align: left;
+}
+
+.pointsCounter .history7days strong,
+.pointsCounter .timeHistory7days strong {
+  display: inline-block;
+  text-align: right;
+  width: 80px;
+}
+
+.pointsCounter .history7days > span,
+.pointsCounter .timeHistory7days > span {
+  text-align: center;
+}
+
+.pointsCounter .history7days {
+  padding: 3px;
+}
+
+.pointsCounter .history7days span:nth-child(n+1) {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  margin: 0 2px;
+  font-size: 1.9rem;
+  background: rgba(255, 166, 0, 0.534);
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.pointsCounter .pointsCounterMain {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.pointsCounter .pointsCounterMain * {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+#container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 170vh;
+  background: #85852d;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #feff00), color-stop(80%, #0093f9));
+  background: linear-gradient(180deg, #feff00 10%, #0093f9 80%);
+}
+
+#container h1 {
+  padding: 1rem 1rem;
+}
+
+#container #newWord_container {
+  text-align: left;
+  margin: 1rem 2rem;
+  background-color: #9a9af7;
+  padding: 5vmin;
+}
+
+#training_wrapper #mainIcons {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#training_wrapper #help .visibleIcon,
+#training_wrapper #pilesInfo .visibleIcon,
+#training_wrapper #addVocabulary .visibleIcon {
+  margin: 10px 10px 20px 10px;
+  color: #eeff00;
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  -webkit-box-shadow: 3px 3px 3px 0px grey;
+          box-shadow: 3px 3px 3px 0px grey;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+
+#training_wrapper #help .visibleIcon:hover,
+#training_wrapper #pilesInfo .visibleIcon:hover,
+#training_wrapper #addVocabulary .visibleIcon:hover {
+  cursor: pointer;
+}
+
+#training_wrapper #help .invisibleWindow,
+#training_wrapper #pilesInfo .invisibleWindow,
+#training_wrapper #addVocabulary .invisibleWindow {
+  position: fixed;
+  display: none;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d39e9e;
+  z-index: 10000;
+  text-align: left;
+  color: yellow;
+  padding: 5px;
+  overflow: scroll;
+}
+
+#training_wrapper #help .invisibleWindow p,
+#training_wrapper #pilesInfo .invisibleWindow p,
+#training_wrapper #addVocabulary .invisibleWindow p {
+  padding: 5px;
+}
+
+#training_wrapper #help .invisibleWindow a,
+#training_wrapper #pilesInfo .invisibleWindow a,
+#training_wrapper #addVocabulary .invisibleWindow a {
+  line-height: 1.3;
+  padding: 10px;
+}
+
+#training_wrapper #help .invisibleWindow h1,
+#training_wrapper #help .invisibleWindow h2,
+#training_wrapper #pilesInfo .invisibleWindow h1,
+#training_wrapper #pilesInfo .invisibleWindow h2,
+#training_wrapper #addVocabulary .invisibleWindow h1,
+#training_wrapper #addVocabulary .invisibleWindow h2 {
+  text-align: center;
+  margin-top: 40px;
+}
+
+#training_wrapper #help .invisibleWindow h1,
+#training_wrapper #pilesInfo .invisibleWindow h1,
+#training_wrapper #addVocabulary .invisibleWindow h1 {
+  color: #0099ff;
+}
+
+#training_wrapper #help .invisibleWindow h2,
+#training_wrapper #pilesInfo .invisibleWindow h2,
+#training_wrapper #addVocabulary .invisibleWindow h2 {
+  -webkit-text-decoration: solid underline white;
+          text-decoration: solid underline white;
+}
+
+#training_wrapper #help .invisibleWindow h3,
+#training_wrapper #help .invisibleWindow h4,
+#training_wrapper #help .invisibleWindow h5,
+#training_wrapper #pilesInfo .invisibleWindow h3,
+#training_wrapper #pilesInfo .invisibleWindow h4,
+#training_wrapper #pilesInfo .invisibleWindow h5,
+#training_wrapper #addVocabulary .invisibleWindow h3,
+#training_wrapper #addVocabulary .invisibleWindow h4,
+#training_wrapper #addVocabulary .invisibleWindow h5 {
+  text-align: left;
+  margin-top: 30px;
+}
+
+#training_wrapper #help .invisibleWindow h6,
+#training_wrapper #pilesInfo .invisibleWindow h6,
+#training_wrapper #addVocabulary .invisibleWindow h6 {
+  margin-top: 20px;
+}
+
+#training_wrapper #help .invisibleWindow .closeButton,
+#training_wrapper #pilesInfo .invisibleWindow .closeButton,
+#training_wrapper #addVocabulary .invisibleWindow .closeButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10vh;
+  background: #5a5a5a;
+  color: white;
+}
+
+#training_wrapper #help .invisibleWindow .closeButton:hover,
+#training_wrapper #pilesInfo .invisibleWindow .closeButton:hover,
+#training_wrapper #addVocabulary .invisibleWindow .closeButton:hover {
+  cursor: pointer;
+}
+
+#training_wrapper #help .invisibleWindow #formNewWord,
+#training_wrapper #pilesInfo .invisibleWindow #formNewWord,
+#training_wrapper #addVocabulary .invisibleWindow #formNewWord {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#training_wrapper #help .invisibleWindow #formNewWord input[type="text"],
+#training_wrapper #pilesInfo .invisibleWindow #formNewWord input[type="text"],
+#training_wrapper #addVocabulary .invisibleWindow #formNewWord input[type="text"] {
+  width: 100%;
+}
+
+#training_wrapper #addVocabulary .visibleIcon {
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+#training_wrapper #mainTitle {
+  opacity: 0;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 30px;
+  color: white;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -ms-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+}
+
+#training_wrapper #mainTitle #tapToCenter {
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border: 1px dotted red;
+  padding: 0 5px;
+  position: absolute;
+  top: 43%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  -webkit-transform: translate(50%, -50%);
+  -moz-transform: translate(50%, -50%);
+  -ms-transform: translate(50%, -50%);
+  -o-transform: translate(50%, -50%);
+  font-size: 1.3rem;
+  color: #fd7171;
+}
+
+#training_wrapper #mainTitle:hover {
+  cursor: pointer;
+}
+
+#training_wrapper #language_labels span:nth-child(1) {
+  color: red;
+}
+
+#training_wrapper #language_labels span:nth-child(3) {
+  color: blue;
+}
+
+#training_wrapper #words {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#training_wrapper #words > p {
+  padding: 1rem 3rem;
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+#training_wrapper #levelIndicator {
+  color: lightgray;
+  display: none;
+}
+
+#training_wrapper #options {
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 10px;
+}
+
+#training_wrapper #options .optionsIcon {
+  display: none;
+  padding: 3px 8px;
+  margin: 3px;
+  margin-top: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.301);
+  color: blue;
+  color: white;
+  text-decoration: none;
+  -webkit-box-shadow: 3px 3px 3px 0px grey;
+          box-shadow: 3px 3px 3px 0px grey;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+#training_wrapper #options .optionsIcon:hover {
+  cursor: pointer;
+}
+
+#training_wrapper #options .optionsWindow {
+  display: none;
+  height: 170vh;
+  overflow: scroll;
+}
+
+#training_wrapper #options .optionsWindow input[type="text"] {
+  width: 100%;
+}
+
+#training_wrapper #options .optionsWindow #pospone {
+  padding-top: 10px;
+}
+
+#training_wrapper #options .optionsWindow #pospone input,
+#training_wrapper #options .optionsWindow #pospone label {
+  display: inline;
+  padding: 0;
+}
+
+#training_wrapper #options .optionsWindow #pospone div {
+  padding: 0 10px;
+}
+
+#training_wrapper #options .optionsWindow #pospone .flexWrapper {
+  padding: 5px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#training_wrapper #options .optionsWindow #pospone .flexWrapper * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#training_wrapper #options #definitionGoogle .optionsIcon,
+#training_wrapper #options #changeWords .optionsIcon,
+#training_wrapper #options #speakWord .optionsIcon {
+  display: inline-block;
+}
+
+#training_wrapper #options #definitionGoogle .optionsWindow,
+#training_wrapper #options #changeWords .optionsWindow {
+  z-index: 10000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 2px solid black;
+}
+
+#training_wrapper #options #definitionGoogle .optionsWindow h1,
+#training_wrapper #options #definitionGoogle .optionsWindow h2,
+#training_wrapper #options #definitionGoogle .optionsWindow h3,
+#training_wrapper #options #definitionGoogle .optionsWindow h4,
+#training_wrapper #options #definitionGoogle .optionsWindow h5,
+#training_wrapper #options #changeWords .optionsWindow h1,
+#training_wrapper #options #changeWords .optionsWindow h2,
+#training_wrapper #options #changeWords .optionsWindow h3,
+#training_wrapper #options #changeWords .optionsWindow h4,
+#training_wrapper #options #changeWords .optionsWindow h5 {
+  color: purple;
+}
+
+#training_wrapper #options #definitionGoogle .optionsWindow .closeButton,
+#training_wrapper #options #changeWords .optionsWindow .closeButton {
+  line-height: normal;
+  color: black;
+}
+
+#training_wrapper #options #definitionGoogle .optionsWindow .closeButton:hover,
+#training_wrapper #options #changeWords .optionsWindow .closeButton:hover {
+  cursor: pointer;
+}
+
+#training_wrapper #options #definitionGoogle .optionsWindow #formAdjustWord,
+#training_wrapper #options #changeWords .optionsWindow #formAdjustWord {
+  line-height: 1.3;
+  padding: 5px 10px;
+  background-color: #b8b8ee;
+}
+
+#training_wrapper #connection {
+  display: none;
+  margin-top: 10px;
+}
+
+#training_wrapper #bottonWrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  max-width: 500px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#training_wrapper #b_next,
+#training_wrapper #threeButtons,
+#training_wrapper #improveChallengeButtons {
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+#training_wrapper #b_next:hover,
+#training_wrapper #threeButtons:hover,
+#training_wrapper #improveChallengeButtons:hover {
+  cursor: pointer;
+}
+
+#training_wrapper #b_next {
+  background-color: #977005;
+  border-top: 3px solid #fffb00;
+  border-radius: 50% 50% 0 0;
+  -webkit-border-radius: 50% 50% 0 0;
+  -moz-border-radius: 50% 50% 0 0;
+  -ms-border-radius: 50% 50% 0 0;
+  -o-border-radius: 50% 50% 0 0;
+}
+
+#training_wrapper #threeButtons,
+#training_wrapper #improveChallengeButtons {
+  display: none;
+  padding: 0;
+  height: 100%;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+#training_wrapper #threeButtons *,
+#training_wrapper #improveChallengeButtons * {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  opacity: 0.9;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  height: 100%;
+  padding: 2rem 1rem;
+  margin: 1px;
+  border-radius: 100% 100% 10px 10px;
+  -webkit-border-radius: 100% 100% 10px 10px;
+  -moz-border-radius: 100% 100% 10px 10px;
+  -ms-border-radius: 100% 100% 10px 10px;
+  -o-border-radius: 100% 100% 10px 10px;
+  border-top: none;
+}
+
+#training_wrapper #threeButtons #BtnDown,
+#training_wrapper #improveChallengeButtons #BtnDown {
+  background-color: red;
+}
+
+#training_wrapper #threeButtons #BtnStay,
+#training_wrapper #improveChallengeButtons #BtnStay {
+  background-color: orange;
+}
+
+#training_wrapper #threeButtons #BtnSlow,
+#training_wrapper #improveChallengeButtons #BtnSlow {
+  background-color: yellow;
+}
+
+#training_wrapper #threeButtons #BtnUp,
+#training_wrapper #improveChallengeButtons #BtnUp {
+  background-color: #00ff22;
+}
+
+#training_wrapper #threeButtons #adjustOption,
+#training_wrapper #improveChallengeButtons #adjustOption {
+  background-color: #6d04e4;
+}
+
+#training_wrapper #threeButtons #moveOnOption,
+#training_wrapper #improveChallengeButtons #moveOnOption {
+  background-color: #ff0077;
+}
+
+#training_wrapper #deleteCard {
+  position: fixed;
+  margin: 5px;
+  top: 0;
+  left: 0;
+}
+
+#googleDrop,
+#normalDrop {
+  border: 2px dotted gray;
+  margin: 1rem;
+  padding: 4rem;
+}
+
+#googleDrop {
+  background: #dfa1f1;
+}
+
+#normalDrop {
+  background: #b636f1;
+}
+
+#cardToCheckAllert {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background: blue;
+}
+
+#proccedImport {
+  background: green;
+}
+
+#cancelImport {
+  background: red;
+}
+
+#firstTimeUser {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #21c4e0;
+  padding: 10px;
+  text-align: left;
+}
+
+#firstTimeUser input[type="radio"],
+#firstTimeUser label {
+  display: inline-block;
+}
+
+#alertForSec {
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  margin: 5px;
+  transform: translate(50%, -50%);
+  -webkit-transform: translate(50%, -50%);
+  -moz-transform: translate(50%, -50%);
+  -ms-transform: translate(50%, -50%);
+  -o-transform: translate(50%, -50%);
+  background-color: red !important;
+  z-index: 1000000;
+  text-align: center;
+  animation: fadeAway 1s forwards ease-in-out;
+  -webkit-animation: fadeAway 1s forwards ease-in-out;
+}
+
+@-webkit-keyframes fadeAway {
+  70% {
+    opacity: 1;
+    transform: translate(50%, -50%);
+    -webkit-transform: translate(50%, -50%);
+    -moz-transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%);
+    -o-transform: translate(50%, -50%);
+  }
+  100% {
+    transform: translate(50%, -200%);
+    -webkit-transform: translate(50%, -200%);
+    -moz-transform: translate(50%, -200%);
+    -ms-transform: translate(50%, -200%);
+    -o-transform: translate(50%, -200%);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeAway {
+  70% {
+    opacity: 1;
+    transform: translate(50%, -50%);
+    -webkit-transform: translate(50%, -50%);
+    -moz-transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%);
+    -o-transform: translate(50%, -50%);
+  }
+  100% {
+    transform: translate(50%, -200%);
+    -webkit-transform: translate(50%, -200%);
+    -moz-transform: translate(50%, -200%);
+    -ms-transform: translate(50%, -200%);
+    -o-transform: translate(50%, -200%);
+    opacity: 0;
+  }
+}
+
+#hints {
+  color: #0404be;
+}
+
+#hints p {
+  color: #0404be;
+  font-size: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#showLettersWrapper {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 3rem;
+  -webkit-box-shadow: 3px 0px 3px 0px grey;
+          box-shadow: 3px 0px 3px 0px grey;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+
+#puzzleWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#puzzleWrapper > * {
+  margin: 1px;
+  height: 90px;
+  width: 90px;
+  font-size: 3.3rem;
+  color: red;
+}
+
+#puzzleWrapper > * > * {
+  color: white;
+  background-color: orange;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff9d00+59,e5e5e5+70 */
+  background: #ff9d00;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, #ff9d00 59%, #ffee00 70%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9d00', endColorstr='#e5e5e5', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: 800;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#puzzleWrapper > * > *:active {
+  background-color: red;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff9d00+59,e5e5e5+70 */
+  background: #ff9d00;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, rgba(255, 157, 0, 0) 59%, #fffb00 70%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9d00', endColorstr='#e5e5e5', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+}
+
+#saveChangesAlert {
+  display: none;
+  position: fixed;
+  bottom: 90px;
+  left: 0;
+  width: 100%;
+  font-weight: 800;
+}
+
+#saveChangesAlert * {
+  color: black;
+}
+
+#pilesInfo .invisibleWindow {
+  -webkit-overflow-scrolling: touch;
+}
+
+#pilesInfo .invisibleWindow * {
+  -webkit-overflow-scrolling: touch;
+}
+
+#pilesInfo .invisibleWindow #pileLearned .showHideCards button {
+  background-color: rgba(0, 255, 255, 0.116);
+  border: 1px solid rgba(0, 0, 0, 0.404);
+  color: rgba(167, 0, 0, 0.712);
+  border-radius: 0  10px 10px 0;
+  font-size: small;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+#pilesInfo .invisibleWindow #pileLearned .showHideCards button:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+/*# sourceMappingURL=style.css.map */
