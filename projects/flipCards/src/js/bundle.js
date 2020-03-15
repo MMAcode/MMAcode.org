@@ -1437,16 +1437,24 @@ let printCardsPileToHTML = (ID, cardsArray) => {
 
     // if card from learned pile...
     if (ID === '#pileLearned') {
+
+      const buttonsWrapper = document.createElement('div');
+
       const newSHOWButtonForHTML = document.createElement('button');
       newSHOWButtonForHTML.innerHTML = "Show translation";
       newSHOWButtonForHTML.setAttribute("id", `TRANSLATION${card.DBid}`);
       newSHOWButtonForHTML.setAttribute("class", `spin-border-radius`);
-      newCardForHTML.append(newSHOWButtonForHTML);
+      // newCardForHTML.append(newSHOWButtonForHTML);
+      buttonsWrapper.append(newSHOWButtonForHTML);
+
 
       const newButtonForHTML = document.createElement('button');
       newButtonForHTML.innerHTML = "Learn again";
       newButtonForHTML.setAttribute("id", `${card.DBid}`);
-      newCardForHTML.append(newButtonForHTML);
+      // newCardForHTML.append(newButtonForHTML);
+      buttonsWrapper.append(newButtonForHTML);
+
+      newCardForHTML.append(buttonsWrapper);
     }
 
     if (ID === '#pileNotDue' || ID === "#pileDue") {
