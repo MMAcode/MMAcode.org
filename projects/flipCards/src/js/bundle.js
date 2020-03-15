@@ -1437,10 +1437,15 @@ let printCardsPileToHTML = (ID, cardsArray) => {
 
     // if card from learned pile...
     if (ID === '#pileLearned') {
+      const newSHOWButtonForHTML = document.createElement('button');
+      newSHOWButtonForHTML.innerHTML = "Show translation";
+      newSHOWButtonForHTML.setAttribute("id", `TRANSLATION${card.DBid}`);
+      newSHOWButtonForHTML.setAttribute("class", `spin-border-radius`);
+      newCardForHTML.append(newSHOWButtonForHTML);
+
       const newButtonForHTML = document.createElement('button');
       newButtonForHTML.innerHTML = "Learn again";
       newButtonForHTML.setAttribute("id", `${card.DBid}`);
-
       newCardForHTML.append(newButtonForHTML);
     }
 
@@ -1460,7 +1465,7 @@ let printCardsPileToHTML = (ID, cardsArray) => {
       newButtonForHTMLTranslationAdjustment.setAttribute("id", `ID${card.DBid}adjust`);
       newCardForHTML.append(newButtonForHTMLTranslationAdjustment);
 
-      if (!card.translationChecked || card.translationChecked!=true) {
+      if (!card.translationChecked || card.translationChecked != true) {
         //new line
         const newLineForHTML = document.createElement('br');
         newCardForHTML.append(newLineForHTML);
@@ -1492,16 +1497,39 @@ document.querySelector('#pileLearned button').addEventListener("click", async ()
 document.querySelector('#pileLearned .showHideCards').addEventListener("click", async (e) => {
 
   if (e.target.tagName == 'BUTTON' && e.target.id) {
-    let cardToMove = await cards.collection("cardsLearned").doc(`${e.target.id}`).get();
-    cardToMove = cardToMove.data();
-    cardToMove.level = 5;
-    cards.collection("cardsLearningNotDue").doc(e.target.id).set(cardToMove);
-    cards.collection("cardsLearned").doc(e.target.id).delete();
+    let dbKey = e.target.id;
+    if (e.target.id.slice(0, 11) === 'TRANSLATION') dbKey = e.target.id.slice(11, e.target.id.length);
+    let cardToMove = await cards.collection("cardsLearned").doc(`${dbKey}`).get();
+    console.log(cardToMove);
 
-    const buttonReplacementForHTML = document.createElement('span');
-    buttonReplacementForHTML.innerHTML = "  Element moved to current pile.";
-    e.target.insertAdjacentElement('afterend', buttonReplacementForHTML);
-    e.target.remove();
+    cardToMove = cardToMove.data();
+
+    if (e.target.id.slice(0, 11) === 'TRANSLATION') {
+      console.log("BBBBBBBBBBBBBBBBBBBBBBBBBB BUTON translation")
+
+      const translationForHTML = document.createElement('span');
+      translationForHTML.innerHTML = cardToMove.languageToLearn;
+      translationForHTML.setAttribute("style", "color: brown;");
+      console.log("element to append:", translationForHTML);
+      // e.target.append(translationForHTML);
+      e.target.insertAdjacentElement('afterend', translationForHTML);
+
+      const translationBrForHTML = document.createElement('br');
+      e.target.insertAdjacentElement('afterend', translationBrForHTML);
+    }
+    else {
+      console.log("BBBBBBBBBBBBBBBBBBBBBBBBBB BUTON move back")
+
+    }
+    //   cardToMove.level = 5;
+    //   cards.collection("cardsLearningNotDue").doc(e.target.id).set(cardToMove);
+    //   cards.collection("cardsLearned").doc(e.target.id).delete();
+
+    //   const buttonReplacementForHTML = document.createElement('span');
+    //   buttonReplacementForHTML.innerHTML = "  Element moved to current pile.";
+    //   e.target.insertAdjacentElement('afterend', buttonReplacementForHTML);
+    //   e.target.remove();
+    // }
   }
 });
 
@@ -1650,6 +1678,11 @@ document.querySelector('#pileDue button').addEventListener("click", async () => 
 document.querySelector('#pileNotDue button').addEventListener("click", async () => {
   printCardsPileToHTML('#pileNotDue', await getAndReturnDataAboutPile("cardsLearningNotDue"));
 });
+
+document.querySelector('#pileToLearnNext button').addEventListener("click", async () => {
+  printCardsPileToHTML('#pileToLearnNext', await getAndReturnDataAboutPile("cardsToLearnNext"));
+});
+
 document.querySelector('#pileToLearn button').addEventListener("click", async () => {
   printCardsPileToHTML('#pileToLearn', await getAndReturnDataAboutPile("cardsToLearn"));
 });

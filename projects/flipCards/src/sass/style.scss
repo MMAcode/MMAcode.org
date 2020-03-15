@@ -1179,16 +1179,27 @@ label {
     background-color: rgba(0, 255, 255, 0.116);
     border: 1px solid rgba(0, 0, 0, 0.404);
     color: rgba(167, 0, 0, 0.712);
-    border-radius: 0  10px 10px 0;
+    border-radius: 0 10px 10px 0;
     font-size: small;
     padding: 5px;
     margin-bottom: 10px;
     margin-left: 10px;
-    transition: transform 0.3s;
+    transition: all 0.3s;
 
-    &:hover{
-      transform: scale(1.2);
+  
+
+    &.spin-border-radius {
+      // background: white !important;
+      background-color: rgba(85, 141, 141, 0.233);
+
+      border-radius: 10px 0 0 10px;
     }
+  &:hover {
+      background-color: black;
+      color: white;
+    }
+
+
   }
 
 }
