@@ -1,4 +1,4 @@
-import { langInWord1, langInWord2 } from '../bundle';
+import { langInWord1, langInWord2, page2ActiveNow } from '../bundle';
 
 let translateOnline = async (from, to, textToTranslate) => {
 
@@ -47,19 +47,19 @@ function getSelectionText() {
   }
   return text;
 }
- let alertUserForSec = async (text, durationInSec) => {
-    let alertForSec = document.createElement('p');
-    // alertForSec.textContent = text;
-    alertForSec.innerHTML = text;
-    alertForSec.id = "alertForSec";
-    // alertForSec.classList.add("flyingAlert");
-    alertForSec.style.animationDuration = durationInSec + "s";
-    let hook = document.querySelector("#words");
-    hook.append(alertForSec);
-    await new Promise(resolve => setTimeout(resolve, durationInSec * 1000));
-    // console.log('XXXXXXXXXXX alert pop up');
-    document.querySelector("#alertForSec").remove();
-  }
+let alertUserForSec = async (text, durationInSec) => {
+  let alertForSec = document.createElement('p');
+  // alertForSec.textContent = text;
+  alertForSec.innerHTML = text;
+  alertForSec.id = "alertForSec";
+  // alertForSec.classList.add("flyingAlert");
+  alertForSec.style.animationDuration = durationInSec + "s";
+  let hook = document.querySelector("#words");
+  hook.append(alertForSec);
+  await new Promise(resolve => setTimeout(resolve, durationInSec * 1000));
+  // console.log('XXXXXXXXXXX alert pop up');
+  document.querySelector("#alertForSec").remove();
+}
 
 
 
@@ -82,7 +82,7 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
   let translation = await translateOnline(langForGoogle.from, langForGoogle.to, langForGoogle.textToTranslate);
   console.log(translation);
   // showSelectionForSec();
-  
+
   alertUserForSec(translation, 1);
 
 }
@@ -99,10 +99,22 @@ export const enableTranslateOnSelect = async () => {
   // document.querySelector('#wordOne').addEventListener('click', () => console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCC", langInWord1));
   // document.querySelector('#wordTwo').addEventListener('click', () => console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCC", langInWord2));
   //show translate button when text is selected
-  document.querySelector('#wordOne').addEventListener('touchcancel', () => { if (getSelectionText().length > 0) document.querySelector('#wordOneTranslate').style.display = 'inline-block'; });
-  document.querySelector('#wordOne').addEventListener('touchend', () => { if (getSelectionText().length > 0) document.querySelector('#wordOneTranslate').style.display = 'inline-block'; });
-  document.querySelector('#wordTwo').addEventListener('touchcancel', () => { if (getSelectionText().length > 0) document.querySelector('#wordTwoTranslate').style.display = 'inline-block'; });
-  document.querySelector('#wordTwo').addEventListener('touchend', () => { if (getSelectionText().length > 0) document.querySelector('#wordTwoTranslate').style.display = 'inline-block'; });
+
+
+  // document.querySelector('#wordOne').addEventListener('touchcancel', () => { if (getSelectionText().length > 0) document.querySelector('#wordOneTranslate').style.display = 'inline-block'; });
+  // document.querySelector('#wordOne').addEventListener('touchend', () => { if (getSelectionText().length > 0) document.querySelector('#wordOneTranslate').style.display = 'inline-block'; });
+  // document.querySelector('#wordTwo').addEventListener('touchcancel', () => { if (getSelectionText().length > 0) document.querySelector('#wordTwoTranslate').style.display = 'inline-block'; });
+  // document.querySelector('#wordTwo').addEventListener('touchend', () => { if (getSelectionText().length > 0) document.querySelector('#wordTwoTranslate').style.display = 'inline-block'; });
+
+  let showTranslateButton = (buttonID) => {
+    console.log("DDDDDDDDDDDDDDDDDD p2 active:", page2ActiveNow);
+    if (page2ActiveNow && getSelectionText().length > 0) document.querySelector(buttonID).style.display = 'inline-block';
+  }
+
+  document.querySelector('#wordOne').addEventListener('touchcancel', () => showTranslateButton('#wordOneTranslate'));
+  document.querySelector('#wordOne').addEventListener('touchend', () => showTranslateButton('#wordOneTranslate'));
+  document.querySelector('#wordTwo').addEventListener('touchcancel', () => showTranslateButton('#wordTwoTranslate'));
+  document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButton('#wordTwoTranslate'));
 
 
   //main

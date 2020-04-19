@@ -43,7 +43,7 @@ let maxNumberOfBubbleLetters = 0;
 let numberOfLettersShownNow = 0;
 let wordTwoLettersShown = '';
 let cardCollectionName = null;
-
+let page2ActiveNow = false;
 
 // let posponeAdjusted = false;
 
@@ -795,6 +795,7 @@ let updateCardInFirebase = async () => {
 
 // update ALL from second page to new card
 let updateALL = async (e) => {
+  page2ActiveNow = false;
   // console.log('this was clicked:');
   // console.log(e.target.parentNode.id);
 
@@ -970,6 +971,7 @@ let showPageOne = async () => {
 }
 
 let showPageTwo = () => {
+  page2ActiveNow = true;
   // console.log('Page two Activated.');
   // secondWordHTML.onclick = null;
   // secondWordHTML.removeEventListener();
@@ -981,7 +983,10 @@ let showPageTwo = () => {
   alertToTranslate.innerHTML = 'Select to Translate';
   alertToTranslate.id = 'alertToTranslate';
   alertToTranslate.style.color = 'white';
-  document.querySelector('#words').prepend(alertToTranslate);
+  // alertToTranslate.style.height = '0';
+
+  // document.querySelector('#words').prepend(alertToTranslate);
+  document.querySelector('#words').append(alertToTranslate);
   //sort bubble letters
   if (lettersBubblesActive === true) { document.querySelector('#puzzleWrapper').remove(); }
   document.querySelector('#showLettersWrapper').style.display = 'none';
@@ -1815,4 +1820,4 @@ window.addEventListener('scroll', function (e) {
 
 
 
-export { cards, userID, alertUserForSec, scrollAmount, wordOne, langInWord1, langInWord2 };
+export { cards, userID, alertUserForSec, scrollAmount, wordOne, langInWord1, langInWord2, page2ActiveNow };
