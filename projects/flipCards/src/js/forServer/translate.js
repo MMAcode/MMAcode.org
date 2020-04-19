@@ -73,10 +73,11 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
   let selectedNow = getSelectionText();
   if (selectedNow.length > 0) savedSelectedText = selectedNow;
 
-  alertUserForSec("SAVED:" + savedSelectedText + "\n HIGH: " + selectedNow, 4);
+  // alertUserForSec("SAVED:" + savedSelectedText + "\n HIGH: " + selectedNow, 4);
   console.log("SAVED:" + savedSelectedText);
   console.log("HIGH: " + selectedNow);
   console.log("Window:", window.getSelectionText);
+  console.log("Window2:", window.getSelection().toString());
 
   let langForGoogle = { textToTranslate: selectedNow.length > 0 ? selectedNow : savedSelectedText };
   if (languageOfTheSelection == 'czech') {
@@ -92,31 +93,35 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
   // console.log(translation);
   // showSelectionForSec();
 
-  // alertUserForSec(translation, 5);
+  alertUserForSec(translation, 2);
 
 }
 
-
+let showTranslateButtonAndUpdateSavedSelectedText = (buttonID, languageOfTheSelection) => {
+  console.log("touch detected - text will be updated");
+  // alertUserForSec("some touch detected", 0.5);
+  // console.log("DDDDDDDDDDDDDDDDDD p2 active:", page2ActiveNow);
+  if (getSelectionText().length > 0) savedSelectedText = getSelectionText();
+  if (page2ActiveNow && savedSelectedText.length > 0) {
+    document.querySelector(buttonID).style.display = 'inline-block';
+    // translateAndShowSelectedText(languageOfTheSelection);
+  }
+}
 
 export const enableTranslateOnSelect = async () => {
-
-  let showTranslateButtonAndUpdateSavedSelectedText = (buttonID, languageOfTheSelection) => {
-    console.log("some touch detected");
-    alertUserForSec("some touch detected", 0.5);
-    // console.log("DDDDDDDDDDDDDDDDDD p2 active:", page2ActiveNow);
-    if (getSelectionText().length > 0) savedSelectedText = getSelectionText();
-    if (page2ActiveNow && savedSelectedText.length > 0) {
-      document.querySelector(buttonID).style.display = 'inline-block';
-      // translateAndShowSelectedText(languageOfTheSelection);
-    }
-
-  }
 
   //show translate button
   document.querySelector('#wordOne').addEventListener('touchend', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1));
   document.querySelector('#wordOne').addEventListener('touchcancel', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1));
+  document.querySelector('#wordOne').addEventListener('mouseup', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1));
+
   document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2));
   document.querySelector('#wordTwo').addEventListener('touchcancel', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2));
+  document.querySelector('#wordTwo').addEventListener('mouseup', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2));
+  document.addEventListener('selectionchange', () => {
+    console.log("doc.onselectionchange fired - text will be updated");
+    if (getSelectionText().length > 0) savedSelectedText = getSelectionText()
+  });
 
   //update highlightedText variable upon change in selection
   // document.querySelector('#wordOne').addEventListener('select', () => {
