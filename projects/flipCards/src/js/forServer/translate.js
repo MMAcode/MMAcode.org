@@ -70,6 +70,8 @@ let alertUserForSec = async (text, durationInSec) => {
 let translateAndShowSelectedText = async (languageOfTheSelection) => {
   // console.log('AAAAAAAAAAAAAAAAAAAAAAtranslateSelectedText');
   // console.log(languageOfTheSelection);
+  alertUserForSec("highlighted text now:" + highlightedText, 6);
+  
   let langForGoogle = { textToTranslate: getSelectionText().length > 0 ? getSelectionText() : highlightedText };
   if (languageOfTheSelection == 'czech') {
     langForGoogle.from = 'cs';
@@ -84,7 +86,7 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
   console.log(translation);
   // showSelectionForSec();
 
-  alertUserForSec(translation, 1);
+  alertUserForSec(translation, 2);
 
 }
 
@@ -93,7 +95,7 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
 export const enableTranslateOnSelect = async () => {
 
   let showTranslateButton = (buttonID) => {
-    console.log("DDDDDDDDDDDDDDDDDD p2 active:", page2ActiveNow);
+    // console.log("DDDDDDDDDDDDDDDDDD p2 active:", page2ActiveNow);
     highlightedText = getSelectionText();
     if (page2ActiveNow && highlightedText.length > 0) {
       document.querySelector(buttonID).style.display = 'inline-block';
@@ -106,6 +108,12 @@ export const enableTranslateOnSelect = async () => {
   document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButton('#wordTwoTranslate'));
   document.querySelector('#wordTwo').addEventListener('touchcancel', () => showTranslateButton('#wordTwoTranslate'));
 
+  //update highlightedText variable upon change in selection
+  document.querySelector('#wordOne').addEventListener('select', () => {
+    console.log("MMMMMMMMMMMMM", getSelectionText());
+    if (getSelectionText().length > 0) highlightedText = getSelectionText()
+  });
+  document.querySelector('#wordOne').addEventListener('select', () => { if (getSelectionText().length > 0) highlightedText = getSelectionText() });
   //main
   document.querySelector('#wordOneTranslate').addEventListener('click', () => translateAndShowSelectedText(langInWord1));
   document.querySelector('#wordTwoTranslate').addEventListener('click', () => translateAndShowSelectedText(langInWord2));

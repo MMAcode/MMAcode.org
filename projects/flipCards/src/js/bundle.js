@@ -997,7 +997,7 @@ let showPageTwo = () => {
   secondWordHTML.removeEventListener('touchmove', preventScroll);
   secondWordHTML.removeEventListener('click', ShowLetterOnClick);
 
-  console.log(wordTwo, 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+  // console.log(wordTwo, 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 
   //show connection text if exists
   if (currentCard.connection != undefined && currentCard.connection != '') {
