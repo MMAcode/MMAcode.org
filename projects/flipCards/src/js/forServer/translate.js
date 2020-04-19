@@ -72,7 +72,7 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
   // console.log(languageOfTheSelection);
   let selectedNow = getSelectionText();
   // if (selectedNow>)
-  alertUserForSec("SAVED:" + savedSelectedText + "\n HIGH: " + selectedNow, 40);
+  alertUserForSec("SAVED:" + savedSelectedText + "\n HIGH: " + selectedNow, 4);
 
   let langForGoogle = { textToTranslate: selectedNow.length > 0 ? selectedNow : savedSelectedText };
   if (languageOfTheSelection == 'czech') {
