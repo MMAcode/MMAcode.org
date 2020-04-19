@@ -23,10 +23,11 @@ let translateOnline = async (from, to, textToTranslate) => {
         to,
         translate: textToTranslate,
       })
-      .then((data) => {
-        console.log("Data from server: ", data); // JSON data parsed by `response.json()` call
+      .then(async (data) => {
+        console.log("Data from server: ", data);
+        // JSON data parsed by `response.json()` call
         // console.log(data.translated); // JSON data parsed by `response.json()` call
-        return data.translated;
+        return await data.translated;
       });
 }
 export default translateOnline;
@@ -93,7 +94,7 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
   // console.log(translation);
   // showSelectionForSec();
 
-  alertUserForSec(translation, 2);
+  alertUserForSec(translation, 1.5);
 
 }
 

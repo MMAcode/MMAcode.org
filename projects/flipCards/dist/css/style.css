@@ -234,6 +234,15 @@ label {
   flex: 1;
 }
 
+#button_formNewWord_NativeInput,
+#button_formNewWord_toLearnInput {
+  display: inline-block;
+  float: right;
+  margin: 0;
+  padding: 2px 5px;
+  color: brown;
+}
+
 #container {
   max-width: 500px;
   margin: 0 auto;

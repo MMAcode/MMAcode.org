@@ -313,6 +313,16 @@ label {
   }
 }
 
+#button_formNewWord_NativeInput,
+#button_formNewWord_toLearnInput {
+  display: inline-block;
+  float: right;
+  margin: 0;
+  padding: 2px 5px;
+  color: brown;
+  // right:0;
+}
+
 #container {
   // position: relative;
   max-width: 500px;

@@ -3,8 +3,8 @@ import { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, resetA
 
 import './wordsOptions';
 import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions, getPosponeTime } from './wordsOptions';
-import { enableTranslateOnSelect } from './forServer/translate'
-
+import translateOnline, { enableTranslateOnSelect } from './forServer/translate';
+import translateNewWords from './forServer/translateNewWords';
 enableTranslateOnSelect();
 // translate('cs','en','co to delas?');
 
@@ -1114,6 +1114,8 @@ let setLanguagesToSpeak = async () => {
   // languageToSpeak = 
 }
 
+
+
 //////Add new words to learn
 let activateNEwCardListener = (user) => {
   let form = document.querySelector('#formNewWord');
@@ -1236,6 +1238,7 @@ auth.onAuthStateChanged(async (user) => {
     cards = db.collection("users").doc(user.email);
 
 
+
     // updates the points in/from DB and then in UI (if day is new), ans sets session score to 0;
     stopwatchPointsInit(cards).then((pointsReturned) => {
       points = pointsReturned;
@@ -1245,10 +1248,13 @@ auth.onAuthStateChanged(async (user) => {
 
 
     // userInfo = await
-    cards.collection("about").doc("info").get().then((userDoc) => {
+    cards.collection("about").doc("info").get().then(async (userDoc) => {
       // loggedStatus.innerHTML = `<p>Enjoy ${user.email}!</p>`
-      userInfo = userDoc.data();
+      userInfo = await userDoc.data();
+
       activateUserInOptions(userInfo, cards);
+      translateNewWords(cards);
+
       loggedStatus.innerHTML = `<p>Enjoy ${userInfo.username}!</p>`
       setLanguagesToSpeak().then(() => {
         updateDatabaseTHEN_UI();
@@ -1415,6 +1421,9 @@ document.querySelector('#showLettersWrapper').addEventListener('click', e => {
   setEvaluateButtonsOpacity(2, 2, 2, 0.3);
   document.querySelector('#showLettersWrapper').style.display = 'none';
 });
+
+
+
 
 
 
