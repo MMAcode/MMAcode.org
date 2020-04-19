@@ -1,4 +1,5 @@
 import { langInWord1, langInWord2, page2ActiveNow } from '../bundle';
+let highlightedText = '';
 
 let translateOnline = async (from, to, textToTranslate) => {
 
@@ -67,9 +68,9 @@ let alertUserForSec = async (text, durationInSec) => {
 
 
 let translateAndShowSelectedText = async (languageOfTheSelection) => {
-  console.log('AAAAAAAAAAAAAAAAAAAAAAtranslateSelectedText');
-  console.log(languageOfTheSelection);
-  let langForGoogle = { textToTranslate: getSelectionText() };
+  // console.log('AAAAAAAAAAAAAAAAAAAAAAtranslateSelectedText');
+  // console.log(languageOfTheSelection);
+  let langForGoogle = { textToTranslate: getSelectionText().length > 0 ? getSelectionText() : highlightedText };
   if (languageOfTheSelection == 'czech') {
     langForGoogle.from = 'cs';
     langForGoogle.to = 'en';
@@ -90,33 +91,20 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
 
 
 export const enableTranslateOnSelect = async () => {
-  // let textHTML = document.querySelector('#wordTwoTranslate');
-  // textHTML.innerHTML = 'co to je?';
-  // textHTML.innerHTML = 'co to jde?';
-  // let tr = await translate('cs', 'en', 'kdo jsi?');
-  //   console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAa", tr);
-
-  // document.querySelector('#wordOne').addEventListener('click', () => console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCC", langInWord1));
-  // document.querySelector('#wordTwo').addEventListener('click', () => console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCC", langInWord2));
-  //show translate button when text is selected
-
-
-  // document.querySelector('#wordOne').addEventListener('touchcancel', () => { if (getSelectionText().length > 0) document.querySelector('#wordOneTranslate').style.display = 'inline-block'; });
-  // document.querySelector('#wordOne').addEventListener('touchend', () => { if (getSelectionText().length > 0) document.querySelector('#wordOneTranslate').style.display = 'inline-block'; });
-  // document.querySelector('#wordTwo').addEventListener('touchcancel', () => { if (getSelectionText().length > 0) document.querySelector('#wordTwoTranslate').style.display = 'inline-block'; });
-  // document.querySelector('#wordTwo').addEventListener('touchend', () => { if (getSelectionText().length > 0) document.querySelector('#wordTwoTranslate').style.display = 'inline-block'; });
 
   let showTranslateButton = (buttonID) => {
     console.log("DDDDDDDDDDDDDDDDDD p2 active:", page2ActiveNow);
-    if (page2ActiveNow && getSelectionText().length > 0) document.querySelector(buttonID).style.display = 'inline-block';
+    highlightedText = getSelectionText();
+    if (page2ActiveNow && highlightedText.length > 0) {
+      document.querySelector(buttonID).style.display = 'inline-block';
+    }
   }
 
+  //show translate button
   document.querySelector('#wordOne').addEventListener('touchend', () => showTranslateButton('#wordOneTranslate'));
-  // document.querySelector('#wordOne').addEventListener('touchcancel', () => showTranslateButton('#wordOneTranslate'));
-  // document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButton('#wordTwoTranslate'));
+  document.querySelector('#wordOne').addEventListener('touchcancel', () => showTranslateButton('#wordOneTranslate'));
+  document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButton('#wordTwoTranslate'));
   document.querySelector('#wordTwo').addEventListener('touchcancel', () => showTranslateButton('#wordTwoTranslate'));
-  
-
 
   //main
   document.querySelector('#wordOneTranslate').addEventListener('click', () => translateAndShowSelectedText(langInWord1));
