@@ -111,10 +111,11 @@ export const enableTranslateOnSelect = async () => {
     if (page2ActiveNow && getSelectionText().length > 0) document.querySelector(buttonID).style.display = 'inline-block';
   }
 
-  document.querySelector('#wordOne').addEventListener('touchcancel', () => showTranslateButton('#wordOneTranslate'));
   document.querySelector('#wordOne').addEventListener('touchend', () => showTranslateButton('#wordOneTranslate'));
+  // document.querySelector('#wordOne').addEventListener('touchcancel', () => showTranslateButton('#wordOneTranslate'));
+  // document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButton('#wordTwoTranslate'));
   document.querySelector('#wordTwo').addEventListener('touchcancel', () => showTranslateButton('#wordTwoTranslate'));
-  document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButton('#wordTwoTranslate'));
+  
 
 
   //main
