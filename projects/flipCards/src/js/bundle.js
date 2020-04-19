@@ -3,7 +3,10 @@ import { stopwatchPointsInit, updatePoints, stopWatchInit, resetIdleTime, resetA
 
 import './wordsOptions';
 import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions, getPosponeTime } from './wordsOptions';
+import { enableTranslateOnSelect } from './forServer/translate'
 
+enableTranslateOnSelect();
+// translate('cs','en','co to delas?');
 
 //mic
 // navigator.permissions.query({ name: 'microphone' })
@@ -30,6 +33,8 @@ let currentCard = {};
 let currentCardID = null;
 let wordOne = '';
 let wordTwo = '';
+let langInWord1 = undefined;
+let langInWord2 = undefined;
 let wShuffledNumbers = [];
 let evaluateButtonOpacity = 1;
 
@@ -587,6 +592,9 @@ let assignWordsAndColours = (currentCard) => {
     wordOne = currentCard.languageToLearn;
     // wordTwo = currentCard.enWord;
     wordTwo = currentCard.languageNative;
+    langInWord1 = userInfo.langToLearn;
+    langInWord2 = userInfo.langNative;
+
 
     firstWordHTML.style.color = 'blue';
     secondWordHTML.style.color = 'red';
@@ -596,6 +604,8 @@ let assignWordsAndColours = (currentCard) => {
     wordOne = currentCard.languageNative;
     // wordTwo = currentCard.czWord;
     wordTwo = currentCard.languageToLearn;
+    langInWord2 = userInfo.langToLearn;
+    langInWord1 = userInfo.langNative;
     // console.log(wordTwo, 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM');
 
     firstWordHTML.style.color = 'red';
@@ -789,6 +799,11 @@ let updateALL = async (e) => {
   // console.log(e.target.parentNode.id);
 
   //update html element in decks of words  -adjusted word
+  document.querySelector('#alertToTranslate').remove();
+  document.querySelector('#wordOneTranslate').style.display = 'none';
+  document.querySelector('#wordTwoTranslate').style.display = 'none';
+
+
   if (updateThisHTMLIdAfterUpdate != null) {
     console.log("XXXXXXXXXXXXXXXXXXXXXXXX")
     console.log(currentCard)
@@ -962,7 +977,11 @@ let showPageTwo = () => {
   // console.log('clickHint listener SHOUND be removed');
   // console.log('current clickhintCouner=', clickHintCounter);
   // clickHintCounter = 1000;
-
+  let alertToTranslate = document.createElement('span');
+  alertToTranslate.innerHTML = 'Select to Translate';
+  alertToTranslate.id = 'alertToTranslate';
+  alertToTranslate.style.color = 'white';
+  document.querySelector('#words').prepend(alertToTranslate);
   //sort bubble letters
   if (lettersBubblesActive === true) { document.querySelector('#puzzleWrapper').remove(); }
   document.querySelector('#showLettersWrapper').style.display = 'none';
@@ -1796,4 +1815,4 @@ window.addEventListener('scroll', function (e) {
 
 
 
-export { cards, userID, alertUserForSec, scrollAmount, wordOne };
+export { cards, userID, alertUserForSec, scrollAmount, wordOne, langInWord1, langInWord2 };

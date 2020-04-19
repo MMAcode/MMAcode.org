@@ -4,13 +4,17 @@
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
+    "concurrently": "^5.1.0",
+    "sass": "^1.26.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "xlsx": "^0.15.1"
   },
   "devDependencies": {},
   "scripts": {
-    "webpack": "node_modules/.bin/webpack -w --mode development"
+    "webpack": "node_modules/.bin/webpack -w --mode development",
+    "ssass": "sass --watch ./src/sass/style.scss ./dist/css/style.css",
+    "start":  "concurrently \"npm run webpack\" \"npm run ssass\""
   },
   "keywords": [],
   "author": "",

@@ -1,15 +1,20 @@
 // ** variables
-$cBg:rgb(184, 184, 238);
+$cBg: rgb(184, 184, 238);
 $cPointsFrame: orange;
-$cPointsFrame: linear-gradient(90deg, rgba(254, 255, 0, 1) 0%, rgba(249, 183, 0, 1) 50%, rgba(254, 255, 0, 1) 100%);
+$cPointsFrame: linear-gradient(
+  90deg,
+  rgba(254, 255, 0, 1) 0%,
+  rgba(249, 183, 0, 1) 50%,
+  rgba(254, 255, 0, 1) 100%
+);
 // $cPointsFrame: linear-gradient(90deg, rgba(254, 255, 0, 1) 5%, rgba(249, 183, 0, 1) 40%, rgba(249, 188, 0, 1) 60%, rgba(254, 255, 0, 1) 95%);
-$cBg_NewCard:rgb(154, 154, 247);
-$cBg_3buttons:rgba(0, 147, 249, 1);
+$cBg_NewCard: rgb(154, 154, 247);
+$cBg_3buttons: rgba(0, 147, 249, 1);
 // $cBg_connectionsButtons: rgb(255, 245, 160);
 $cBg_connectionsButtons: rgb(243, 229, 183);
 
-$defaultFontSize:20px;
-$letterBoxSize:90px;
+$defaultFontSize: 20px;
+$letterBoxSize: 90px;
 
 /**
 *
@@ -21,14 +26,11 @@ $letterBoxSize:90px;
 *
  */
 
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-
 }
-
 
 html {
   font-size: 62.5%;
@@ -39,7 +41,6 @@ body {
   line-height: $defaultFontSize * 1, 5;
   // max-width: 500px;
 }
-
 
 h1,
 h2,
@@ -54,8 +55,6 @@ h6 {
   text-align: center;
 }
 
-
-
 a {
   // text-decoration: none;
   display: inline-block;
@@ -65,7 +64,6 @@ a {
   }
 }
 
-
 img {
   width: 100%;
   height: auto;
@@ -74,7 +72,6 @@ img {
 button {
   // padding: 1rem;
   font-size: $defaultFontSize;
-
 
   &:hover {
     cursor: pointer;
@@ -86,8 +83,6 @@ input {
   display: block;
   font-size: $defaultFontSize !important;
   padding-bottom: 0.3rem;
-
-
 }
 
 label {
@@ -144,7 +139,6 @@ label {
   //margin: 0 auto;
   text-decoration: solid underline #0404be;
 
-
   // font-weight: bold;
   border: none;
   // margin-top: 0;
@@ -156,7 +150,6 @@ label {
   -ms-border-radius: 100% 100% 0 0;
   -o-border-radius: 100% 100% 0 0;
   box-shadow: 3px -3px 3px 0px grey;
-
 }
 
 .hintText {
@@ -200,12 +193,9 @@ label {
   -o-transform: translateX(50%);
 }
 
-
-
 .inline {
   display: inline;
 }
-
 
 .bgDark {
   background-color: rgb(141, 141, 248);
@@ -236,7 +226,6 @@ label {
 // }
 
 // **Main
-
 
 #userStatusWrapper {
   background: rgb(235, 252, 141);
@@ -269,12 +258,11 @@ label {
   // padding: 5px;
   // border: 3px solid $cPointsFrame;
 
-  >p {
+  > p {
     font-weight: 900;
     text-decoration: underline solid;
     background: $cPointsFrame;
     padding-bottom: 5px;
-
   }
 
   .history7days,
@@ -287,7 +275,7 @@ label {
       width: 80px;
     }
 
-    &>span {
+    & > span {
       text-align: center;
       // width: 30px;
     }
@@ -297,8 +285,7 @@ label {
     // background: rgb(255, 208, 0);
     padding: 3px;
 
-
-    span:nth-child(n+1) {
+    span:nth-child(n + 1) {
       display: inline-block;
       width: 35px;
       height: 25px;
@@ -326,11 +313,6 @@ label {
   }
 }
 
-
-
-
-
-
 #container {
   // position: relative;
   max-width: 500px;
@@ -342,9 +324,11 @@ label {
   // background: linear-gradient(0deg, rgba(0, 147, 249, 1) 13%, rgba(255, 0, 0, 1) 99%);
   // background: linear-gradient(0deg, rgba(0, 147, 249, 1) 13%, rgba(254, 255, 0, 1) 99%);
   background: rgb(133, 133, 45);
-  background: linear-gradient(180deg, rgba(254, 255, 0, 1) 10%, rgba(0, 147, 249, 1) 80%);
-
-
+  background: linear-gradient(
+    180deg,
+    rgba(254, 255, 0, 1) 10%,
+    rgba(0, 147, 249, 1) 80%
+  );
 
   h1 {
     padding: 1rem 1rem;
@@ -358,25 +342,20 @@ label {
   }
 }
 
-
 #training_wrapper {
   // position: relative;
   // height: 100%;
-
-
 
   #mainIcons {
     // background-color: red;
     position: relative;
     display: flex;
     // justify-content: space-between;
-
   }
 
   #help,
   #pilesInfo,
   #addVocabulary {
-
     .visibleIcon {
       //display: inline-flex;
       //justify-content: flex-start;
@@ -401,11 +380,11 @@ label {
       -ms-border-radius: 100%;
       -o-border-radius: 100%;
       box-shadow: 3px 3px 3px 0px grey;
-      transition:all 0.5s ease-out;
-      -webkit-transition:all 0.5s ease-out;
-      -moz-transition:all 0.5s ease-out;
-      -ms-transition:all 0.5s ease-out;
-      -o-transition:all 0.5s ease-out;
+      transition: all 0.5s ease-out;
+      -webkit-transition: all 0.5s ease-out;
+      -moz-transition: all 0.5s ease-out;
+      -ms-transition: all 0.5s ease-out;
+      -o-transition: all 0.5s ease-out;
 
       // .mainIcon{
       //   width: 50px;
@@ -433,8 +412,6 @@ label {
 
       p {
         padding: 5px;
-
-
       }
 
       a {
@@ -486,7 +463,6 @@ label {
         &:hover {
           cursor: pointer;
         }
-
       }
 
       #formNewWord {
@@ -500,9 +476,7 @@ label {
         // #translationCheckedCheckbox {
         // }
       }
-
     }
-
   }
 
   #addVocabulary .visibleIcon {
@@ -560,17 +534,12 @@ label {
       -o-transform: translate(50%, -50%);
       font-size: 1.3rem;
       color: rgb(253, 113, 113);
-
-
-
     }
-
   }
 
   #mainTitle:hover {
     cursor: pointer;
   }
-
 
   #language_labels {
     span {
@@ -591,9 +560,7 @@ label {
     align-items: center;
     justify-content: center;
 
-
-
-    >p {
+    > p {
       padding: 1rem 3rem;
       font-size: 4rem;
       // background-color: rgb(252, 240, 188);
@@ -605,6 +572,15 @@ label {
       -moz-border-radius: 20px;
       -ms-border-radius: 20px;
       -o-border-radius: 20px;
+    }
+
+    #wordOneTranslate,
+    #wordTwoTranslate {
+      background-color: white !important;
+      font-size: 2rem;
+      padding: 0.5rem;
+      border-radius: 10px;
+      display: none;
     }
   }
 
@@ -623,8 +599,6 @@ label {
     justify-content: center;
     margin-top: 10px;
 
-
-
     .optionsIcon {
       // background: white;
       // background: rgb(146, 110, 11);
@@ -639,8 +613,6 @@ label {
       color: white;
       text-decoration: none;
       box-shadow: 3px 3px 3px 0px grey;
-
-
 
       &:hover {
         cursor: pointer;
@@ -674,7 +646,6 @@ label {
 
         div {
           padding: 0 10px;
-
         }
 
         .flexWrapper {
@@ -691,17 +662,13 @@ label {
           }
         }
       }
-
     }
-
-
 
     #definitionGoogle .optionsIcon,
     #changeWords .optionsIcon,
     #speakWord .optionsIcon {
       display: inline-block;
     }
-
 
     #definitionGoogle .optionsWindow,
     #changeWords .optionsWindow {
@@ -722,7 +689,6 @@ label {
       h4,
       h5 {
         color: purple;
-
       }
 
       .closeButton {
@@ -751,11 +717,7 @@ label {
         background-color: $cBg;
         // position: relative;
       }
-
-
     }
-
-
   }
 
   #connection {
@@ -768,9 +730,6 @@ label {
     // flex-basis: 100vw !important;
     // h6 {}
   }
-
-
-
 
   #bottonWrapper {
     position: fixed;
@@ -791,7 +750,6 @@ label {
     // -o-border-radius: 40px;
   }
 
-
   #b_next,
   #threeButtons,
   #improveChallengeButtons {
@@ -805,7 +763,6 @@ label {
 
     padding: 2rem 1rem;
     // border-top: 2px solid $cBg_3buttons;
-
 
     &:hover {
       cursor: pointer;
@@ -827,7 +784,6 @@ label {
 
   #threeButtons,
   #improveChallengeButtons {
-
     display: none;
     padding: 0;
     height: 100%;
@@ -837,7 +793,7 @@ label {
 
     //margin-top: 1.5rem;
     // background-color: rgb(0, 0, 0);
-    // background-color: 
+    // background-color:
 
     transition: all 1s;
 
@@ -876,7 +832,6 @@ label {
       background-color: orange;
       // background-color: red;
       // display: none;
-
     }
 
     #BtnSlow {
@@ -889,9 +844,7 @@ label {
       // border-bottom: none;
       // border-bottom: 8px solid rgb(81, 255, 0);
 
-
       // height: 150px;
-
     }
 
     #adjustOption {
@@ -903,8 +856,6 @@ label {
     }
   }
 
-
-
   #deleteCard {
     // display: flex;
     position: fixed;
@@ -914,13 +865,7 @@ label {
     // text-align: left;
     // justify-content: flex-start;
   }
-
-
-
-
 }
-
-
 
 // importing cards from excel files
 #googleDrop,
@@ -958,7 +903,6 @@ label {
   background: red;
 }
 
-
 #firstTimeUser {
   display: none;
   position: fixed;
@@ -970,15 +914,12 @@ label {
   padding: 10px;
   text-align: left;
 
-
-
   input[type="radio"],
   label {
     display: inline-block;
     // padding: 15px;
     // margin: 0 15px;
   }
-
 }
 
 #alertForSec {
@@ -1010,7 +951,6 @@ label {
   }
 
   100% {
-
     transform: translate(50%, -200%);
     -webkit-transform: translate(50%, -200%);
     -moz-transform: translate(50%, -200%);
@@ -1026,8 +966,6 @@ label {
   }
 }
 
-
-
 #hints {
   color: rgb(4, 4, 190);
 
@@ -1037,9 +975,6 @@ label {
     font-family: Arial, Helvetica, sans-serif;
   }
 }
-
-
-
 
 #showLettersWrapper {
   position: absolute;
@@ -1061,7 +996,6 @@ label {
   -o-border-radius: 100%;
 }
 
-
 #puzzleWrapper {
   display: flex;
   // flex-flow: column;
@@ -1070,7 +1004,7 @@ label {
   justify-content: center;
   // background-color: yellow;
 
-  >* {
+  > * {
     margin: 1px;
     height: $letterBoxSize;
     width: $letterBoxSize;
@@ -1078,26 +1012,38 @@ label {
     color: red;
     // background-color: black;
 
-
-    >* {
+    > * {
       color: white;
       background-color: orange;
 
       /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff9d00+59,e5e5e5+70 */
       background: rgb(255, 157, 0);
       /* Old browsers */
-      background: -moz-radial-gradient(center, ellipse cover, rgba(255, 157, 0, 1) 59%, rgba(229, 229, 229, 1) 70%);
+      background: -moz-radial-gradient(
+        center,
+        ellipse cover,
+        rgba(255, 157, 0, 1) 59%,
+        rgba(229, 229, 229, 1) 70%
+      );
       /* FF3.6-15 */
-      background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 157, 0, 1) 59%, rgba(229, 229, 229, 1) 70%);
+      background: -webkit-radial-gradient(
+        center,
+        ellipse cover,
+        rgba(255, 157, 0, 1) 59%,
+        rgba(229, 229, 229, 1) 70%
+      );
       /* Chrome10-25,Safari5.1-6 */
-      background: radial-gradient(ellipse at center, rgba(255, 157, 0, 1) 59%, rgb(255, 238, 0) 70%);
+      background: radial-gradient(
+        ellipse at center,
+        rgba(255, 157, 0, 1) 59%,
+        rgb(255, 238, 0) 70%
+      );
       /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9d00', endColorstr='#e5e5e5', GradientType=1);
       /* IE6-9 fallback on horizontal gradient */
 
-
-      height: $letterBoxSize*2/3;
-      width: $letterBoxSize*2/3;
+      height: $letterBoxSize * 2/3;
+      width: $letterBoxSize * 2/3;
       border-radius: 100%;
       -webkit-border-radius: 100%;
       -moz-border-radius: 100%;
@@ -1117,11 +1063,25 @@ label {
         /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff9d00+59,e5e5e5+70 */
         background: rgb(255, 157, 0);
         /* Old browsers */
-        background: -moz-radial-gradient(center, ellipse cover, rgba(255, 157, 0, 1) 59%, rgba(229, 229, 229, 1) 70%);
+        background: -moz-radial-gradient(
+          center,
+          ellipse cover,
+          rgba(255, 157, 0, 1) 59%,
+          rgba(229, 229, 229, 1) 70%
+        );
         /* FF3.6-15 */
-        background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 157, 0, 1) 59%, rgba(229, 229, 229, 1) 70%);
+        background: -webkit-radial-gradient(
+          center,
+          ellipse cover,
+          rgba(255, 157, 0, 1) 59%,
+          rgba(229, 229, 229, 1) 70%
+        );
         /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at center, rgba(255, 157, 0, 0) 59%, rgb(255, 251, 0) 70%);
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 157, 0, 0) 59%,
+          rgb(255, 251, 0) 70%
+        );
         /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9d00', endColorstr='#e5e5e5', GradientType=1);
         /* IE6-9 fallback on horizontal gradient */
@@ -1164,8 +1124,6 @@ label {
   }
 }
 
-
-
 #pilesInfo .invisibleWindow {
   //  display: block !important;
 
@@ -1186,20 +1144,15 @@ label {
     margin-left: 10px;
     transition: all 0.3s;
 
-  
-
     &.spin-border-radius {
       // background: white !important;
       background-color: rgba(85, 141, 141, 0.233);
 
       border-radius: 10px 0 0 10px;
     }
-  &:hover {
+    &:hover {
       background-color: black;
       color: white;
     }
-
-
   }
-
 }
