@@ -1,5 +1,5 @@
 import { langInWord1, langInWord2, page2ActiveNow } from '../bundle';
-let highlightedText = '';
+let savedSelectedText = '';
 
 let translateOnline = async (from, to, textToTranslate) => {
 
@@ -70,9 +70,11 @@ let alertUserForSec = async (text, durationInSec) => {
 let translateAndShowSelectedText = async (languageOfTheSelection) => {
   // console.log('AAAAAAAAAAAAAAAAAAAAAAtranslateSelectedText');
   // console.log(languageOfTheSelection);
-  alertUserForSec("highlighted text now:" + highlightedText, 6);
-  
-  let langForGoogle = { textToTranslate: getSelectionText().length > 0 ? getSelectionText() : highlightedText };
+  let selectedNow = getSelectionText();
+  // if (selectedNow>)
+  alertUserForSec("SAVED:" + savedSelectedText + "\n HIGH: " + selectedNow, 40);
+
+  let langForGoogle = { textToTranslate: selectedNow.length > 0 ? selectedNow : savedSelectedText };
   if (languageOfTheSelection == 'czech') {
     langForGoogle.from = 'cs';
     langForGoogle.to = 'en';
@@ -86,7 +88,7 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
   console.log(translation);
   // showSelectionForSec();
 
-  alertUserForSec(translation, 2);
+  // alertUserForSec(translation, 5);
 
 }
 
@@ -96,8 +98,8 @@ export const enableTranslateOnSelect = async () => {
 
   let showTranslateButton = (buttonID) => {
     // console.log("DDDDDDDDDDDDDDDDDD p2 active:", page2ActiveNow);
-    highlightedText = getSelectionText();
-    if (page2ActiveNow && highlightedText.length > 0) {
+    savedSelectedText = getSelectionText();
+    if (page2ActiveNow && savedSelectedText.length > 0) {
       document.querySelector(buttonID).style.display = 'inline-block';
     }
   }
@@ -111,9 +113,9 @@ export const enableTranslateOnSelect = async () => {
   //update highlightedText variable upon change in selection
   document.querySelector('#wordOne').addEventListener('select', () => {
     console.log("MMMMMMMMMMMMM", getSelectionText());
-    if (getSelectionText().length > 0) highlightedText = getSelectionText()
+    if (getSelectionText().length > 0) savedSelectedText = getSelectionText()
   });
-  document.querySelector('#wordOne').addEventListener('select', () => { if (getSelectionText().length > 0) highlightedText = getSelectionText() });
+  document.querySelector('#wordOne').addEventListener('select', () => { if (getSelectionText().length > 0) savedSelectedText = getSelectionText() });
   //main
   document.querySelector('#wordOneTranslate').addEventListener('click', () => translateAndShowSelectedText(langInWord1));
   document.querySelector('#wordTwoTranslate').addEventListener('click', () => translateAndShowSelectedText(langInWord2));
