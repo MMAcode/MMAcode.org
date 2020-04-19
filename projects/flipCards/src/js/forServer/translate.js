@@ -71,7 +71,7 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
   // console.log('AAAAAAAAAAAAAAAAAAAAAAtranslateSelectedText');
   // console.log(languageOfTheSelection);
   let selectedNow = getSelectionText();
-  if (selectedNow > 0) savedSelectedText = selectedNow;
+  if (selectedNow.length > 0) savedSelectedText = selectedNow;
 
   alertUserForSec("SAVED:" + savedSelectedText + "\n HIGH: " + selectedNow, 4);
   console.log("SAVED:" + savedSelectedText);
@@ -101,19 +101,21 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
 export const enableTranslateOnSelect = async () => {
 
   let showTranslateButtonAndUpdateSavedSelectedText = (buttonID, languageOfTheSelection) => {
+    console.log("some touch detected");
+    alertUserForSec("some touch detected", 0.5);
     // console.log("DDDDDDDDDDDDDDDDDD p2 active:", page2ActiveNow);
     if (getSelectionText().length > 0) savedSelectedText = getSelectionText();
     if (page2ActiveNow && savedSelectedText.length > 0) {
       document.querySelector(buttonID).style.display = 'inline-block';
-      translateAndShowSelectedText(languageOfTheSelection);
+      // translateAndShowSelectedText(languageOfTheSelection);
     }
 
   }
 
   //show translate button
   document.querySelector('#wordOne').addEventListener('touchend', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1));
-  // document.querySelector('#wordOne').addEventListener('touchcancel', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1));
-  // document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2));
+  document.querySelector('#wordOne').addEventListener('touchcancel', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1));
+  document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2));
   document.querySelector('#wordTwo').addEventListener('touchcancel', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2));
 
   //update highlightedText variable upon change in selection
