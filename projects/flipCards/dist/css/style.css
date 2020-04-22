@@ -180,6 +180,21 @@ label {
   border-color: black;
 }
 
+#cardsCounter {
+  background-color: #d6ab1c;
+  background: linear-gradient(90deg, #ff9100 0%, #f7fa47 40%, #f7fa47 60%, #ff9100 100%);
+  padding: 3px;
+}
+#cardsCounter #scoreCounterWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-column-gap: 3px;
+}
+#cardsCounter #scoreCounterWrapper > * {
+  background-color: rgba(245, 213, 32, 0.651);
+  border-radius: 3px;
+}
+
 #scoreCounter {
   display: none;
   background: greenyellow;
@@ -234,11 +249,20 @@ label {
   flex: 1;
 }
 
+#formNewWord_NativeInput,
+#formNewWord_toLearnInput {
+  display: block;
+  width: 100%;
+}
+
 #button_formNewWord_NativeInput,
 #button_formNewWord_toLearnInput {
-  display: inline-block;
-  float: right;
-  margin: 0;
+  display: block;
+  width: 110px;
+  text-align: center;
+  margin: auto;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   padding: 2px 5px;
   color: brown;
 }

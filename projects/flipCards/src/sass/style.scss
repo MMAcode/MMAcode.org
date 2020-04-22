@@ -1,12 +1,10 @@
 // ** variables
 $cBg: rgb(184, 184, 238);
 $cPointsFrame: orange;
-$cPointsFrame: linear-gradient(
-  90deg,
+$cPointsFrame: linear-gradient(90deg,
   rgba(254, 255, 0, 1) 0%,
   rgba(249, 183, 0, 1) 50%,
-  rgba(254, 255, 0, 1) 100%
-);
+  rgba(254, 255, 0, 1) 100%);
 // $cPointsFrame: linear-gradient(90deg, rgba(254, 255, 0, 1) 5%, rgba(249, 183, 0, 1) 40%, rgba(249, 188, 0, 1) 60%, rgba(254, 255, 0, 1) 95%);
 $cBg_NewCard: rgb(154, 154, 247);
 $cBg_3buttons: rgba(0, 147, 249, 1);
@@ -245,6 +243,37 @@ label {
   }
 }
 
+#cardsCounter {
+  background-color: rgb(214, 171, 28);
+  // background: linear-gradient( rgb(214, 171, 28)30%,black 90%);
+  background: linear-gradient(90deg,
+  rgb(255, 145, 0) 0%,
+  rgb(247, 250, 71) 40%,
+  rgb(247, 250, 71) 60%,
+  rgb(255, 145, 0) 100%);
+  // border: 2px brown solid;
+  // border-bottom: none;
+  padding: 3px;
+  // border-bottom: 3px solid #000;
+
+  #scoreCounterWrapper {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-column-gap: 3px;
+    // margin-bottom: 0;
+    // padding-bottom: 0;
+    >* {
+      // border: 2px brown solid;
+      background-color: rgba(245, 213, 32, 0.651);
+      border-radius: 3px;
+      
+    }
+
+  }
+}
+
+
+
 #scoreCounter {
   display: none;
   background: greenyellow;
@@ -258,7 +287,7 @@ label {
   // padding: 5px;
   // border: 3px solid $cPointsFrame;
 
-  > p {
+  >p {
     font-weight: 900;
     text-decoration: underline solid;
     background: $cPointsFrame;
@@ -275,7 +304,7 @@ label {
       width: 80px;
     }
 
-    & > span {
+    &>span {
       text-align: center;
       // width: 30px;
     }
@@ -313,11 +342,26 @@ label {
   }
 }
 
+#formNewWord_NativeInput,
+#formNewWord_toLearnInput {
+  display: block;
+  width: 100%;
+}
+
 #button_formNewWord_NativeInput,
 #button_formNewWord_toLearnInput {
-  display: inline-block;
-  float: right;
-  margin: 0;
+  // display: inline-block;
+  // float: right;
+  // margin: 0 30px 0 0;
+  // pa-right: 20px;
+  display: block;
+  width: 110px;
+  text-align: center;
+  margin: auto;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+
+  // margin: 0;
   padding: 2px 5px;
   color: brown;
   // right:0;
@@ -334,11 +378,9 @@ label {
   // background: linear-gradient(0deg, rgba(0, 147, 249, 1) 13%, rgba(255, 0, 0, 1) 99%);
   // background: linear-gradient(0deg, rgba(0, 147, 249, 1) 13%, rgba(254, 255, 0, 1) 99%);
   background: rgb(133, 133, 45);
-  background: linear-gradient(
-    180deg,
-    rgba(254, 255, 0, 1) 10%,
-    rgba(0, 147, 249, 1) 80%
-  );
+  background: linear-gradient(180deg,
+      rgba(254, 255, 0, 1) 10%,
+      rgba(0, 147, 249, 1) 80%);
 
   h1 {
     padding: 1rem 1rem;
@@ -570,7 +612,7 @@ label {
     align-items: center;
     justify-content: center;
 
-    > p {
+    >p {
       padding: 1rem 3rem;
       font-size: 4rem;
       // background-color: rgb(252, 240, 188);
@@ -1014,7 +1056,7 @@ label {
   justify-content: center;
   // background-color: yellow;
 
-  > * {
+  >* {
     margin: 1px;
     height: $letterBoxSize;
     width: $letterBoxSize;
@@ -1022,32 +1064,26 @@ label {
     color: red;
     // background-color: black;
 
-    > * {
+    >* {
       color: white;
       background-color: orange;
 
       /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff9d00+59,e5e5e5+70 */
       background: rgb(255, 157, 0);
       /* Old browsers */
-      background: -moz-radial-gradient(
-        center,
-        ellipse cover,
-        rgba(255, 157, 0, 1) 59%,
-        rgba(229, 229, 229, 1) 70%
-      );
+      background: -moz-radial-gradient(center,
+          ellipse cover,
+          rgba(255, 157, 0, 1) 59%,
+          rgba(229, 229, 229, 1) 70%);
       /* FF3.6-15 */
-      background: -webkit-radial-gradient(
-        center,
-        ellipse cover,
-        rgba(255, 157, 0, 1) 59%,
-        rgba(229, 229, 229, 1) 70%
-      );
+      background: -webkit-radial-gradient(center,
+          ellipse cover,
+          rgba(255, 157, 0, 1) 59%,
+          rgba(229, 229, 229, 1) 70%);
       /* Chrome10-25,Safari5.1-6 */
-      background: radial-gradient(
-        ellipse at center,
-        rgba(255, 157, 0, 1) 59%,
-        rgb(255, 238, 0) 70%
-      );
+      background: radial-gradient(ellipse at center,
+          rgba(255, 157, 0, 1) 59%,
+          rgb(255, 238, 0) 70%);
       /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9d00', endColorstr='#e5e5e5', GradientType=1);
       /* IE6-9 fallback on horizontal gradient */
@@ -1073,25 +1109,19 @@ label {
         /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff9d00+59,e5e5e5+70 */
         background: rgb(255, 157, 0);
         /* Old browsers */
-        background: -moz-radial-gradient(
-          center,
-          ellipse cover,
-          rgba(255, 157, 0, 1) 59%,
-          rgba(229, 229, 229, 1) 70%
-        );
+        background: -moz-radial-gradient(center,
+            ellipse cover,
+            rgba(255, 157, 0, 1) 59%,
+            rgba(229, 229, 229, 1) 70%);
         /* FF3.6-15 */
-        background: -webkit-radial-gradient(
-          center,
-          ellipse cover,
-          rgba(255, 157, 0, 1) 59%,
-          rgba(229, 229, 229, 1) 70%
-        );
+        background: -webkit-radial-gradient(center,
+            ellipse cover,
+            rgba(255, 157, 0, 1) 59%,
+            rgba(229, 229, 229, 1) 70%);
         /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(
-          ellipse at center,
-          rgba(255, 157, 0, 0) 59%,
-          rgb(255, 251, 0) 70%
-        );
+        background: radial-gradient(ellipse at center,
+            rgba(255, 157, 0, 0) 59%,
+            rgb(255, 251, 0) 70%);
         /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9d00', endColorstr='#e5e5e5', GradientType=1);
         /* IE6-9 fallback on horizontal gradient */
@@ -1160,6 +1190,7 @@ label {
 
       border-radius: 10px 0 0 10px;
     }
+
     &:hover {
       background-color: black;
       color: white;

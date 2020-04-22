@@ -1230,6 +1230,15 @@ let alertUserForSec = async (text, durationInSec) => {
   document.querySelector("#alertForSec").remove();
 }
 
+const showNumberOfCardsInDuePile = async (cards) => {
+  let dueCards = await cards.collection('cardsLearningDue').get();
+  // let dueCards = await cards.collection('cardsLearningDue').get().then(snap=> console.log(snap.size));
+  // let dueCardsData = await dueCards.data();
+  // console.log(dueCardsData);
+  // console.log(dueCardsData.docs.size);
+  // console.log(dueCards.size);
+  document.querySelector('#cardsCounter').innerHTML=`${dueCards.size} cards are waiting`
+}
 
 //////////////////////////////// MAIN
 // console.log('getting to listening to al cards click1');
@@ -1256,6 +1265,7 @@ auth.onAuthStateChanged(async (user) => {
 
       activateUserInOptions(userInfo, cards);
       translateNewWords(cards);
+      showNumberOfCardsInDuePile(cards);
 
       loggedStatus.innerHTML = `<p>Enjoy ${userInfo.username}!</p>`
       setLanguagesToSpeak().then(() => {

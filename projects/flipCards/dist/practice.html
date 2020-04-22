@@ -25,6 +25,16 @@
         </div>
 
         <div id="scoreCounter"></div>
+        <div id='cardsCounter'>
+          <!-- <span>Due Cards:</span> -->
+          <!-- <div id='scoreCounterWrapper'>
+            <div> score 1</div>
+            <div> score 2</div>
+            <div> score 3</div>
+            <div> score 4</div>
+
+          </div> -->
+        </div>
         <div id="pointsCounter" class="pointsCounter">
           <p>Last 7 days</p>
           <div id="history7days" class="history7days">Points</div>
@@ -199,12 +209,16 @@
             <div class="invisibleWindow">
               <h4> Add new word to learn:</h4>
               <form id="formNewWord" action="" autocomplete="off">
-                <label for="nativeInput">Native word:</label>
-                <input  id="formNewWord_NativeInput" name="nativeInput" type="text">
+                <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+
+                <label for="nativeInput">Native text:</label>
+                <!-- <input  id="formNewWord_NativeInput" name="nativeInput" type="textarea" rows="2" autofocus required> -->
+                <textarea  id="formNewWord_NativeInput" name="nativeInput" type="div" rows="3" autofocus required></textarea>
+                <!-- <textarea  type="textarea" rows="2" autofocus required></textarea> -->
                 <div class="button serverState" id="button_formNewWord_NativeInput">Translate</div>
 
-                <label for="toLearnInput">Word to learn:</label>
-                <input id="formNewWord_toLearnInput" name="toLearnInput" type="text">
+                <label for="toLearnInput">Text to learn:</label>
+                <textarea id="formNewWord_toLearnInput" name="toLearnInput" type="textarea" rows="3" required></textarea>
                 <div class="button serverState" id="button_formNewWord_toLearnInput">Translate</div>
 
                 <br>
