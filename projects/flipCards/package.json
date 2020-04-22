@@ -4,6 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
+    "autosize": "^4.0.2",
     "concurrently": "^5.1.0",
     "sass": "^1.26.3",
     "webpack": "^4.41.2",
@@ -14,7 +15,7 @@
   "scripts": {
     "webpack": "node_modules/.bin/webpack -w --mode development",
     "ssass": "sass --watch ./src/sass/style.scss ./dist/css/style.css",
-    "start":  "concurrently \"npm run webpack\" \"npm run ssass\""
+    "start": "concurrently \"npm run webpack\" \"npm run ssass\""
   },
   "keywords": [],
   "author": "",

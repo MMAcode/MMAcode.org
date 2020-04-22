@@ -1824,8 +1824,8 @@ window.addEventListener('scroll', function (e) {
 });
 
 
-
-
+// autosize(document.querySelectorAll('textare'));
+autosize(document.querySelectorAll('textarea'));
 
 
 
