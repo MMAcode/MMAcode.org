@@ -79,7 +79,7 @@ let createUserVariablesInFBifNeeded = async (cards) => {
 
     time = await cards.collection("about").doc("time").get();
     time = time.data();
-    console.log('POINTS and TIME created in DB XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+    // console.log('POINTS and TIME created in DB XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
     // console.log(points);
     // console.log(time);
 
@@ -103,7 +103,7 @@ let updateDayStuffIfNeeded = async (cards, points, time) => {
 
   // if new day...
   while (daysSince1970Floored > points.lastActiveDay) {
-    console.log('DAYS ARE DIFFERENT, time to update variables...XXXXXXXXXXXXXXXXXXXXXXX');
+    // console.log('DAYS ARE DIFFERENT, time to update variables...XXXXXXXXXXXXXXXXXXXXXXX');
     // console.log(daysSince1970Floored); //days to current day
     // console.log(points.daysActive); //last Active day = in DB points
 
@@ -115,8 +115,8 @@ let updateDayStuffIfNeeded = async (cards, points, time) => {
     pointsHistory = pointsHistory.data();
     timeHistory = timeHistory.data();
 
-    console.log('ttttttttttttttttttttttttttttttttttttttttttttttttttttttt');
-    console.log('pointsH:', pointsHistory, 'timesH:', timeHistory);
+    // console.log('ttttttttttttttttttttttttttttttttttttttttttttttttttttttt');
+    // console.log('pointsH:', pointsHistory, 'timesH:', timeHistory);
 
 
     // update history doc locally, then in DB
@@ -126,7 +126,7 @@ let updateDayStuffIfNeeded = async (cards, points, time) => {
     let aa = cards.collection("about").doc("pointsHistory").set(pointsHistory);
     let bb = cards.collection("about").doc("timeHistory").set(timeHistory);
     await aa; await bb;
-    console.log('history of both updated in DB');
+    // console.log('history of both updated in DB');
 
     // console.log(pointsHistory);
     // update timeHistory and time

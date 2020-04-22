@@ -5,7 +5,9 @@ import './wordsOptions';
 import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activateUserInOptions, getPosponeTime } from './wordsOptions';
 import translateOnline, { enableTranslateOnSelect } from './forServer/translate';
 import translateNewWords from './forServer/translateNewWords';
+import wakeUpServer from './forServer/wakeUpServer';
 enableTranslateOnSelect();
+wakeUpServer();
 // translate('cs','en','co to delas?');
 
 //mic
