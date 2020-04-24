@@ -1237,7 +1237,7 @@ const showNumberOfCardsInDuePile = async (cards) => {
   // console.log(dueCardsData);
   // console.log(dueCardsData.docs.size);
   // console.log(dueCards.size);
-  document.querySelector('#cardsCounter').innerHTML=`${dueCards.size} cards are waiting`
+  document.querySelector('#cardsCounter').innerHTML = `${dueCards.size} cards are waiting`
 }
 
 //////////////////////////////// MAIN
@@ -1382,6 +1382,7 @@ threeBt.addEventListener('touchmove', e => { e.preventDefault(); });
 // secondWordHTML.addEventListener('touchmove', e => { e.preventDefault(); });
 
 //show and close windows (Help section and Add new word) on click
+import { textAndLangForTranslation } from './forServer/translate'
 for (const sw of showWindowS) {
   sw.addEventListener('click', eX => {
     eX.target.parentElement.nextElementSibling.style.display = "block";
@@ -1389,7 +1390,24 @@ for (const sw of showWindowS) {
     // console.log('selected element:', eX.target.parentElement.parentElement.id);
     if (eX.target.parentElement.parentElement.id == "addVocabulary") {
       // console.log('add voc clicked');
-      document.querySelector("#formNewWord_NativeInput").focus();
+      document.querySelector("#formNewWord_toLearnInput").focus();
+
+      //import text from selected text to New word form:
+      console.log("CCCCCCCCCCCCCCCCC");
+      // console.log(textAndLangForTranslation.lang);
+      // console.log(textAndLangForTranslation.text);
+      // console.log(userInfo.langNative);
+      if (textAndLangForTranslation) {
+        console.log(textAndLangForTranslation.text);
+        if (textAndLangForTranslation.lang == userInfo.langNative) {
+          
+
+          document.querySelector("#formNewWord_NativeInput").value = textAndLangForTranslation.text
+        } else if (textAndLangForTranslation.lang == userInfo.langToLearn) {
+          document.querySelector("#formNewWord_toLearnInput").value = textAndLangForTranslation.text
+        }
+      }
+
 
     };
   });

@@ -1,5 +1,6 @@
 import { langInWord1, langInWord2, page2ActiveNow } from '../bundle';
 let savedSelectedText = '';
+let textAndLangForTranslation;
 
 let translateOnline = async (from, to, textToTranslate) => {
 
@@ -46,7 +47,8 @@ function getSelectionText() {
     // console.log("screwed");
 
     alert('no');
-  }
+  };
+  if (!text) textAndLangForTranslation = null;
   return text;
 }
 let alertUserForSec = async (text, durationInSec) => {
@@ -98,6 +100,7 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
 
 }
 
+
 let showTranslateButtonAndUpdateSavedSelectedText = (buttonID, languageOfTheSelection) => {
   console.log("touch detected - text will be updated");
   // alertUserForSec("some touch detected", 0.5);
@@ -105,6 +108,7 @@ let showTranslateButtonAndUpdateSavedSelectedText = (buttonID, languageOfTheSele
   if (getSelectionText().length > 0) savedSelectedText = getSelectionText();
   if (page2ActiveNow && savedSelectedText.length > 0) {
     document.querySelector(buttonID).style.display = 'inline-block';
+    textAndLangForTranslation = { text: savedSelectedText, lang: languageOfTheSelection };
     // translateAndShowSelectedText(languageOfTheSelection);
   }
 }
@@ -138,3 +142,4 @@ export const enableTranslateOnSelect = async () => {
 
 };
 
+export { textAndLangForTranslation };
