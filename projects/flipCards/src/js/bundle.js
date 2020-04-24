@@ -1393,12 +1393,12 @@ for (const sw of showWindowS) {
       document.querySelector("#formNewWord_toLearnInput").focus();
 
       //import text from selected text to New word form:
-      console.log("CCCCCCCCCCCCCCCCC");
+      // console.log("CCCCCCCCCCCCCCCCC");
       // console.log(textAndLangForTranslation.lang);
       // console.log(textAndLangForTranslation.text);
       // console.log(userInfo.langNative);
       if (textAndLangForTranslation) {
-        console.log(textAndLangForTranslation);
+        // console.log(textAndLangForTranslation);
         if (textAndLangForTranslation.lang == userInfo.langNative) {
           
 
@@ -1849,7 +1849,10 @@ autosize(document.querySelectorAll('textarea'));
 
 
 
-
+document.querySelector('#clearInputFileds').addEventListener('click', () => {
+  document.querySelector('#formNewWord_NativeInput').value = "";
+  document.querySelector('#formNewWord_toLearnInput').value = "";
+})
 
 
 
