@@ -1181,35 +1181,6 @@ let activateNEwCardListener = (user) => {
       });
     }
 
-
-
-
-
-
-    // if (checkBoxCurrentPile == false) {
-    //   db.collection("users").doc(user.email).collection("cardsToLearn").add(newCard).then(() => {
-    //     console.log('Added');
-    //     alertUserForSec("Added", 1);
-    //   }).catch(err => {
-    //     console.log(err);
-    //     console.log('I could NOT add object into the database.');
-    //   });
-    // } else if (checkBoxCurrentPile == true) {
-    //   let now = new Date().getTime();
-    //   newCard.mainStage = "learning";
-    //   newCard.lastSeen = now;
-    //   newCard.dueTime = now; //if +10 000 = after 10 seconds
-    //   console.log('current  new card:', newCard);
-    //   db.collection("users").doc(user.email).collection("cardsLearningNotDue").add(newCard).then(() => {
-    //     console.log('Flip-card added');
-    //     alertUserForSec("Added", 1);
-    //   }).catch(err => {
-    //     console.log(err);
-    //     console.log('I could NOT add object into the database.');
-    //   });
-    // }
-
-    // reset form
     form.reset();
     // document.querySelector("#formNewWord_NativeInput").focus();
   })
@@ -1390,7 +1361,7 @@ for (const sw of showWindowS) {
     // console.log('selected element:', eX.target.parentElement.parentElement.id);
     if (eX.target.parentElement.parentElement.id == "addVocabulary") {
       // console.log('add voc clicked');
-      document.querySelector("#formNewWord_toLearnInput").focus();
+      // document.querySelector("#formNewWord_toLearnInput").focus();
 
       //import text from selected text to New word form:
       // console.log("CCCCCCCCCCCCCCCCC");
@@ -1843,7 +1814,7 @@ window.addEventListener('scroll', function (e) {
 
 
 // autosize(document.querySelectorAll('textare'));
-// autosize(document.querySelectorAll('textarea'));
+autosize(document.querySelectorAll('textarea'));
 
 
 

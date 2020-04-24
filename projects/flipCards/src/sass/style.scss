@@ -251,10 +251,10 @@ textarea {
   background-color: rgb(214, 171, 28);
   // background: linear-gradient( rgb(214, 171, 28)30%,black 90%);
   background: linear-gradient(90deg,
-  rgb(255, 145, 0) 0%,
-  rgb(247, 250, 71) 40%,
-  rgb(247, 250, 71) 60%,
-  rgb(255, 145, 0) 100%);
+      rgb(255, 145, 0) 0%,
+      rgb(247, 250, 71) 40%,
+      rgb(247, 250, 71) 60%,
+      rgb(255, 145, 0) 100%);
   // border: 2px brown solid;
   // border-bottom: none;
   padding: 3px;
@@ -264,13 +264,14 @@ textarea {
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-column-gap: 3px;
+
     // margin-bottom: 0;
     // padding-bottom: 0;
     >* {
       // border: 2px brown solid;
       background-color: rgba(245, 213, 32, 0.651);
       border-radius: 3px;
-      
+
     }
 
   }
