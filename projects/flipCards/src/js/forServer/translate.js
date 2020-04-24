@@ -48,7 +48,8 @@ function getSelectionText() {
 
     alert('no');
   };
-  if (!text) textAndLangForTranslation = null;
+  //update text for translation (not the language) if it is not an empty string
+  if (text!="") textAndLangForTranslation.text = text;
   return text;
 }
 let alertUserForSec = async (text, durationInSec) => {
