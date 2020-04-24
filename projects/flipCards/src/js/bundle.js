@@ -1398,7 +1398,7 @@ for (const sw of showWindowS) {
       // console.log(textAndLangForTranslation.text);
       // console.log(userInfo.langNative);
       if (textAndLangForTranslation) {
-        console.log(textAndLangForTranslation.text);
+        console.log(textAndLangForTranslation);
         if (textAndLangForTranslation.lang == userInfo.langNative) {
           
 

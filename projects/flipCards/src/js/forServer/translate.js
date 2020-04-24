@@ -48,8 +48,6 @@ function getSelectionText() {
 
     alert('no');
   };
-  //update text for translation (not the language) if it is not an empty string
-  if (text) textAndLangForTranslation.text = text;
   return text;
 }
 let alertUserForSec = async (text, durationInSec) => {
@@ -126,7 +124,14 @@ export const enableTranslateOnSelect = async () => {
   document.querySelector('#wordTwo').addEventListener('mouseup', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2));
   document.addEventListener('selectionchange', () => {
     console.log("doc.onselectionchange fired - text will be updated");
-    if (getSelectionText().length > 0) savedSelectedText = getSelectionText()
+    if (getSelectionText().length > 0) {
+      savedSelectedText = getSelectionText();
+      //update text for translation (not the language) if it is not an empty string
+      if (textAndLangForTranslation) {
+        textAndLangForTranslation.text = savedSelectedText;
+        console.log("SSSSSSSSSS saved text for translation:", textAndLangForTranslation);
+      }
+    }
   });
 
   //update highlightedText variable upon change in selection
