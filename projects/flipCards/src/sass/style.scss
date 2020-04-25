@@ -223,6 +223,37 @@ textarea {
   display: none;
 }
 
+.animateBorder {
+  animation: borderShine 3s forwards ease-in-out;
+  -webkit-animation: borderShine 3s forwards ease-in-out;
+}
+
+@keyframes borderShine {
+  1% {
+    border: 1px red solid;
+  }
+
+  50% {
+    border: 15px red solid;
+    opacity: 1;
+    // transform: scale(1.5);
+
+  }
+
+  99% {
+    border: 1px red solid;
+
+    // opacity: 0;
+    // transform: scale(0);
+    // -webkit-transform: scale(0);
+    // -moz-transform: scale(0);
+    // -ms-transform: scale(0);
+    // -o-transform: scale(0);
+  }
+}
+
+
+
 // #hintConnectionReminder+* {
 //   background-color: green;
 // }
@@ -354,12 +385,14 @@ textarea {
 }
 
 #button_formNewWord_NativeInput,
-#button_formNewWord_toLearnInput {
+#button_formNewWord_toLearnInput,
+#button_formNewWord_NativeInputGoogle,
+#button_formNewWord_toLearnInputGoogle {
   // display: inline-block;
   // float: right;
   // margin: 0 30px 0 0;
   // pa-right: 20px;
-  display: block;
+  display: none;
   width: 110px;
   text-align: center;
   margin: auto;
@@ -370,6 +403,11 @@ textarea {
   padding: 2px 5px;
   color: brown;
   // right:0;
+}
+
+#button_formNewWord_NativeInputGoogle,
+#button_formNewWord_toLearnInputGoogle {
+  width: 200px;
 }
 
 #container {
@@ -632,11 +670,14 @@ textarea {
     }
 
     #wordOneTranslate,
-    #wordTwoTranslate {
+    #wordTwoTranslate,
+    #wordOneTranslateGoogle,
+    #wordTwoTranslateGoogle {
       background-color: white !important;
       font-size: 2rem;
       padding: 0.5rem;
       border-radius: 10px;
+      // display: inline;
       display: none;
     }
   }

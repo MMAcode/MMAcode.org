@@ -170,6 +170,23 @@ textarea {
   display: none;
 }
 
+.animateBorder {
+  animation: borderShine 3s forwards ease-in-out;
+  -webkit-animation: borderShine 3s forwards ease-in-out;
+}
+
+@keyframes borderShine {
+  1% {
+    border: 1px red solid;
+  }
+  50% {
+    border: 15px red solid;
+    opacity: 1;
+  }
+  99% {
+    border: 1px red solid;
+  }
+}
 #userStatusWrapper {
   background: #ebfc8d;
   display: flex;
@@ -260,8 +277,10 @@ textarea {
 }
 
 #button_formNewWord_NativeInput,
-#button_formNewWord_toLearnInput {
-  display: block;
+#button_formNewWord_toLearnInput,
+#button_formNewWord_NativeInputGoogle,
+#button_formNewWord_toLearnInputGoogle {
+  display: none;
   width: 110px;
   text-align: center;
   margin: auto;
@@ -269,6 +288,11 @@ textarea {
   border-top-right-radius: 0;
   padding: 2px 5px;
   color: brown;
+}
+
+#button_formNewWord_NativeInputGoogle,
+#button_formNewWord_toLearnInputGoogle {
+  width: 200px;
 }
 
 #container {
@@ -475,7 +499,9 @@ textarea {
   -o-border-radius: 20px;
 }
 #training_wrapper #words #wordOneTranslate,
-#training_wrapper #words #wordTwoTranslate {
+#training_wrapper #words #wordTwoTranslate,
+#training_wrapper #words #wordOneTranslateGoogle,
+#training_wrapper #words #wordTwoTranslateGoogle {
   background-color: white !important;
   font-size: 2rem;
   padding: 0.5rem;

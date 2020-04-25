@@ -6,6 +6,11 @@ import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activat
 import translateOnline, { enableTranslateOnSelect } from './forServer/translate';
 import translateNewWords from './forServer/translateNewWords';
 import wakeUpServer from './forServer/wakeUpServer';
+
+import { main } from './assignLinkToGoogleTranslate';
+main();
+
+
 enableTranslateOnSelect();
 wakeUpServer();
 // translate('cs','en','co to delas?');
@@ -37,6 +42,8 @@ let wordOne = '';
 let wordTwo = '';
 let langInWord1 = undefined;
 let langInWord2 = undefined;
+let langInWord1G = undefined;
+let langInWord2G = undefined;
 let wShuffledNumbers = [];
 let evaluateButtonOpacity = 1;
 
@@ -52,7 +59,7 @@ let page2ActiveNow = false;
 const refresh = document.querySelector('#test');
 const nextBt = document.querySelector('#b_next');
 const threeBt = document.querySelector('#threeButtons');
-let wordsHTML = document.querySelectorAll('#words *')
+let wordsHTML = document.querySelectorAll('#words p')
 let wordsBackground = "normal";
 let firstWordHTML = document.querySelector('#wordOne');
 let secondWordHTML = document.querySelector('#wordTwo');
@@ -595,7 +602,10 @@ let assignWordsAndColours = (currentCard) => {
     // wordTwo = currentCard.enWord;
     wordTwo = currentCard.languageNative;
     langInWord1 = userInfo.langToLearn;
+    langInWord1G = userInfo.langToLearnforGoogle;
+    
     langInWord2 = userInfo.langNative;
+    langInWord2G = userInfo.langNativeforGoogle;
 
 
     firstWordHTML.style.color = 'blue';
@@ -608,6 +618,8 @@ let assignWordsAndColours = (currentCard) => {
     wordTwo = currentCard.languageToLearn;
     langInWord2 = userInfo.langToLearn;
     langInWord1 = userInfo.langNative;
+    langInWord2G = userInfo.langToLearnforGoogle;
+    langInWord1G = userInfo.langNativeforGoogle;
     // console.log(wordTwo, 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM');
 
     firstWordHTML.style.color = 'red';
@@ -803,8 +815,16 @@ let updateALL = async (e) => {
 
   //update html element in decks of words  -adjusted word
   document.querySelector('#alertToTranslate').remove();
+  
+  //resetting new word section
+  document.querySelectorAll('.trBtInNewWord').forEach(btn => btn.style.display = 'none');
+  document.querySelector('#formNewWord_NativeInput').value = '';
+  document.querySelector('#formNewWord_toLearnInput').value = '';
+  
   document.querySelector('#wordOneTranslate').style.display = 'none';
   document.querySelector('#wordTwoTranslate').style.display = 'none';
+  document.querySelector('#wordOneTranslateGoogle').style.display = 'none';
+  document.querySelector('#wordTwoTranslateGoogle').style.display = 'none';
 
 
   if (updateThisHTMLIdAfterUpdate != null) {
@@ -1371,12 +1391,17 @@ for (const sw of showWindowS) {
       if (textAndLangForTranslation) {
         // console.log(textAndLangForTranslation);
         if (textAndLangForTranslation.lang == userInfo.langNative) {
-          
-
           document.querySelector("#formNewWord_NativeInput").value = textAndLangForTranslation.text
+
+          document.querySelector('#button_formNewWord_NativeInput').style.display = 'inline-block';
+          document.querySelector('#button_formNewWord_NativeInputGoogle').style.display = 'inline-block';
         } else if (textAndLangForTranslation.lang == userInfo.langToLearn) {
           document.querySelector("#formNewWord_toLearnInput").value = textAndLangForTranslation.text
+
+          document.querySelector('#button_formNewWord_toLearnInput').style.display = 'inline-block';
+          document.querySelector('#button_formNewWord_toLearnInputGoogle').style.display = 'inline-block';
         }
+
       }
 
 
@@ -1823,6 +1848,7 @@ autosize(document.querySelectorAll('textarea'));
 document.querySelector('#clearInputFileds').addEventListener('click', () => {
   document.querySelector('#formNewWord_NativeInput').value = "";
   document.querySelector('#formNewWord_toLearnInput').value = "";
+  document.querySelectorAll('.trBtInNewWord').forEach(btn => btn.style.display = 'none');
 })
 
 
@@ -1833,4 +1859,4 @@ document.querySelector('#clearInputFileds').addEventListener('click', () => {
 
 
 
-export { cards, userID, alertUserForSec, scrollAmount, wordOne, langInWord1, langInWord2, page2ActiveNow };
+export { cards, userInfo, userID, alertUserForSec, scrollAmount, wordOne, langInWord1, langInWord2, langInWord1G, langInWord2G, page2ActiveNow };

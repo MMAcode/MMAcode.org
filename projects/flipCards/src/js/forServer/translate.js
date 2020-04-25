@@ -1,4 +1,4 @@
-import { langInWord1, langInWord2, page2ActiveNow } from '../bundle';
+import { langInWord1, langInWord2, langInWord1G, langInWord2G, page2ActiveNow } from '../bundle';
 let savedSelectedText = '';
 let textAndLangForTranslation;
 
@@ -100,14 +100,28 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
 }
 
 
-let showTranslateButtonAndUpdateSavedSelectedText = (buttonID, languageOfTheSelection) => {
+let showTranslateButtonAndUpdateSavedSelectedText = (buttonID, languageOfTheSelection, langG) => {
   console.log("touch detected - text will be updated");
+  console.log("sel length: ", getSelectionText().length);
   // alertUserForSec("some touch detected", 0.5);
   // console.log("DDDDDDDDDDDDDDDDDD p2 active:", page2ActiveNow);
   if (getSelectionText().length > 0) savedSelectedText = getSelectionText();
   if (page2ActiveNow && savedSelectedText.length > 0) {
     document.querySelector(buttonID).style.display = 'inline-block';
-    textAndLangForTranslation = { text: savedSelectedText, lang: languageOfTheSelection };
+    document.querySelector(`${buttonID}Google`).style.display = 'inline-block';
+    textAndLangForTranslation = { text: savedSelectedText, lang: languageOfTheSelection, langG };
+    // console.log("XXX freshly selected: ", textAndLangForTranslation);
+    // document.querySelector('#addVocabulary .visibleIcon')
+    if (getSelectionText().length) {
+      document.querySelector('#addVocabulary .visibleIcon').classList.remove('animateBorder');
+      new Promise(resolve => setTimeout(resolve, 300)).then(() => {
+        document.querySelector('#addVocabulary .visibleIcon').classList.add('animateBorder');
+      })
+    }
+
+
+
+
     // translateAndShowSelectedText(languageOfTheSelection);
   }
 }
@@ -115,13 +129,13 @@ let showTranslateButtonAndUpdateSavedSelectedText = (buttonID, languageOfTheSele
 export const enableTranslateOnSelect = async () => {
 
   //show translate button
-  document.querySelector('#wordOne').addEventListener('touchend', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1));
-  document.querySelector('#wordOne').addEventListener('touchcancel', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1));
-  document.querySelector('#wordOne').addEventListener('mouseup', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1));
+  document.querySelector('#wordOne').addEventListener('touchend', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1, langInWord1G));
+  document.querySelector('#wordOne').addEventListener('touchcancel', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1, langInWord1G));
+  document.querySelector('#wordOne').addEventListener('mouseup', () => showTranslateButtonAndUpdateSavedSelectedText('#wordOneTranslate', langInWord1, langInWord1G));
 
-  document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2));
-  document.querySelector('#wordTwo').addEventListener('touchcancel', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2));
-  document.querySelector('#wordTwo').addEventListener('mouseup', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2));
+  document.querySelector('#wordTwo').addEventListener('touchend', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2, langInWord2G));
+  document.querySelector('#wordTwo').addEventListener('touchcancel', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2, langInWord2G));
+  document.querySelector('#wordTwo').addEventListener('mouseup', () => showTranslateButtonAndUpdateSavedSelectedText('#wordTwoTranslate', langInWord2, langInWord2G));
   document.addEventListener('selectionchange', () => {
     console.log("doc.onselectionchange fired - text will be updated");
     if (getSelectionText().length > 0) {
