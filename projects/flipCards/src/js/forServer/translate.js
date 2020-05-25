@@ -156,6 +156,8 @@ export const enableTranslateOnSelect = async () => {
   // document.querySelector('#wordOne').addEventListener('select', () => { if (getSelectionText().length > 0) savedSelectedText = getSelectionText() });
 
   //main
+  // console.log("langInWord1: ", langInWord1);
+  // console.log("langInWord1G: ", langInWord1G);
   document.querySelector('#wordOneTranslate').addEventListener('click', () => translateAndShowSelectedText(langInWord1));
   document.querySelector('#wordTwoTranslate').addEventListener('click', () => translateAndShowSelectedText(langInWord2));
   // document.querySelector('#wordTwoTranslate').innerHTML = await translateOnline('cs', 'en', 'kdo to je?');

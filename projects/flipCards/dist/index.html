@@ -89,6 +89,9 @@
         <br>
         <input type="radio" id="lLanguageDE" name="lLanguage" value="german">
         <label for="lLanguageDE">German</label>
+        <br>
+        <input type="radio" id="lLanguageDE" name="lLanguage" value="portuguese">
+        <label for="lLanguagePT">German</label>
         <!-- <p>(More languages upon request...)</p> -->
 
         <br>
@@ -205,6 +208,7 @@
         // if (updateDB == true) {
         console.log('updating user doc in DB +++++++++++++++++++++++++++++');
         // create user doc in Firebase
+        
         let userDocX = await db.collection("users").doc(user.email).collection("about").doc("info").set({
           userEmail: user.email,
           userID: user.uid,

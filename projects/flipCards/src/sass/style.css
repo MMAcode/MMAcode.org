@@ -67,6 +67,10 @@ label {
   padding-top: 1rem;
 }
 
+textarea {
+  padding: 10px;
+}
+
 .centerIt {
   display: block;
   margin: auto !important;
@@ -180,6 +184,37 @@ label {
   display: none;
 }
 
+.animateBorder {
+  animation: borderShine 3s forwards ease-in-out;
+  -webkit-animation: borderShine 3s forwards ease-in-out;
+}
+
+@-webkit-keyframes borderShine {
+  1% {
+    border: 1px red solid;
+  }
+  50% {
+    border: 15px red solid;
+    opacity: 1;
+  }
+  99% {
+    border: 1px red solid;
+  }
+}
+
+@keyframes borderShine {
+  1% {
+    border: 1px red solid;
+  }
+  50% {
+    border: 15px red solid;
+    opacity: 1;
+  }
+  99% {
+    border: 1px red solid;
+  }
+}
+
 #userStatusWrapper {
   background: #ebfc8d;
   display: -webkit-box;
@@ -199,6 +234,26 @@ label {
   background: #8b8b8b;
   color: black;
   border-color: black;
+}
+
+#cardsCounter {
+  background-color: #d6ab1c;
+  background: -webkit-gradient(linear, left top, right top, from(#ff9100), color-stop(40%, #f7fa47), color-stop(60%, #f7fa47), to(#ff9100));
+  background: linear-gradient(90deg, #ff9100 0%, #f7fa47 40%, #f7fa47 60%, #ff9100 100%);
+  padding: 3px;
+}
+
+#cardsCounter #scoreCounterWrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (auto)[4];
+      grid-template-columns: repeat(4, auto);
+  grid-column-gap: 3px;
+}
+
+#cardsCounter #scoreCounterWrapper > * {
+  background-color: rgba(245, 213, 32, 0.651);
+  border-radius: 3px;
 }
 
 #scoreCounter {
@@ -248,7 +303,7 @@ label {
   padding: 3px;
 }
 
-.pointsCounter .history7days span:nth-child(n+1) {
+.pointsCounter .history7days span:nth-child(n + 1) {
   display: inline-block;
   width: 35px;
   height: 25px;
@@ -272,6 +327,31 @@ label {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+
+#formNewWord_NativeInput,
+#formNewWord_toLearnInput {
+  display: block;
+  width: 100%;
+}
+
+#button_formNewWord_NativeInput,
+#button_formNewWord_toLearnInput,
+#button_formNewWord_NativeInputGoogle,
+#button_formNewWord_toLearnInputGoogle {
+  display: none;
+  width: 110px;
+  text-align: center;
+  margin: auto;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: 2px 5px;
+  color: brown;
+}
+
+#button_formNewWord_NativeInputGoogle,
+#button_formNewWord_toLearnInputGoogle {
+  width: 200px;
 }
 
 #container {
@@ -520,6 +600,17 @@ label {
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
+}
+
+#training_wrapper #words #wordOneTranslate,
+#training_wrapper #words #wordTwoTranslate,
+#training_wrapper #words #wordOneTranslateGoogle,
+#training_wrapper #words #wordTwoTranslateGoogle {
+  background-color: white !important;
+  font-size: 2rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  display: none;
 }
 
 #training_wrapper #levelIndicator {
@@ -1009,19 +1100,22 @@ label {
   background-color: rgba(0, 255, 255, 0.116);
   border: 1px solid rgba(0, 0, 0, 0.404);
   color: rgba(167, 0, 0, 0.712);
-  border-radius: 0  10px 10px 0;
+  border-radius: 0 10px 10px 0;
   font-size: small;
   padding: 5px;
   margin-bottom: 10px;
   margin-left: 10px;
-  -webkit-transition: -webkit-transform 0.3s;
-  transition: -webkit-transform 0.3s;
-  transition: transform 0.3s;
-  transition: transform 0.3s, -webkit-transform 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#pilesInfo .invisibleWindow #pileLearned .showHideCards button.spin-border-radius {
+  background-color: rgba(85, 141, 141, 0.233);
+  border-radius: 10px 0 0 10px;
 }
 
 #pilesInfo .invisibleWindow #pileLearned .showHideCards button:hover {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  background-color: black;
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */

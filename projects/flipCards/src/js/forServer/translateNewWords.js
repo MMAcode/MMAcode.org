@@ -25,6 +25,7 @@ let sortUserLanguagesForGoogleTranslateIfNeeded = async (cards, userInfo) => {
     case 'czech': userInfo.langToLearnforGoogle = 'cs'; break;
     case 'english': userInfo.langToLearnforGoogle = 'en'; break;
     case 'french': userInfo.langToLearnforGoogle = 'fr'; break;
+    case 'portuguese': userInfo.langToLearnforGoogle = 'pt'; break;
     case 'german': userInfo.langToLearnforGoogle = 'de';
   }
   // let dd =
