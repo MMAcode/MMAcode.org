@@ -1,4 +1,4 @@
-import { langInWord1, langInWord2, langInWord1G, langInWord2G, page2ActiveNow } from '../bundle';
+import { langInWord1, langInWord2, langInWord1G, langInWord2G, page2ActiveNow, userInfo } from '../bundle';
 let savedSelectedText = '';
 let textAndLangForTranslation;
 
@@ -82,15 +82,27 @@ let translateAndShowSelectedText = async (languageOfTheSelection) => {
   console.log("Window2:", window.getSelection().toString());
 
   let langForGoogle = { textToTranslate: selectedNow.length > 0 ? selectedNow : savedSelectedText };
-  if (languageOfTheSelection == 'czech') {
-    langForGoogle.from = 'cs';
-    langForGoogle.to = 'en';
-  } else if (languageOfTheSelection == 'english') {
-    langForGoogle.from = 'en';
-    langForGoogle.to = 'cs';
+  // console.log("USER for google translate:", userInfo);
+  if (userInfo.langToLearn == 'portuguese') { //asuming en-pt pair
+    if (languageOfTheSelection == 'portuguese') {
+      langForGoogle.from = 'pt';
+      langForGoogle.to = 'en';
+    } else if (languageOfTheSelection == 'english') {
+      langForGoogle.from = 'en';
+      langForGoogle.to = 'pt';
+    }
+  } else { //assuming en-cz pair
+    if (languageOfTheSelection == 'czech') {
+      langForGoogle.from = 'cs';
+      langForGoogle.to = 'en';
+    } else if (languageOfTheSelection == 'english') {
+      langForGoogle.from = 'en';
+      langForGoogle.to = 'cs';
+    }
   }
 
-  // console.log(langForGoogle);
+
+  console.log("langForGoogle: ",langForGoogle);
   let translation = await translateOnline(langForGoogle.from, langForGoogle.to, langForGoogle.textToTranslate);
   // console.log(translation);
   // showSelectionForSec();
