@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/book.svg" />
+    <title>Vocabulary Practice by MMAcode</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="shortcut icon" type="image/x-icon" href="img/book.svg">
-  <title>Vocabulary Practice by MMAcode</title>
+  <body>
+    <div id="container">
+      <div id="userStatusWrapper">
+        <div id="userStatus"></div>
+        <!-- <br> -->
+        <a class="button" id="signInOutButton" href="signIn.html">Sign-in</a>
+      </div>
 
-</head>
+      <h1>Vocabulary training</h1>
+      <h3>
+        <a class="button" href="https://youtu.be/fKLlgJTSjq4" target="_blank">
+          Watch introduction video
+        </a>
+      </h3>
+      <br />
+      <br />
+      <h3>
+        <a class="button" href="practice.html">learn/practice</a>
+      </h3>
 
-<body>
-  <div id="container">
-    <div id="userStatusWrapper">
-      <div id="userStatus"></div>
-      <!-- <br> -->
-      <a class="button" id="signInOutButton" href="signIn.html">Sign-in</a>
-    </div>
-
-    <h1>Vocabulary training</h1>
-    <h3>
-      <a class="button" href="https://youtu.be/fKLlgJTSjq4" target="_blank">Watch introduction video</a></h3>
-    <br><br>
-    <h3>
-      <a class="button" href="practice.html">learn/practice</a>
-    </h3>
-
-    <!-- <div id="newWord_container">
+      <!-- <div id="newWord_container">
       <h4> Add new word to learn:</h4>
       <form action="">
         <label for="nativeInput">Native word:</label>
@@ -41,386 +43,404 @@
       <a class="centerIt" id="importBtn" href="importFile_video.html">Import from Excel.</a>
     </div> -->
 
-    <br>
-    <!-- <div id="showAllCards">
+      <br />
+      <!-- <div id="showAllCards">
       Show all cards
     </div> -->
-    <br>
-    <br>
-    <p></p>
+      <br />
+      <br />
+      <p></p>
 
-    <br><br>
-    <!-- <a id="administrator" href="administrator.html">administrator</a> -->
+      <br />
+      <br />
+      <!-- <a id="administrator" href="administrator.html">administrator</a> -->
 
+      <!-- <button id="copyCollection"></button> -->
+      <div id="firstTimeUser">
+        <form id="firstTimeUserForm" action="">
+          <h4>Select your native language:</h4>
+          <p class="centerIt">(required)</p>
 
+          <!-- NATIVE LANG -->
+          <input
+            required
+            type="radio"
+            id="nLanguageCZ"
+            name="nLanguage"
+            value="czech"
+          />
+          <label for="nLanguageCZ">Czech</label>
+          <br />
+          <input
+            type="radio"
+            id="nLanguageEN"
+            name="nLanguage"
+            value="english"
+          />
+          <label for="nLanguageEN">English</label>
+          <!-- <p>(More languages upon request...)</p> -->
+          <br />
+          <br />
 
+          <!-- LANG TO LEARN -->
+          <h4>Select language to learn:</h4>
+          <p class="centerIt">(required)</p>
 
+          <input
+            required
+            type="radio"
+            id="lLanguageCZ"
+            name="lLanguage"
+            value="czech"
+          />
+          <label for="lLanguageCZ">Czech</label>
+          <br />
+          <input
+            type="radio"
+            id="lLanguageEN"
+            name="lLanguage"
+            value="english"
+          />
+          <label for="lLanguageEN">English</label>
+          <br />
+          <input
+            type="radio"
+            id="lLanguageFR"
+            name="lLanguage"
+            value="french"
+          />
+          <label for="lLanguageFR">French</label>
+          <br />
+          <input
+            type="radio"
+            id="lLanguageDE"
+            name="lLanguage"
+            value="german"
+          />
+          <label for="lLanguageDE">German</label>
+          <br />
+          <input
+            type="radio"
+            id="lLanguageDE"
+            name="lLanguage"
+            value="portuguese"
+          />
+          <label for="lLanguagePT">Portuguese</label>
+          <!-- <p>(More languages upon request...)</p> -->
 
+          <br />
 
-
-
-    <!-- <button id="copyCollection"></button> -->
-    <div id="firstTimeUser">
-      <form id="firstTimeUserForm" action="">
-        <h4>Select your native language:</h4>
-        <p class="centerIt">(required)</p>
-
-        <!-- NATIVE LANG -->
-        <input required type="radio" id="nLanguageCZ" name="nLanguage" value="czech">
-        <label for="nLanguageCZ">Czech</label>
-        <br>
-        <input type="radio" id="nLanguageEN" name="nLanguage" value="english">
-        <label for="nLanguageEN">English</label>
-        <!-- <p>(More languages upon request...)</p> -->
-        <br> <br>
-
-        <!-- LANG TO LEARN -->
-        <h4>Select language to learn:</h4>
-        <p class="centerIt">(required)</p>
-
-        <input required type="radio" id="lLanguageCZ" name="lLanguage" value="czech">
-        <label for="lLanguageCZ">Czech</label>
-        <br>
-        <input type="radio" id="lLanguageEN" name="lLanguage" value="english">
-        <label for="lLanguageEN">English</label>
-        <br>
-        <input type="radio" id="lLanguageFR" name="lLanguage" value="french">
-        <label for="lLanguageFR">French</label>
-        <br>
-        <input type="radio" id="lLanguageDE" name="lLanguage" value="german">
-        <label for="lLanguageDE">German</label>
-        <br>
-        <input type="radio" id="lLanguageDE" name="lLanguage" value="portuguese">
-        <label for="lLanguagePT">German</label>
-        <!-- <p>(More languages upon request...)</p> -->
-
-        <br>
-
-        <br>
-        <br>
-        <label for="usernameX">How do you want to be called? <br>(You can change your username later too.)</label>
-        <input class="centerIt" id="usernameX" type="text" name="username">
-        <br>
-        <input class="button centerIt" type="submit" value="submit">
-      </form>
+          <br />
+          <br />
+          <label for="usernameX">
+            How do you want to be called?
+            <br />
+            (You can change your username later too.)
+          </label>
+          <input class="centerIt" id="usernameX" type="text" name="username" />
+          <br />
+          <input class="button centerIt" type="submit" value="submit" />
+        </form>
+      </div>
     </div>
-  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- firebase package which was originally on the botton -->
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
-  <!-- <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js"></script> -->
-
-  <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyAY9FCIHSK9v0LSa8i_PWxm06kx_Isv4Uo",
-      authDomain: "ninja2-634e4.firebaseapp.com",
-      databaseURL: "https://ninja2-634e4.firebaseio.com",
-      projectId: "ninja2-634e4",
-      appId: "1:900566306511:web:044e5cb5c69760492db1ba"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    // firebase.analytics();
-    const db = firebase.firestore();
-    const auth = firebase.auth();
-  </script>
-
-
-
-
-
-
-
-  <script>
-    // get inputs from the form
-    let activateNEwCardListener = (user) => {
-      form = document.querySelector('form');
-      form.addEventListener('submit', e => {
-        e.preventDefault();
-        let nativeInput = form.nativeInput.value;
-        let toLearnInput = form.toLearnInput.value;
-
-        // add new object into firebase
-        const newCard = {
-          languageNative: nativeInput,
-          languageToLearn: toLearnInput,
-          mainStage: 'to learn',
-          enCheck: false,
-          czCheck: false,
-          level: 0,
-          dueTime: 8888888888888,
-          due: false,
-          lastSeen: 8888888888888
-        };
-
-        // db.collection(user.uid).add(newCard).then(() => {
-        //  new-DB-structure
-        db.collection("users").doc(user.email).collection("cardsToLearn").add(newCard).then(() => {
-          console.log('Flip-card added');
-        }).catch(err => {
-          console.log(err);
-          console.log('I could NOT add object into the database.');
-        });
-        // reset form
-        form.reset();
-      })
-    }
-
-
-
-
-
-
-    // first time user set up
-    let getUserLanguagesFromHtml = async (user) => {
-      console.log('F to update user file started --------------------------------------');
-      let form = document.querySelector('#firstTimeUserForm');
-      let updateDB = false;
-      let formWrapperDisplay = document.querySelector('#firstTimeUser');
-
-      formWrapperDisplay.style.display = "block";
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        // console.log(e);
-        // console.log(form.nLanguage.value);
-        // console.log(form.lLanguage.value);
-        // console.log(form.username.value);
-
-
-        // if (updateDB == true) {
-        console.log('updating user doc in DB +++++++++++++++++++++++++++++');
-        // create user doc in Firebase
-        
-        let userDocX = await db.collection("users").doc(user.email).collection("about").doc("info").set({
-          userEmail: user.email,
-          userID: user.uid,
-          langToLearn: form.lLanguage.value,
-          langNative: form.nLanguage.value,
-          username: form.username.value
-        });
-        window.location.reload();
-
-        // formWrapperDisplay.style.display = "none";
-        // }
-
-
-      })
-
-
-
-
-    }
-
-
-
-
-
-
-
-
-    // buttons
-    const ccButton = document.querySelector('#copyCollection');
-    const addWordForm = document.querySelector('#newWord_container');
-    const importBtnXX = document.querySelector('#importBtn');
-
-    // user button
-    let status = document.querySelector('#userStatus');
-    let = signButton = document.querySelector('#signInOutButton');
-
-    let changeButtonToSignOut = () => {
-      signButton.innerHTML = '<span>Log out.</span>';
-      signButton.removeAttribute("href");
-      // signButton.setAttribute("href", "");
-      signButton.addEventListener('click', () => {
-        auth.signOut();
-        // status.innerHTML = `<p>xx User logged out.</p>`;
-        signButton.innerHTML = '<a href="signIn.html">Sign-in</a>';
-      })
-    }
-
-
-    // user status
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        // copy docs from collection to collection
-        // ccButton.innerHTML = '<span>Copy default collection of words to my collection.</span>';
-        // ccButton.addEventListener('click', () => {
-        //   copyCollection(user);
-        //   ccButton.style.display = 'none';
-        // })
-        activateNEwCardListener(user);
-        console.log('you are logged in as...');
-        console.log(user);
-        console.log(user.email);
-        console.log(user.uid);
-        status.innerHTML = `<p>you are logged in as ${user.email}. Enjoy!</p>`;
-        changeButtonToSignOut();
-
-        // check if user doc exists
-        let userExists = async () => {
-          // let userDoc = await db.collection(user.uid).doc(user.uid).get();
-          //  new-DB-structure
-          let userDoc = await db.collection("users").doc(user.email).collection("about").doc("info").get();
-
-          console.log(userDoc);
-          console.log('user to ACCESS:', userDoc.exists);
-          if (userDoc.exists === true) {
-            console.log('user doc exists');
-            status.innerHTML = `<p>Welcome <br><strong> ${userDoc.data().username} </strong></p>`;
-
-
-
-
-            ////// delete all cards in a given collection
-            let deleteCardsInUsersCollection = (colName) => {
-              let pathXX = db.collection("users").doc(user.email);
-              // let pathXX = db.collection("guests").doc("guest1");
-
-              pathXX.collection(colName).get().then((data) => {
-                data.docs.forEach(doc => {
-                  console.log(doc.id);
-                  pathXX.collection(colName).doc(doc.id)
-                    .delete();
-                })
-              });
-            }
-            // deleteCardsInUsersCollection("cardsLearningNotDue");
-            // deleteCardsInUsersCollection("cardsLearningDue");
-            // deleteCardsInUsersCollection("cardsToLearn");
-            // deleteCardsInUsersCollection("cardsLearned");
-
-
-
-
-
-            ////// Copy all To Learn cards from current user to guest
-            let moveAllCardsToNewStructure = async () => {
-
-              // let oldCardsC = await db.collection("users").doc(user.email).collection("cardsToLearn").get();
-              let oldCardsC = await db.collection("guests").doc("guestDefault").collection("cardsToLearn")
-                .get();
-              let newCardsD = db.collection("guests").doc("guest1");
-
-              oldCardsC.docs.forEach(doc => {
-                newCardsD.collection("cardsToLearn").add(doc.data());
-                ////then delete old
-                // then(() => {
-                //     db.collection(user.uid).doc(doc.id).delete();
-                //   });
-              });
-            }
-            // moveAllCardsToNewStructure();
-
-
-
-
-
-            // ///////count cards
-            // db.collection("users").doc(user.email).collection("cardsToLearn").get().then((data) => {
-            //   console.log("to learn: ", data.docs.length, ' cards');
-            //   data.docs.forEach(doc => {
-            //     console.log(doc.data());
-            //   })
-            // });
-            // db.collection("users").doc(user.email).collection("cardsLearningDue").get().then((data) => {
-            //   console.log("due: ", data.docs.length, ' cards');
-            //   data.docs.forEach(doc => {
-            //     console.log(doc.data());
-            //   })
-            // });
-            // db.collection("users").doc(user.email).collection("cardsLearningNotDue").get().then((data) => {
-            //   console.log("not due/waiting: ", data.docs.length, ' cards');
-            //   data.docs.forEach(doc => {
-            //     console.log(doc.data());
-            //   })
-            // });
-            // db.collection("users").doc(user.email).collection("cardsLearned").get().then((data) => {
-            //   console.log("learned: ", data.docs.length, ' cards');
-            //   // data.docs.forEach(doc => {
-            //   //   console.log(doc.data());
-            //   // })
-            // });
-
-
-
-
-
-
-
-
-
-
-
-          } else { //=if user doc doesn't exist yet...
-            console.log('user doc doesnt exist, i am going to create one...');
-            // here should be initiated for to collect info like language to learn, native language etc. in async mode; then after suplying the data, doc should be created
-            // let userCollection = db.collection(user.uid).doc(user.uid).set({
-            //   userEmail: user.email,
-            //   userID: user.uid
-            // });
-
-
-
-            // import {
-            //   getUserLanguagesFromHtml
-            // } from "./js/firstTimeUser.js";
-
-            // let getUserLanguagesFromHtml = async () => {
-            //   // showFirstTimeUserPage(), return lang to learn, native language, username, = return userInfo object
-            //   import("./js/firstTimeUser.js").then((userInfo) => {
-            //     console.log(userInfo, "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
-            //   });
-            // }
-
-
-            getUserLanguagesFromHtml(user);
-
-
-
-
-
-            //  create user doc in Firebase - was here
-
-
-
-
-          };
-
-        };
-        userExists();
-
-
-      } else {
-        // addWordForm.style.display = 'none';
-        // ccButton.style.display = 'none';
-        // importBtnXX.style.display = 'none';
-        console.log('no-one is logged in');
-        console.log(user);
-        status.innerHTML = '<p>Hi Stranger!</p>';
+    <!-- firebase package which was originally on the botton -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js"></script> -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAY9FCIHSK9v0LSa8i_PWxm06kx_Isv4Uo",
+        authDomain: "ninja2-634e4.firebaseapp.com",
+        databaseURL: "https://ninja2-634e4.firebaseio.com",
+        projectId: "ninja2-634e4",
+        appId: "1:900566306511:web:044e5cb5c69760492db1ba",
       }
-    });
-  </script>
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig)
+      // firebase.analytics();
+      const db = firebase.firestore()
+      const auth = firebase.auth()
+    </script>
 
+    <script>
+      // get inputs from the form
+      let activateNEwCardListener = (user) => {
+        form = document.querySelector("form")
+        form.addEventListener("submit", (e) => {
+          e.preventDefault()
+          let nativeInput = form.nativeInput.value
+          let toLearnInput = form.toLearnInput.value
 
-  <!-- <script src="js/bundle.js"></script> -->
-</body>
+          // add new object into firebase
+          const newCard = {
+            languageNative: nativeInput,
+            languageToLearn: toLearnInput,
+            mainStage: "to learn",
+            enCheck: false,
+            czCheck: false,
+            level: 0,
+            dueTime: 8888888888888,
+            due: false,
+            lastSeen: 8888888888888,
+          }
 
+          // db.collection(user.uid).add(newCard).then(() => {
+          //  new-DB-structure
+          db.collection("users")
+            .doc(user.email)
+            .collection("cardsToLearn")
+            .add(newCard)
+            .then(() => {
+              console.log("Flip-card added")
+            })
+            .catch((err) => {
+              console.log(err)
+              console.log("I could NOT add object into the database.")
+            })
+          // reset form
+          form.reset()
+        })
+      }
+
+      // first time user set up
+      let getUserLanguagesFromHtml = async (user) => {
+        console.log(
+          "F to update user file started --------------------------------------"
+        )
+        let form = document.querySelector("#firstTimeUserForm")
+        let updateDB = false
+        let formWrapperDisplay = document.querySelector("#firstTimeUser")
+
+        formWrapperDisplay.style.display = "block"
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault()
+          // console.log(e);
+          // console.log(form.nLanguage.value);
+          // console.log(form.lLanguage.value);
+          // console.log(form.username.value);
+
+          // if (updateDB == true) {
+          console.log("updating user doc in DB +++++++++++++++++++++++++++++")
+          // create user doc in Firebase
+
+          //sort google trainslate letters
+          let langToLearnGoogleLetters
+          let langNativeGoogleLetters
+          switch (form.nLanguage.value) {
+            case "czech":
+              langNativeGoogleLetters = "cs"
+              break
+            case "english":
+              langNativeGoogleLetters = "en"
+              break
+            case "french":
+              langNativeGoogleLetters = "fr"
+              break
+            case "german":
+              langNativeGoogleLetters = "de"
+          }
+          switch (form.lLanguage.value) {
+            case "czech":
+              langToLearnGoogleLetters = "cs"
+              break
+            case "english":
+              langToLearnGoogleLetters = "en"
+              break
+            case "french":
+              langToLearnGoogleLetters = "fr"
+              break
+            case "portuguese":
+              langToLearnGoogleLetters = "pt"
+              break
+            case "german":
+              langToLearnGoogleLetters = "de"
+          }
+
+          let userDocX = await db
+            .collection("users")
+            .doc(user.email)
+            .collection("about")
+            .doc("info")
+            .set({
+              userEmail: user.email,
+              userID: user.uid,
+              langToLearn: form.lLanguage.value,
+              langToLearnforGoogle: langToLearnGoogleLetters,
+              langNative: form.nLanguage.value,
+              langNativeforGoogle: langNativeGoogleLetters,
+              username: form.username.value,
+            })
+          window.location.reload()
+
+          // formWrapperDisplay.style.display = "none";
+          // }
+        })
+      }
+
+      // buttons
+      const ccButton = document.querySelector("#copyCollection")
+      const addWordForm = document.querySelector("#newWord_container")
+      const importBtnXX = document.querySelector("#importBtn")
+
+      // user button
+      let status = document.querySelector("#userStatus")
+      let = signButton = document.querySelector("#signInOutButton")
+
+      let changeButtonToSignOut = () => {
+        signButton.innerHTML = "<span>Log out.</span>"
+        signButton.removeAttribute("href")
+        // signButton.setAttribute("href", "");
+        signButton.addEventListener("click", () => {
+          auth.signOut()
+          // status.innerHTML = `<p>xx User logged out.</p>`;
+          signButton.innerHTML = '<a href="signIn.html">Sign-in</a>'
+        })
+      }
+
+      // user status
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          // copy docs from collection to collection
+          // ccButton.innerHTML = '<span>Copy default collection of words to my collection.</span>';
+          // ccButton.addEventListener('click', () => {
+          //   copyCollection(user);
+          //   ccButton.style.display = 'none';
+          // })
+          activateNEwCardListener(user)
+          console.log("you are logged in as...")
+          console.log(user)
+          console.log(user.email)
+          console.log(user.uid)
+          status.innerHTML = `<p>you are logged in as ${user.email}. Enjoy!</p>`
+          changeButtonToSignOut()
+
+          // check if user doc exists
+          let userExists = async () => {
+            // let userDoc = await db.collection(user.uid).doc(user.uid).get();
+            //  new-DB-structure
+            let userDoc = await db
+              .collection("users")
+              .doc(user.email)
+              .collection("about")
+              .doc("info")
+              .get()
+
+            console.log(userDoc)
+            console.log("user to ACCESS:", userDoc.exists)
+            if (userDoc.exists === true) {
+              console.log("user doc exists")
+              status.innerHTML = `<p>Welcome <br><strong> ${
+                userDoc.data().username
+              } </strong></p>`
+
+              ////// delete all cards in a given collection
+              let deleteCardsInUsersCollection = (colName) => {
+                let pathXX = db.collection("users").doc(user.email)
+                // let pathXX = db.collection("guests").doc("guest1");
+
+                pathXX
+                  .collection(colName)
+                  .get()
+                  .then((data) => {
+                    data.docs.forEach((doc) => {
+                      console.log(doc.id)
+                      pathXX.collection(colName).doc(doc.id).delete()
+                    })
+                  })
+              }
+              // deleteCardsInUsersCollection("cardsLearningNotDue");
+              // deleteCardsInUsersCollection("cardsLearningDue");
+              // deleteCardsInUsersCollection("cardsToLearn");
+              // deleteCardsInUsersCollection("cardsLearned");
+
+              ////// Copy all To Learn cards from current user to guest
+              let moveAllCardsToNewStructure = async () => {
+                // let oldCardsC = await db.collection("users").doc(user.email).collection("cardsToLearn").get();
+                let oldCardsC = await db
+                  .collection("guests")
+                  .doc("guestDefault")
+                  .collection("cardsToLearn")
+                  .get()
+                let newCardsD = db.collection("guests").doc("guest1")
+
+                oldCardsC.docs.forEach((doc) => {
+                  newCardsD.collection("cardsToLearn").add(doc.data())
+                  ////then delete old
+                  // then(() => {
+                  //     db.collection(user.uid).doc(doc.id).delete();
+                  //   });
+                })
+              }
+              // moveAllCardsToNewStructure();
+
+              // ///////count cards
+              // db.collection("users").doc(user.email).collection("cardsToLearn").get().then((data) => {
+              //   console.log("to learn: ", data.docs.length, ' cards');
+              //   data.docs.forEach(doc => {
+              //     console.log(doc.data());
+              //   })
+              // });
+              // db.collection("users").doc(user.email).collection("cardsLearningDue").get().then((data) => {
+              //   console.log("due: ", data.docs.length, ' cards');
+              //   data.docs.forEach(doc => {
+              //     console.log(doc.data());
+              //   })
+              // });
+              // db.collection("users").doc(user.email).collection("cardsLearningNotDue").get().then((data) => {
+              //   console.log("not due/waiting: ", data.docs.length, ' cards');
+              //   data.docs.forEach(doc => {
+              //     console.log(doc.data());
+              //   })
+              // });
+              // db.collection("users").doc(user.email).collection("cardsLearned").get().then((data) => {
+              //   console.log("learned: ", data.docs.length, ' cards');
+              //   // data.docs.forEach(doc => {
+              //   //   console.log(doc.data());
+              //   // })
+              // });
+            } else {
+              //=if user doc doesn't exist yet...
+              console.log("user doc doesnt exist, i am going to create one...")
+              // here should be initiated for to collect info like language to learn, native language etc. in async mode; then after suplying the data, doc should be created
+              // let userCollection = db.collection(user.uid).doc(user.uid).set({
+              //   userEmail: user.email,
+              //   userID: user.uid
+              // });
+
+              // import {
+              //   getUserLanguagesFromHtml
+              // } from "./js/firstTimeUser.js";
+
+              // let getUserLanguagesFromHtml = async () => {
+              //   // showFirstTimeUserPage(), return lang to learn, native language, username, = return userInfo object
+              //   import("./js/firstTimeUser.js").then((userInfo) => {
+              //     console.log(userInfo, "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+              //   });
+              // }
+
+              getUserLanguagesFromHtml(user)
+
+              //  create user doc in Firebase - was here
+            }
+          }
+          userExists()
+        } else {
+          // addWordForm.style.display = 'none';
+          // ccButton.style.display = 'none';
+          // importBtnXX.style.display = 'none';
+          console.log("no-one is logged in")
+          console.log(user)
+          status.innerHTML = "<p>Hi Stranger!</p>"
+        }
+      })
+    </script>
+
+    <!-- <script src="js/bundle.js"></script> -->
+  </body>
 </html>

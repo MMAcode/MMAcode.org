@@ -603,7 +603,7 @@ let assignWordsAndColours = (currentCard) => {
     wordTwo = currentCard.languageNative;
     langInWord1 = userInfo.langToLearn;
     langInWord1G = userInfo.langToLearnforGoogle;
-    
+
     langInWord2 = userInfo.langNative;
     langInWord2G = userInfo.langNativeforGoogle;
 
@@ -815,12 +815,12 @@ let updateALL = async (e) => {
 
   //update html element in decks of words  -adjusted word
   document.querySelector('#alertToTranslate').remove();
-  
+
   //resetting new word section
   document.querySelectorAll('.trBtInNewWord').forEach(btn => btn.style.display = 'none');
   document.querySelector('#formNewWord_NativeInput').value = '';
   document.querySelector('#formNewWord_toLearnInput').value = '';
-  
+
   document.querySelector('#wordOneTranslate').style.display = 'none';
   document.querySelector('#wordTwoTranslate').style.display = 'none';
   document.querySelector('#wordOneTranslateGoogle').style.display = 'none';
@@ -908,6 +908,21 @@ let showLevel = () => {
 
 let preventScroll = e => { e.preventDefault(); }
 
+
+//speaking portuguese with web api
+const portugueseSpokenWithWebAPI = (text, responsiveVoiceLanguage) => {
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", text, responsiveVoiceLanguage);
+  if (responsiveVoiceLanguage == 'Portuguese Male') {
+    var u = new SpeechSynthesisUtterance();
+    u.text = text;
+    u.lang = 'pt-PT';
+    speechSynthesis.speak(u);
+    return true;
+  }
+  return false;
+}
+
+
 // PAGES
 let showPageOne = async () => {
   // console.log('page one Activated');
@@ -936,11 +951,14 @@ let showPageOne = async () => {
   // SPEAKING
   if (!showNativeWordFirst && !languageSwap) {
     // console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
-    let cekej = await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
+
+    if (!portugueseSpokenWithWebAPI(wordOne, responsiveVoiceLanguage))
+      await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
   }
   if (showNativeWordFirst && languageSwap) {
     // console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
-    let cekejToo = await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
+    if (!portugueseSpokenWithWebAPI(wordOne, responsiveVoiceLanguage))
+      await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
     // console.log(responsiveVoice.speak(wordOne, responsiveVoiceLanguage));
   }
 
@@ -1039,12 +1057,14 @@ let showPageTwo = () => {
   // for english speaking  users (Abi)...
   if (showNativeWordFirst && !languageSwap) {
     // console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
-    responsiveVoice.speak(wordTwo, responsiveVoiceLanguage);
+    if (!portugueseSpokenWithWebAPI(wordTwo, responsiveVoiceLanguage))
+      responsiveVoice.speak(wordTwo, responsiveVoiceLanguage);
   }
   // for czech speaking  users (Me, Dana, Stana)...
   if (!showNativeWordFirst && languageSwap) {
     // console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
-    responsiveVoice.speak(wordTwo, responsiveVoiceLanguage);
+    if (!portugueseSpokenWithWebAPI(wordTwo, responsiveVoiceLanguage))
+      responsiveVoice.speak(wordTwo, responsiveVoiceLanguage);
     // console.log(responsiveVoice.speak(wordOne, responsiveVoiceLanguage));
   }
 
@@ -1125,10 +1145,11 @@ let setLanguagesToSpeak = async () => {
   }
   else if (languageToSpeak === 'english') { responsiveVoiceLanguage = 'UK English Female'; }
   else if (languageToSpeak === 'french') { responsiveVoiceLanguage = 'French Female'; }
-  else if (languageToSpeak === 'german') {
-    responsiveVoiceLanguage = 'Deutsch Female';
+  else if (languageToSpeak === 'german') { responsiveVoiceLanguage = 'Deutsch Female'; }
+  else if (languageToSpeak === 'portuguese') { responsiveVoiceLanguage = 'Portuguese Male'; }
+  // else if (languageToSpeak === 'portuguese') {  responsiveVoiceLanguage = 'UK English Female';  }
+  // console.log("L L L L L LlanguageToSpeak: ", languageToSpeak);
 
-  }
 
   // console.log('languageSwapp?', languageSwap, '; responsiveVoiceLanguage: ', responsiveVoiceLanguage);
   // console.log('finishing SETTING LANGUAGE TO SPEAK:');

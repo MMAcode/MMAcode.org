@@ -96,13 +96,23 @@ let activateWordsOptions = () => {
       else if (userInOp.langToLearn === 'english') { responsiveVoiceLanguage = 'UK English Female'; }
       else if (userInOp.langToLearn === 'french') { responsiveVoiceLanguage = 'French Female'; }
       else if (userInOp.langToLearn === 'german') { responsiveVoiceLanguage = 'Deutsch Female'; }
+      else if (userInOp.langToLearn === 'portuguese') { responsiveVoiceLanguage = 'Portuguese Male'; }
+      // else if (userInOp.langToLearn === 'portuguese') { responsiveVoiceLanguage = 'Slovak Female'; }
 
-      let speak = async () => {
-        await responsiveVoice.speak(currentCardInOp.languageToLearn, responsiveVoiceLanguage);
+      if (userInOp.langToLearn === 'portuguese') {
+        var u = new SpeechSynthesisUtterance();
+        u.text = currentCardInOp.languageToLearn;
+        u.lang = 'pt-PT';
+        speechSynthesis.speak(u);
+      } else {
+        let speak = async () => {
+          // console.log("S S S S responsiveVoiceLanguage: ", responsiveVoiceLanguage);
+          try {
+            await responsiveVoice.speak(currentCardInOp.languageToLearn, responsiveVoiceLanguage);
+          } catch (err) { console.log(err) };
+        }
+        speak();
       }
-
-      speak();
-
 
     }
 
