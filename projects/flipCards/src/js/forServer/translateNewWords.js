@@ -13,7 +13,7 @@ let returnUserInfo = async (cards) => {
 
 let sortUserLanguagesForGoogleTranslateIfNeeded = async (cards, userInfo) => {
   console.log("USER BEFORE:", userInfo.langNative);
-  if (userInfo.langNative.forGoogle) return;
+  if (userInfo.langNativeforGoogle) return;
 
   switch (userInfo.langNative) {
     case 'czech': userInfo.langNativeforGoogle = 'cs'; break;
