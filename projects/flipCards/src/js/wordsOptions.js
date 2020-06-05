@@ -48,7 +48,7 @@ let activateWordsOptions = () => {
     // console.log(defGoogleHTML);
     // console.log(e.target.className);
 
-    if (buttonParent == defGoogleHTML && e.target.className === 'optionsIcon') {
+    if (buttonParent == defGoogleHTML && e.target.classList.contains('optionsIcon')) {
       console.log('google def action');
       // defGoogleHTMLf.style.display = 'block';
       // defGoogleHTMLf.style.display = 'none';
@@ -60,7 +60,7 @@ let activateWordsOptions = () => {
 
 
     //changing the word/phrase
-    if ((buttonParent == changeWordsHTML && e.target.className === 'optionsIcon') || (e.target.id == 'adjustOption')) {
+    if ((buttonParent == changeWordsHTML && e.target.classList.contains('optionsIcon')) || (e.target.id == 'adjustOption')) {
       console.log('change word action fired');
       scroll(0, 0);
       // adjustCurrentWord();
@@ -91,9 +91,9 @@ let activateWordsOptions = () => {
 
 
     }
-
+console.log("XX",e.target)
     /////SPEAK CARD ON CLICK (not on load)
-    if (buttonParent == speakWordHTML && e.target.className === 'optionsIcon') {
+    if (buttonParent == speakWordHTML && e.target.classList.contains('optionsIcon')) {
       let responsiveVoiceLanguage = '';
       console.log('SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
       // console.log(userInOp.langToLearn);
