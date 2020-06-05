@@ -1,4 +1,4 @@
-
+import urlRoot from './globalVarRootUrl';
 const changeServerStateBackgroundTo = (color) => {
   document.querySelectorAll('.serverState').forEach(El => {
     El.style.backgroundColor = `${color}`;
@@ -14,8 +14,8 @@ const wakeUpServer = async () => {
   
   console.log("waking up server :)");
   changeServerStateBackgroundTo(loading);
-  // fetch('http://localhost:3001/api/start')
-  fetch('https://mern-express-heroku.herokuapp.com/api/start')
+  fetch(urlRoot+'/api/start')
+  // fetch('https://mern-express-heroku.herokuapp.com/api/start')
     .then(res => res.json())
     .then(
       (result) => changeServerStateBackgroundTo(on),

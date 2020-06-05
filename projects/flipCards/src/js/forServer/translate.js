@@ -1,4 +1,5 @@
 import { langInWord1, langInWord2, langInWord1G, langInWord2G, page2ActiveNow, userInfo } from '../bundle';
+import urlRoot from './globalVarRootUrl';
 let savedSelectedText = '';
 let textAndLangForTranslation;
 
@@ -17,8 +18,8 @@ let translateOnline = async (from, to, textToTranslate) => {
   }
 
   return await
-    // postJsonData('http://localhost:3001/api/translate',
-    postJsonData('https://mern-express-heroku.herokuapp.com/api/translate',
+    postJsonData(urlRoot+'/api/translate',
+    // postJsonData('https://mern-express-heroku.herokuapp.com/api/translate',
       {
         from,
         to,

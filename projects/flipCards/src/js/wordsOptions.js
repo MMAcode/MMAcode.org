@@ -1,4 +1,9 @@
 import { alertUserForSec, scrollAmount, wordOne } from "./bundle";
+// import postJsonData from './forServer/postJsonToServer';
+// import postJsonGetAudioFileFromServer from './forServer/postJsonGetAudioFileFromServer';
+
+import speakTextGoogleAPI from './forServer/speakTextGoogleAPI';
+// import urlRoot from './forServer/globalVarRootUrl';
 
 // alertUserForSec('ahoj', 2);
 let optionsHTML = document.querySelector('#options');
@@ -87,11 +92,11 @@ let activateWordsOptions = () => {
 
     }
 
-
+    /////SPEAK CARD ON CLICK (not on load)
     if (buttonParent == speakWordHTML && e.target.className === 'optionsIcon') {
       let responsiveVoiceLanguage = '';
       console.log('SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
-      console.log(userInOp.langToLearn);
+      // console.log(userInOp.langToLearn);
       if (userInOp.langToLearn === 'czech') { responsiveVoiceLanguage = 'Czech Female'; }
       else if (userInOp.langToLearn === 'english') { responsiveVoiceLanguage = 'UK English Female'; }
       else if (userInOp.langToLearn === 'french') { responsiveVoiceLanguage = 'French Female'; }
@@ -99,20 +104,122 @@ let activateWordsOptions = () => {
       else if (userInOp.langToLearn === 'portuguese') { responsiveVoiceLanguage = 'Portuguese Male'; }
       // else if (userInOp.langToLearn === 'portuguese') { responsiveVoiceLanguage = 'Slovak Female'; }
 
-      if (userInOp.langToLearn === 'portuguese') {
-        var u = new SpeechSynthesisUtterance();
-        u.text = currentCardInOp.languageToLearn;
-        u.lang = 'pt-PT';
-        speechSynthesis.speak(u);
-      } else {
-        let speak = async () => {
-          // console.log("S S S S responsiveVoiceLanguage: ", responsiveVoiceLanguage);
-          try {
-            await responsiveVoice.speak(currentCardInOp.languageToLearn, responsiveVoiceLanguage);
-          } catch (err) { console.log(err) };
+
+      if (userInOp.langToLearnforGoogle && userInOp.langNativeforGoogle && userInOp.langToLearnforGoogle == 'pt') {//=use google service to speak if european portuguese
+        console.log("USE GOOGLE TO SPEAK")
+        let googleSpeakMiro = async (langToLearnAs2Letters, text) => {
+
+          //WORKING:
+          // let speakResponse = await postJsonData(urlRoot + '/api/googleTextToSpeech', { langToLearnAs2Letters, text });
+          //??
+          // let speakResponse = await postJsonGetAudioFileFromServer(urlRoot + '/api/googleTextToSpeech', { langToLearnAs2Letters, text });
+
+         
+          // let speakResponse = await postJsonGetAudioFileFromServerFetchVideo(urlRoot + '/api/googleTextToSpeech', { langToLearnAs2Letters:"cs-CZ", text });
+
+          // let speakResponse = await fetch('./forServer/audio/orgy.mp3');
+          // let speakResponse = await fetch('C:\Users\Miros\Documents\GitHub\MERN\reactAndExpressForHeroku\server-express-project\someControllers\orgy.mp3');
+
+
+          // console.log("speakResponse: ", speakResponse);
+
+          //WORKING web api
+
+          //WORKING:
+          
+
+          speakTextGoogleAPI('pt-PT', text);
+         
+
+
+          // const context = new AudioContext();
+          // window.fetch("https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/Yodel_Sound_Effect.mp3")
+          //   .then(response => response.arrayBuffer())
+          //   .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+          //   .then(audioBuffer => {
+
+          //     const source = context.createBufferSource();
+          //     source.buffer = audioBuffer;
+          //     source.connect(context.destination);
+          //     source.start();
+          //   });
+
+
+
+          // //using fetch mp3 video instructions
+          // let audioContext1 = new AudioContext();
+          // let buffer = await speakResponse.arrayBuffer();
+          // console.log("buffer: ", buffer);
+          // let decodedAudio = await audioContext1.decodeAudioData(buffer);
+
+          // const playSound = audioContext1.createBufferSource();
+          // playSound.buffer = decodedAudio;
+          // playSound.connect(audioContext1.destination);
+          // playSound.start(audioContext1.currentTime);
+
+
+
+          // console.log("'SPEAK' RESPONSE FROM SERVER as JSON: ", speakResponse);
+          // let audioData = speakResponse.someDataAsi64Etc.audioContent;
+          // console.log("audioData: ", audioData.data);
+          // console.log("audioData: ", typeof (audioData.data));
+
+          // //convert to mp3 here
+          // const writeFile = util.promisify(fs.writeFile);
+          // await writeFile('output.mp3', response.audioContent, 'binary');
+
+          // //
+          // var audio = new Audio();
+          // //
+          // const blob = new Blob([audioData], { type: "audio/wav" });
+          // console.log("blob :", blob);
+          // audio.src = window.URL.createObjectURL(blob);
+          // console.log(audio);
+          // console.log(audio.src);
+
+
+          //from elsewhere
+          // var audioSrc = 'data:audio/mp3;base64,' + speakResponse.base64Data.audioContent;
+          // var audio = new Audio();
+          // audio.src = audioSrc;
+
+          // audio.load();
+          // audio.play();
+
+
+
         }
-        speak();
+
+        googleSpeakMiro(userInOp.langToLearnforGoogle, currentCardInOp.languageToLearn);
+
+
+
+
+
+
+
+
+
+
+
+
+
       }
+      else
+        if (userInOp.langToLearn === 'portuguese') {
+          var u = new SpeechSynthesisUtterance();
+          u.text = currentCardInOp.languageToLearn;
+          u.lang = 'pt-PT';
+          speechSynthesis.speak(u);
+        } else {
+          let speak = async () => {
+            // console.log("S S S S responsiveVoiceLanguage: ", responsiveVoiceLanguage);
+            try {
+              await responsiveVoice.speak(currentCardInOp.languageToLearn, responsiveVoiceLanguage);
+            } catch (err) { console.log(err) };
+          }
+          speak();
+        }
 
     }
 
@@ -152,13 +259,17 @@ let refreshOptions = (currentCard, currentCardID) => {
   // defGoogleHTMLi.setAttribute('href', readyLink);
 
   let readyLink = '';
-
-  // in these translations I am assuming that one of the languagess is allways czech!!
-  if (userInOp.langToLearn == 'english') { readyLink = 'https://translate.google.co.uk/?hl=cs#view=home&op=translate&sl=en&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
-  else if (userInOp.langToLearn == 'czech') { readyLink = 'https://translate.google.co.uk/?hl=en#view=home&op=translate&sl=cs&tl=en&text=' + encodeURI(currentCard.languageToLearn) }
-  else if (userInOp.langToLearn == 'german') { readyLink = 'https://translate.google.co.uk/?hl=cs#view=home&op=translate&sl=de&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
-  else if (userInOp.langToLearn == 'french') { readyLink = 'https://translate.google.co.uk/?hl=cs#view=home&op=translate&sl=fr&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
-  else { readyLink = 'https://www.google.com/search?q=' + encodeURI(currentCard.languageToLearn) }
+  if (userInOp.langToLearnforGoogle && userInOp.langNativeforGoogle) {
+    //set ready link to google translate using google language names
+    readyLink = `https://translate.google.co.uk/?hl=${userInOp.langNativeforGoogle}#view=home&op=translate&sl=${userInOp.langToLearnforGoogle}&tl=${userInOp.langNativeforGoogle}&text=` + encodeURI(currentCard.languageToLearn);
+  } else {
+    // in these translations I am assuming that one of the languagess is allways czech!!
+    if (userInOp.langToLearn == 'english') { readyLink = 'https://translate.google.co.uk/?hl=cs#view=home&op=translate&sl=en&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
+    else if (userInOp.langToLearn == 'czech') { readyLink = 'https://translate.google.co.uk/?hl=en#view=home&op=translate&sl=cs&tl=en&text=' + encodeURI(currentCard.languageToLearn) }
+    else if (userInOp.langToLearn == 'german') { readyLink = 'https://translate.google.co.uk/?hl=cs#view=home&op=translate&sl=de&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
+    else if (userInOp.langToLearn == 'french') { readyLink = 'https://translate.google.co.uk/?hl=cs#view=home&op=translate&sl=fr&tl=cs&text=' + encodeURI(currentCard.languageToLearn) }
+    else { readyLink = 'https://www.google.com/search?q=' + encodeURI(currentCard.languageToLearn) }
+  }
   defGoogleHTMLi.setAttribute('href', readyLink);
 
 

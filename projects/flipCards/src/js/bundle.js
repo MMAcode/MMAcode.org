@@ -6,6 +6,8 @@ import { activateWordsOptions, showOptions, hideOptions, refreshOptions, activat
 import translateOnline, { enableTranslateOnSelect } from './forServer/translate';
 import translateNewWords from './forServer/translateNewWords';
 import wakeUpServer from './forServer/wakeUpServer';
+import speakTextGoogleAPI from './forServer/speakTextGoogleAPI';
+
 
 import { main } from './assignLinkToGoogleTranslate';
 main();
@@ -910,17 +912,28 @@ let preventScroll = e => { e.preventDefault(); }
 
 
 //speaking portuguese with web api
-const portugueseSpokenWithWebAPI = (text, responsiveVoiceLanguage) => {
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", text, responsiveVoiceLanguage);
-  if (responsiveVoiceLanguage == 'Portuguese Male') {
-    var u = new SpeechSynthesisUtterance();
-    u.text = text;
-    u.lang = 'pt-PT';
-    speechSynthesis.speak(u);
+// const portugueseSpokenWithWebAPI = (text, responsiveVoiceLanguage) => {
+//   console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", text, responsiveVoiceLanguage);
+//   if (responsiveVoiceLanguage == 'Portuguese Male') {
+//     var u = new SpeechSynthesisUtterance();
+//     u.text = text;
+//     u.lang = 'pt-PT';
+//     speechSynthesis.speak(u);
+//     return true;
+//   }
+//   return false;
+// }
+
+//speaking portuguese with Google text-to-speech api
+const portugueseSpokenWithGoogleAPI = (text, lang4LettersCode) => {
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", text, lang4LettersCode);
+  if (lang4LettersCode == 'Portuguese Male') {
+    speakTextGoogleAPI('pt-PT', text);
     return true;
   }
   return false;
 }
+
 
 
 // PAGES
@@ -952,12 +965,12 @@ let showPageOne = async () => {
   if (!showNativeWordFirst && !languageSwap) {
     // console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
 
-    if (!portugueseSpokenWithWebAPI(wordOne, responsiveVoiceLanguage))
+    if (!portugueseSpokenWithGoogleAPI(wordOne, responsiveVoiceLanguage))
       await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
   }
   if (showNativeWordFirst && languageSwap) {
     // console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
-    if (!portugueseSpokenWithWebAPI(wordOne, responsiveVoiceLanguage))
+    if (!portugueseSpokenWithGoogleAPI(wordOne, responsiveVoiceLanguage))
       await responsiveVoice.speak(wordOne, responsiveVoiceLanguage);
     // console.log(responsiveVoice.speak(wordOne, responsiveVoiceLanguage));
   }
@@ -1057,13 +1070,13 @@ let showPageTwo = () => {
   // for english speaking  users (Abi)...
   if (showNativeWordFirst && !languageSwap) {
     // console.log('LANGUAGE -not swapped- TO SPEAK now', responsiveVoiceLanguage);
-    if (!portugueseSpokenWithWebAPI(wordTwo, responsiveVoiceLanguage))
+    if (!portugueseSpokenWithGoogleAPI(wordTwo, responsiveVoiceLanguage))
       responsiveVoice.speak(wordTwo, responsiveVoiceLanguage);
   }
   // for czech speaking  users (Me, Dana, Stana)...
   if (!showNativeWordFirst && languageSwap) {
     // console.log('LANGUAGE -swapped- TO SPEAK now', responsiveVoiceLanguage);
-    if (!portugueseSpokenWithWebAPI(wordTwo, responsiveVoiceLanguage))
+    if (!portugueseSpokenWithGoogleAPI(wordTwo, responsiveVoiceLanguage))
       responsiveVoice.speak(wordTwo, responsiveVoiceLanguage);
     // console.log(responsiveVoice.speak(wordOne, responsiveVoiceLanguage));
   }
@@ -1871,9 +1884,6 @@ document.querySelector('#clearInputFileds').addEventListener('click', () => {
   document.querySelector('#formNewWord_toLearnInput').value = "";
   document.querySelectorAll('.trBtInNewWord').forEach(btn => btn.style.display = 'none');
 })
-
-
-
 
 
 

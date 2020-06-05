@@ -1,3 +1,4 @@
+import urlRoot from './globalVarRootUrl';
 
 const nameOfServerStateCssClass = 'serverState';
 
@@ -30,8 +31,8 @@ const wakeUpServer = async () => {
 
   // contact server
   changeServerStateSubClassTo('Loading');
-  // fetch('http://localhost:3001/api/start')
-  fetch('https://mern-express-heroku.herokuapp.com/api/start')
+  fetch(urlRoot + '/api/start')
+    // fetch('https://mern-express-heroku.herokuapp.com/api/start')
     .then(res => res.json())
     .then(
       (result) => changeServerStateSubClassTo('On'),
