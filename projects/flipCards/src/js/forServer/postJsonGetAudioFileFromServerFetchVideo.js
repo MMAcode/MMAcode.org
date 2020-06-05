@@ -9,13 +9,11 @@ export default async function postJsonGetAudioFileFromServer(url, data) {//objec
   }
 
   try {
-    console.log("environment:", process.env.NODE_ENV);
     console.log("url to fetch: ", url);
-    console.log("environment:", process.env.NODE_ENV);
 
 
     const data = await fetch(url, options);
-    
+
     console.log("server data returned", data);
     return data;
   } catch (err) {

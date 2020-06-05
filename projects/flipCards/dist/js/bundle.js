@@ -118,7 +118,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nlet urlRoot;\r\nif (false) {}\r\nelse { urlRoot = 'http://localhost:3001'; }\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (urlRoot);\n\n//# sourceURL=webpack:///./src/js/forServer/globalVarRootUrl.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nlet urlRoot = 'https://mern-express-heroku.herokuapp.com'; \r\n\r\n// let urlRoot;\r\n//works only for REACT app which I am actually deploying. here it is allways in development mode!!!!!\r\n// if (process.env.NODE_ENV === \"production\") { urlRoot = 'https://mern-express-heroku.herokuapp.com'; }\r\n// else { urlRoot = 'http://localhost:3001'; }\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (urlRoot);\n\n//# sourceURL=webpack:///./src/js/forServer/globalVarRootUrl.js?");
 
 /***/ }),
 
@@ -130,7 +130,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nlet urlRoot;\r\nif (false) {}
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return postJsonGetAudioFileFromServer; });\nasync function postJsonGetAudioFileFromServer(url, data) {//object  \r\n\r\n  const options = {\r\n    method: 'POST', // *GET, POST, PUT, DELETE, etc.\r\n    headers: {\r\n      'Content-Type': 'application/json'  // 'Content-Type': 'application/x-www-form-urlencoded',\r\n    },\r\n    body: JSON.stringify(data) // body data type must match \"Content-Type\" header\r\n  }\r\n\r\n  try {\r\n    console.log(\"environment:\", \"development\");\r\n    console.log(\"url to fetch: \", url);\r\n    console.log(\"environment:\", \"development\");\r\n\r\n\r\n    const data = await fetch(url, options);\r\n    \r\n    console.log(\"server data returned\", data);\r\n    return data;\r\n  } catch (err) {\r\n    console.log(\"error in fetch\");\r\n    return { message: 'error in Fetch', err };\r\n  }\r\n}\n\n//# sourceURL=webpack:///./src/js/forServer/postJsonGetAudioFileFromServerFetchVideo.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return postJsonGetAudioFileFromServer; });\nasync function postJsonGetAudioFileFromServer(url, data) {//object  \r\n\r\n  const options = {\r\n    method: 'POST', // *GET, POST, PUT, DELETE, etc.\r\n    headers: {\r\n      'Content-Type': 'application/json'  // 'Content-Type': 'application/x-www-form-urlencoded',\r\n    },\r\n    body: JSON.stringify(data) // body data type must match \"Content-Type\" header\r\n  }\r\n\r\n  try {\r\n    console.log(\"url to fetch: \", url);\r\n\r\n\r\n    const data = await fetch(url, options);\r\n\r\n    console.log(\"server data returned\", data);\r\n    return data;\r\n  } catch (err) {\r\n    console.log(\"error in fetch\");\r\n    return { message: 'error in Fetch', err };\r\n  }\r\n}\n\n//# sourceURL=webpack:///./src/js/forServer/postJsonGetAudioFileFromServerFetchVideo.js?");
 
 /***/ }),
 
