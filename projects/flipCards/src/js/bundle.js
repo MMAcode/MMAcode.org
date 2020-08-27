@@ -812,6 +812,9 @@ let updateCardInFirebase = async () => {
 // update ALL from second page to new card
 let updateALL = async (e) => {
   page2ActiveNow = false;
+
+
+
   // console.log('this was clicked:');
   // console.log(e.target.parentNode.id);
 
@@ -945,6 +948,8 @@ let showPageOne = async () => {
   //   https://responsivevoice.org/api/
 
 
+
+
   assignWordsAndColours(currentCard);  // which word to speak first also decided here
   firstWordHTML.textContent = wordOne;
   secondWordHTML.textContent = '...';
@@ -1025,6 +1030,9 @@ let showPageOne = async () => {
 
 let showPageTwo = () => {
   page2ActiveNow = true;
+
+
+
   // console.log('Page two Activated.');
   // secondWordHTML.onclick = null;
   // secondWordHTML.removeEventListener();
@@ -1599,11 +1607,14 @@ document.querySelector('#pileLearned .showHideCards').addEventListener("click", 
 
   if (e.target.tagName == 'BUTTON' && e.target.id) {
     let dbKey = e.target.id;
+    console.log("dbKey: ", dbKey);
+
     if (e.target.id.slice(0, 11) === 'TRANSLATION') dbKey = e.target.id.slice(11, e.target.id.length);
     let cardToMove = await cards.collection("cardsLearned").doc(`${dbKey}`).get();
-    console.log(cardToMove);
+    console.log("cardToMove: ", cardToMove);
 
-    cardToMove = cardToMove.data();
+    cardToMove = await cardToMove.data();
+    console.log("cardToMove data: ", cardToMove);
 
     if (e.target.id.slice(0, 11) === 'TRANSLATION') {
       console.log("BBBBBBBBBBBBBBBBBBBBBBBBBB BUTON translation")
@@ -1619,18 +1630,18 @@ document.querySelector('#pileLearned .showHideCards').addEventListener("click", 
       e.target.insertAdjacentElement('afterend', translationBrForHTML);
     }
     else {
-      console.log("BBBBBBBBBBBBBBBBBBBBBBBBBB BUTON move back")
+      console.log("BBBBBBBBBBBBBBBBBBBBBBBBBB BUTTON move card back to learn again")
 
+    
+      cardToMove.level = 5;
+      cards.collection("cardsLearningNotDue").doc(e.target.id).set(cardToMove);
+      cards.collection("cardsLearned").doc(e.target.id).delete();
+
+      const buttonReplacementForHTML = document.createElement('span');
+      buttonReplacementForHTML.innerHTML = "Element moved to current ('cardsLearningNotDue') pile.";
+      e.target.insertAdjacentElement('afterend', buttonReplacementForHTML);
+      e.target.remove();
     }
-    //   cardToMove.level = 5;
-    //   cards.collection("cardsLearningNotDue").doc(e.target.id).set(cardToMove);
-    //   cards.collection("cardsLearned").doc(e.target.id).delete();
-
-    //   const buttonReplacementForHTML = document.createElement('span');
-    //   buttonReplacementForHTML.innerHTML = "  Element moved to current pile.";
-    //   e.target.insertAdjacentElement('afterend', buttonReplacementForHTML);
-    //   e.target.remove();
-    // }
   }
 });
 
