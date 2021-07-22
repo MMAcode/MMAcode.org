@@ -9,7 +9,7 @@
     "sass": "^1.26.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "xlsx": "^0.15.1"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {},
   "scripts": {
