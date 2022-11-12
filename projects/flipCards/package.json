@@ -8,7 +8,7 @@
     "concurrently": "^5.1.0",
     "sass": "^1.26.3",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9",
+    "webpack-cli": "^3.3.12",
     "xlsx": "^0.15.1"
   },
   "devDependencies": {},
